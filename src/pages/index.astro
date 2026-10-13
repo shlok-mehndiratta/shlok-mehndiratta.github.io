@@ -19,9 +19,9 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
 const homeSections = [
   { id: 'overview', label: 'Overview' },
   { id: 'research', label: 'Research' },
-  { id: 'systems', label: 'Systems & Infra' },
+  { id: 'systems', label: 'Open Source' },
   { id: 'writing', label: 'Writing' },
-  { id: 'archive', label: 'Archive' },
+  { id: 'archive', label: 'Field & Lab' },
 ];
 ---
 
@@ -117,15 +117,15 @@ const homeSections = [
       </div>
     </section>
 
-    <!-- Section 1: Selected Research -->
+    <!-- Section 1: Research -->
     <section id="research" class="space-y-5">
       <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Selected Research
+            Research
           </h2>
           <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-            Conference manuscripts in multi-agent swarms and perception-aware control
+            Autonomous drone swarms and vision-based control manuscripts
           </p>
         </div>
         <a href="/experience" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
@@ -138,15 +138,15 @@ const homeSections = [
       </div>
     </section>
 
-    <!-- Section 2: Systems & Open-Source Engineering -->
+    <!-- Section 2: Open Source -->
     <section id="systems" class="space-y-5">
       <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Systems & Infrastructure
+            Open Source
           </h2>
           <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-            Core upstream contributions to robotics control software
+            Real-time safety and diagnostic test suites for ros2_control
           </p>
         </div>
         <a href="/experience#open-source" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
@@ -170,7 +170,7 @@ const homeSections = [
         </div>
 
         <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-          ROS 2 Control: Real-Time Safety, Fault Isolation & Parameter Modernization
+          ros2_control: Real-Time Safety & Diagnostics
         </h3>
 
         <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
@@ -186,7 +186,7 @@ const homeSections = [
       </div>
     </section>
 
-    <!-- Section 3: Writing & Reflections -->
+    <!-- Section 3: Writing -->
     {
       recentNote && (
         <section id="writing" class="space-y-5">
@@ -196,7 +196,7 @@ const homeSections = [
                 Writing
               </h2>
               <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-                Reflections on systems discipline, state modeling, and engineering
+                Systems discipline and state modeling from Harvard CS50 Web
               </p>
             </div>
             <a href="/notebook" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
@@ -216,10 +216,10 @@ const homeSections = [
       <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Archive
+            Field & Lab
           </h2>
           <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-            Photographs and records from hardware testbeds and research environments
+            Photographs from drone arenas, robot hardware, and campus
           </p>
         </div>
         <a href="/archive" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
