@@ -8,20 +8,17 @@ const sortedArchive = allArchive.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
-  title="Archive & Field Encounters | Shlok Mehndiratta"
-  description="A visual archive of lab artifacts, optical interference fringes, oscilloscopes, and geometry by Shlok Mehndiratta."
+  title="Archive | Shlok Mehndiratta"
+  description="Photographs and telemetry from hardware testbeds, flight arenas, and campus geometry by Shlok Mehndiratta."
 >
-  <div class="space-y-10">
+  <div class="space-y-10 sm:space-y-12">
     <!-- Header -->
-    <header class="space-y-3">
-      <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded text-xs font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.08]">
-        <span>The Physical & Visual Archive</span>
-      </div>
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+    <header class="space-y-2">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
         Archive
       </h1>
-      <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        A record of physical textures and experimental artifacts: laser interference fringes, analog oscilloscope orbits, microscope inspections, and quiet geometry from campus and travels.
+      <p class="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+        Visual records from hardware testbeds, flight arenas, motion capture volumes, and campus geometry.
       </p>
     </header>
 
@@ -31,10 +28,5 @@ const sortedArchive = allArchive.sort((a, b) => a.data.order - b.data.order);
         <ArchiveCard item={item} />
       ))}
     </section>
-
-    <!-- Subtext -->
-    <div class="pt-6 border-t border-black/[0.06] dark:border-white/[0.06] text-center text-xs font-mono text-zinc-400 dark:text-zinc-500">
-      Visual records are updated as new experimental setups and research travels occur.
-    </div>
   </div>
 </BaseLayout>
