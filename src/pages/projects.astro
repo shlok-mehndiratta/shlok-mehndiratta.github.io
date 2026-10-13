@@ -63,11 +63,17 @@ const courseworkProjects = [
     github: 'https://github.com/shlok-mehndiratta',
   },
 ];
+
+const projectSections = [
+  { id: 'ml-pipelines', label: 'ML Pipelines' },
+  { id: 'coursework-systems', label: 'Robotics & Builds' },
+];
 ---
 
 <BaseLayout
   title="Projects & Builds | Shlok Mehndiratta"
   description="Machine learning pipelines, full-stack systems, and coursework engineering builds by Shlok Mehndiratta."
+  sections={projectSections}
 >
   <div class="space-y-16 sm:space-y-20">
     <!-- Header -->
@@ -81,7 +87,7 @@ const courseworkProjects = [
     </header>
 
     <!-- Section 1: Machine Learning & Geospatial Pipelines -->
-    <section class="space-y-6">
+    <section id="ml-pipelines" class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
           Machine Learning Pipelines
@@ -142,7 +148,7 @@ const courseworkProjects = [
     </section>
 
     <!-- Section 2: Coursework & Implementation Projects -->
-    <section class="space-y-6">
+    <section id="coursework-systems" class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
           Robotics & Coursework Systems

@@ -96,11 +96,19 @@ const leadershipAppointments = [
     ],
   },
 ];
+
+const expSections = [
+  { id: 'publications', label: 'Publications' },
+  { id: 'appointments', label: 'Research Labs' },
+  { id: 'open-source', label: 'Open Source' },
+  { id: 'leadership', label: 'Leadership' },
+];
 ---
 
 <BaseLayout
   title="Experience & Research | Shlok Mehndiratta"
   description="Research appointments, publications, and open-source contributions of Shlok Mehndiratta. EECS undergraduate researcher at IISER Bhopal."
+  sections={expSections}
 >
   <div class="space-y-16 sm:space-y-20">
     <!-- Page Header -->
@@ -114,7 +122,7 @@ const leadershipAppointments = [
     </header>
 
     <!-- Section 1: Publications -->
-    <section class="space-y-6">
+    <section id="publications" class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
           Publications
@@ -132,7 +140,7 @@ const leadershipAppointments = [
     </section>
 
     <!-- Section 2: Research Appointments -->
-    <section class="space-y-6">
+    <section id="appointments" class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
           Research Appointments
@@ -237,7 +245,7 @@ const leadershipAppointments = [
     </section>
 
     <!-- Section 4: Leadership & Community -->
-    <section class="space-y-6">
+    <section id="leadership" class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
           Leadership & Community

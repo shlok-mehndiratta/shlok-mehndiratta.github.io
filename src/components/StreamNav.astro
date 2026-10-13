@@ -1,0 +1,188 @@
+---
+interface SectionItem {
+  id: string;
+  label: string;
+  caption?: string;
+}
+
+interface Props {
+  sections: SectionItem[];
+}
+
+const { sections } = Astro.props;
+---
+
+{sections && sections.length > 0 && (
+  <nav
+    id="stream-nav"
+    class="fixed left-[max(0.75rem,calc(50vw-28rem-12.5rem))] top-36 z-30 hidden lg:flex flex-col select-none pointer-events-auto transition-opacity duration-300"
+    aria-label="Section stream progress"
+  >
+    <!-- Microscopic Stream Origin Marker -->
+    <div class="flex items-center gap-1.5 text-[9px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase mb-3.5 pl-0.5">
+      <span class="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+      <span class="hidden xl:inline">STREAM</span>
+      <span class="hidden xl:inline text-zinc-300 dark:text-zinc-600">•</span>
+      <span class="text-[8px] text-zinc-400 dark:text-zinc-600">30.1°N</span>
+    </div>
+
+    <!-- The River Stream Spine & Confluence Nodes -->
+    <div class="relative flex flex-col gap-6 pl-0.5" id="stream-nodes-container">
+      <!-- Background Stream Bed Track -->
+      <div
+        id="stream-bed-track"
+        class="absolute left-[7px] top-2 bottom-2 w-[1.5px] bg-zinc-200/80 dark:bg-zinc-800/80 rounded-full"
+      ></div>
+
+      <!-- Active Flow Current (Dynamic liquid height) -->
+      <div
+        id="stream-flow-line"
+        class="absolute left-[7px] top-2 w-[1.5px] bg-gradient-to-b from-zinc-400 via-zinc-800 to-zinc-950 dark:from-zinc-500 dark:via-zinc-200 dark:to-white rounded-full transition-all duration-200 ease-out"
+        style="height: 0px;"
+      ></div>
+
+      <!-- Confluence Waypoint Nodes -->
+      {sections.map((section, idx) => (
+        <a
+          href={`#${section.id}`}
+          data-stream-target={section.id}
+          data-stream-index={idx}
+          class="stream-node group relative flex items-center gap-3 text-left focus:outline-none"
+        >
+          <!-- Confluence Droplet Ring -->
+          <div class="relative z-10 flex items-center justify-center w-3.5 h-3.5 rounded-full bg-canvas-light dark:bg-canvas-dark border border-zinc-300 dark:border-zinc-700 transition-all duration-300 group-hover:border-zinc-800 dark:group-hover:border-zinc-300 node-bullet">
+            <span class="w-1 h-1 rounded-full bg-zinc-400 dark:bg-zinc-600 transition-all duration-300 node-core"></span>
+          </div>
+
+          <!-- Section Label (Expanded on xl, hover tooltip on lg) -->
+          <div class="hidden xl:flex flex-col">
+            <span class="text-[11px] font-mono tracking-tight text-zinc-400 dark:text-zinc-500 transition-all duration-200 group-hover:text-zinc-800 dark:group-hover:text-zinc-200 node-label whitespace-nowrap">
+              {section.label}
+            </span>
+            {section.caption && (
+              <span class="text-[9px] font-mono text-zinc-400/60 dark:text-zinc-600 node-caption hidden">
+                {section.caption}
+              </span>
+            )}
+          </div>
+
+          <!-- Compact Hover Tooltip (Shown on lg only) -->
+          <div class="xl:hidden absolute left-6 px-2 py-1 rounded-md bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-[10px] font-mono whitespace-nowrap shadow-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            {section.label}
+          </div>
+        </a>
+      ))}
+    </div>
+  </nav>
+)}
+
+<script is:inline>
+  const setupStreamNav = () => {
+    const nav = document.getElementById('stream-nav');
+    if (!nav) return;
+
+    const nodes = document.querySelectorAll('[data-stream-target]');
+    const flowLine = document.getElementById('stream-flow-line');
+    const container = document.getElementById('stream-nodes-container');
+    if (!nodes.length) return;
+
+    const sectionElements = [];
+    nodes.forEach((node) => {
+      const targetId = node.getAttribute('data-stream-target');
+      const el = document.getElementById(targetId);
+      if (el) sectionElements.push({ id: targetId, el, node });
+    });
+
+    if (!sectionElements.length) return;
+
+    // Smooth click handler with offset for floating header
+    nodes.forEach((node) => {
+      node.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = node.getAttribute('data-stream-target');
+        const target = document.getElementById(targetId);
+        if (target) {
+          const headerOffset = 96;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }
+      });
+    });
+
+    // Update active node styling and flow line height
+    const updateActiveNode = (activeId) => {
+      let activeIndex = 0;
+      sectionElements.forEach((item, index) => {
+        const isMatch = item.id === activeId;
+        const bullet = item.node.querySelector('.node-bullet');
+        const core = item.node.querySelector('.node-core');
+        const label = item.node.querySelector('.node-label');
+
+        if (isMatch) {
+          activeIndex = index;
+          if (bullet) {
+            bullet.classList.add('border-zinc-950', 'dark:border-white', 'bg-zinc-950', 'dark:bg-white', 'ring-4', 'ring-zinc-950/10', 'dark:ring-white/10');
+            bullet.classList.remove('border-zinc-300', 'dark:border-zinc-700');
+          }
+          if (core) {
+            core.classList.add('bg-white', 'dark:bg-zinc-950', 'scale-125');
+            core.classList.remove('bg-zinc-400', 'dark:bg-zinc-600');
+          }
+          if (label) {
+            label.classList.add('text-zinc-950', 'dark:text-zinc-100', 'font-semibold', 'translate-x-1');
+            label.classList.remove('text-zinc-400', 'dark:text-zinc-500');
+          }
+        } else {
+          if (bullet) {
+            bullet.classList.remove('border-zinc-950', 'dark:border-white', 'bg-zinc-950', 'dark:bg-white', 'ring-4', 'ring-zinc-950/10', 'dark:ring-white/10');
+            bullet.classList.add('border-zinc-300', 'dark:border-zinc-700');
+          }
+          if (core) {
+            core.classList.remove('bg-white', 'dark:bg-zinc-950', 'scale-125');
+            core.classList.add('bg-zinc-400', 'dark:bg-zinc-600');
+          }
+          if (label) {
+            label.classList.remove('text-zinc-950', 'dark:text-zinc-100', 'font-semibold', 'translate-x-1');
+            label.classList.add('text-zinc-400', 'dark:text-zinc-500');
+          }
+        }
+      });
+
+      // Flow line calculates down to active node position
+      if (flowLine && sectionElements[activeIndex]) {
+        const activeNodeEl = sectionElements[activeIndex].node;
+        const offsetTop = activeNodeEl.offsetTop + 7; // center of droplet
+        flowLine.style.height = `${offsetTop}px`;
+      }
+    };
+
+    // Observer to detect active section in viewport
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          updateActiveNode(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    sectionElements.forEach((item) => observer.observe(item.el));
+
+    // Initial trigger
+    if (sectionElements[0]) {
+      updateActiveNode(sectionElements[0].id);
+    }
+  };
+
+  setupStreamNav();
+  document.addEventListener('astro:after-swap', setupStreamNav);
+</script>

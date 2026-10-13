@@ -15,15 +15,24 @@ const recentNote = allNotebook.sort(
 
 const allArchive = await getCollection('archive');
 const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).slice(0, 2);
+
+const homeSections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'research', label: 'Research' },
+  { id: 'systems', label: 'Systems & Infra' },
+  { id: 'writing', label: 'Writing' },
+  { id: 'archive', label: 'Archive' },
+];
 ---
 
 <BaseLayout
   title="Shlok Mehndiratta | Robotics & Autonomous Systems @ IISER Bhopal"
   description="Personal website of Shlok Mehndiratta. EECS undergraduate researcher at IISER Bhopal working across robotics, control theory, state estimation, and learning for autonomous systems."
+  sections={homeSections}
 >
   <div class="space-y-16 sm:space-y-24">
     <!-- Hero Section -->
-    <section class="pt-2">
+    <section id="overview" class="pt-2">
       <div class="flex flex-col-reverse md:flex-row md:items-start justify-between gap-8 sm:gap-12">
         <!-- Left: Narrative & Identity -->
         <div class="space-y-5 max-w-2xl">
@@ -109,7 +118,7 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
     </section>
 
     <!-- Section 1: Selected Research -->
-    <section class="space-y-5">
+    <section id="research" class="space-y-5">
       <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
@@ -130,7 +139,7 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
     </section>
 
     <!-- Section 2: Systems & Open-Source Engineering -->
-    <section class="space-y-5">
+    <section id="systems" class="space-y-5">
       <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
@@ -180,7 +189,7 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
     <!-- Section 3: Writing & Reflections -->
     {
       recentNote && (
-        <section class="space-y-5">
+        <section id="writing" class="space-y-5">
           <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
             <div>
               <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
@@ -203,7 +212,7 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
     }
 
     <!-- Section 4: Visual Encounters Preview -->
-    <section class="space-y-5">
+    <section id="archive" class="space-y-5">
       <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
