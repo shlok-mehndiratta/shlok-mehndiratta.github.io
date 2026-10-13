@@ -41,24 +41,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <!-- Resume Body -->
     <div class="space-y-8 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
-      <!-- Contact Info -->
+      <!-- Contact Info & Identifiers -->
       <section class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-zinc-600 dark:text-zinc-400">
         <div>
-          <p><strong>Email:</strong> contact@shlokmehndiratta.me</p>
-          <p><strong>Institution:</strong> IISER Bhopal, India</p>
+          <p><strong>Personal Mail:</strong> contact@shlokmehndiratta.me</p>
+          <p><strong>Institutional:</strong> shlok@iiserb.ac.in</p>
+          <p><strong>Affiliation:</strong> IISER Bhopal, Madhya Pradesh, India</p>
         </div>
         <div class="sm:text-right">
           <p><strong>Website:</strong> https://shlokmehndiratta.me</p>
+          <p><strong>Scholar:</strong> Google Scholar Profile</p>
           <p><strong>GitHub:</strong> github.com/shlokmehndiratta</p>
         </div>
       </section>
 
       <!-- Education -->
       <section class="space-y-3">
-        <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
           Education
         </h2>
-        <div class="space-y-1">
+        <div class="space-y-2">
           <div class="flex justify-between items-baseline">
             <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Indian Institute of Science Education and Research (IISER) Bhopal</h3>
             <span class="text-xs font-mono text-zinc-400">2022 – 2026 (Expected)</span>
@@ -66,15 +68,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <p class="text-xs text-zinc-600 dark:text-zinc-400">
             Bachelor of Science (BS) in Electrical Engineering and Computer Science (EECS)
           </p>
-          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
-            Key Coursework: Signals & Systems, Linear Algebra, Convex Optimization, Graph Theory, Digital Signal Processing, Probability & Random Processes, Data Structures & Algorithms, Computer Architecture.
-          </p>
+
+          <!-- Structured Coursework Matrix -->
+          <div class="mt-2 p-3 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/50 dark:bg-zinc-800/30 text-xs space-y-1.5">
+            <p class="font-mono text-[11px] font-semibold text-zinc-700 dark:text-zinc-300">
+              Selected Theoretical Pedagogy & Core Coursework:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono text-zinc-600 dark:text-zinc-400">
+              <div>
+                <strong class="text-zinc-800 dark:text-zinc-200">Mathematical Foundations:</strong><br />
+                Convex Optimization, Linear Algebra, Probability & Random Processes, Graph Theory, Real Analysis
+              </div>
+              <div>
+                <strong class="text-zinc-800 dark:text-zinc-200">Systems & Computing:</strong><br />
+                Signals & Systems, Digital Signal Processing, Computer Architecture, Data Structures & Algorithms
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Research & Industry Experience -->
       <section class="space-y-5">
-        <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
           Appointments & Experience
         </h2>
 
@@ -117,9 +133,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </section>
 
-      <!-- Publications & Manuscripts -->
+      <!-- Publications & Preprints -->
       <section class="space-y-4">
-        <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
           Publications & Preprints
         </h2>
         
@@ -164,7 +180,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <!-- Technical Skills -->
       <section class="space-y-2">
-        <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
           Technical Proficiencies
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">

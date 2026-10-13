@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SignalVisualizer from '../components/SignalVisualizer.astro';
 import PublicationCard from '../components/PublicationCard.astro';
 import NotebookCard from '../components/NotebookCard.astro';
 import ArchiveCard from '../components/ArchiveCard.astro';
@@ -22,60 +21,103 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
   title="Shlok Mehndiratta | EECS @ IISER Bhopal"
   description="Personal website of Shlok Mehndiratta. EECS undergraduate at IISER Bhopal working across statistical signal processing, networked intelligence, and systems."
 >
-  <!-- Hero Section -->
+  <!-- Hero Section with Split Layout -->
   <section class="space-y-6 pt-4 pb-2">
     <!-- Live Status Pill -->
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-zinc-100 dark:bg-zinc-800/80 border border-black/[0.08] dark:border-white/[0.08] text-zinc-700 dark:text-zinc-300">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
       <span>Final Year BS @ IISER Bhopal • Seeking MS/PhD for Fall 2026/2027</span>
     </div>
 
-    <!-- Name & Description -->
-    <div class="space-y-2">
-      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-        Shlok Mehndiratta
-      </h1>
-      <p class="text-base sm:text-lg font-medium text-zinc-600 dark:text-zinc-400">
-        Electrical Engineering & Computer Science at <span class="text-zinc-900 dark:text-zinc-200">IISER Bhopal</span>
-      </p>
+    <!-- Split Hero: Left narrative & Right visual artifact plate -->
+    <div class="flex flex-col md:flex-row md:items-start justify-between gap-8 pt-2">
+      <!-- Left Column: Narrative & Identity -->
+      <div class="space-y-4 max-w-2xl">
+        <div class="space-y-1">
+          <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Shlok Mehndiratta
+          </h1>
+          <p class="text-sm sm:text-base font-medium text-zinc-600 dark:text-zinc-400">
+            Electrical Engineering & Computer Science at <span class="text-zinc-900 dark:text-zinc-200">IISER Bhopal</span>
+          </p>
+        </div>
+
+        <p class="text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+          I work at the confluence of <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">statistical signal processing</strong>, <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">graph spectral theory</strong>, and <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">distributed systems</strong>. Coming from a foundational science and engineering institute, I enjoy bridging analytical mathematical theorems with high-performance, real-world implementations.
+        </p>
+
+        <!-- Quick Action Triggers -->
+        <div class="flex flex-wrap items-center gap-2.5 pt-1">
+          <a
+            href="/experience"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-xs sm:text-sm font-medium hover:bg-zinc-800 dark:hover:bg-white transition-colors"
+          >
+            <span>Experience & Research</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+
+          <a
+            href="/projects"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-black/[0.1] dark:border-white/[0.1] bg-surface-light dark:bg-surface-dark text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-black dark:hover:text-white transition-colors"
+          >
+            <span>Projects & Builds</span>
+          </a>
+
+          <a
+            href="/resume"
+            class="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
+          >
+            <span>Resume (PDF)</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          </a>
+        </div>
+
+        <!-- Social & Academic Link Bar -->
+        <div class="flex flex-wrap items-center gap-3 pt-2 text-xs font-mono text-zinc-500 border-t border-black/[0.04] dark:border-white/[0.04]">
+          <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer" class="hover:text-black dark:hover:text-white transition-colors">
+            Google Scholar
+          </a>
+          <span>•</span>
+          <a href="https://github.com/shlokmehndiratta" target="_blank" rel="noopener noreferrer" class="hover:text-black dark:hover:text-white transition-colors">
+            GitHub
+          </a>
+          <span>•</span>
+          <a href="https://linkedin.com/in/shlokmehndiratta" target="_blank" rel="noopener noreferrer" class="hover:text-black dark:hover:text-white transition-colors">
+            LinkedIn
+          </a>
+          <span>•</span>
+          <a href="mailto:shlok@iiserb.ac.in" class="hover:text-black dark:hover:text-white transition-colors" title="Institutional Email">
+            shlok@iiserb.ac.in
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Curated Monochrome Visual Plate -->
+      <div class="w-full sm:w-64 md:w-72 shrink-0 self-start">
+        <div class="group relative rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular p-2 transition-all duration-300 hover:border-black/[0.18] dark:hover:border-white/[0.18]">
+          <div class="relative w-full aspect-square overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800">
+            <!-- Curated monochrome physical artifact (Laser interference at IISER Bhopal) -->
+            <img
+              src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=800&q=80"
+              alt="Optical interference fringe patterns at IISER Bhopal"
+              class="w-full h-full object-cover grayscale contrast-125 transition-transform duration-500 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
+          </div>
+          <!-- Micro Telemetry Caption -->
+          <div class="pt-2 px-1 flex items-center justify-between text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
+            <span class="truncate">OPTICAL FRINGES • CIF LAB</span>
+            <span class="flex items-center gap-1 shrink-0">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span>IISERB</span>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <!-- Personal Positioning -->
-    <p class="text-base sm:text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 max-w-3xl">
-      I work at the confluence of <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">statistical signal processing</strong>, <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">graph spectral theory</strong>, and <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">distributed systems</strong>. Coming from a foundational science and engineering institute, I enjoy bridging analytical mathematical theorems with high-performance, real-world code.
-    </p>
-
-    <!-- Quick Action Triggers -->
-    <div class="flex flex-wrap items-center gap-3 pt-1">
-      <a
-        href="/research"
-        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-white transition-colors"
-      >
-        <span>Research & Inquiries</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-      </a>
-
-      <a
-        href="/experience"
-        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-black/[0.1] dark:border-white/[0.1] bg-surface-light dark:bg-surface-dark text-zinc-800 dark:text-zinc-200 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
-      >
-        <span>Experience & Projects</span>
-      </a>
-
-      <a
-        href="/resume"
-        class="inline-flex items-center gap-1.5 px-3 py-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-      >
-        <span>Resume</span>
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-      </a>
-    </div>
-
-    <!-- Ambient Subtle Harmonic Wave Visualizer -->
-    <SignalVisualizer />
   </section>
 
-  <!-- Curated Showcase (The Mix: Research + Engineering + Note) -->
+  <!-- Curated Showcase (The Mix: Experience/Paper + Project + Note) -->
   <section class="mt-12 space-y-6">
     <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
       <div>
@@ -86,8 +128,8 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
           A snapshot of theoretical inquiry, engineering systems, and recent writing
         </p>
       </div>
-      <a href="/research" class="text-xs font-mono text-sky-600 dark:text-sky-400 hover:underline">
-        All Research →
+      <a href="/experience" class="text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors">
+        All Experience →
       </a>
     </div>
 
@@ -102,12 +144,17 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
 
       <!-- 2. Flagship Engineering System -->
       <div class="space-y-1.5 pt-2">
-        <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">
-          Featured Engineering Build
-        </span>
-        <div class="p-5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark space-y-2">
+        <div class="flex items-baseline justify-between">
+          <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">
+            Featured Engineering Build
+          </span>
+          <a href="/projects" class="text-xs font-mono text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
+            All Projects →
+          </a>
+        </div>
+        <div class="p-5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] space-y-2">
           <div class="flex items-center justify-between">
-            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 border border-teal-500/20">
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.08]">
               Autonomous Systems
             </span>
             <span class="text-xs font-mono text-zinc-400">Summer 2025</span>
@@ -122,7 +169,7 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
             <span class="bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded">C++20</span>
             <span class="bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded">ROS 2</span>
             <span class="bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded">Eigen</span>
-            <a href="https://github.com/shlokmehndiratta/async-swarm-consensus" target="_blank" class="text-sky-600 dark:text-sky-400 hover:underline ml-auto">
+            <a href="https://github.com/shlokmehndiratta/async-swarm-consensus" target="_blank" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors ml-auto">
               View Repository →
             </a>
           </div>
@@ -133,9 +180,14 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
       {
         recentNote && (
           <div class="space-y-1.5 pt-2">
-            <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">
-              From the Notebook
-            </span>
+            <div class="flex items-baseline justify-between">
+              <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">
+                From the Notebook
+              </span>
+              <a href="/notebook" class="text-xs font-mono text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
+                All Notes →
+              </a>
+            </div>
             <NotebookCard entry={recentNote} />
           </div>
         )
@@ -144,7 +196,7 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
   </section>
 
   <!-- What I'm Investigating Now (Living Heartbeat) -->
-  <section class="mt-14 space-y-4 p-5 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/60 dark:bg-zinc-900/30 text-xs sm:text-sm">
+  <section class="mt-14 space-y-4 p-5 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] text-xs sm:text-sm">
     <div class="flex items-center justify-between">
       <h3 class="font-semibold text-zinc-900 dark:text-zinc-100 text-sm flex items-center gap-2">
         <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
@@ -170,7 +222,7 @@ const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).sl
           Physical lab artifacts, optical fringes & encounters
         </p>
       </div>
-      <a href="/archive" class="text-xs font-mono text-sky-600 dark:text-sky-400 hover:underline">
+      <a href="/archive" class="text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors">
         Browse Archive ({allArchive.length}) →
       </a>
     </div>

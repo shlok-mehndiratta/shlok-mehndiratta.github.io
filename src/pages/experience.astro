@@ -1,5 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPubs = await getCollection('publications');
+const sortedPubs = allPubs.sort((a, b) => a.data.order - b.data.order);
+
+const underReviewCount = sortedPubs.filter((p) => p.data.status === 'under-review').length;
+const publishedCount = sortedPubs.filter((p) => p.data.status === 'published').length;
+const preprintCount = sortedPubs.filter((p) => p.data.status === 'preprint').length;
 
 const appointments = [
   {
@@ -8,7 +17,7 @@ const appointments = [
     department: 'Department of Electrical Engineering and Computer Science',
     period: 'Aug 2025 – Present',
     type: 'Research Appointment',
-    typeColor: 'text-sky-600 dark:text-sky-400 bg-sky-500/10 border-sky-500/20',
+    typeColor: 'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60',
     description: 'Investigating continuous-time manifold regularization for high-dimensional recursive Kalman filtering on dynamic graphs. Proving analytical stability bounds under non-stationary network topologies.',
     highlights: [
       'Formulated Riemannian gradient updates for tracking fluctuating network states.',
@@ -17,12 +26,12 @@ const appointments = [
     skills: ['Graph Signal Processing', 'Recursive Estimation', 'Python', 'NumPy'],
   },
   {
-    role: 'Summer Research Fellow',
+    role: 'Visiting Summer Research Fellow',
     organization: 'Autonomous Systems & Robotics Lab',
     department: 'Visiting Student Fellowship',
     period: 'May 2025 – Jul 2025',
     type: 'Research Fellowship',
-    typeColor: 'text-purple-600 dark:text-purple-400 bg-purple-500/10 border-purple-500/20',
+    typeColor: 'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60',
     description: 'Developed an asynchronous consensus protocol for multi-robot formations operating under intermittent wireless packet drops and directed graph topologies.',
     highlights: [
       'Validated recovery rates across a 12-node robotic hardware simulation.',
@@ -36,7 +45,7 @@ const appointments = [
     department: 'Industrial / Systems Track',
     period: 'Dec 2024 – Jan 2025',
     type: 'Industry / Engineering',
-    typeColor: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
+    typeColor: 'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60',
     description: 'Implemented high-throughput data processing pipelines for high-rate sensor streams. Profiling and optimizing matrix operations on embedded compute platforms.',
     highlights: [
       'Accelerated linear algebraic solver routines using SIMD vectorization in C++.',
@@ -45,70 +54,91 @@ const appointments = [
     skills: ['C++', 'Performance Profiling', 'Linux', 'Git', 'Data Pipelines'],
   },
 ];
-
-const projects = [
-  {
-    title: 'Asynchronous Swarm Consensus Simulator',
-    category: 'Distributed Systems / Robotics',
-    period: '2025',
-    description: 'An event-driven distributed simulator in C++20 and ROS 2 testing gossip-based consensus algorithms over lossy, directed graph topologies with arbitrary network delays.',
-    metrics: 'Simulates 50+ autonomous nodes at 60Hz with zero deadlock.',
-    tech: ['C++20', 'ROS 2', 'Eigen', 'CMake'],
-    github: 'https://github.com/shlokmehndiratta/async-swarm-consensus',
-  },
-  {
-    title: 'Spectral Proximal Solver (SPS-Py)',
-    category: 'Optimization & Compressive Sensing',
-    period: '2025',
-    description: 'A Python and C++ accelerated implementation of smoothed non-convex proximal operators for high-dimensional compressive signal recovery under heavy additive noise.',
-    metrics: '3.4x faster convergence than standard FISTA baselines.',
-    tech: ['Python', 'NumPy', 'SciPy', 'C++ Extensions'],
-    github: 'https://github.com/shlokmehndiratta/spectral-proximal',
-  },
-  {
-    title: 'Dual-Channel Signal Synthesizer Hardware',
-    category: 'Hardware / Embedded EECS',
-    period: '2024',
-    description: 'Designed a direct digital synthesis (DDS) waveform generator board capable of producing custom arbitrary Fourier harmonics with controllable phase offsets for lab calibrations.',
-    metrics: '0.1 Hz to 10 MHz bandwidth with <0.5% THD.',
-    tech: ['KiCAD', 'Embedded C', 'STM32', 'Oscilloscopes'],
-    github: 'https://github.com/shlokmehndiratta/dds-signal-generator',
-  },
-];
 ---
 
 <BaseLayout
-  title="Experience & Projects | Shlok Mehndiratta"
-  description="Appointments, internships, and engineering systems built by Shlok Mehndiratta."
+  title="Experience & Research | Shlok Mehndiratta"
+  description="Research manuscripts, senior thesis inquiry, and appointments of Shlok Mehndiratta. Senior undergraduate in EECS at IISER Bhopal."
 >
   <div class="space-y-12">
     <!-- Header -->
     <header class="space-y-3">
-      <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded text-xs font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-        <span>Trajectory & Engineering</span>
+      <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.08]">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        <span>Trajectory & Research Output</span>
       </div>
       <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-        Experience & Projects
+        Experience & Research
       </h1>
       <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        My trajectory encompasses laboratory research appointments, industrial engineering internships, and concrete software/hardware systems. I prioritize deep technical ownership and reproducible implementations.
+        My trajectory encompasses peer-reviewed manuscripts, theoretical modeling at IISER Bhopal, visiting research fellowships, and industrial systems engineering internships.
       </p>
     </header>
 
+    <!-- Active Senior Thesis Inquiry (IISER Bhopal) -->
+    <section class="p-5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] space-y-2 text-xs sm:text-sm">
+      <div class="flex items-center justify-between">
+        <h3 class="font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Active Inquiry: Senior Undergraduate Thesis (IISER Bhopal)</span>
+        </h3>
+        <span class="font-mono text-[11px] text-zinc-500 dark:text-zinc-400">In Progress</span>
+      </div>
+      <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">
+        Investigating recursive filtering on dynamic Riemannian manifolds. We are proving asymptotic mean-squared error bounds under non-stationary stochastic perturbations and testing scalability against standard distributed Kalman-consensus baselines.
+      </p>
+    </section>
+
+    <!-- Manuscripts & Papers Section -->
+    <section class="space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Publications & Preprints
+          </h2>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+            Manuscripts under review, proceedings & theoretical preprints
+          </p>
+        </div>
+
+        <!-- Filter Stats -->
+        <div class="flex flex-wrap items-center gap-1.5 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
+            Total: {sortedPubs.length}
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
+            Under Review: {underReviewCount}
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
+            Published: {publishedCount}
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
+            Preprints: {preprintCount}
+          </span>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        {sortedPubs.map((pub) => (
+          <PublicationCard pub={pub} />
+        ))}
+      </div>
+    </section>
+
     <!-- Appointments & Internships -->
-    <section class="space-y-6">
+    <section class="space-y-6 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
           Appointments & Internships
         </h2>
         <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
-          Research fellowships, industrial engagements & institutional roles
+          Research fellowships, industrial systems engagements & institutional roles
         </p>
       </div>
 
       <div class="space-y-6">
         {appointments.map((apt) => (
-          <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark space-y-3 transition-all duration-200 hover:border-black/[0.18] dark:hover:border-white/[0.18]">
+          <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] space-y-3 transition-all duration-200 hover:border-black/[0.18] dark:hover:border-white/[0.18]">
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5">
               <div>
                 <span class={`inline-block px-2 py-0.5 text-[10px] font-mono rounded-full border mb-1.5 ${apt.typeColor}`}>
@@ -150,64 +180,37 @@ const projects = [
       </div>
     </section>
 
-    <!-- Selected Systems & Engineering Builds -->
-    <section class="space-y-6 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
-      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
-        <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-          Selected Systems & Builds
+    <!-- Conceptual Influences & Literature -->
+    <section class="space-y-4 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
+      <div class="space-y-1">
+        <h2 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          Conceptual Influences & Literature
         </h2>
-        <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
-          Software architectures, simulation engines & hardware prototypes
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+          Foundational works and frameworks that shape my mathematical intuition
         </p>
       </div>
 
-      <div class="grid grid-cols-1 gap-5">
-        {projects.map((proj) => (
-          <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark space-y-3 transition-all duration-200 hover:border-black/[0.18] dark:hover:border-white/[0.18]">
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-              <div>
-                <span class="text-[10px] font-mono text-sky-600 dark:text-sky-400 uppercase tracking-wider font-semibold">
-                  {proj.category}
-                </span>
-                <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                  {proj.title}
-                </h3>
-              </div>
-              <span class="text-xs font-mono text-zinc-400 shrink-0">{proj.period}</span>
-            </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/50 dark:bg-zinc-900/30 space-y-1">
+          <h4 class="font-semibold text-zinc-900 dark:text-zinc-100">
+            Graph Signal Processing (GSP) Foundations
+          </h4>
+          <p class="text-zinc-600 dark:text-zinc-400">
+            Shuman, Narang, Frossard, Ortega, and Vandergheynst (IEEE Signal Processing Magazine, 2013).
+          </p>
+          <span class="text-[11px] font-mono text-zinc-400">Harmonics on irregular graph topologies</span>
+        </div>
 
-            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-              {proj.description}
-            </p>
-
-            <div class="p-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-800/40 border border-black/[0.04] dark:border-white/[0.04] text-xs font-mono text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
-              <span class="text-emerald-500 font-bold">⚡</span>
-              <span>{proj.metrics}</span>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
-              <div class="flex flex-wrap gap-1.5">
-                {proj.tech.map((t) => (
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {proj.github && (
-                <a
-                  href={proj.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1 text-xs font-mono text-sky-600 dark:text-sky-400 hover:underline"
-                >
-                  <span>Repository</span>
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                </a>
-              )}
-            </div>
-          </div>
-        ))}
+        <div class="p-4 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/50 dark:bg-zinc-900/30 space-y-1">
+          <h4 class="font-semibold text-zinc-900 dark:text-zinc-100">
+            Distributed Optimization via ADMM
+          </h4>
+          <p class="text-zinc-600 dark:text-zinc-400">
+            Stephen Boyd, Neal Parikh, Eric Chu, Borja Peleato, and Jonathan Eckstein (2011).
+          </p>
+          <span class="text-[11px] font-mono text-zinc-400">Splitting methods for decentralized solving</span>
+        </div>
       </div>
     </section>
   </div>

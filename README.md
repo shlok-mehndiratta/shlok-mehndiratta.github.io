@@ -1,31 +1,45 @@
 # `shlokmehndiratta.me`
 
-Personal website, research showcase, and living digital archive of **Shlok Mehndiratta** (BS in EECS, IISER Bhopal).
+Personal portfolio, research showcase, and digital archive of **Shlok Mehndiratta** (Senior Undergraduate in EECS, IISER Bhopal).
 
-Engineered with **Astro 5**, **Tailwind CSS**, **MDX**, and **KaTeX** for instant global load times, academic precision, and high-end digital craft.
+Engineered with **Astro 5**, **Tailwind CSS**, **MDX**, and **KaTeX** for instant global performance, mathematical precision, and Swiss architectural minimalism.
 
 ---
 
 ## 🧭 The 5 Pillars
 
-1. **`Overview` (`/`)**: High-impact personal statement, dynamic status pill, ambient Fourier harmonic canvas, and curated 3-point showcase (research + build + note).
-2. **`Research` (`/research`)**: Research vision & open questions, senior thesis inquiries at IISER Bhopal, publications/manuscripts with 1-click BibTeX copy, and foundational literature.
-3. **`Experience` (`/experience`)**: Academic research fellowships, industrial internships, laboratory appointments, and concrete software/hardware systems built.
-4. **`Notebook` (`/notebook`)**: An intellectual journal featuring technical deep-dives ($L = D - A$), heuristics from research internships, and bookshelf/paper reflections.
-5. **`Archive` (`/archive`)**: Physical and experimental textures: laser interference patterns, analog oscilloscope traces, silicon micrographs, and campus geometry.
-6. **`Resume` (`/resume`)**: Application-ready resume for graduate school (MS/PhD) and top industry R&D, with 1-click LaTeX PDF download and print optimization (`Cmd+P`).
+1. **`Overview` (`/`)**: High-impact statement, live status indicator (`🟢 Final Year BS @ IISER Bhopal • Seeking MS/PhD for Fall 2026/2027`), split hero with monochrome optical fringe plate, curated highlights, and social/institutional links.
+2. **`Experience` (`/experience`)**: Unifies formal research output and career appointments:
+   - Publications & Preprints (with status pills, 1-sentence takeaways, 1-click BibTeX copy drawers, code/PDF links).
+   - Senior Undergraduate Thesis Inquiry at IISER Bhopal.
+   - Appointments (IISERB Thesis Researcher, Summer Fellow at Autonomous Systems Lab, Systems Engineering Intern).
+   - Conceptual Influences & Literature (foundational papers in GSP and ADMM).
+3. **`Projects` (`/projects`)**: The engineering showcase:
+   - Systems & Software Architectures (C++20/ROS 2 Asynchronous Swarm Consensus Simulator, Spectral Proximal Solver).
+   - Coursework Implementation Projects (Convex Optimization Primal-Dual Solver, DSP STFT Phase Vocoder, 5-stage RISC-V Pipeline Core).
+   - Hardware & Embedded Prototypes (Dual-Channel DDS Waveform Generator PCB board, STM32).
+4. **`Notebook` (`/notebook`)**: An open intellectual workshop:
+   - Deep-dive technical essays with KaTeX math ($L = D - A$).
+   - Heuristics from undergraduate research and debugging.
+   - Bookshelf notes and paper distillations (Stephen Boyd's *Convex Optimization*).
+5. **`Archive` (`/archive`)**: Physical and experimental textures:
+   - He-Ne laser interference fringes, analog CRT oscilloscope Lissajous orbits, silicon microprocessor micrographs, and campus geometry.
+6. **`Resume` (`/resume`)**: Application-ready official document:
+   - Header with institutional email (`shlok@iiserb.ac.in`), personal email, and Google Scholar profile.
+   - Education block with structured 2-column Coursework Matrix (Mathematical Foundations vs. Systems & Computing).
+   - 1-click **Download LaTeX PDF** and print optimization (`Cmd+P`).
 
 ---
 
 ## 🚀 Quick Start (Local Development)
 
-Dependencies are completely isolated in the Conda environment `portfolio`.
+Dependencies are isolated in the Conda environment `portfolio`.
 
 ```bash
 # 1. Activate the conda environment
 conda activate portfolio
 
-# 2. Start the local development server
+# 2. Start the local dev server
 npm run dev
 ```
 
@@ -33,78 +47,21 @@ Open `http://localhost:4321` in your browser.
 
 ---
 
-## 📁 Content Management (`src/content/`)
+## ⌨️ Micro-Interactions & Shortcuts (`⌘K` or `?`)
 
-### 1. Research Manuscripts (`src/content/publications/`)
-Add a new markdown file:
-```yaml
----
-title: "Paper Title"
-authors: ["Shlok Mehndiratta", "Co-author Name"]
-venue: "IEEE Transactions on Signal Processing"
-year: 2026
-status: "under-review" # "published" | "under-review" | "preprint" | "in-preparation"
-takeaway: "1-sentence core scientific breakthrough"
-abstract: "Full abstract text..."
-pdfUrl: "/papers/your-paper.pdf"
-codeUrl: "https://github.com/shlokmehndiratta/repo"
-bibtex: |
-  @article{...}
-featured: true
-tags: ["Signal Processing", "Graph Theory"]
-order: 1
----
-```
-
-### 2. Notebook Entries (`src/content/notebook/`)
-Add a new markdown file:
-```yaml
----
-title: "Title of Exploration"
-publishedDate: 2026-10-15
-type: "deep-dive" # "deep-dive" | "heuristic" | "paper-note" | "bookshelf"
-readTime: "6 min read"
-summary: "Brief synopsis."
-tags: ["Optimization", "Mathematics"]
-draft: false
----
-
-Content goes here. Supports KaTeX math ($...$ and $$...$$) and code blocks.
-```
-
-### 3. Archive Captures (`src/content/archive/`)
-Add a new visual capture:
-```yaml
----
-title: "Laser Fringe Patterns"
-date: 2026-03-15
-imageUrl: "https://... or /archive/image.jpg"
-caption: "Description of the encounter."
-location: "IISER Bhopal, CIF"
-instrument: "He-Ne Laser 632.8nm"
-category: "optics" # "lab" | "optics" | "geometry" | "life"
-aspectRatio: "16/10"
-order: 1
----
-```
-
----
-
-## ⌨️ Micro-Interactions
-
-- **Keyboard Navigation (`Cmd+K` / `?`)**: Press `R` for Research, `E` for Experience, `N` for Notebook, `A` for Archive, `U` for Resume, `T` for Theme toggle.
-- **Ambient Fourier Canvas**: Interactive sine wave harmonics modulating subtly on cursor proximity.
-- **1-Click BibTeX Drawer**: Copies citations directly to the clipboard with visual confirmation (`Copied! ✓`).
+- **Keyboard Navigation**:
+  - `E` → `/experience`
+  - `P` → `/projects`
+  - `N` → `/notebook`
+  - `A` → `/archive`
+  - `R` → `/resume`
+  - `T` → Toggle Theme
+- **1-Click BibTeX Drawer**: Copies cleanly formatted citations to clipboard with instant visual feedback (`Copied! ✓`).
 - **Clean Resume Print**: `Cmd+P` on `/resume` strips navigation and formats as an academic document.
+- **Search Engine Indexing**: Invisible JSON-LD `schema.org/Person` metadata embedded in `<head>`.
 
 ---
 
 ## 🌐 Deployment to Custom Domain
 
-### GitHub Pages (Automated)
-Push this repository to GitHub:
-```bash
-git remote add origin https://github.com/shlokmehndiratta/shlokmehndiratta.me.git
-git push -u origin main
-```
-In your GitHub repo settings, go to **Settings → Pages → Build and deployment → Source → GitHub Actions**. Every push will automatically deploy to `shlokmehndiratta.me`.
+Every push to branch `main` is automatically built and deployed to `shlokmehndiratta.me` via `.github/workflows/deploy.yml`.

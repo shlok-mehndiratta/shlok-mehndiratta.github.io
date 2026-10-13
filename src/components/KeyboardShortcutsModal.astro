@@ -14,7 +14,7 @@
   >
     <div class="flex items-center justify-between pb-4 border-b border-black/[0.06] dark:border-white/[0.06]">
       <h3 id="modal-title" class="text-sm font-semibold tracking-tight flex items-center gap-2">
-        <span class="inline-block w-2 h-2 rounded-full bg-sky-500"></span>
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
         Quick Navigation & Shortcuts
       </h3>
       <button
@@ -27,28 +27,28 @@
 
     <div class="mt-4 space-y-2 text-xs">
       <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Research & Inquiries</span>
-        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">R</kbd>
-      </div>
-
-      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Experience & Projects</span>
+        <span class="text-zinc-600 dark:text-zinc-300">Experience & Research</span>
         <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">E</kbd>
       </div>
 
       <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Notebook (Thoughts, Books, Notes)</span>
+        <span class="text-zinc-600 dark:text-zinc-300">Projects (Systems, Coursework, Hardware)</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">P</kbd>
+      </div>
+
+      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
+        <span class="text-zinc-600 dark:text-zinc-300">Notebook (Thoughts & Notes)</span>
         <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">N</kbd>
       </div>
 
       <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Archive (Lab Encounters & Visuals)</span>
+        <span class="text-zinc-600 dark:text-zinc-300">Archive (Lab Artifacts & Encounters)</span>
         <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">A</kbd>
       </div>
 
       <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
         <span class="text-zinc-600 dark:text-zinc-300">Resume / CV</span>
-        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">U</kbd>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">R</kbd>
       </div>
 
       <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
@@ -95,11 +95,11 @@
         closeModal();
       } else if (!modal?.classList.contains('hidden')) {
         const key = e.key.toLowerCase();
-        if (key === 'r') window.location.href = '/research';
-        else if (key === 'e') window.location.href = '/experience';
+        if (key === 'e') window.location.href = '/experience';
+        else if (key === 'p') window.location.href = '/projects';
         else if (key === 'n') window.location.href = '/notebook';
         else if (key === 'a') window.location.href = '/archive';
-        else if (key === 'u') window.location.href = '/resume';
+        else if (key === 'r') window.location.href = '/resume';
         else if (key === 't') {
           const isDark = document.documentElement.classList.contains('dark');
           if (isDark) {

@@ -24,7 +24,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 ---
 
 <div
-  class="group relative overflow-hidden rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark transition-all duration-200 hover:shadow-lg hover:border-black/[0.18] dark:hover:border-white/[0.18]"
+  class="group relative overflow-hidden rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition-all duration-200 hover:shadow-lg hover:border-black/[0.18] dark:hover:border-white/[0.18]"
 >
   <!-- Image Container -->
   <div class="relative w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800" style={`aspect-ratio: ${aspectRatio};`}>
@@ -37,7 +37,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
     <!-- Subtle gradient overlay on hover -->
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
       {instrument && (
-        <span class="inline-block text-[10px] font-mono text-sky-300 mb-1">
+        <span class="inline-block text-[10px] font-mono text-zinc-300 mb-1">
           ⚙ {instrument}
         </span>
       )}
