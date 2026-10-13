@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('writing', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const stageLabels = {
+  seedling: '🌱 Seedling (Early Thought)',
+  budding: '🌿 Budding (Developing Note)',
+  evergreen: '🌲 Evergreen (Mature Essay)',
+};
+
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(post.data.publishedDate);
+---
+
+<BaseLayout
+  title={`${post.data.title} | Shlok Mehndiratta`}
+  description={post.data.summary}
+>
+  <article class="max-w-2xl mx-auto space-y-8">
+    <!-- Back Navigation -->
+    <a
+      href="/writing"
+      class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+    >
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+      <span>Back to all writing</span>
+    </a>
+
+    <!-- Header -->
+    <header class="space-y-4 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
+      <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+        <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
+          {stageLabels[post.data.stage]}
+        </span>
+        <span>•</span>
+        <time datetime={post.data.publishedDate.toISOString()}>{formattedDate}</time>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 leading-tight">
+        {post.data.title}
+      </h1>
+
+      <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-serif italic">
+        {post.data.summary}
+      </p>
+
+      {
+        post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            {post.data.tags.map((tag) => (
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
+    </header>
+
+    <!-- Content rendered with KaTeX & Shiki -->
+    <div class="prose-custom">
+      <Content />
+    </div>
+
+    <!-- Article Footer -->
+    <div class="pt-8 border-t border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between text-xs font-mono text-zinc-500">
+      <span>Curated in Shlok's Digital Garden</span>
+      <a href="/writing" class="text-sky-600 dark:text-sky-400 hover:underline">
+        ← Return to catalog
+      </a>
+    </div>
+  </article>
+</BaseLayout>

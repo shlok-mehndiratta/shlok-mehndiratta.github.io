@@ -1,0 +1,53 @@
+---
+interface Props {
+  item: {
+    data: {
+      title: string;
+      date: Date;
+      imageUrl: string;
+      caption: string;
+      location?: string;
+      category: 'lab' | 'encounters' | 'geometry' | 'generative';
+      aspectRatio?: string;
+    };
+  };
+}
+
+const { item } = Astro.props;
+const { title, date, imageUrl, caption, location, category, aspectRatio = '4/3' } = item.data;
+
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'short',
+}).format(date);
+---
+
+<div
+  class="group relative overflow-hidden rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark transition-all duration-200 hover:shadow-lg"
+>
+  <!-- Image Container -->
+  <div class="relative w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800" style={`aspect-ratio: ${aspectRatio};`}>
+    <img
+      src={imageUrl}
+      alt={title}
+      loading="lazy"
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+    <!-- Subtle gradient overlay on hover -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
+      <p class="text-xs font-mono text-zinc-300 mb-1">{location || category}</p>
+      <p class="text-xs line-clamp-2 text-zinc-100">{caption}</p>
+    </div>
+  </div>
+
+  <!-- Bottom Details Bar -->
+  <div class="p-3.5 flex items-center justify-between text-xs">
+    <div class="truncate mr-2">
+      <h4 class="font-medium text-zinc-900 dark:text-zinc-100 truncate">{title}</h4>
+      {location && <span class="text-[11px] text-zinc-500 dark:text-zinc-400 font-mono">{location}</span>}
+    </div>
+    <span class="text-[11px] font-mono text-zinc-400 dark:text-zinc-500 whitespace-nowrap">
+      {formattedDate}
+    </span>
+  </div>
+</div>

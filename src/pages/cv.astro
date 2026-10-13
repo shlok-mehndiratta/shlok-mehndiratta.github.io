@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Curriculum Vitae | Shlok Mehndiratta"
+  description="Academic Curriculum Vitae of Shlok Mehndiratta. Senior undergraduate in EECS at IISER Bhopal."
+>
+  <div class="space-y-10 max-w-3xl mx-auto">
+    <!-- Header with Action Buttons -->
+    <header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
+      <div>
+        <h1 class="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+          Curriculum Vitae
+        </h1>
+        <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-1">
+          Shlok Mehndiratta • Updated October 2026
+        </p>
+      </div>
+
+      <div class="flex items-center gap-2.5 print:hidden">
+        <button
+          onclick="window.print()"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/[0.1] dark:border-white/[0.1] text-xs font-mono bg-zinc-100/70 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 transition-colors"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          <span>Print / PDF</span>
+        </button>
+
+        <a
+          href="/cv.pdf"
+          target="_blank"
+          download
+          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-xs font-mono font-medium hover:bg-zinc-800 dark:hover:bg-white transition-colors"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          <span>Download LaTeX PDF</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- CV Body -->
+    <div class="space-y-8 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+      <!-- Contact Info -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-zinc-600 dark:text-zinc-400">
+        <div>
+          <p><strong>Email:</strong> contact@shlokmehndiratta.me</p>
+          <p><strong>Institution:</strong> IISER Bhopal, India</p>
+        </div>
+        <div class="sm:text-right">
+          <p><strong>Website:</strong> https://shlokmehndiratta.me</p>
+          <p><strong>GitHub:</strong> github.com/shlokmehndiratta</p>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="space-y-3">
+        <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
+          Education
+        </h2>
+        <div class="space-y-1">
+          <div class="flex justify-between items-baseline">
+            <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Indian Institute of Science Education and Research (IISER) Bhopal</h3>
+            <span class="text-xs font-mono text-zinc-400">2022 – 2026 (Expected)</span>
+          </div>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400">
+            Bachelor of Science (BS) in Electrical Engineering and Computer Science (EECS)
+          </p>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+            Relevant Coursework: Signals & Systems, Linear Algebra, Convex Optimization, Graph Theory, Digital Signal Processing, Probability & Random Processes, Data Structures & Algorithms.
+          </p>
+        </div>
+      </section>
+
+      <!-- Research Interests -->
+      <section class="space-y-2">
+        <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
+          Research Interests
+        </h2>
+        <p class="text-xs">
+          Statistical Signal Processing, Graph Spectral Theory, Dynamic State Estimation, Non-Convex Optimization, Decentralized Multi-Agent Swarms.
+        </p>
+      </section>
+
+      <!-- Publications & Preprints -->
+      <section class="space-y-4">
+        <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
+          Publications & Preprints
+        </h2>
+        
+        <div class="space-y-3 text-xs">
+          <div>
+            <p class="text-zinc-900 dark:text-zinc-100 font-medium">
+              1. <strong>Shlok Mehndiratta</strong>, Research Advisor Name.
+            </p>
+            <p class="italic text-zinc-600 dark:text-zinc-300">
+              "Adaptive State Estimation in High-Dimensional Dynamic Graphs"
+            </p>
+            <p class="text-zinc-500 font-mono">
+              Under review at <em>IEEE Transactions on Signal and Information Processing over Networks</em>, 2026.
+            </p>
+          </div>
+
+          <div>
+            <p class="text-zinc-900 dark:text-zinc-100 font-medium">
+              2. <strong>Shlok Mehndiratta</strong>, Collaborator Name, Senior PI.
+            </p>
+            <p class="italic text-zinc-600 dark:text-zinc-300">
+              "Sparse Signal Reconstruction via Non-Convex Spectral Proximal Operators"
+            </p>
+            <p class="text-zinc-500 font-mono">
+              Proceedings of the <em>IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)</em>, 2025.
+            </p>
+          </div>
+
+          <div>
+            <p class="text-zinc-900 dark:text-zinc-100 font-medium">
+              3. <strong>Shlok Mehndiratta</strong>, Host Lab Mentor.
+            </p>
+            <p class="italic text-zinc-600 dark:text-zinc-300">
+              "Decentralized Learning in Asynchronous Multi-Agent Robotic Networks"
+            </p>
+            <p class="text-zinc-500 font-mono">
+              arXiv preprint arXiv:2508.00000, 2025.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Research Experience -->
+      <section class="space-y-4">
+        <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
+          Research Experience & Internships
+        </h2>
+
+        <div class="space-y-4 text-xs">
+          <div>
+            <div class="flex justify-between items-baseline">
+              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">IISER Bhopal — Undergraduate Thesis Researcher</h3>
+              <span class="font-mono text-zinc-400">Aug 2025 – Present</span>
+            </div>
+            <p class="text-zinc-500 font-mono">Advisor: Faculty Advisor</p>
+            <ul class="list-disc list-inside mt-1 space-y-1 text-zinc-600 dark:text-zinc-300">
+              <li>Formulated continuous-time manifold regularization for recursive estimation on dynamic graphs.</li>
+              <li>Proved rigorous analytical mean-squared error bounds under noisy edge-weight perturbations.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-baseline">
+              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Summer Research Fellowship — Visiting Research Intern</h3>
+              <span class="font-mono text-zinc-400">May 2025 – Jul 2025</span>
+            </div>
+            <p class="text-zinc-500 font-mono">Host Lab PI: Senior Professor</p>
+            <ul class="list-disc list-inside mt-1 space-y-1 text-zinc-600 dark:text-zinc-300">
+              <li>Developed an asynchronous consensus protocol for multi-robot formations under packet drops.</li>
+              <li>Validated recovery rates and stability criteria across 12-node robotic hardware simulations.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Skills -->
+      <section class="space-y-2">
+        <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
+          Technical Proficiencies
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Languages:</strong> Python, C/C++, Julia, MATLAB, LaTeX, Bash</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Libraries:</strong> PyTorch, NumPy, SciPy, NetworkX, CVXPY</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Hardware & Labs:</strong> Digital Oscilloscopes, Function Generators, Spectrum Analyzers</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Tools:</strong> Git, Linux, Docker, Neovim, VS Code</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,105 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.replace(/\/$/, '') || '/';
+
+const navItems = [
+  { name: 'Research', href: '/research' },
+  { name: 'Writing', href: '/writing' },
+  { name: 'Gallery', href: '/gallery' },
+  { name: 'Now', href: '/now' },
+  { name: 'About', href: '/about' },
+  { name: 'CV', href: '/cv' },
+];
+---
+
+<header class="sticky top-0 z-40 w-full backdrop-blur-md bg-canvas-light/80 dark:bg-canvas-dark/80 border-b border-black/[0.06] dark:border-white/[0.06] transition-colors duration-200">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <!-- Brand / Home Link -->
+    <a
+      href="/"
+      class="group flex items-center space-x-2.5 text-sm font-medium tracking-tight text-zinc-900 dark:text-zinc-100 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+    >
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      <span class="font-semibold">Shlok Mehndiratta</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center space-x-1 sm:space-x-1.5 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400">
+      {
+        navItems.map((item) => {
+          const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+          return (
+            <a
+              href={item.href}
+              class={`px-3 py-1.5 rounded-md transition-all duration-150 ${
+                isActive
+                  ? 'text-zinc-950 dark:text-zinc-50 bg-zinc-200/60 dark:bg-zinc-800/60 font-semibold'
+                  : 'hover:text-zinc-950 dark:hover:text-zinc-100 hover:bg-zinc-100/70 dark:hover:bg-zinc-800/30'
+              }`}
+            >
+              {item.name}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <!-- Right Controls: Command palette trigger + Theme Toggle -->
+    <div class="flex items-center space-x-2">
+      <button
+        id="cmd-k-trigger"
+        type="button"
+        class="hidden sm:inline-flex items-center gap-1 px-2 py-1 text-xs font-mono text-zinc-500 dark:text-zinc-400 bg-zinc-100/70 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/60 rounded hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors"
+        title="Open keyboard shortcuts"
+      >
+        <span>⌘K</span>
+      </button>
+
+      <ThemeToggle />
+
+      <!-- Mobile Menu Toggle Button -->
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        aria-label="Toggle mobile menu"
+        class="md:hidden p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-black/[0.06] dark:border-white/[0.06] bg-canvas-light dark:bg-canvas-dark px-4 py-3 space-y-1">
+    {
+      navItems.map((item) => (
+        <a
+          href={item.href}
+          class="block px-3 py-2 text-sm font-medium rounded-md text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+        >
+          {item.name}
+        </a>
+      ))
+    }
+  </div>
+</header>
+
+<script is:inline>
+  const setupMobileMenu = () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  };
+  setupMobileMenu();
+  document.addEventListener('astro:after-swap', setupMobileMenu);
+</script>

@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SignalVisualizer from '../components/SignalVisualizer.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import WritingCard from '../components/WritingCard.astro';
+import GalleryCard from '../components/GalleryCard.astro';
+import { getCollection } from 'astro:content';
+
+// Fetch content
+const allPubs = await getCollection('publications');
+const featuredPubs = allPubs.sort((a, b) => a.data.order - b.data.order).slice(0, 2);
+
+const allPosts = await getCollection('writing', ({ data }) => !data.draft);
+const recentPosts = allPosts
+  .sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime())
+  .slice(0, 2);
+
+const allGallery = await getCollection('gallery');
+const recentGallery = allGallery.sort((a, b) => a.data.order - b.data.order).slice(0, 2);
+---
+
+<BaseLayout
+  title="Shlok Mehndiratta | EECS @ IISER Bhopal"
+  description="Personal website and research portfolio of Shlok Mehndiratta. Final year BS in EECS at IISER Bhopal, actively seeking MS/PhD opportunities."
+>
+  <!-- Hero Section -->
+  <section class="space-y-6 pt-4 pb-2">
+    <!-- Status badge -->
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span>Actively Seeking MS / PhD Opportunities</span>
+    </div>
+
+    <!-- Main Title & Academic Affiliation -->
+    <div class="space-y-2">
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        Shlok Mehndiratta
+      </h1>
+      <p class="text-base sm:text-lg font-medium text-zinc-600 dark:text-zinc-400">
+        Senior Undergraduate in Electrical Engineering & Computer Science (EECS) at <span class="text-zinc-900 dark:text-zinc-200">IISER Bhopal</span>
+      </p>
+    </div>
+
+    <!-- Research Statement -->
+    <p class="text-base sm:text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 max-w-3xl">
+      I work at the confluence of <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">statistical signal processing</strong>, <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">graph spectral theory</strong>, and <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">adaptive estimation</strong>. My core interest lies in developing provably stable, scalable algorithms for dynamic graph signals and autonomous networked systems.
+    </p>
+
+    <!-- Quick Action Links -->
+    <div class="flex flex-wrap items-center gap-3 pt-1">
+      <a
+        href="/research"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-white transition-colors"
+      >
+        <span>Explore Research</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </a>
+
+      <a
+        href="/cv"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-black/[0.1] dark:border-white/[0.1] bg-surface-light dark:bg-surface-dark text-zinc-800 dark:text-zinc-200 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+      >
+        <span>Curriculum Vitae</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+      </a>
+
+      <a
+        href="mailto:contact@shlokmehndiratta.me"
+        class="inline-flex items-center gap-1.5 px-3 py-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+      >
+        <span>Contact</span>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+      </a>
+    </div>
+
+    <!-- Rare Subtle Harmonic Wave Visualizer -->
+    <SignalVisualizer />
+  </section>
+
+  <!-- Pinned / Featured Publications -->
+  <section class="mt-12 space-y-4">
+    <div class="flex items-baseline justify-between">
+      <div>
+        <h2 class="text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+          Featured Research & Preprints
+        </h2>
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+          Peer-reviewed papers, submissions & theoretical frameworks
+        </p>
+      </div>
+      <a
+        href="/research"
+        class="text-xs font-mono text-sky-600 dark:text-sky-400 hover:underline flex items-center gap-1"
+      >
+        <span>View all ({allPubs.length})</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4">
+      {featuredPubs.map((pub) => (
+        <PublicationCard pub={pub} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Digital Garden & Writing Preview -->
+  <section class="mt-14 space-y-4">
+    <div class="flex items-baseline justify-between">
+      <div>
+        <h2 class="text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+          From the Digital Garden
+        </h2>
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+          Essays, mathematical derivations & research heuristics
+        </p>
+      </div>
+      <a
+        href="/writing"
+        class="text-xs font-mono text-sky-600 dark:text-sky-400 hover:underline flex items-center gap-1"
+      >
+        <span>All writing ({allPosts.length})</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {recentPosts.map((post) => (
+        <WritingCard post={post} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Visual Encounters & Field Notes -->
+  <section class="mt-14 space-y-4">
+    <div class="flex items-baseline justify-between">
+      <div>
+        <h2 class="text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+          Visual Encounters
+        </h2>
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+          Lab artifacts, geometry & glimpses of the physical world
+        </p>
+      </div>
+      <a
+        href="/gallery"
+        class="text-xs font-mono text-sky-600 dark:text-sky-400 hover:underline flex items-center gap-1"
+      >
+        <span>Open gallery</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {recentGallery.map((item) => (
+        <GalleryCard item={item} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

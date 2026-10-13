@@ -1,0 +1,85 @@
+---
+// Footer.astro
+---
+
+<footer class="mt-auto border-t border-black/[0.06] dark:border-white/[0.06] py-12 text-xs text-zinc-500 dark:text-zinc-400">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <!-- Left: Identity & Affiliation -->
+    <div class="space-y-1 text-center sm:text-left">
+      <div class="flex items-center justify-center sm:justify-start gap-2 text-zinc-700 dark:text-zinc-300 font-medium">
+        <span>Shlok Mehndiratta</span>
+        <span>•</span>
+        <span>IISER Bhopal</span>
+      </div>
+      <p class="text-zinc-500 dark:text-zinc-500 font-mono text-[11px]">
+        Electrical Engineering & Computer Science
+      </p>
+    </div>
+
+    <!-- Center: Live Local Time in Bhopal -->
+    <div class="flex items-center gap-2 font-mono text-[11px] bg-zinc-100/70 dark:bg-zinc-800/40 px-2.5 py-1 rounded border border-zinc-200/60 dark:border-zinc-700/40">
+      <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+      <span>Bhopal, IN</span>
+      <span class="text-zinc-400 dark:text-zinc-600">|</span>
+      <span id="live-bhopal-time">--:--:-- IST</span>
+    </div>
+
+    <!-- Right: Academic & Contact Links -->
+    <div class="flex items-center space-x-4">
+      <a
+        href="https://github.com/shlokmehndiratta"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+      >
+        GitHub
+      </a>
+      <a
+        href="https://scholar.google.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+      >
+        Scholar
+      </a>
+      <a
+        href="https://linkedin.com/in/shlokmehndiratta"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+      >
+        LinkedIn
+      </a>
+      <a
+        href="mailto:contact@shlokmehndiratta.me"
+        class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+      >
+        Email
+      </a>
+    </div>
+  </div>
+
+  <!-- Bottom Colophon -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 mt-8 pt-6 border-t border-black/[0.04] dark:border-white/[0.04] text-center text-[11px] text-zinc-400 dark:text-zinc-600">
+    Designed for longevity & clarity. Built with Astro & Tailwind CSS. No trackers.
+  </div>
+</footer>
+
+<script is:inline>
+  const updateBhopalTime = () => {
+    const el = document.getElementById('live-bhopal-time');
+    if (!el) return;
+    const now = new Date();
+    const options = {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    };
+    el.textContent = `${new Intl.DateTimeFormat('en-GB', options).format(now)} IST`;
+  };
+
+  updateBhopalTime();
+  setInterval(updateBhopalTime, 1000);
+</script>

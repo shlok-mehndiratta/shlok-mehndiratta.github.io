@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WritingCard from '../../components/WritingCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('writing', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
+);
+
+const seedlingCount = sortedPosts.filter((p) => p.data.stage === 'seedling').length;
+const buddingCount = sortedPosts.filter((p) => p.data.stage === 'budding').length;
+const evergreenCount = sortedPosts.filter((p) => p.data.stage === 'evergreen').length;
+---
+
+<BaseLayout
+  title="Writing & Digital Garden | Shlok Mehndiratta"
+  description="Essays, mathematical walkthroughs, research notes, and reflections on engineering by Shlok Mehndiratta."
+>
+  <div class="space-y-10">
+    <!-- Header -->
+    <header class="space-y-3">
+      <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded text-xs font-mono bg-teal-500/10 text-teal-600 dark:text-teal-400 border border-teal-500/20">
+        <span>The Digital Garden</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        Writing & Notes
+      </h1>
+      <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+        A living collection of technical deep-dives, mathematical curiosities, and personal essays. Unlike a traditional blog, pieces here evolve over time and are tagged by their cultivation stage.
+      </p>
+    </header>
+
+    <!-- Cultivation Stage Legend -->
+    <div class="p-4 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/60 dark:bg-zinc-900/30 text-xs">
+      <div class="font-semibold text-zinc-800 dark:text-zinc-200 mb-2 font-mono text-[11px] uppercase tracking-wider">
+        Garden Growth Stages
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-zinc-600 dark:text-zinc-400">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">🌱 Seedling</span>
+          <span>Rough sketch / initial inquiry ({seedlingCount})</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-teal-500/10 text-teal-600 dark:text-teal-400 border border-teal-500/20">🌿 Budding</span>
+          <span>Developing thesis / working note ({buddingCount})</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">🌲 Evergreen</span>
+          <span>Polished reference essay ({evergreenCount})</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Posts Grid -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {sortedPosts.map((post) => (
+        <WritingCard post={post} />
+      ))}
+    </section>
+  </div>
+</BaseLayout>

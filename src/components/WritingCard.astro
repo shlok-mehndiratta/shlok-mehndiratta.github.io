@@ -1,0 +1,75 @@
+---
+interface Props {
+  post: {
+    slug: string;
+    data: {
+      title: string;
+      publishedDate: Date;
+      stage: 'seedling' | 'budding' | 'evergreen';
+      summary: string;
+      tags: string[];
+    };
+  };
+}
+
+const { post } = Astro.props;
+const { title, publishedDate, stage, summary, tags } = post.data;
+
+const stageIcons = {
+  seedling: '🌱 Seedling',
+  budding: '🌿 Budding',
+  evergreen: '🌲 Evergreen',
+};
+
+const stageColors = {
+  seedling: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
+  budding: 'text-teal-600 dark:text-teal-400 bg-teal-500/10 border-teal-500/20',
+  evergreen: 'text-sky-600 dark:text-sky-400 bg-sky-500/10 border-sky-500/20',
+};
+
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+}).format(publishedDate);
+---
+
+<a
+  href={`/writing/${post.slug}`}
+  class="group block p-5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark hover:border-black/[0.2] dark:hover:border-white/[0.2] transition-all duration-200"
+>
+  <div class="flex items-center justify-between gap-3 mb-2.5">
+    <!-- Stage Badge -->
+    <span class={`text-[11px] font-mono px-2 py-0.5 rounded-full border ${stageColors[stage]}`}>
+      {stageIcons[stage]}
+    </span>
+
+    <!-- Date -->
+    <time class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+      {formattedDate}
+    </time>
+  </div>
+
+  <!-- Title -->
+  <h3 class="text-base sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors mb-2">
+    {title}
+  </h3>
+
+  <!-- Summary -->
+  <p class="text-sm text-zinc-600 dark:text-zinc-400 line-clamp-2 mb-3 leading-relaxed">
+    {summary}
+  </p>
+
+  <!-- Tags -->
+  {
+    tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-1.5">
+        {tags.map((tag) => (
+          <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )
+  }
+</a>

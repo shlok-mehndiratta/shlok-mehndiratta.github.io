@@ -1,0 +1,121 @@
+---
+// KeyboardShortcutsModal.astro
+---
+
+<div
+  id="shortcuts-modal"
+  class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-200"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+>
+  <div
+    class="w-full max-w-md rounded-2xl border border-black/[0.1] dark:border-white/[0.1] bg-surface-light dark:bg-surface-dark p-6 shadow-2xl text-zinc-900 dark:text-zinc-100"
+  >
+    <div class="flex items-center justify-between pb-4 border-b border-black/[0.06] dark:border-white/[0.06]">
+      <h3 id="modal-title" class="text-sm font-semibold tracking-tight flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-sky-500"></span>
+        Quick Navigation & Shortcuts
+      </h3>
+      <button
+        id="shortcuts-close-btn"
+        class="text-xs font-mono text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700"
+      >
+        ESC
+      </button>
+    </div>
+
+    <div class="mt-4 space-y-2 text-xs">
+      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
+        <span class="text-zinc-600 dark:text-zinc-300">Go to Research & Papers</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">R</kbd>
+      </div>
+
+      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
+        <span class="text-zinc-600 dark:text-zinc-300">Go to Writing & Digital Garden</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">W</kbd>
+      </div>
+
+      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
+        <span class="text-zinc-600 dark:text-zinc-300">Go to Gallery & Encounters</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">G</kbd>
+      </div>
+
+      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
+        <span class="text-zinc-600 dark:text-zinc-300">Go to Now (Current Focus)</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">N</kbd>
+      </div>
+
+      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
+        <span class="text-zinc-600 dark:text-zinc-300">Go to Curriculum Vitae (CV)</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">C</kbd>
+      </div>
+
+      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
+        <span class="text-zinc-600 dark:text-zinc-300">Toggle Theme (Light / Dark)</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">T</kbd>
+      </div>
+    </div>
+
+    <div class="mt-5 pt-3 border-t border-black/[0.06] dark:border-white/[0.06] text-center text-[11px] text-zinc-400 dark:text-zinc-500 font-mono">
+      Tip: Press <span class="text-zinc-700 dark:text-zinc-300 font-semibold">?</span> anywhere on the site to show this menu.
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const setupShortcuts = () => {
+    const modal = document.getElementById('shortcuts-modal');
+    const closeBtn = document.getElementById('shortcuts-close-btn');
+    const trigger = document.getElementById('cmd-k-trigger');
+
+    const openModal = () => modal?.classList.remove('hidden');
+    const closeModal = () => modal?.classList.add('hidden');
+
+    trigger?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      // Don't trigger if user is typing in an input or textarea
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (modal?.classList.contains('hidden')) {
+          openModal();
+        } else {
+          closeModal();
+        }
+      } else if (e.key === '?' && !e.shiftKey) {
+        openModal();
+      } else if (e.key === 'Escape') {
+        closeModal();
+      } else if (!modal?.classList.contains('hidden')) {
+        // Modal is open, handle navigation keys
+        const key = e.key.toLowerCase();
+        if (key === 'r') window.location.href = '/research';
+        else if (key === 'w') window.location.href = '/writing';
+        else if (key === 'g') window.location.href = '/gallery';
+        else if (key === 'n') window.location.href = '/now';
+        else if (key === 'c') window.location.href = '/cv';
+        else if (key === 't') {
+          const isDark = document.documentElement.classList.contains('dark');
+          if (isDark) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+          }
+        }
+      }
+    });
+  };
+
+  setupShortcuts();
+  document.addEventListener('astro:after-swap', setupShortcuts);
+</script>

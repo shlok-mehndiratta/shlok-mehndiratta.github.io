@@ -1,0 +1,71 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import KeyboardShortcutsModal from '../components/KeyboardShortcutsModal.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Shlok Mehndiratta | EECS @ IISER Bhopal',
+  description = 'Personal website, research portfolio, and digital archive of Shlok Mehndiratta. Final year BS in EECS at IISER Bhopal.',
+  image = '/og-image.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://shlokmehndiratta.me');
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Anti-FOUC Theme Initialization Script -->
+    <script is:inline>
+      const getInitialTheme = () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          return savedTheme;
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+
+      const theme = getInitialTheme();
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body class="bg-canvas-light dark:bg-canvas-dark text-zinc-900 dark:text-zinc-100 flex flex-col min-h-screen selection:bg-sky-500/20 selection:text-sky-900 dark:selection:text-sky-200">
+    <Header />
+    <main class="flex-grow w-full max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <slot />
+    </main>
+    <Footer />
+    <KeyboardShortcutsModal />
+  </body>
+</html>
