@@ -10,94 +10,134 @@ const underReviewCount = sortedPubs.filter((p) => p.data.status === 'under-revie
 const publishedCount = sortedPubs.filter((p) => p.data.status === 'published').length;
 const preprintCount = sortedPubs.filter((p) => p.data.status === 'preprint').length;
 
-const appointments = [
+const researchAppointments = [
   {
-    role: 'Undergraduate Thesis Researcher',
-    organization: 'IISER Bhopal',
-    department: 'Department of Electrical Engineering and Computer Science',
-    period: 'Aug 2025 – Present',
+    role: 'Undergraduate Research Student',
+    organization: 'MOON Lab, IISER Bhopal',
+    advisor: 'Dr. P. B. Sujit',
+    period: 'May 2026 – Present',
+    projectTitle: 'Vision-Based Autonomous Navigation and Swarm Coordination',
     type: 'Research Appointment',
     typeColor: 'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60',
-    description: 'Investigating continuous-time manifold regularization for high-dimensional recursive Kalman filtering on dynamic graphs. Proving analytical stability bounds under non-stationary network topologies.',
+    description: 'Implementing vision-based spherical coordinate planning for micro aerial vehicles (MAVs), moving target tracking, and dynamic obstacle avoidance. Validating algorithms on ROS 2 simulation and hardware.',
     highlights: [
-      'Formulated Riemannian gradient updates for tracking fluctuating network states.',
-      'Achieved 42% reduction in mean-squared tracking error over Kalman-consensus baselines.',
+      'Assembled quadrotor drones integrating flight controller, RC receiver, and telemetry modules.',
+      'Configured and integrated OptiTrack mocap system with ROS 2 for millimeter-precision indoor localization during testing.',
+      'Investigating decentralized swarm algorithms for cooperative coverage and multi-agent autonomous monitoring.',
     ],
-    skills: ['Graph Signal Processing', 'Recursive Estimation', 'Python', 'NumPy'],
+    skills: ['ROS 2', 'OptiTrack Mocap', 'Crazyflie Swarm', 'Spherical Vision Planning', 'C++', 'Python'],
   },
   {
-    role: 'Visiting Summer Research Fellow',
-    organization: 'Autonomous Systems & Robotics Lab',
-    department: 'Visiting Student Fellowship',
-    period: 'May 2025 – Jul 2025',
-    type: 'Research Fellowship',
+    role: 'Research Intern',
+    organization: 'Robotics Research Center (RRC), IIIT Hyderabad',
+    advisor: 'Dr. Spandan Roy',
+    period: 'April 2026 – Present',
+    projectTitle: 'Learning Visual Contact Estimation from Photorealistic Synthetic Data',
+    type: 'Research Internship',
     typeColor: 'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60',
-    description: 'Developed an asynchronous consensus protocol for multi-robot formations operating under intermittent wireless packet drops and directed graph topologies.',
+    description: 'Building a high-fidelity synthetic data engine to supervise 3D contact distribution prediction directly from camera imagery for dexterous manipulation.',
     highlights: [
-      'Validated recovery rates across a 12-node robotic hardware simulation.',
-      'Authored a preprint on decentralized learning in asynchronous multi-agent networks.',
+      'Constructed GPU-accelerated physics pipeline (NVIDIA Warp) and photorealistic rendering engine (BlenderProc) generating paired multi-view RGB, segmentation, and 3D contact/SDF supervision.',
+      'Trained vision-conditioned neural models (ResNet/UNet/PointNet) to predict 3D contact distributions for downstream grasp synthesis.',
+      'Deploying models for real-robot policy transfer on 16-DoF LEAP Hand platforms; scaling pipeline across multi-GPU compute clusters.',
     ],
-    skills: ['Decentralized Control', 'ROS 2', 'C++20', 'Multi-Agent Networks'],
+    skills: ['NVIDIA Warp', 'BlenderProc', 'PyTorch', '16-DoF LEAP Hand', '3D Contact / SDF', 'Sim-to-Real'],
   },
   {
-    role: 'Engineering & Software Intern',
-    organization: 'Applied Systems & Computing Lab',
-    department: 'Industrial / Systems Track',
+    role: 'Undergraduate Research Student',
+    organization: 'MuSic Lab, IISER Bhopal',
+    advisor: 'Dr. Arijit Sen',
+    period: 'Sept 2025 – July 2026',
+    projectTitle: 'Perception-Aware Altitude Optimization for Aerial-Ground Tracking',
+    type: 'Research Appointment',
+    typeColor: 'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60',
+    description: 'Formulated the altitude-coverage-resolution trade-off in shared-camera UAV-UGV tracking systems, developing closed-form altitude scheduling and constraint-aware control.',
+    highlights: [
+      'Derived closed-form altitude scheduling policy formalizing the coupling between camera field-of-view, ground resolution, and state estimation error.',
+      'Built belief-space MPC controller and event-triggered aerial planner achieving 25× compute reduction while maintaining tracking precision.',
+      'Constructed complete ROS 2/Gazebo testbed with unified logging protocol across variable terrain curvature and sensor noise regimes.',
+    ],
+    skills: ['Belief-Space MPC', 'Extended Kalman Filter', 'ROS 2', 'Gazebo', 'Event-Triggered Planning'],
+  },
+  {
+    role: 'Student Research Intern',
+    organization: 'GeoAI4Cities Lab',
+    advisor: 'Research Group',
     period: 'Dec 2024 – Jan 2025',
-    type: 'Industry / Engineering',
+    projectTitle: 'Graph-Based ML Pipeline for 3D Point Cloud Segmentation',
+    type: 'Research Internship',
     typeColor: 'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60',
-    description: 'Implemented high-throughput data processing pipelines for high-rate sensor streams. Profiling and optimizing matrix operations on embedded compute platforms.',
+    description: 'Developed structured graph-based representations for segmenting large-scale urban 3D LiDAR point clouds with high noise tolerance.',
     highlights: [
-      'Accelerated linear algebraic solver routines using SIMD vectorization in C++.',
-      'Integrated real-time streaming telemetry with sub-millisecond latency bounds.',
+      'Modeled point clouds as spatial graphs with localized connectivity to balance expressiveness with computational tractability.',
+      'Incorporated RANSAC-based geometric filtering and topological feature encoding to reduce sensitivity to LiDAR sensor noise.',
     ],
-    skills: ['C++', 'Performance Profiling', 'Linux', 'Git', 'Data Pipelines'],
+    skills: ['PyTorch Geometric', 'Open3D', 'RANSAC', 'Graph ML', 'Python'],
+  },
+];
+
+const leadershipAppointments = [
+  {
+    role: 'Student Advisor & Former Vice Secretary',
+    organization: 'Computing and Networking Council (CNC), IISER Bhopal',
+    period: 'Aug 2024 – Present',
+    details: 'Vice Secretary (Aug 2024 – Sept 2025), Student Advisor (Oct 2025 – Present), Technical Head for Aarohan 2025',
+    highlights: [
+      'Founded the EECS Club at IISER Bhopal; coordinated 10+ hands-on technical workshops on ROS, machine learning, and embedded systems.',
+      'Directed 90-member multidisciplinary council across technical, logistics, and outreach operations.',
+      'Managed infrastructure and competitions for the institute flagship techno-cultural festival with 1,500+ participants.',
+    ],
+  },
+  {
+    role: 'Web Development Lead',
+    organization: 'Google Developer Group (GDG On Campus), IISER Bhopal',
+    period: 'Aug 2024 – Aug 2025',
+    details: 'Campus Technical Platform Lead',
+    highlights: [
+      'Led end-to-end development of internal campus web platforms.',
+      'Mentored students in collaborative software engineering, version control standards, and pull-request review pipelines.',
+    ],
+  },
+  {
+    role: 'Student Placement Representative',
+    organization: 'EECS Department, IISER Bhopal',
+    period: '2024 – Present',
+    details: 'Departmental Career & Industry Liaison',
+    highlights: [
+      'Liaising with industry recruiters and R&D organizations for graduate placement and internship opportunities.',
+    ],
   },
 ];
 ---
 
 <BaseLayout
   title="Experience & Research | Shlok Mehndiratta"
-  description="Research manuscripts, senior thesis inquiry, and appointments of Shlok Mehndiratta. Senior undergraduate in EECS at IISER Bhopal."
+  description="Research appointments, publications, and open-source contributions of Shlok Mehndiratta. EECS undergraduate researcher at IISER Bhopal."
 >
   <div class="space-y-12">
     <!-- Header -->
     <header class="space-y-3">
       <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.08]">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-        <span>Trajectory & Research Output</span>
+        <span>Research Trajectory & Engineering Appointments</span>
       </div>
       <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
         Experience & Research
       </h1>
       <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        My trajectory encompasses peer-reviewed manuscripts, theoretical modeling at IISER Bhopal, visiting research fellowships, and industrial systems engineering internships.
+        My trajectory spans academic research in multi-agent autonomous systems, GPU physics simulation for dexterous robotic hands, core open-source robotics infrastructure, and student leadership at IISER Bhopal.
       </p>
     </header>
-
-    <!-- Active Senior Thesis Inquiry (IISER Bhopal) -->
-    <section class="p-5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] space-y-2 text-xs sm:text-sm">
-      <div class="flex items-center justify-between">
-        <h3 class="font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Active Inquiry: Senior Undergraduate Thesis (IISER Bhopal)</span>
-        </h3>
-        <span class="font-mono text-[11px] text-zinc-500 dark:text-zinc-400">In Progress</span>
-      </div>
-      <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">
-        Investigating recursive filtering on dynamic Riemannian manifolds. We are proving asymptotic mean-squared error bounds under non-stationary stochastic perturbations and testing scalability against standard distributed Kalman-consensus baselines.
-      </p>
-    </section>
 
     <!-- Manuscripts & Papers Section -->
     <section class="space-y-5">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <div>
           <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Publications & Preprints
+            Publications & Manuscripts
           </h2>
           <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
-            Manuscripts under review, proceedings & theoretical preprints
+            Papers submitted to international robotics and control conferences
           </p>
         </div>
 
@@ -109,12 +149,6 @@ const appointments = [
           <span class="px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
             Under Review: {underReviewCount}
           </span>
-          <span class="px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
-            Published: {publishedCount}
-          </span>
-          <span class="px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
-            Preprints: {preprintCount}
-          </span>
         </div>
       </div>
 
@@ -125,19 +159,19 @@ const appointments = [
       </div>
     </section>
 
-    <!-- Appointments & Internships -->
+    <!-- Research Appointments -->
     <section class="space-y-6 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-          Appointments & Internships
+          Research Appointments & Labs
         </h2>
         <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
-          Research fellowships, industrial systems engagements & institutional roles
+          Laboratory affiliations across IISER Bhopal and IIIT Hyderabad
         </p>
       </div>
 
       <div class="space-y-6">
-        {appointments.map((apt) => (
+        {researchAppointments.map((apt) => (
           <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] space-y-3 transition-all duration-200 hover:border-black/[0.18] dark:hover:border-white/[0.18]">
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5">
               <div>
@@ -145,10 +179,10 @@ const appointments = [
                   {apt.type}
                 </span>
                 <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                  {apt.role}
+                  {apt.projectTitle}
                 </h3>
                 <p class="text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                  {apt.organization} • {apt.department}
+                  <strong class="text-zinc-800 dark:text-zinc-200">{apt.organization}</strong> • Advisor: {apt.advisor}
                 </p>
               </div>
               <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 shrink-0">
@@ -180,37 +214,101 @@ const appointments = [
       </div>
     </section>
 
-    <!-- Conceptual Influences & Literature -->
-    <section class="space-y-4 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
-      <div class="space-y-1">
-        <h2 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-          Conceptual Influences & Literature
+    <!-- Open Source Infrastructure -->
+    <section id="open-source" class="space-y-6 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Open-Source Contributions
+          </h2>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+            Core upstream contributions to robotics systems software
+          </p>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5">
+          <div>
+            <span class="inline-block px-2 py-0.5 text-[10px] font-mono rounded-full border mb-1.5 text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60">
+              Core Robotics Framework
+            </span>
+            <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+              ros2_control: ROS 2 Control Framework
+            </h3>
+            <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+              Upstream Pull Requests & Issue Resolutions
+            </p>
+          </div>
+          <a
+            href="https://github.com/ros-controls/ros2_control"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs font-mono text-zinc-500 hover:text-black dark:hover:text-white transition-colors"
+          >
+            ros-controls/ros2_control →
+          </a>
+        </div>
+
+        <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+          Active contributor to the standard robotics control framework in ROS 2, focusing on real-time execution safety, fault isolation, and API modernization.
+        </p>
+
+        <ul class="list-disc list-inside space-y-1.5 text-xs text-zinc-600 dark:text-zinc-400 pt-1">
+          <li><strong>Real-Time Safety & Mutex Locking:</strong> Migrated controller manager lock to RT-safe priority-inheritance mutex to eliminate priority inversion and timing delays in high-frequency control loops; implemented dynamic command toggling for hardware communication failure simulation.</li>
+          <li><strong>Robustness & Fault Isolation:</strong> Designed comprehensive exception-handling test suites ensuring individual hardware plugin failures do not cascade to system-wide halts; enhanced error reporting to pinpoint failed hardware interfaces instantly.</li>
+          <li><strong>Framework Modernization:</strong> Refactored deprecated parameter APIs across the ecosystem, removing technical debt and preventing downstream breakage.</li>
+        </ul>
+
+        <div class="flex flex-wrap gap-1.5 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">C++20</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">ROS 2 Control</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">Real-Time Concurrency</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">POSIX RT Mutex</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">Unit Testing</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership & Community -->
+    <section class="space-y-6 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
+        <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          Technical Leadership & Campus Community
         </h2>
-        <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
-          Foundational works and frameworks that shape my mathematical intuition
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+          Student governance, technical clubs, and engineering mentorship at IISER Bhopal
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-        <div class="p-4 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/50 dark:bg-zinc-900/30 space-y-1">
-          <h4 class="font-semibold text-zinc-900 dark:text-zinc-100">
-            Graph Signal Processing (GSP) Foundations
-          </h4>
-          <p class="text-zinc-600 dark:text-zinc-400">
-            Shuman, Narang, Frossard, Ortega, and Vandergheynst (IEEE Signal Processing Magazine, 2013).
-          </p>
-          <span class="text-[11px] font-mono text-zinc-400">Harmonics on irregular graph topologies</span>
-        </div>
+      <div class="grid grid-cols-1 gap-5">
+        {leadershipAppointments.map((lead) => (
+          <div class="p-5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] space-y-2">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+              <div>
+                <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100">
+                  {lead.role}
+                </h3>
+                <p class="text-xs font-medium text-zinc-600 dark:text-zinc-400">
+                  {lead.organization}
+                </p>
+              </div>
+              <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 shrink-0">
+                {lead.period}
+              </span>
+            </div>
 
-        <div class="p-4 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/50 dark:bg-zinc-900/30 space-y-1">
-          <h4 class="font-semibold text-zinc-900 dark:text-zinc-100">
-            Distributed Optimization via ADMM
-          </h4>
-          <p class="text-zinc-600 dark:text-zinc-400">
-            Stephen Boyd, Neal Parikh, Eric Chu, Borja Peleato, and Jonathan Eckstein (2011).
-          </p>
-          <span class="text-[11px] font-mono text-zinc-400">Splitting methods for decentralized solving</span>
-        </div>
+            <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+              {lead.details}
+            </p>
+
+            <ul class="list-disc list-inside space-y-1 text-xs text-zinc-600 dark:text-zinc-400 pt-1">
+              {lead.highlights.map((h) => (
+                <li>{h}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </section>
   </div>

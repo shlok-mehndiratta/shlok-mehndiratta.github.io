@@ -10,7 +10,7 @@ const sortedEntries = allEntries.sort(
 
 const deepDiveCount = sortedEntries.filter((p) => p.data.type === 'deep-dive').length;
 const heuristicCount = sortedEntries.filter((p) => p.data.type === 'heuristic').length;
-const bookshelfCount = sortedEntries.filter((p) => p.data.type === 'bookshelf').length;
+const paperNoteCount = sortedEntries.filter((p) => p.data.type === 'paper-note').length;
 ---
 
 <BaseLayout
@@ -27,7 +27,7 @@ const bookshelfCount = sortedEntries.filter((p) => p.data.type === 'bookshelf').
         Notebook
       </h1>
       <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        An open workshop of ideas: intuitive derivations of complex mathematical concepts, engineering heuristics gathered from internships, paper summaries, and bookshelf reflections.
+        An open workshop of ideas: intuitive reflections on full-stack systems discipline, sim-to-real robotic policy transfer, laboratory heuristics, and curated paper readings.
       </p>
     </header>
 
@@ -38,19 +38,19 @@ const bookshelfCount = sortedEntries.filter((p) => p.data.type === 'bookshelf').
           <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
             Deep Dive ({deepDiveCount})
           </span>
-          <span>Math & theory explorations</span>
+          <span>Systems & theory explorations</span>
         </div>
         <div class="flex items-center gap-2">
           <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
             Heuristic ({heuristicCount})
           </span>
-          <span>Research & debugging lessons</span>
+          <span>Research & campus lessons</span>
         </div>
         <div class="flex items-center gap-2">
           <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
-            Bookshelf ({bookshelfCount})
+            Paper Note ({paperNoteCount})
           </span>
-          <span>Books & foundational papers</span>
+          <span>Literature & reading notes</span>
         </div>
       </div>
     </div>

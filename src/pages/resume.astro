@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Resume | Shlok Mehndiratta"
-  description="Curriculum Vitae and Resume of Shlok Mehndiratta. Senior undergraduate in EECS at IISER Bhopal."
+  description="Curriculum Vitae and Resume of Shlok Mehndiratta. Undergraduate researcher in EECS at IISER Bhopal."
 >
   <div class="space-y-10 max-w-3xl mx-auto">
     <!-- Header with Action Buttons -->
@@ -14,7 +14,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Shlok Mehndiratta
         </h1>
         <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-1">
-          Resume / Curriculum Vitae • Updated October 2026
+          Resume / Curriculum Vitae • Updated September 2026
         </p>
       </div>
 
@@ -26,16 +26,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
           <span>Print / PDF</span>
         </button>
-
-        <a
-          href="/cv.pdf"
-          target="_blank"
-          download
-          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-xs font-mono font-medium hover:bg-zinc-800 dark:hover:bg-white transition-colors"
-        >
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-          <span>Download LaTeX PDF</span>
-        </a>
       </div>
     </header>
 
@@ -44,150 +34,228 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <!-- Contact Info & Identifiers -->
       <section class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-zinc-600 dark:text-zinc-400">
         <div>
-          <p><strong>Personal Mail:</strong> contact@shlokmehndiratta.me</p>
-          <p><strong>Institutional:</strong> shlok@iiserb.ac.in</p>
-          <p><strong>Affiliation:</strong> IISER Bhopal, Madhya Pradesh, India</p>
+          <p><strong>Email:</strong> shlokm23@iiserb.ac.in</p>
+          <p><strong>Phone:</strong> +91-8218635012</p>
+          <p><strong>Location:</strong> IISER Bhopal, Madhya Pradesh, India</p>
         </div>
         <div class="sm:text-right">
-          <p><strong>Website:</strong> https://shlokmehndiratta.me</p>
-          <p><strong>Scholar:</strong> Google Scholar Profile</p>
-          <p><strong>GitHub:</strong> github.com/shlokmehndiratta</p>
+          <p><strong>Website:</strong> shlokmehndiratta.me</p>
+          <p><strong>GitHub:</strong> github.com/shlok-mehndiratta</p>
+          <p><strong>LinkedIn:</strong> linkedin.com/in/shlok-mehndiratta</p>
         </div>
       </section>
 
       <!-- Education -->
-      <section class="space-y-3">
+      <section class="space-y-4">
         <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
           Education
         </h2>
-        <div class="space-y-2">
-          <div class="flex justify-between items-baseline">
-            <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Indian Institute of Science Education and Research (IISER) Bhopal</h3>
-            <span class="text-xs font-mono text-zinc-400">2022 – 2026 (Expected)</span>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between items-baseline">
+              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Indian Institute of Science Education and Research Bhopal (IISER Bhopal)</h3>
+              <span class="text-xs font-mono text-zinc-400">Aug 2023 – Present</span>
+            </div>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400">
+              Bachelor of Science in Electrical Engineering and Computer Science (EECS)
+            </p>
+            <p class="text-xs font-mono text-zinc-700 dark:text-zinc-300 mt-0.5">
+              • CPI: <strong class="text-zinc-900 dark:text-zinc-100">8.87 / 10</strong> (3.55 / 4.0)
+            </p>
           </div>
-          <p class="text-xs text-zinc-600 dark:text-zinc-400">
-            Bachelor of Science (BS) in Electrical Engineering and Computer Science (EECS)
-          </p>
+
+          <div>
+            <div class="flex justify-between items-baseline">
+              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Central Board of Secondary Education (CBSE)</h3>
+              <span class="text-xs font-mono text-zinc-400">2021 – 2023 | Roorkee, India</span>
+            </div>
+            <p class="text-xs font-mono text-zinc-600 dark:text-zinc-400">
+              Grade XII: 95.8% | Grade X: 96.8%
+            </p>
+          </div>
 
           <!-- Structured Coursework Matrix -->
-          <div class="mt-2 p-3 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/50 dark:bg-zinc-800/30 text-xs space-y-1.5">
-            <p class="font-mono text-[11px] font-semibold text-zinc-700 dark:text-zinc-300">
-              Selected Theoretical Pedagogy & Core Coursework:
+          <div class="mt-2 p-3.5 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/50 dark:bg-zinc-800/30 text-xs space-y-2">
+            <p class="font-mono text-[11px] font-semibold text-zinc-800 dark:text-zinc-200">
+              Selected Institute Coursework Matrix (IISER Bhopal):
             </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono text-zinc-600 dark:text-zinc-400">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px] font-mono text-zinc-600 dark:text-zinc-400">
               <div>
-                <strong class="text-zinc-800 dark:text-zinc-200">Mathematical Foundations:</strong><br />
-                Convex Optimization, Linear Algebra, Probability & Random Processes, Graph Theory, Real Analysis
+                <strong class="text-zinc-800 dark:text-zinc-200">Mathematics & Foundations:</strong><br />
+                • MTH102: Linear Algebra (Dr. Rahul Garg)<br />
+                • MTH201: Multivariable Calculus (Dr. Anandateertha Mangasuli)<br />
+                • MTH202: Probability & Statistics (Dr. Atreyee Bhattacharya)
               </div>
               <div>
-                <strong class="text-zinc-800 dark:text-zinc-200">Systems & Computing:</strong><br />
-                Signals & Systems, Digital Signal Processing, Computer Architecture, Data Structures & Algorithms
+                <strong class="text-zinc-800 dark:text-zinc-200">Control, Circuits & Hardware:</strong><br />
+                • ECS323: Control Systems (Dr. Arijit Sen)<br />
+                • ECS204: Signals and Systems (Dr. Ankur Raina)<br />
+                • ECS321: Electronic Devices (Dr. Mitradeep Bhattacharjee)<br />
+                • ECS325: Analog Circuits (Dr. Aditya Sankar Medury)<br />
+                • ECS327: EECS Laboratory I
+              </div>
+              <div>
+                <strong class="text-zinc-800 dark:text-zinc-200">Computing & Algorithms:</strong><br />
+                • ECS202: Data Structures and Algorithms (Dr. Pawan Aurora)<br />
+                • ECS307: Theory of Computation (Dr. Arpit Sharma)
+              </div>
+              <div>
+                <strong class="text-zinc-800 dark:text-zinc-200">Machine Learning & Data Science:</strong><br />
+                • DSE317: Machine Learning (Dr. Tanmay Basu & Dr. Sundaram Muthu)
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Research & Industry Experience -->
-      <section class="space-y-5">
+      <!-- Research Experience -->
+      <section class="space-y-4">
         <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
-          Appointments & Experience
+          Research Experience
         </h2>
 
         <div class="space-y-4 text-xs">
           <div>
             <div class="flex justify-between items-baseline">
-              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">IISER Bhopal — Undergraduate Thesis Researcher</h3>
-              <span class="font-mono text-zinc-400">Aug 2025 – Present</span>
+              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">
+                Vision-Based Autonomous Navigation and Swarm Coordination
+              </h3>
+              <span class="font-mono text-zinc-400">May 2026 – Present</span>
             </div>
-            <p class="text-zinc-500 font-mono">Advisor: Faculty Advisor • Dept. of EECS</p>
-            <ul class="list-disc list-inside mt-1 space-y-1 text-zinc-600 dark:text-zinc-300">
-              <li>Formulated continuous-time manifold regularization for recursive estimation on dynamic graphs.</li>
-              <li>Proved analytical mean-squared error bounds under noisy edge-weight perturbations (42% MSE reduction).</li>
+            <p class="text-zinc-500 font-mono">
+              MOON Lab, IISER Bhopal • Undergraduate Research Student • Advisor: Dr. P. B. Sujit
+            </p>
+            <ul class="list-disc list-inside mt-1.5 space-y-1 text-zinc-600 dark:text-zinc-300">
+              <li>Implementing spherical coordinate-based vision planning with extensions for moving target tracking and dynamic obstacle avoidance for MAVs, validating algorithms on ROS 2 simulation environment.</li>
+              <li>Concurrently assembling drone systems integrating flight controller, RC receiver, and telemetry modules; configuring and integrating OptiTrack mocap system with ROS for high-precision indoor localization during algorithm testing and validation.</li>
+              <li>Progressing toward multi-agent coordination: investigating decentralized swarm algorithms for cooperative coverage and autonomous missions.</li>
             </ul>
           </div>
 
           <div>
             <div class="flex justify-between items-baseline">
-              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Visiting Research Fellow — Autonomous Systems Lab</h3>
-              <span class="font-mono text-zinc-400">May 2025 – Jul 2025</span>
+              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">
+                Learning Visual Contact Estimation from Photorealistic Synthetic Data
+              </h3>
+              <span class="font-mono text-zinc-400">April 2026 – Present</span>
             </div>
-            <p class="text-zinc-500 font-mono">Host Lab PI: Senior Professor</p>
-            <ul class="list-disc list-inside mt-1 space-y-1 text-zinc-600 dark:text-zinc-300">
-              <li>Developed an asynchronous consensus protocol for multi-robot formations under packet drops.</li>
-              <li>Engineered a C++20/ROS 2 event-driven distributed simulator for 50+ nodes with zero deadlock.</li>
+            <p class="text-zinc-500 font-mono">
+              Robotics Research Center (RRC), IIIT Hyderabad • Research Intern • Advisor: Dr. Spandan Roy
+            </p>
+            <ul class="list-disc list-inside mt-1.5 space-y-1 text-zinc-600 dark:text-zinc-300">
+              <li>Building high-fidelity synthetic data engine generating paired multi-view RGB images, segmentation masks, and 3D contact/SDF supervision using GPU-accelerated physics (NVIDIA Warp) and photorealistic rendering (BlenderProc).</li>
+              <li>Training vision-conditioned neural models (ResNet/UNet/PointNet) to predict 3D contact distributions from camera images, leveraging synthetic supervision for downstream grasp generation and real-robot policy transfer on 16-DoF LEAP Hand platforms.</li>
+              <li>Targeting paper submission on learning-based contact prediction from visual data to top-tier robotics venues; scaling dataset generation across multi-GPU clusters for large-scale synthetic scene diversity.</li>
             </ul>
           </div>
 
           <div>
             <div class="flex justify-between items-baseline">
-              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Engineering & Software Intern — Applied Systems Track</h3>
-              <span class="font-mono text-zinc-400">Dec 2024 – Jan 2025</span>
+              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">
+                Perception-Aware Altitude Optimization for Aerial-Ground Tracking
+              </h3>
+              <span class="font-mono text-zinc-400">Sept 2025 – July 2026</span>
             </div>
-            <p class="text-zinc-500 font-mono">Systems & Optimization Team</p>
-            <ul class="list-disc list-inside mt-1 space-y-1 text-zinc-600 dark:text-zinc-300">
-              <li>Accelerated matrix factorization routines using SIMD vectorization and C++ profiling.</li>
-              <li>Integrated streaming sensor telemetry with sub-millisecond latency bounds.</li>
+            <p class="text-zinc-500 font-mono">
+              MuSic Lab, IISER Bhopal • Undergraduate Research Student • Advisor: Dr. Arijit Sen
+            </p>
+            <ul class="list-disc list-inside mt-1.5 space-y-1 text-zinc-600 dark:text-zinc-300">
+              <li>Developed closed-form altitude scheduling policy for UAV-UGV cooperative tracking by formalizing the altitude-coverage-resolution coupling; built belief-space MPC controller and event-triggered aerial planner achieving 25× compute reduction while maintaining estimation quality.</li>
+              <li>Constructed complete ROS 2/Gazebo testbed with unified logging protocol to validate theoretical predictions on sensor noise scaling, altitude optimality, and event-triggered performance across variable terrain curvature.</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- Publications & Preprints -->
-      <section class="space-y-4">
+      <!-- Publications -->
+      <section class="space-y-3">
         <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
-          Publications & Preprints
+          Publications
         </h2>
         
         <div class="space-y-3 text-xs">
           <div>
             <p class="text-zinc-900 dark:text-zinc-100 font-medium">
-              1. <strong>Shlok Mehndiratta</strong>, Research Advisor Name.
+              1. Santosh Tantravahi, Nirman Jaiswal, <strong>Shlok Mehndiratta</strong>, P.B. Sujit, Aditya Paranjape.
             </p>
-            <p class="italic text-zinc-600 dark:text-zinc-300">
-              "Adaptive State Estimation in High-Dimensional Dynamic Graphs"
+            <p class="italic text-zinc-700 dark:text-zinc-300">
+              "Equi-partitioning coverage achieved via a hybrid interaction rule by distributed team of Unmanned Vehicles."
             </p>
-            <p class="text-zinc-500 font-mono">
-              Under review at <em>IEEE Transactions on Signal and Information Processing over Networks</em>, 2026.
-            </p>
-          </div>
-
-          <div>
-            <p class="text-zinc-900 dark:text-zinc-100 font-medium">
-              2. <strong>Shlok Mehndiratta</strong>, Collaborator Name, Senior PI.
-            </p>
-            <p class="italic text-zinc-600 dark:text-zinc-300">
-              "Sparse Signal Reconstruction via Non-Convex Spectral Proximal Operators"
-            </p>
-            <p class="text-zinc-500 font-mono">
-              Proceedings of the <em>IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)</em>, 2025.
+            <p class="text-zinc-500 font-mono mt-0.5">
+              Developed decentralized algorithm enabling autonomous drone swarms to dynamically partition and monitor large areas; validated across 35+ real-world flight experiments using 3–5 Crazyflie nano-quadcopters. <strong>[Submitted to ICRA 2027]</strong>
             </p>
           </div>
 
           <div>
             <p class="text-zinc-900 dark:text-zinc-100 font-medium">
-              3. <strong>Shlok Mehndiratta</strong>, Host Lab Mentor.
+              2. <strong>Shlok Mehndiratta†</strong>, Divyam Sood†, Prashant Gupta†, Agniva Banerjee, Arijit Sen.
             </p>
-            <p class="italic text-zinc-600 dark:text-zinc-300">
-              "Decentralized Learning in Asynchronous Multi-Agent Robotic Networks"
+            <p class="italic text-zinc-700 dark:text-zinc-300">
+              "COAST: Altitude as a Coupled Perception Variable in Shared-Camera Aerial-Ground Tracking."
             </p>
-            <p class="text-zinc-500 font-mono">
-              arXiv preprint arXiv:2508.00000, 2025.
+            <p class="text-zinc-500 font-mono mt-0.5">
+              Formal write-up of the altitude-coverage-accuracy coupling and closed-form policy, with full derivation and reproducible ROS 2/Gazebo validation. (†Equal contribution). <strong>[Submitted to ACODS 2026]</strong>
             </p>
           </div>
+        </div>
+      </section>
+
+      <!-- Open Source Contributions -->
+      <section class="space-y-3">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
+          Open Source Contributions
+        </h2>
+
+        <div class="text-xs space-y-1.5">
+          <div class="flex justify-between items-baseline">
+            <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">
+              ros2_control: ROS 2 Control Framework
+            </h3>
+            <span class="font-mono text-zinc-400">Upstream PRs & Issues</span>
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-zinc-600 dark:text-zinc-300">
+            <li><strong>Improved real-time safety and reliability:</strong> migrated controller manager lock to RT-safe priority-inheritance mutex to prevent timing delays in the control loop; implemented dynamic command toggling for testing hardware communication failures.</li>
+            <li><strong>Enhanced debugging and testing:</strong> added comprehensive exception-handling tests ensuring plugin failures do not cascade; improved error messages to identify which hardware component failed, reducing diagnosis time.</li>
+            <li><strong>Modernized framework:</strong> refactored deprecated parameter APIs across the ecosystem, eliminating technical debt and preventing future API breakage.</li>
+          </ul>
         </div>
       </section>
 
       <!-- Technical Skills -->
       <section class="space-y-2">
         <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
-          Technical Proficiencies
+          Technical Skills
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Languages:</strong> Python, C/C++ (C++20), Julia, MATLAB, LaTeX, Bash</p>
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Libraries:</strong> PyTorch, NumPy, SciPy, Eigen, NetworkX, CVXPY, ROS 2</p>
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Hardware & Labs:</strong> Digital Oscilloscopes, Function Generators, Spectrum Analyzers, STM32</p>
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Tools:</strong> Linux, Git, Docker, Neovim, CMake</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Programming Languages:</strong> Python, C++, MATLAB, Verilog, Assembly, JavaScript</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Robotics & Simulation:</strong> ROS 2, Gazebo, NVIDIA Isaac Sim, NVIDIA Warp, Model Predictive Control, Extended Kalman Filter</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Computer Vision & ML:</strong> PyTorch, PyTorch Geometric, TensorFlow, OpenCV, SLAM, Reinforcement Learning</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Systems & Deployment:</strong> Git/GitHub, Linux/Bash, Docker, FastAPI, LaTeX, NumPy, Pandas, scikit-learn, Open3D</p>
+        </div>
+      </section>
+
+      <!-- Projects & Co-Curricular -->
+      <section class="space-y-3">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
+          Additional Projects & Leadership
+        </h2>
+
+        <div class="space-y-2.5 text-xs text-zinc-600 dark:text-zinc-300">
+          <div>
+            <strong class="text-zinc-900 dark:text-zinc-100">AI-Powered Contract Review & Negotiation Assistant (Infosys Springboard):</strong> Built end-to-end LLM-based contract analysis application with FastAPI backend, Flutter frontend, and Docker containerization.
+          </div>
+          <div>
+            <strong class="text-zinc-900 dark:text-zinc-100">CS50 Web Programming Suite (Harvard University):</strong> Built full-stack applications including single-page email client, social network, and auction platform using Django, JavaScript, and SQL.
+          </div>
+          <div>
+            <strong class="text-zinc-900 dark:text-zinc-100">Computing and Networking Council (CNC), IISER Bhopal:</strong> Vice Secretary (2024–2025), Student Advisor, Technical Head for Aarohan 2025. Founded EECS Club and organized 10+ workshops on ROS, ML, and embedded systems for 1,500+ participants.
+          </div>
+          <div>
+            <strong class="text-zinc-900 dark:text-zinc-100">Google Developer Group (GDG On Campus), IISER Bhopal:</strong> Web Development Lead (2024–2025). Directed campus platforms and mentored students in collaborative software development.
+          </div>
+          <div>
+            <strong class="text-zinc-900 dark:text-zinc-100">Interests:</strong> Lawn Tennis, Cricket, Guitar.
+          </div>
         </div>
       </section>
     </div>

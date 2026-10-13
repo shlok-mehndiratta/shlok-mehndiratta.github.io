@@ -1,109 +1,109 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const softwareProjects = [
+const machineLearningProjects = [
   {
-    title: 'Asynchronous Swarm Consensus Simulator',
-    category: 'Distributed Systems / Robotics',
-    period: '2025',
-    description: 'An event-driven distributed simulator in C++20 and ROS 2 testing gossip-based consensus algorithms over lossy, directed graph topologies with arbitrary network delays and adversarial packet drops.',
-    metrics: 'Simulates 50+ autonomous nodes at 60Hz with zero deadlock.',
-    tech: ['C++20', 'ROS 2', 'Eigen', 'CMake'],
-    github: 'https://github.com/shlokmehndiratta/async-swarm-consensus',
+    title: 'Graph-Based ML Pipeline for 3D Point Cloud Segmentation',
+    category: '3D Computer Vision / Graph ML',
+    period: 'Dec 2024 – Jan 2025',
+    context: 'GeoAI4Cities Lab Internship',
+    description: 'A graph-based machine learning pipeline for segmenting large-scale urban 3D LiDAR point clouds. Modeled point clouds as spatial graphs with localized connectivity to encode spatial topology and relationships, incorporating RANSAC-based geometric filtering to remove sensor noise and outliers before graph construction.',
+    metrics: 'Improved segmentation accuracy and robustness against sensor noise over point-wise baselines.',
+    tech: ['PyTorch Geometric', 'Open3D', 'RANSAC', 'Python', 'NumPy', 'Scikit-learn'],
+    github: 'https://github.com/shlok-mehndiratta',
   },
   {
-    title: 'Spectral Proximal Solver (SPS-Py)',
-    category: 'Optimization & Compressive Sensing',
-    period: '2025',
-    description: 'A Python and C++ accelerated implementation of smoothed non-convex proximal operators for high-dimensional compressive signal recovery under heavy additive Gaussian noise.',
-    metrics: '3.4x faster convergence than standard FISTA baselines.',
-    tech: ['Python', 'NumPy', 'SciPy', 'C++ Extensions'],
-    github: 'https://github.com/shlokmehndiratta/spectral-proximal',
+    title: 'Oil Spill Detection Using Sentinel-1 SAR Imagery',
+    category: 'Satellite Remote Sensing / Deep Learning',
+    period: 'Mar 2024 – May 2024',
+    context: 'Marine Pollution Monitoring',
+    description: 'An automated marine pollution monitoring pipeline using Sentinel-1 Synthetic Aperture Radar (SAR) dual-polarization (VV/VH) satellite imagery. Designed CNN architectures with domain-specific preprocessing (adaptive thresholding, speckle noise reduction) to differentiate oil slicks from biogenic look-alikes.',
+    metrics: 'Achieved higher detection accuracy and lower false alarms through contextual filtering.',
+    tech: ['TensorFlow', 'OpenCV', 'Sentinel-1 Toolbox', 'Python', 'NumPy', 'Matplotlib'],
+    github: 'https://github.com/shlok-mehndiratta',
+  },
+  {
+    title: 'AI-Powered Contract Review & Negotiation Assistant',
+    category: 'Full-Stack AI / Systems',
+    period: '2024',
+    context: 'Infosys Springboard Virtual Internship',
+    description: 'Built an end-to-end legal document intelligence application with a FastAPI backend, Flutter cross-platform frontend, and Docker containerization. Applied large language models to automate legal contract review, structured clause extraction, and automated negotiation assistance.',
+    metrics: 'Containerized full-stack application with automated REST API endpoints.',
+    tech: ['FastAPI', 'Flutter', 'Docker', 'Python', 'LLMs', 'REST APIs'],
+    github: 'https://github.com/shlok-mehndiratta',
   },
 ];
 
 const courseworkProjects = [
   {
-    title: 'Primal-Dual Interior-Point Solver for QCQP',
-    course: 'Convex Optimization (EECS Core)',
-    period: 'Spring 2025',
-    description: 'Formulated and implemented an infeasible start primal-dual interior point algorithm for quadratically constrained quadratic programming (QCQP), verified against CVXPY and Mosek baselines.',
-    metrics: 'Achieves machine precision (<1e-8 duality gap) in sub-25 iterations.',
-    tech: ['Python', 'NumPy', 'Optimization Theory'],
-    github: 'https://github.com/shlokmehndiratta/primal-dual-qcqp',
+    title: 'Closed-Loop MPC & Extended Kalman Filter Mobile Robot Tracking',
+    course: 'Control Systems (ECS323) & EECS Lab (ECS327)',
+    period: '2025 – 2026',
+    description: 'Implemented a modular robot autonomy stack in ROS 2 and Gazebo. Designed and tuned an Extended Kalman Filter fusing visual odometry and IMU telemetry for state estimation in GPS-denied environments. Formulated event-triggered Model Predictive Control accounting for actuator saturation, comparing stability against classical Stanley and Pure Pursuit geometric controllers.',
+    metrics: 'Diagnosed and resolved actuator saturation instability in aggressive trajectory tracking.',
+    tech: ['ROS 2', 'Gazebo', 'Extended Kalman Filter', 'Model Predictive Control', 'C++', 'Python'],
+    github: 'https://github.com/shlok-mehndiratta',
   },
   {
-    title: 'Real-Time Audio Phase Vocoder & Polyphase Filterbank',
-    course: 'Digital Signal Processing (EECS Core)',
-    period: 'Autumn 2024',
-    description: 'Designed a Short-Time Fourier Transform (STFT) phase vocoder for real-time acoustic time-stretching and pitch-shifting without phase smearing, incorporating polyphase FIR filter reconstruction.',
-    metrics: '<12ms end-to-end processing latency on real-time audio streams.',
-    tech: ['C++', 'FFTW3', 'PortAudio', 'Signals'],
-    github: 'https://github.com/shlokmehndiratta/dsp-phase-vocoder',
+    title: 'CS50 Web Full-Stack Systems Suite (Harvard University)',
+    course: 'CS50 Web Programming with Python & JavaScript',
+    period: 'Jan 2024 – Jun 2025',
+    description: 'Completed a five-project systems journey exploring persistent state, concurrency, and asynchronous system boundaries: Mail (single-page email client with async REST APIs), Network (social network with relational pagination and likes), Commerce (auction platform with multi-user bidding state), Wiki (markdown encyclopedia with persistent storage), and Search (query layout clone).',
+    metrics: 'Full reflective essay available in Notebook detailing architectural lessons.',
+    tech: ['Django', 'JavaScript', 'PostgreSQL', 'REST APIs', 'Python', 'HTML/CSS'],
+    notebookLink: '/notebook/cs50-web-systems-journey',
   },
   {
-    title: '5-Stage Pipelined RISC-V (RV32I) Processor Core',
-    course: 'Computer Architecture & Systems',
-    period: 'Spring 2024',
-    description: 'Engineered a cycle-accurate simulator of a 5-stage pipelined RISC-V processor featuring data hazard detection, operand forwarding paths, and a 2-bit saturating branch predictor.',
-    metrics: 'Zero-hazard IPC of 0.94 across standard Dhrystone benchmark suites.',
-    tech: ['C++20', 'Verilog', 'Systems'],
-    github: 'https://github.com/shlokmehndiratta/riscv-pipeline-sim',
-  },
-];
-
-const hardwareProjects = [
-  {
-    title: 'Dual-Channel DDS Waveform Generator PCB',
-    category: 'Embedded Systems & Hardware',
-    period: '2024',
-    description: 'Designed and fabricated a direct digital synthesis (DDS) waveform generator board capable of synthesizing custom Fourier harmonics with microsecond phase synchronization for CIF lab calibrations.',
-    metrics: '0.1 Hz to 10 MHz bandwidth with <0.5% Total Harmonic Distortion.',
-    tech: ['KiCAD', 'STM32', 'Embedded C', 'Oscilloscopes'],
-    github: 'https://github.com/shlokmehndiratta/dds-signal-generator',
+    title: 'Quantum Computing Foundations & Circuit Simulation',
+    course: 'C-DAC & IIT Roorkee (Credential: CDACH/QML/275)',
+    period: 'Jun 2025',
+    description: 'Completed an intensive 4-week program covering qubits, unitary operators, entanglement, and quantum teleportation circuits. Experimented with quantum circuit simulation and foundational quantum algorithms on statevector simulators.',
+    metrics: 'Supported by Ministry of Electronics and IT (MeitY), Govt. of India.',
+    tech: ['Quantum Computing', 'Linear Algebra', 'Simulators', 'Python'],
+    github: 'https://github.com/shlok-mehndiratta',
   },
 ];
 ---
 
 <BaseLayout
   title="Projects & Builds | Shlok Mehndiratta"
-  description="Software systems, coursework engineering builds, and hardware prototypes by Shlok Mehndiratta."
+  description="Machine learning pipelines, full-stack systems, and coursework engineering builds by Shlok Mehndiratta."
 >
   <div class="space-y-12">
     <!-- Header -->
     <header class="space-y-3">
       <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.08]">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-        <span>Systems, Coursework & Hardware</span>
+        <span>Systems, ML Pipelines & Coursework Builds</span>
       </div>
       <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
         Projects & Builds
       </h1>
       <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        Concrete implementations across distributed systems, rigorous coursework projects in convex optimization and signal processing, and physical embedded hardware.
+        Engineering projects spanning graph-based point cloud learning, satellite remote sensing, containerized AI applications, and core robotics coursework implementations.
       </p>
     </header>
 
-    <!-- Section 1: Major Systems & Software -->
+    <!-- Section 1: Machine Learning & Systems Pipelines -->
     <section class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
         <div>
           <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Systems & Software Architectures
+            Machine Learning & Systems Pipelines
           </h2>
           <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
-            Distributed simulation engines and numerical optimization libraries
+            Geospatial LiDAR, satellite SAR remote sensing, and containerized architectures
           </p>
         </div>
       </div>
 
       <div class="grid grid-cols-1 gap-5">
-        {softwareProjects.map((proj) => (
+        {machineLearningProjects.map((proj) => (
           <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] space-y-3 transition-all duration-200 hover:border-black/[0.18] dark:hover:border-white/[0.18]">
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
               <div>
                 <span class="text-[10px] font-mono text-zinc-500 dark:text-zinc-400 uppercase tracking-wider font-semibold">
-                  {proj.category}
+                  {proj.category} • {proj.context}
                 </span>
                 <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                   {proj.title}
@@ -137,7 +137,7 @@ const hardwareProjects = [
                   rel="noopener noreferrer"
                   class="inline-flex items-center gap-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
                 >
-                  <span>Repository</span>
+                  <span>GitHub</span>
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                 </a>
               )}
@@ -147,15 +147,15 @@ const hardwareProjects = [
       </div>
     </section>
 
-    <!-- Section 2: Coursework & Capstone Engineering Builds -->
+    <!-- Section 2: Coursework & Implementation Projects -->
     <section class="space-y-6 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
         <div>
           <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Key Coursework & Implementation Projects
+            Coursework & Laboratory Builds
           </h2>
           <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
-            Tangible algorithmic models and systems built during advanced EECS courses
+            Rigorous implementations in control systems, full-stack architectures, and quantum algorithms
           </p>
         </div>
       </div>
@@ -165,7 +165,7 @@ const hardwareProjects = [
           <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] space-y-3 transition-all duration-200 hover:border-black/[0.18] dark:hover:border-white/[0.18]">
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
               <div>
-                <span class="inline-block px-2 py-0.5 text-[10px] font-mono rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.08] mb-1">
+                <span class="text-[10px] font-mono text-zinc-500 dark:text-zinc-400 uppercase tracking-wider font-semibold">
                   {proj.course}
                 </span>
                 <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
@@ -180,7 +180,7 @@ const hardwareProjects = [
             </p>
 
             <div class="p-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-800/40 border border-black/[0.04] dark:border-white/[0.04] text-xs font-mono text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
-              <span class="text-zinc-400 font-mono text-[10px] uppercase font-bold tracking-wider">Result:</span>
+              <span class="text-zinc-400 font-mono text-[10px] uppercase font-bold tracking-wider">Note:</span>
               <span>{proj.metrics}</span>
             </div>
 
@@ -193,80 +193,24 @@ const hardwareProjects = [
                 ))}
               </div>
 
-              {proj.github && (
+              {proj.notebookLink ? (
+                <a
+                  href={proj.notebookLink}
+                  class="inline-flex items-center gap-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
+                >
+                  <span>Read Reflection →</span>
+                </a>
+              ) : proj.github ? (
                 <a
                   href={proj.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="inline-flex items-center gap-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
                 >
-                  <span>Repository</span>
+                  <span>GitHub</span>
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                 </a>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- Section 3: Hardware & Embedded Prototypes -->
-    <section class="space-y-6 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
-      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
-        <div>
-          <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Hardware & Embedded Prototypes
-          </h2>
-          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
-            Custom PCB boards, microcontroller firmware, and instrumentation testbeds
-          </p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 gap-5">
-        {hardwareProjects.map((proj) => (
-          <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] space-y-3 transition-all duration-200 hover:border-black/[0.18] dark:hover:border-white/[0.18]">
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-              <div>
-                <span class="text-[10px] font-mono text-zinc-500 dark:text-zinc-400 uppercase tracking-wider font-semibold">
-                  {proj.category}
-                </span>
-                <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                  {proj.title}
-                </h3>
-              </div>
-              <span class="text-xs font-mono text-zinc-400 shrink-0">{proj.period}</span>
-            </div>
-
-            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-              {proj.description}
-            </p>
-
-            <div class="p-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-800/40 border border-black/[0.04] dark:border-white/[0.04] text-xs font-mono text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
-              <span class="text-zinc-400 font-mono text-[10px] uppercase font-bold tracking-wider">Metrics:</span>
-              <span>{proj.metrics}</span>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
-              <div class="flex flex-wrap gap-1.5">
-                {proj.tech.map((t) => (
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {proj.github && (
-                <a
-                  href={proj.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
-                >
-                  <span>Repository</span>
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                </a>
-              )}
+              ) : null}
             </div>
           </div>
         ))}
