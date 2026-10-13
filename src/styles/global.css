@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    --bg-canvas: #fbfbfb;
+    --bg-canvas: #fafaf9;
     --bg-surface: #ffffff;
     --bg-surface-hover: #f4f4f5;
     --border-subtle: rgba(0, 0, 0, 0.08);
@@ -15,21 +15,21 @@
     --text-primary: #09090b;
     --text-secondary: #52525b;
     --text-muted: #a1a1aa;
-    --accent: #0284c7;
-    --accent-subtle: rgba(2, 132, 199, 0.08);
+    --accent: #09090b;
+    --accent-subtle: rgba(0, 0, 0, 0.06);
   }
 
   html.dark {
-    --bg-canvas: #090b0e;
-    --bg-surface: #11141a;
-    --bg-surface-hover: #171b22;
+    --bg-canvas: #08090b;
+    --bg-surface: #0f1217;
+    --bg-surface-hover: #161a22;
     --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(255, 255, 255, 0.18);
+    --border-hover: rgba(255, 255, 255, 0.16);
     --text-primary: #f4f4f5;
     --text-secondary: #a1a1aa;
     --text-muted: #52525b;
-    --accent: #38bdf8;
-    --accent-subtle: rgba(56, 189, 248, 0.1);
+    --accent: #ffffff;
+    --accent-subtle: rgba(255, 255, 255, 0.12);
   }
 
   body {
@@ -64,6 +64,34 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--border-hover);
   }
+}
+
+/* Apple-grade Specular & Curvature Utilities */
+.card-specular {
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-specular:hover {
+  border-color: var(--border-hover);
+  background-color: var(--bg-surface-hover);
+}
+
+/* Zero-jank CSS Grid Accordion Drawer */
+.grid-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.grid-drawer.open {
+  grid-template-rows: 1fr;
+}
+
+.grid-drawer-inner {
+  overflow: hidden;
 }
 
 /* Custom Markdown Prose Styling */

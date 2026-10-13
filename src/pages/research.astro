@@ -9,68 +9,95 @@ const sortedPubs = allPubs.sort((a, b) => a.data.order - b.data.order);
 const underReviewCount = sortedPubs.filter((p) => p.data.status === 'under-review').length;
 const publishedCount = sortedPubs.filter((p) => p.data.status === 'published').length;
 const preprintCount = sortedPubs.filter((p) => p.data.status === 'preprint').length;
-
-const researchExperiences = [
-  {
-    role: 'Undergraduate Thesis Researcher',
-    lab: 'Signal Processing & Network Intelligence Group',
-    institution: 'IISER Bhopal',
-    period: 'Aug 2025 – Present',
-    advisor: 'Faculty Advisor',
-    description: 'Investigating continuous-time manifold regularization for high-dimensional distributed Kalman filtering. Proving analytical stability bounds under non-stationary network topologies.',
-    tags: ['Graph Signal Processing', 'Recursive Estimation', 'Convex Optimization'],
-  },
-  {
-    role: 'Summer Research Intern',
-    lab: 'Robotics & Autonomous Systems Lab',
-    institution: 'Visiting Research Fellowship',
-    period: 'May 2025 – Jul 2025',
-    advisor: 'Host Lab PI',
-    description: 'Formulated an asynchronous gossip consensus scheme over directed, packet-dropping wireless graphs. Validated algorithmic convergence on miniature robotic hardware testbeds.',
-    tags: ['Decentralized Control', 'Multi-Agent Systems', 'ROS / Python'],
-  },
-];
 ---
 
 <BaseLayout
-  title="Research & Publications | Shlok Mehndiratta"
-  description="Peer-reviewed publications, preprints, research internships, and algorithmic systems by Shlok Mehndiratta."
+  title="Research & Inquiries | Shlok Mehndiratta"
+  description="Research inquiries, ongoing BS thesis, publications, and manuscripts by Shlok Mehndiratta."
 >
-  <div class="space-y-10">
+  <div class="space-y-12">
     <!-- Header -->
     <header class="space-y-3">
       <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded text-xs font-mono bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">
-        <span>Academic Portfolio</span>
+        <span>Scientific Inquiry</span>
       </div>
       <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-        Research & Publications
+        Research & Inquiries
       </h1>
       <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        My primary research interests span statistical signal processing, estimation over graphs, and optimization in decentralized networks. Below is a record of my publications, current manuscripts under peer review, and research appointments.
+        I am interested in statistical signal processing, estimation over graphs, and optimization in decentralized networks. My work seeks to answer how networked agents can reliably learn and estimate states from sparse, imperfect observations.
       </p>
     </header>
 
-    <!-- Publication Counts / Overview stats -->
-    <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
-      <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
-        Total Works: {sortedPubs.length}
-      </span>
-      <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-        Under Review: {underReviewCount}
-      </span>
-      <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-        Published: {publishedCount}
-      </span>
-      <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
-        Preprints: {preprintCount}
-      </span>
-    </div>
+    <!-- Research Vision & Open Questions -->
+    <section class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark space-y-4">
+      <div class="flex items-center gap-2 text-xs font-mono text-sky-600 dark:text-sky-400 uppercase tracking-wider font-semibold">
+        <span>Core Research Themes</span>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300">
+        <div class="space-y-1.5">
+          <h3 class="font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+            <span>1. Dynamic Graph State Estimation</span>
+          </h3>
+          <p class="leading-relaxed">
+            Most classical graph signal processing assumes a fixed, static adjacency matrix. In real physical swarms or sensor grids, topologies fluctuate constantly. I explore continuous-time manifold priors to maintain tracking stability despite topology switching.
+          </p>
+        </div>
 
-    <!-- Publications List -->
-    <section class="space-y-4">
-      <h2 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-        <span>Manuscripts & Papers</span>
-      </h2>
+        <div class="space-y-1.5">
+          <h3 class="font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+            <span>2. Non-Convex Proximal Recovery</span>
+          </h3>
+          <p class="leading-relaxed">
+            While convex $\ell_1$ relaxations guarantee polynomial time convergence, they introduce systemic shrinkage bias in high-noise regimes. I study non-convex proximal surrogates with analytical recovery guarantees.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ongoing Undergraduate Thesis Focus -->
+    <section class="p-5 rounded-2xl border border-amber-500/20 bg-amber-500/5 dark:bg-amber-500/10 space-y-2 text-xs sm:text-sm">
+      <div class="flex items-center justify-between">
+        <h3 class="font-semibold text-amber-900 dark:text-amber-200 flex items-center gap-2">
+          <span>🔬 Active Inquiry: Senior Undergraduate Thesis (IISER Bhopal)</span>
+        </h3>
+        <span class="font-mono text-[11px] text-amber-700 dark:text-amber-300">In Progress</span>
+      </div>
+      <p class="text-zinc-700 dark:text-zinc-300 leading-relaxed">
+        Investigating recursive filtering on dynamic Riemannian manifolds. We are proving asymptotic mean-squared error bounds under non-stationary stochastic perturbations and testing scalability against standard distributed Kalman-consensus baselines.
+      </p>
+    </section>
+
+    <!-- Manuscripts & Papers Section -->
+    <section class="space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Manuscripts & Papers
+          </h2>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+            Preprints, peer-reviewed conference proceedings & submissions
+          </p>
+        </div>
+
+        <!-- Filter Stats -->
+        <div class="flex flex-wrap items-center gap-1.5 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700/60">
+            Total: {sortedPubs.length}
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+            Under Review: {underReviewCount}
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+            Published: {publishedCount}
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
+            Preprints: {preprintCount}
+          </span>
+        </div>
+      </div>
+
       <div class="space-y-4">
         {sortedPubs.map((pub) => (
           <PublicationCard pub={pub} />
@@ -78,51 +105,37 @@ const researchExperiences = [
       </div>
     </section>
 
-    <!-- Research Experience / Internships -->
-    <section class="space-y-6 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
+    <!-- Influential Literature / Foundations -->
+    <section class="space-y-4 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
       <div class="space-y-1">
         <h2 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-          Research Appointments & Internships
+          Conceptual Influences & Literature
         </h2>
         <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
-          Hands-on laboratory, theoretical modeling, and experimental milestones
+          Foundational works and frameworks that heavily shape my research approach
         </p>
       </div>
 
-      <div class="space-y-4">
-        {researchExperiences.map((exp) => (
-          <div class="p-5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark space-y-2.5">
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-              <div>
-                <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100">
-                  {exp.role}
-                </h3>
-                <p class="text-xs font-medium text-sky-600 dark:text-sky-400">
-                  {exp.lab} • {exp.institution}
-                </p>
-              </div>
-              <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
-                {exp.period}
-              </span>
-            </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/50 dark:bg-zinc-900/30 space-y-1">
+          <h4 class="font-semibold text-zinc-900 dark:text-zinc-100">
+            Graph Signal Processing (GSP) Foundations
+          </h4>
+          <p class="text-zinc-600 dark:text-zinc-400">
+            Shuman, Narang, Frossard, Ortega, and Vandergheynst (IEEE Signal Processing Magazine, 2013).
+          </p>
+          <span class="text-[11px] font-mono text-zinc-400">Harmonics on irregular graph topologies</span>
+        </div>
 
-            <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
-              Advisor: {exp.advisor}
-            </p>
-
-            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-              {exp.description}
-            </p>
-
-            <div class="flex flex-wrap gap-1.5 pt-1">
-              {exp.tags.map((tag) => (
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
+        <div class="p-4 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/50 dark:bg-zinc-900/30 space-y-1">
+          <h4 class="font-semibold text-zinc-900 dark:text-zinc-100">
+            Distributed Optimization via ADMM
+          </h4>
+          <p class="text-zinc-600 dark:text-zinc-400">
+            Stephen Boyd, Neal Parikh, Eric Chu, Borja Peleato, and Jonathan Eckstein (2011).
+          </p>
+          <span class="text-[11px] font-mono text-zinc-400">Splitting methods for decentralized solving</span>
+        </div>
       </div>
     </section>
   </div>

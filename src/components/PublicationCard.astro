@@ -10,6 +10,7 @@ interface Props {
       year: number;
       status: 'published' | 'under-review' | 'preprint' | 'in-preparation';
       abstract: string;
+      takeaway?: string;
       pdfUrl?: string;
       codeUrl?: string;
       projectUrl?: string;
@@ -21,7 +22,7 @@ interface Props {
 }
 
 const { pub } = Astro.props;
-const { title, authors, venue, year, status, abstract, pdfUrl, codeUrl, projectUrl, bibtex, tags } = pub.data;
+const { title, authors, venue, year, status, abstract, takeaway, pdfUrl, codeUrl, projectUrl, bibtex, tags } = pub.data;
 
 const statusStyles = {
   'under-review': 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
@@ -74,7 +75,7 @@ const cardId = `pub-${pub.slug || Math.random().toString(36).substring(2, 9)}`;
   </h3>
 
   <!-- Authors -->
-  <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-1.5">
+  <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-1">
     {
       authors.map((author, index) => {
         const isSelf = author.toLowerCase().includes('shlok mehndiratta');
@@ -95,9 +96,19 @@ const cardId = `pub-${pub.slug || Math.random().toString(36).substring(2, 9)}`;
   </p>
 
   <!-- Venue -->
-  <p class="text-xs font-serif italic text-zinc-500 dark:text-zinc-400 mb-3">
+  <p class="text-xs font-serif italic text-zinc-500 dark:text-zinc-400 mb-2.5">
     {venue}
   </p>
+
+  <!-- Key Takeaway Pill -->
+  {
+    takeaway && (
+      <div class="mb-3 px-3 py-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800/40 border border-black/[0.04] dark:border-white/[0.04] text-xs text-zinc-600 dark:text-zinc-300 flex items-start gap-2">
+        <span class="text-sky-500 font-bold">💡</span>
+        <span class="italic">{takeaway}</span>
+      </div>
+    )
+  }
 
   <!-- Actions & Toggles -->
   <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04] text-xs font-mono">
@@ -191,7 +202,6 @@ const cardId = `pub-${pub.slug || Math.random().toString(36).substring(2, 9)}`;
 </article>
 
 <script is:inline>
-  // Handle Abstract and BibTeX toggles across publication cards
   const setupPubCards = () => {
     document.querySelectorAll('[data-abstract-toggle]').forEach((btn) => {
       btn.onclick = () => {

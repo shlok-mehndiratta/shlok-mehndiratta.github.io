@@ -6,26 +6,25 @@ const currentPath = pathname.replace(/\/$/, '') || '/';
 
 const navItems = [
   { name: 'Research', href: '/research' },
-  { name: 'Writing', href: '/writing' },
-  { name: 'Gallery', href: '/gallery' },
-  { name: 'Now', href: '/now' },
-  { name: 'About', href: '/about' },
-  { name: 'CV', href: '/cv' },
+  { name: 'Experience', href: '/experience' },
+  { name: 'Notebook', href: '/notebook' },
+  { name: 'Archive', href: '/archive' },
+  { name: 'Resume', href: '/resume' },
 ];
 ---
 
-<header class="sticky top-0 z-40 w-full backdrop-blur-md bg-canvas-light/80 dark:bg-canvas-dark/80 border-b border-black/[0.06] dark:border-white/[0.06] transition-colors duration-200">
+<header class="sticky top-0 z-40 w-full backdrop-blur-md bg-canvas-light/85 dark:bg-canvas-dark/85 border-b border-black/[0.06] dark:border-white/[0.06] transition-colors duration-200">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
     <!-- Brand / Home Link -->
     <a
       href="/"
-      class="group flex items-center space-x-2.5 text-sm font-medium tracking-tight text-zinc-900 dark:text-zinc-100 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+      class="group flex items-center space-x-2.5 text-sm font-medium tracking-tight text-zinc-900 dark:text-zinc-100 hover:text-black dark:hover:text-white transition-colors"
     >
       <span class="relative flex h-2 w-2">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
       </span>
-      <span class="font-semibold">Shlok Mehndiratta</span>
+      <span class="font-semibold tracking-tight">Shlok Mehndiratta</span>
     </a>
 
     <!-- Desktop Navigation -->

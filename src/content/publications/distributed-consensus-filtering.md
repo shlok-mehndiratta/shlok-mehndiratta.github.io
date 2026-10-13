@@ -4,6 +4,7 @@ authors: ["Shlok Mehndiratta", "Host Lab Mentor"]
 venue: "Preprint • Research Internship Project"
 year: 2025
 status: "preprint"
+takeaway: "Asynchronous gossip consensus protocol proven stable against directed, adversarial wireless packet dropouts."
 abstract: "During a Summer Research Internship, developed an asynchronous consensus protocol for swarm navigation under intermittent packet drops and directed topological graphs. Demonstrates provable asymptotic convergence rates and hardware validation using miniature wheeled robotic platforms."
 pdfUrl: "#"
 codeUrl: "https://github.com/shlokmehndiratta/async-swarm-consensus"

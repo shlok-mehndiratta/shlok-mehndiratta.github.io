@@ -1,8 +1,9 @@
 ---
 title: "Heuristics from Undergraduate Research Internships"
 publishedDate: 2026-09-20
-stage: "budding"
-summary: "Reflections on navigating open-ended mathematical modeling, finding the signal through experimental noise, and learning how to ask questions that PIs actually care about."
+type: "heuristic"
+readTime: "4 min read"
+summary: "Reflections on navigating open-ended mathematical modeling, finding the signal through experimental noise, and learning how to ask questions that advisors care about."
 tags: ["Research", "Mentorship", "EECS"]
 draft: false
 ---

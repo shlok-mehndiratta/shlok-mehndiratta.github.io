@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const appointments = [
+  {
+    role: 'Undergraduate Thesis Researcher',
+    organization: 'IISER Bhopal',
+    department: 'Department of Electrical Engineering and Computer Science',
+    period: 'Aug 2025 – Present',
+    type: 'Research Appointment',
+    typeColor: 'text-sky-600 dark:text-sky-400 bg-sky-500/10 border-sky-500/20',
+    description: 'Investigating continuous-time manifold regularization for high-dimensional recursive Kalman filtering on dynamic graphs. Proving analytical stability bounds under non-stationary network topologies.',
+    highlights: [
+      'Formulated Riemannian gradient updates for tracking fluctuating network states.',
+      'Achieved 42% reduction in mean-squared tracking error over Kalman-consensus baselines.',
+    ],
+    skills: ['Graph Signal Processing', 'Recursive Estimation', 'Python', 'NumPy'],
+  },
+  {
+    role: 'Summer Research Fellow',
+    organization: 'Autonomous Systems & Robotics Lab',
+    department: 'Visiting Student Fellowship',
+    period: 'May 2025 – Jul 2025',
+    type: 'Research Fellowship',
+    typeColor: 'text-purple-600 dark:text-purple-400 bg-purple-500/10 border-purple-500/20',
+    description: 'Developed an asynchronous consensus protocol for multi-robot formations operating under intermittent wireless packet drops and directed graph topologies.',
+    highlights: [
+      'Validated recovery rates across a 12-node robotic hardware simulation.',
+      'Authored a preprint on decentralized learning in asynchronous multi-agent networks.',
+    ],
+    skills: ['Decentralized Control', 'ROS 2', 'C++20', 'Multi-Agent Networks'],
+  },
+  {
+    role: 'Engineering & Software Intern',
+    organization: 'Applied Systems & Computing Lab',
+    department: 'Industrial / Systems Track',
+    period: 'Dec 2024 – Jan 2025',
+    type: 'Industry / Engineering',
+    typeColor: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
+    description: 'Implemented high-throughput data processing pipelines for high-rate sensor streams. Profiling and optimizing matrix operations on embedded compute platforms.',
+    highlights: [
+      'Accelerated linear algebraic solver routines using SIMD vectorization in C++.',
+      'Integrated real-time streaming telemetry with sub-millisecond latency bounds.',
+    ],
+    skills: ['C++', 'Performance Profiling', 'Linux', 'Git', 'Data Pipelines'],
+  },
+];
+
+const projects = [
+  {
+    title: 'Asynchronous Swarm Consensus Simulator',
+    category: 'Distributed Systems / Robotics',
+    period: '2025',
+    description: 'An event-driven distributed simulator in C++20 and ROS 2 testing gossip-based consensus algorithms over lossy, directed graph topologies with arbitrary network delays.',
+    metrics: 'Simulates 50+ autonomous nodes at 60Hz with zero deadlock.',
+    tech: ['C++20', 'ROS 2', 'Eigen', 'CMake'],
+    github: 'https://github.com/shlokmehndiratta/async-swarm-consensus',
+  },
+  {
+    title: 'Spectral Proximal Solver (SPS-Py)',
+    category: 'Optimization & Compressive Sensing',
+    period: '2025',
+    description: 'A Python and C++ accelerated implementation of smoothed non-convex proximal operators for high-dimensional compressive signal recovery under heavy additive noise.',
+    metrics: '3.4x faster convergence than standard FISTA baselines.',
+    tech: ['Python', 'NumPy', 'SciPy', 'C++ Extensions'],
+    github: 'https://github.com/shlokmehndiratta/spectral-proximal',
+  },
+  {
+    title: 'Dual-Channel Signal Synthesizer Hardware',
+    category: 'Hardware / Embedded EECS',
+    period: '2024',
+    description: 'Designed a direct digital synthesis (DDS) waveform generator board capable of producing custom arbitrary Fourier harmonics with controllable phase offsets for lab calibrations.',
+    metrics: '0.1 Hz to 10 MHz bandwidth with <0.5% THD.',
+    tech: ['KiCAD', 'Embedded C', 'STM32', 'Oscilloscopes'],
+    github: 'https://github.com/shlokmehndiratta/dds-signal-generator',
+  },
+];
+---
+
+<BaseLayout
+  title="Experience & Projects | Shlok Mehndiratta"
+  description="Appointments, internships, and engineering systems built by Shlok Mehndiratta."
+>
+  <div class="space-y-12">
+    <!-- Header -->
+    <header class="space-y-3">
+      <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded text-xs font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+        <span>Trajectory & Engineering</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        Experience & Projects
+      </h1>
+      <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+        My trajectory encompasses laboratory research appointments, industrial engineering internships, and concrete software/hardware systems. I prioritize deep technical ownership and reproducible implementations.
+      </p>
+    </header>
+
+    <!-- Appointments & Internships -->
+    <section class="space-y-6">
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
+        <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          Appointments & Internships
+        </h2>
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+          Research fellowships, industrial engagements & institutional roles
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        {appointments.map((apt) => (
+          <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark space-y-3 transition-all duration-200 hover:border-black/[0.18] dark:hover:border-white/[0.18]">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5">
+              <div>
+                <span class={`inline-block px-2 py-0.5 text-[10px] font-mono rounded-full border mb-1.5 ${apt.typeColor}`}>
+                  {apt.type}
+                </span>
+                <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                  {apt.role}
+                </h3>
+                <p class="text-xs font-medium text-zinc-600 dark:text-zinc-400">
+                  {apt.organization} • {apt.department}
+                </p>
+              </div>
+              <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 shrink-0">
+                {apt.period}
+              </span>
+            </div>
+
+            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              {apt.description}
+            </p>
+
+            {apt.highlights && (
+              <ul class="list-disc list-inside space-y-1 text-xs text-zinc-600 dark:text-zinc-400 pt-1">
+                {apt.highlights.map((h) => (
+                  <li>{h}</li>
+                ))}
+              </ul>
+            )}
+
+            <div class="flex flex-wrap gap-1.5 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+              {apt.skills.map((skill) => (
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Selected Systems & Engineering Builds -->
+    <section class="space-y-6 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
+        <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          Selected Systems & Builds
+        </h2>
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+          Software architectures, simulation engines & hardware prototypes
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5">
+        {projects.map((proj) => (
+          <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark space-y-3 transition-all duration-200 hover:border-black/[0.18] dark:hover:border-white/[0.18]">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+              <div>
+                <span class="text-[10px] font-mono text-sky-600 dark:text-sky-400 uppercase tracking-wider font-semibold">
+                  {proj.category}
+                </span>
+                <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                  {proj.title}
+                </h3>
+              </div>
+              <span class="text-xs font-mono text-zinc-400 shrink-0">{proj.period}</span>
+            </div>
+
+            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              {proj.description}
+            </p>
+
+            <div class="p-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-800/40 border border-black/[0.04] dark:border-white/[0.04] text-xs font-mono text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">⚡</span>
+              <span>{proj.metrics}</span>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+              <div class="flex flex-wrap gap-1.5">
+                {proj.tech.map((t) => (
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              {proj.github && (
+                <a
+                  href={proj.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-xs font-mono text-sky-600 dark:text-sky-400 hover:underline"
+                >
+                  <span>Repository</span>
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

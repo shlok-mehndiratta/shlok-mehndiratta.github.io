@@ -9,6 +9,7 @@ const publicationsCollection = defineCollection({
     year: z.number(),
     status: z.enum(['published', 'under-review', 'preprint', 'in-preparation']),
     abstract: z.string(),
+    takeaway: z.string().optional(),
     pdfUrl: z.string().optional(),
     codeUrl: z.string().optional(),
     projectUrl: z.string().optional(),
@@ -19,19 +20,20 @@ const publicationsCollection = defineCollection({
   }),
 });
 
-const writingCollection = defineCollection({
+const notebookCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
     publishedDate: z.date(),
-    stage: z.enum(['seedling', 'budding', 'evergreen']).default('seedling'),
+    type: z.enum(['deep-dive', 'heuristic', 'paper-note', 'bookshelf']).default('deep-dive'),
+    readTime: z.string().default('5 min read'),
     summary: z.string(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),
 });
 
-const galleryCollection = defineCollection({
+const archiveCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -39,7 +41,8 @@ const galleryCollection = defineCollection({
     imageUrl: z.string(),
     caption: z.string(),
     location: z.string().optional(),
-    category: z.enum(['lab', 'encounters', 'geometry', 'generative']).default('encounters'),
+    instrument: z.string().optional(), // e.g. "Tektronix Scope", "He-Ne Laser 632.8nm", "Stereo Microscope"
+    category: z.enum(['lab', 'geometry', 'optics', 'life']).default('lab'),
     aspectRatio: z.string().default('4/3'),
     order: z.number().default(99),
   }),
@@ -47,6 +50,6 @@ const galleryCollection = defineCollection({
 
 export const collections = {
   publications: publicationsCollection,
-  writing: writingCollection,
-  gallery: galleryCollection,
+  notebook: notebookCollection,
+  archive: archiveCollection,
 };

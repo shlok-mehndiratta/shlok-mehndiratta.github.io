@@ -3,18 +3,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Curriculum Vitae | Shlok Mehndiratta"
-  description="Academic Curriculum Vitae of Shlok Mehndiratta. Senior undergraduate in EECS at IISER Bhopal."
+  title="Resume | Shlok Mehndiratta"
+  description="Curriculum Vitae and Resume of Shlok Mehndiratta. Senior undergraduate in EECS at IISER Bhopal."
 >
   <div class="space-y-10 max-w-3xl mx-auto">
     <!-- Header with Action Buttons -->
     <header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
       <div>
         <h1 class="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-          Curriculum Vitae
+          Shlok Mehndiratta
         </h1>
         <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-1">
-          Shlok Mehndiratta • Updated October 2026
+          Resume / Curriculum Vitae • Updated October 2026
         </p>
       </div>
 
@@ -39,7 +39,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </header>
 
-    <!-- CV Body -->
+    <!-- Resume Body -->
     <div class="space-y-8 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
       <!-- Contact Info -->
       <section class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-zinc-600 dark:text-zinc-400">
@@ -67,22 +67,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             Bachelor of Science (BS) in Electrical Engineering and Computer Science (EECS)
           </p>
           <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
-            Relevant Coursework: Signals & Systems, Linear Algebra, Convex Optimization, Graph Theory, Digital Signal Processing, Probability & Random Processes, Data Structures & Algorithms.
+            Key Coursework: Signals & Systems, Linear Algebra, Convex Optimization, Graph Theory, Digital Signal Processing, Probability & Random Processes, Data Structures & Algorithms, Computer Architecture.
           </p>
         </div>
       </section>
 
-      <!-- Research Interests -->
-      <section class="space-y-2">
+      <!-- Research & Industry Experience -->
+      <section class="space-y-5">
         <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
-          Research Interests
+          Appointments & Experience
         </h2>
-        <p class="text-xs">
-          Statistical Signal Processing, Graph Spectral Theory, Dynamic State Estimation, Non-Convex Optimization, Decentralized Multi-Agent Swarms.
-        </p>
+
+        <div class="space-y-4 text-xs">
+          <div>
+            <div class="flex justify-between items-baseline">
+              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">IISER Bhopal — Undergraduate Thesis Researcher</h3>
+              <span class="font-mono text-zinc-400">Aug 2025 – Present</span>
+            </div>
+            <p class="text-zinc-500 font-mono">Advisor: Faculty Advisor • Dept. of EECS</p>
+            <ul class="list-disc list-inside mt-1 space-y-1 text-zinc-600 dark:text-zinc-300">
+              <li>Formulated continuous-time manifold regularization for recursive estimation on dynamic graphs.</li>
+              <li>Proved analytical mean-squared error bounds under noisy edge-weight perturbations (42% MSE reduction).</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-baseline">
+              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Visiting Research Fellow — Autonomous Systems Lab</h3>
+              <span class="font-mono text-zinc-400">May 2025 – Jul 2025</span>
+            </div>
+            <p class="text-zinc-500 font-mono">Host Lab PI: Senior Professor</p>
+            <ul class="list-disc list-inside mt-1 space-y-1 text-zinc-600 dark:text-zinc-300">
+              <li>Developed an asynchronous consensus protocol for multi-robot formations under packet drops.</li>
+              <li>Engineered a C++20/ROS 2 event-driven distributed simulator for 50+ nodes with zero deadlock.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-baseline">
+              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Engineering & Software Intern — Applied Systems Track</h3>
+              <span class="font-mono text-zinc-400">Dec 2024 – Jan 2025</span>
+            </div>
+            <p class="text-zinc-500 font-mono">Systems & Optimization Team</p>
+            <ul class="list-disc list-inside mt-1 space-y-1 text-zinc-600 dark:text-zinc-300">
+              <li>Accelerated matrix factorization routines using SIMD vectorization and C++ profiling.</li>
+              <li>Integrated streaming sensor telemetry with sub-millisecond latency bounds.</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
-      <!-- Publications & Preprints -->
+      <!-- Publications & Manuscripts -->
       <section class="space-y-4">
         <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
           Publications & Preprints
@@ -127,49 +162,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </section>
 
-      <!-- Research Experience -->
-      <section class="space-y-4">
-        <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
-          Research Experience & Internships
-        </h2>
-
-        <div class="space-y-4 text-xs">
-          <div>
-            <div class="flex justify-between items-baseline">
-              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">IISER Bhopal — Undergraduate Thesis Researcher</h3>
-              <span class="font-mono text-zinc-400">Aug 2025 – Present</span>
-            </div>
-            <p class="text-zinc-500 font-mono">Advisor: Faculty Advisor</p>
-            <ul class="list-disc list-inside mt-1 space-y-1 text-zinc-600 dark:text-zinc-300">
-              <li>Formulated continuous-time manifold regularization for recursive estimation on dynamic graphs.</li>
-              <li>Proved rigorous analytical mean-squared error bounds under noisy edge-weight perturbations.</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="flex justify-between items-baseline">
-              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Summer Research Fellowship — Visiting Research Intern</h3>
-              <span class="font-mono text-zinc-400">May 2025 – Jul 2025</span>
-            </div>
-            <p class="text-zinc-500 font-mono">Host Lab PI: Senior Professor</p>
-            <ul class="list-disc list-inside mt-1 space-y-1 text-zinc-600 dark:text-zinc-300">
-              <li>Developed an asynchronous consensus protocol for multi-robot formations under packet drops.</li>
-              <li>Validated recovery rates and stability criteria across 12-node robotic hardware simulations.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
       <!-- Technical Skills -->
       <section class="space-y-2">
         <h2 class="text-sm font-mono font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
           Technical Proficiencies
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Languages:</strong> Python, C/C++, Julia, MATLAB, LaTeX, Bash</p>
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Libraries:</strong> PyTorch, NumPy, SciPy, NetworkX, CVXPY</p>
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Hardware & Labs:</strong> Digital Oscilloscopes, Function Generators, Spectrum Analyzers</p>
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Tools:</strong> Git, Linux, Docker, Neovim, VS Code</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Languages:</strong> Python, C/C++ (C++20), Julia, MATLAB, LaTeX, Bash</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Libraries:</strong> PyTorch, NumPy, SciPy, Eigen, NetworkX, CVXPY, ROS 2</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Hardware & Labs:</strong> Digital Oscilloscopes, Function Generators, Spectrum Analyzers, STM32</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Tools:</strong> Linux, Git, Docker, Neovim, CMake</p>
         </div>
       </section>
     </div>

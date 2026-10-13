@@ -1,8 +1,9 @@
 ---
 title: "An Intuitive Guide to Graph Laplacians & Spectral Embeddings"
 publishedDate: 2026-08-14
-stage: "evergreen"
-summary: "Why does the graph Laplacian show up in machine learning, heat diffusion, quantum mechanics, and network synchronization? A geometric walkthrough with spectral proofs."
+type: "deep-dive"
+readTime: "7 min read"
+summary: "Why does the graph Laplacian show up across machine learning, heat diffusion, quantum mechanics, and network synchronization? A geometric walkthrough with spectral proofs."
 tags: ["Graph Theory", "Linear Algebra", "Signal Processing"]
 draft: false
 ---

@@ -1,30 +1,33 @@
 ---
 interface Props {
-  post: {
+  entry: {
     slug: string;
     data: {
       title: string;
       publishedDate: Date;
-      stage: 'seedling' | 'budding' | 'evergreen';
+      type: 'deep-dive' | 'heuristic' | 'paper-note' | 'bookshelf';
+      readTime: string;
       summary: string;
       tags: string[];
     };
   };
 }
 
-const { post } = Astro.props;
-const { title, publishedDate, stage, summary, tags } = post.data;
+const { entry } = Astro.props;
+const { title, publishedDate, type, readTime, summary, tags } = entry.data;
 
-const stageIcons = {
-  seedling: '🌱 Seedling',
-  budding: '🌿 Budding',
-  evergreen: '🌲 Evergreen',
+const typeLabels = {
+  'deep-dive': 'Deep Dive',
+  'heuristic': 'Heuristic',
+  'paper-note': 'Paper Note',
+  'bookshelf': 'Bookshelf',
 };
 
-const stageColors = {
-  seedling: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
-  budding: 'text-teal-600 dark:text-teal-400 bg-teal-500/10 border-teal-500/20',
-  evergreen: 'text-sky-600 dark:text-sky-400 bg-sky-500/10 border-sky-500/20',
+const typeColors = {
+  'deep-dive': 'text-sky-600 dark:text-sky-400 bg-sky-500/10 border-sky-500/20',
+  'heuristic': 'text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20',
+  'paper-note': 'text-purple-600 dark:text-purple-400 bg-purple-500/10 border-purple-500/20',
+  'bookshelf': 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
 };
 
 const formattedDate = new Intl.DateTimeFormat('en-US', {
@@ -35,14 +38,19 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 ---
 
 <a
-  href={`/writing/${post.slug}`}
+  href={`/notebook/${entry.slug}`}
   class="group block p-5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark hover:border-black/[0.2] dark:hover:border-white/[0.2] transition-all duration-200"
 >
   <div class="flex items-center justify-between gap-3 mb-2.5">
-    <!-- Stage Badge -->
-    <span class={`text-[11px] font-mono px-2 py-0.5 rounded-full border ${stageColors[stage]}`}>
-      {stageIcons[stage]}
-    </span>
+    <!-- Type Badge & Read Time -->
+    <div class="flex items-center gap-2">
+      <span class={`text-[11px] font-mono px-2 py-0.5 rounded-full border ${typeColors[type]}`}>
+        {typeLabels[type]}
+      </span>
+      <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+        {readTime}
+      </span>
+    </div>
 
     <!-- Date -->
     <time class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
