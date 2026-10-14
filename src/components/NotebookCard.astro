@@ -18,16 +18,9 @@ const { title, publishedDate, type, readTime, summary, tags } = entry.data;
 
 const typeLabels = {
   'deep-dive': 'Deep Dive',
-  'heuristic': 'Heuristic',
+  'heuristic': 'Lab Heuristic',
   'paper-note': 'Paper Note',
   'bookshelf': 'Bookshelf',
-};
-
-const typeColors = {
-  'deep-dive': 'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60',
-  'heuristic': 'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60',
-  'paper-note': 'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60',
-  'bookshelf': 'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 border-zinc-200 dark:border-zinc-700/60',
 };
 
 const formattedDate = new Intl.DateTimeFormat('en-US', {
@@ -39,32 +32,31 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 
 <a
   href={`/notebook/${entry.slug}`}
-  class="apple-card apple-card-interactive group block p-6 sm:p-7 rounded-2xl"
+  class="dossier-panel reticle-corner group block pt-5 pb-6 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all"
 >
-  <div class="flex items-center justify-between gap-3 mb-2.5">
-    <!-- Type Badge & Read Time -->
-    <div class="flex items-center gap-2">
-      <span class={`text-[11px] font-mono px-2 py-0.5 rounded-full border ${typeColors[type]}`}>
-        {typeLabels[type]}
+  <div class="flex flex-wrap items-center justify-between gap-2 mb-2 text-xs font-mono">
+    <!-- Type Badge & Cadence -->
+    <div class="flex items-center gap-1.5 text-zinc-400 dark:text-zinc-500">
+      <span class="font-bold text-cyan-600 dark:text-cyan-400">
+        [{typeLabels[type].toUpperCase()}]
       </span>
-      <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
-        {readTime}
-      </span>
+      <span class="tala-divider">|</span>
+      <span>{readTime}</span>
     </div>
 
     <!-- Date -->
-    <time class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+    <time class="text-zinc-400 dark:text-zinc-500 text-[11px]">
       {formattedDate}
     </time>
   </div>
 
   <!-- Title -->
-  <h3 class="text-base sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-black dark:group-hover:text-white transition-colors mb-2">
+  <h3 class="text-base sm:text-lg font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 group-hover:text-cyan-700 dark:group-hover:text-cyan-300 transition-colors mb-2 leading-snug">
     {title}
   </h3>
 
   <!-- Summary -->
-  <p class="text-sm text-zinc-600 dark:text-zinc-400 line-clamp-2 mb-3 leading-relaxed">
+  <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 line-clamp-2 mb-3 leading-relaxed font-sans">
     {summary}
   </p>
 

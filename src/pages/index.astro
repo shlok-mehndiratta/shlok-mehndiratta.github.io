@@ -6,15 +6,15 @@ import ArchiveCard from '../components/ArchiveCard.astro';
 import { getCollection } from 'astro:content';
 
 const allPubs = await getCollection('publications');
-const featuredPub = allPubs.find((p) => p.data.featured) || allPubs[0];
+const featuredPub = allPubs.sort((a, b) => a.data.order - b.data.order)[0];
 
-const allNotebook = await getCollection('notebook', ({ data }) => !data.draft);
-const recentNote = allNotebook.sort(
+const allNotes = await getCollection('notebook', ({ data }) => !data.draft);
+const recentNote = allNotes.sort(
   (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
 )[0];
 
 const allArchive = await getCollection('archive');
-const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).slice(0, 2);
+const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).slice(0, 4);
 
 const homeSections = [
   { id: 'overview', label: 'Overview' },
@@ -31,28 +31,37 @@ const homeSections = [
   sections={homeSections}
 >
   <div class="space-y-16 sm:space-y-24">
-    <!-- Hero Section -->
+    <!-- Hero Section (Editorial Technical Identity) -->
     <section id="overview" class="pt-2">
       <div class="flex flex-col-reverse md:flex-row md:items-start justify-between gap-8 sm:gap-12">
         <!-- Left: Narrative & Identity -->
         <div class="space-y-5 max-w-2xl">
-          <div class="space-y-1.5">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+              <span>RESEARCHER DOSSIER</span>
+              <span class="tala-divider">||</span>
+              <span class="text-cyan-600 dark:text-cyan-400 font-semibold">IISER BHOPAL</span>
+              <span class="tala-divider">|</span>
+              <span>23.28°N 77.27°E</span>
+            </div>
             <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
               Shlok Mehndiratta
             </h1>
             <p class="text-base sm:text-lg font-medium text-zinc-600 dark:text-zinc-400">
               Electrical Engineering & Computer Science at <span class="text-zinc-950 dark:text-zinc-100 font-semibold">IISER Bhopal</span>
             </p>
-            <p class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
-              CPI: 8.87 / 10 (3.55 / 4.0) • Autonomous Robotics & Control
-            </p>
+            <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 pt-0.5">
+              <span>CPI: <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">8.87 / 10</strong> (3.55 / 4.0)</span>
+              <span class="tala-divider">||</span>
+              <span>AUTONOMOUS SWARMS & CONTROL</span>
+            </div>
           </div>
 
-          <p class="text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+          <p class="text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-300 font-sans">
             I work at the intersection of <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">autonomous robotics</strong>, <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">control theory</strong>, and <strong class="text-zinc-950 dark:text-zinc-100 font-semibold">learning for autonomous systems</strong>. My research investigates vision-based aerial navigation in GPS-denied environments, decentralized swarm coordination, and visual contact estimation for dexterous hands—grounding theoretical control and estimation algorithms on physical hardware testbeds.
           </p>
 
-          <!-- Action Triggers -->
+          <!-- Action Triggers (Disciplined Athletic Form) -->
           <div class="flex flex-wrap items-center gap-3 pt-1">
             <a
               href="/experience"
@@ -64,16 +73,16 @@ const homeSections = [
 
             <a
               href="/projects"
-              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-black/[0.08] dark:border-white/[0.1] bg-surface-light dark:bg-surface-dark text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm font-medium shadow-sm hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition-all"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-black/[0.08] dark:border-white/[0.1] bg-transparent hover:bg-black/[0.03] dark:hover:bg-white/[0.03] text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm font-medium transition-all"
             >
               <span>Projects & Builds</span>
             </a>
 
             <a
               href="/resume"
-              class="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
+              class="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-mono"
             >
-              <span>Resume</span>
+              <span>CV / Resume</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
             </a>
           </div>
@@ -88,6 +97,10 @@ const homeSections = [
               LinkedIn
             </a>
             <span>•</span>
+            <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer" class="hover:text-black dark:hover:text-white transition-colors">
+              Google Scholar
+            </a>
+            <span>•</span>
             <a href="https://x.com/ShlokMehndiratt" target="_blank" rel="noopener noreferrer" class="hover:text-black dark:hover:text-white transition-colors">
               X (Twitter)
             </a>
@@ -98,26 +111,31 @@ const homeSections = [
           </div>
         </div>
 
-        <!-- Right: Visual Plate -->
+        <!-- Right: Visual Reconnaissance Plate (Corner Reticle Frame) -->
         <div class="w-full sm:w-56 md:w-64 shrink-0 self-start">
-          <div class="apple-card overflow-hidden rounded-2xl p-2">
-            <div class="relative w-full aspect-square overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800">
+          <div class="reticle-corner p-2 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-zinc-50/60 dark:bg-zinc-900/40">
+            <div class="flex items-center justify-between text-[9px] font-mono text-zinc-400 dark:text-zinc-500 pb-1.5 px-0.5 uppercase tracking-wider">
+              <span class="text-cyan-600 dark:text-cyan-400 font-bold">FLIGHT APPARATUS</span>
+              <span>100 Hz MOCAP</span>
+            </div>
+            <div class="relative w-full aspect-square overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-800">
               <img
                 src="https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=800&q=80"
                 alt="Crazyflie Autonomous Drone Arena at IISER Bhopal"
                 class="w-full h-full object-cover grayscale contrast-125 transition-transform duration-500 hover:scale-105"
               />
+              <div class="absolute inset-0 border border-black/10 dark:border-white/10 pointer-events-none rounded-lg"></div>
             </div>
-            <div class="pt-2 px-1 flex items-center justify-between text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
-              <span>MOON Lab Arena</span>
-              <span>IISER Bhopal</span>
+            <div class="pt-2 px-0.5 flex items-center justify-between text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
+              <span class="text-zinc-700 dark:text-zinc-300 font-medium">MOON Lab Arena</span>
+              <span>23.28°N 77.27°E</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 1: Research -->
+    <!-- Section 1: Research (Editorial Manuscript Docket) -->
     <section id="research" class="space-y-5">
       <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <div>
@@ -128,7 +146,7 @@ const homeSections = [
             Autonomous drone swarms and vision-based control manuscripts
           </p>
         </div>
-        <a href="/experience" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
+        <a href="/experience" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors font-mono">
           All Publications &rarr;
         </a>
       </div>
@@ -138,7 +156,7 @@ const homeSections = [
       </div>
     </section>
 
-    <!-- Section 2: Open Source -->
+    <!-- Section 2: Open Source (Subsystem Telemetry Spec Docket) -->
     <section id="systems" class="space-y-5">
       <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <div>
@@ -149,44 +167,49 @@ const homeSections = [
             Real-time safety and diagnostic test suites for ros2_control
           </p>
         </div>
-        <a href="/experience#open-source" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
-          View Contribution &rarr;
+        <a href="/experience#open-source" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors font-mono">
+          Full Subsystem Spec &rarr;
         </a>
       </div>
 
-      <div class="apple-card apple-card-interactive p-6 sm:p-7 rounded-2xl space-y-3">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-mono font-medium text-zinc-500 dark:text-zinc-400">
-            ros2_control framework
-          </span>
+      <div class="dossier-panel reticle-corner pt-6 pb-7 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-black/[0.05] dark:border-white/[0.05] pb-3">
+          <div>
+            <div class="flex items-center gap-1.5 text-xs font-mono text-zinc-400 dark:text-zinc-500 mb-1">
+              <span class="text-cyan-600 dark:text-cyan-400 font-bold">[SUBSYSTEM.01]</span>
+              <span class="tala-divider">||</span>
+              <span>ROS 2 CONTROL FRAMEWORK</span>
+              <span class="tala-divider">|</span>
+              <span class="text-emerald-600 dark:text-emerald-400 font-semibold">● ACTIVE UPSTREAM</span>
+            </div>
+            <h3 class="text-base sm:text-lg font-semibold text-zinc-950 dark:text-zinc-50">
+              ros2_control: Real-Time Safety & Diagnostics
+            </h3>
+          </div>
           <a
             href="https://github.com/ros-controls/ros2_control"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-xs font-mono text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
+            class="text-xs font-mono text-zinc-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors shrink-0"
           >
-            Upstream Repo &rarr;
+            ros-controls/ros2_control &rarr;
           </a>
         </div>
 
-        <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-          ros2_control: Real-Time Safety & Diagnostics
-        </h3>
-
-        <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-          Migrated the controller manager lock to an RT-safe priority-inheritance mutex to prevent timing delays in high-frequency control loops; built dynamic command toggling and exception-handling test suites preventing cascaded hardware failures.
+        <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
+          Migrated the controller manager lock to an RT-safe priority-inheritance mutex to eliminate priority inversion and latency spikes in high-frequency control loops; built dynamic command toggling and exception-handling test suites preventing cascaded hardware failures.
         </p>
 
-        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04] text-xs font-mono text-zinc-500">
-          <span class="bg-zinc-100 dark:bg-zinc-800/80 px-2.5 py-0.5 rounded-full text-zinc-700 dark:text-zinc-300">C++20</span>
-          <span class="bg-zinc-100 dark:bg-zinc-800/80 px-2.5 py-0.5 rounded-full text-zinc-700 dark:text-zinc-300">ROS 2</span>
-          <span class="bg-zinc-100 dark:bg-zinc-800/80 px-2.5 py-0.5 rounded-full text-zinc-700 dark:text-zinc-300">Real-Time Mutex</span>
-          <span class="bg-zinc-100 dark:bg-zinc-800/80 px-2.5 py-0.5 rounded-full text-zinc-700 dark:text-zinc-300">Hardware Abstraction</span>
+        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04] text-[10px] font-mono text-zinc-500">
+          <span class="bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded text-zinc-700 dark:text-zinc-300">C++20</span>
+          <span class="bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded text-zinc-700 dark:text-zinc-300">ROS 2</span>
+          <span class="bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded text-zinc-700 dark:text-zinc-300">POSIX RT Mutex</span>
+          <span class="bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded text-zinc-700 dark:text-zinc-300">Deterministic Control</span>
         </div>
       </div>
     </section>
 
-    <!-- Section 3: Writing -->
+    <!-- Section 3: Writing (Editorial Essay Ledger) -->
     {
       recentNote && (
         <section id="writing" class="space-y-5">
@@ -199,7 +222,7 @@ const homeSections = [
                 Systems discipline and state modeling from Harvard CS50 Web
               </p>
             </div>
-            <a href="/notebook" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
+            <a href="/notebook" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors font-mono">
               All Notes &rarr;
             </a>
           </div>
@@ -211,7 +234,7 @@ const homeSections = [
       )
     }
 
-    <!-- Section 4: Visual Encounters Preview -->
+    <!-- Section 4: Visual Encounters Preview (Laboratory Observation Plates) -->
     <section id="archive" class="space-y-5">
       <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <div>
@@ -222,7 +245,7 @@ const homeSections = [
             Photographs from drone arenas, robot hardware, and campus
           </p>
         </div>
-        <a href="/archive" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
+        <a href="/archive" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors font-mono">
           Browse All ({allArchive.length}) &rarr;
         </a>
       </div>

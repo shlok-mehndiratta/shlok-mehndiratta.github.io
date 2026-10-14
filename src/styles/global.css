@@ -70,13 +70,13 @@
 .apple-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: 1rem;
-  box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.03), 0 10px 24px -4px rgba(0, 0, 0, 0.04);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
   transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html.dark .apple-card {
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.07);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .apple-card-interactive {
@@ -85,31 +85,107 @@ html.dark .apple-card {
 
 .apple-card-interactive:hover {
   border-color: var(--border-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.07), 0 20px 40px -8px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1.5px);
 }
 
-html.dark .apple-card-interactive:hover {
-  box-shadow: 0 10px 32px -4px rgba(0, 0, 0, 0.85), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+/* Bespoke Architectural Dossier & Manuscript Styling (Non-generic, open editorial) */
+.dossier-panel {
+  position: relative;
+  background-color: transparent;
+  border-top: 1px solid var(--border-subtle);
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Apple Section Container */
-.apple-section-island {
+.dossier-panel:hover {
+  border-color: var(--border-hover);
+}
+
+.dossier-panel::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: transparent;
+  transition: background-color 0.24s ease;
+}
+
+.dossier-panel:hover::before {
+  background-color: rgb(8, 145, 178); /* cyan-600 */
+}
+
+html.dark .dossier-panel:hover::before {
+  background-color: rgb(103, 232, 249); /* cyan-300 */
+}
+
+/* Tactical Corner Crosshair Marks */
+.reticle-corner {
+  position: relative;
+}
+
+.reticle-corner::before,
+.reticle-corner::after {
+  content: '+';
+  position: absolute;
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--text-muted);
+  opacity: 0.4;
+  pointer-events: none;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.reticle-corner:hover::before,
+.reticle-corner:hover::after {
+  opacity: 0.85;
+  color: rgb(8, 145, 178);
+}
+
+html.dark .reticle-corner:hover::before,
+html.dark .reticle-corner:hover::after {
+  color: rgb(103, 232, 249);
+}
+
+.reticle-corner::before {
+  top: -6px;
+  left: -4px;
+}
+
+.reticle-corner::after {
+  top: -6px;
+  right: -4px;
+}
+
+/* Classical Rhythmic Cadence Divider (Indian Classical Tala / Matra) */
+.tala-divider {
+  display: inline-block;
+  color: var(--text-muted);
+  opacity: 0.35;
+  font-family: 'Geist Mono', monospace;
+  margin: 0 0.45rem;
+  user-select: none;
+}
+
+/* Defense & Aviation Telemetry Tag */
+.telemetry-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.25rem;
   border: 1px solid var(--border-subtle);
-  border-radius: 1.5rem;
-  padding: 1.75rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(12px);
+  background-color: rgba(0, 0, 0, 0.02);
+  color: var(--text-secondary);
 }
 
-html.dark .apple-section-island {
-  background-color: rgba(18, 18, 20, 0.5);
-}
-
-@media (min-width: 640px) {
-  .apple-section-island {
-    padding: 2.25rem;
-  }
+html.dark .telemetry-chip {
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 /* Zero-jank CSS Grid Accordion Drawer */

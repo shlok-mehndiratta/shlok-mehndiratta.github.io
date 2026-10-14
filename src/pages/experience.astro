@@ -8,56 +8,68 @@ const sortedPubs = allPubs.sort((a, b) => a.data.order - b.data.order);
 
 const researchAppointments = [
   {
+    index: 'LAB.01',
     role: 'Undergraduate Research Student',
     organization: 'MOON Lab, IISER Bhopal',
     advisor: 'Dr. P. B. Sujit',
     period: 'May 2026 – Present',
+    coords: '23.28°N 77.27°E',
+    specDomain: 'AERIAL SWARM APPARATUS // OPTITRACK MOCAP',
     projectTitle: 'Vision-Based Autonomous Navigation and Swarm Coordination',
-    description: 'Implementing vision-based spherical coordinate planning for micro aerial vehicles (MAVs), moving target tracking, and dynamic obstacle avoidance. Validating algorithms in ROS 2 simulation and physical hardware.',
+    description: 'Implementing vision-based spherical coordinate planning for micro aerial vehicles (MAVs), moving target tracking, and dynamic obstacle avoidance. Grounding multi-agent control on physical Crazyflie quadrotors with sub-millimeter mocap state verification.',
     highlights: [
-      'Assembled quadrotor drones integrating flight controller, RC receiver, and telemetry modules.',
-      'Configured and integrated OptiTrack mocap system with ROS 2 for millimeter-precision indoor localization.',
-      'Investigating decentralized swarm algorithms for cooperative coverage and multi-agent autonomous monitoring.',
+      'Assembled flight hardware integrating micro flight controllers, radio transceivers, and real-time telemetry modules.',
+      'Configured and integrated OptiTrack optical motion capture with ROS 2 for millimeter-precision indoor localization.',
+      'Investigating decentralized swarm algorithms for cooperative area coverage under intermittent communication constraints.',
     ],
     skills: ['ROS 2', 'OptiTrack Mocap', 'Crazyflie Swarm', 'Spherical Vision Planning', 'C++', 'Python'],
   },
   {
+    index: 'LAB.02',
     role: 'Research Intern',
     organization: 'Robotics Research Center (RRC), IIIT Hyderabad',
     advisor: 'Dr. Spandan Roy',
     period: 'April 2026 – Present',
+    coords: '17.44°N 78.35°E',
+    specDomain: 'PHYSICS ENGINE & SIM-TO-REAL // 16-DoF LEAP HAND',
     projectTitle: 'Learning Visual Contact Estimation from Photorealistic Synthetic Data',
-    description: 'Building a high-fidelity synthetic data engine to supervise 3D contact distribution prediction directly from camera imagery for dexterous manipulation.',
+    description: 'Building a high-fidelity synthetic data engine to supervise 3D contact distribution prediction directly from single-view and multi-view camera imagery for dexterous manipulation.',
     highlights: [
-      'Constructed GPU-accelerated physics pipeline (NVIDIA Warp) and photorealistic rendering engine (BlenderProc) generating paired multi-view RGB, segmentation, and 3D contact/SDF supervision.',
+      'Constructed GPU-accelerated physics pipeline (NVIDIA Warp) and photorealistic renderer (BlenderProc) generating multi-view RGB, segmentation, and 3D contact/SDF supervision.',
       'Trained vision-conditioned neural models (ResNet/UNet/PointNet) to predict 3D contact distributions for downstream grasp synthesis.',
-      'Deploying models for real-robot policy transfer on 16-DoF LEAP Hand platforms; scaling pipeline across multi-GPU compute clusters.',
+      'Deploying models for physical policy transfer on 16-DoF LEAP Hand platforms; scaling pipeline across multi-GPU compute clusters.',
     ],
     skills: ['NVIDIA Warp', 'BlenderProc', 'PyTorch', '16-DoF LEAP Hand', '3D Contact / SDF', 'Sim-to-Real'],
   },
   {
+    index: 'LAB.03',
     role: 'Undergraduate Research Student',
     organization: 'MuSic Lab, IISER Bhopal',
     advisor: 'Dr. Arijit Sen',
     period: 'Sept 2025 – July 2026',
+    coords: '23.28°N 77.27°E',
+    specDomain: 'MULTISENSORY SYSTEMS // PERCEPTION-AWARE CONTROL',
     projectTitle: 'Perception-Aware Altitude Optimization for Aerial-Ground Tracking',
-    description: 'Formulated the altitude-coverage-resolution trade-off in shared-camera UAV-UGV tracking systems, developing closed-form altitude scheduling and constraint-aware control.',
+    description: 'Formulated the altitude-coverage-resolution trade-off in shared-camera UAV-UGV tracking systems, developing closed-form altitude scheduling and constraint-aware control balancing camera field-of-view against ground resolution.',
     highlights: [
-      'Derived closed-form altitude scheduling policy formalizing the coupling between camera field-of-view, ground resolution, and state estimation error.',
+      'Derived closed-form altitude scheduling policy formalizing the coupling between camera field-of-view, ground resolution, and state estimation error covariance.',
       'Built belief-space MPC controller and event-triggered aerial planner achieving 25× compute reduction while maintaining tracking precision.',
       'Constructed complete ROS 2/Gazebo testbed with unified logging protocol across variable terrain curvature and sensor noise regimes.',
     ],
     skills: ['Belief-Space MPC', 'Extended Kalman Filter', 'ROS 2', 'Gazebo', 'Event-Triggered Planning'],
   },
   {
+    index: 'LAB.04',
     role: 'Student Research Intern',
     organization: 'GeoAI4Cities Lab',
     advisor: 'Research Group',
     period: 'Dec 2024 – Jan 2025',
+    coords: '23.28°N 77.27°E',
+    specDomain: 'GEOSPATIAL AI // POINT CLOUD TOPOLOGY',
     projectTitle: 'Graph-Based ML Pipeline for 3D Point Cloud Segmentation',
     description: 'Developed structured graph-based representations for segmenting large-scale urban 3D LiDAR point clouds with high noise tolerance.',
     highlights: [
-      'Modeled point clouds as spatial graphs with localized connectivity to balance expressiveness with computational tractability.',
+      'Modeled point clouds as spatial graphs with localized connectivity to balance topological expressiveness with computational tractability.',
       'Incorporated RANSAC-based geometric filtering and topological feature encoding to reduce sensitivity to LiDAR sensor noise.',
     ],
     skills: ['PyTorch Geometric', 'Open3D', 'RANSAC', 'Graph ML', 'Python'],
@@ -82,7 +94,7 @@ const leadershipAppointments = [
     period: 'Aug 2024 – Aug 2025',
     details: 'Campus Technical Platform Lead',
     highlights: [
-      'Led end-to-end development of campus web platforms.',
+      'Led end-to-end development of campus web platforms with responsive architectures.',
       'Mentored students in collaborative software engineering, version control standards, and code review pipelines.',
     ],
   },
@@ -111,91 +123,128 @@ const expSections = [
   sections={expSections}
 >
   <div class="space-y-16 sm:space-y-20">
-    <!-- Page Header -->
-    <header class="space-y-2">
+    <!-- Page Header (Editorial Manuscript Style) -->
+    <header class="space-y-3 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
+      <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+        <span>DOSSIER // APPOINTMENTS & MANUSCRIPTS</span>
+        <span class="tala-divider">||</span>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">23.28°N 77.27°E</span>
+      </div>
       <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
         Experience
       </h1>
       <p class="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        Academic research in autonomous systems, GPU physics simulation for dexterous manipulation, and core open-source robotics infrastructure.
+        Academic appointments in vision-based aerial swarms, GPU physics simulation for dexterous robotic hands, and core upstream open-source robotics infrastructure.
       </p>
     </header>
 
-    <!-- Section 1: Publications -->
+    <!-- Section 1: Publications & Preprints (Manuscript Dockets) -->
     <section id="publications" class="space-y-6">
-      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
-        <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-          Publications & Preprints
-        </h2>
-        <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-          Conference submissions under review at ICRA 2027 and ACODS 2026
-        </p>
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Publications & Preprints
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
+            Conference submissions under review at ICRA 2027 and ACODS 2026
+          </p>
+        </div>
+        <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+          ({sortedPubs.length} Manuscripts)
+        </span>
       </div>
 
-      <div class="space-y-4">
+      <div class="space-y-1">
         {sortedPubs.map((pub) => (
           <PublicationCard pub={pub} />
         ))}
       </div>
     </section>
 
-    <!-- Section 2: Research Labs -->
+    <!-- Section 2: Research Labs (Architectural Research Field Ledger) -->
     <section id="appointments" class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
-        <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
           Research Labs
         </h2>
         <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-          Appointments across IISER Bhopal and IIIT Hyderabad
+          Laboratory appointments across IISER Bhopal and IIIT Hyderabad
         </p>
       </div>
 
-      <div class="space-y-5">
+      <div class="space-y-2">
         {researchAppointments.map((apt) => (
-          <div class="apple-card apple-card-interactive p-6 sm:p-7 rounded-2xl space-y-3">
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-              <div>
-                <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                  {apt.projectTitle}
-                </h3>
-                <p class="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400 mt-0.5">
-                  <strong class="text-zinc-900 dark:text-zinc-200">{apt.organization}</strong> • Advisor: {apt.advisor}
-                </p>
+          <div class="dossier-panel reticle-corner pt-6 pb-7 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <!-- Left Column: Lab Meta & Coordinates -->
+              <div class="md:col-span-4 space-y-2 border-b md:border-b-0 md:border-r border-black/[0.05] dark:border-white/[0.05] pb-4 md:pb-0 md:pr-4">
+                <div class="flex items-center gap-1.5 text-xs font-mono">
+                  <span class="font-bold text-cyan-600 dark:text-cyan-400">{apt.index}</span>
+                  <span class="tala-divider">|</span>
+                  <span class="text-zinc-400 dark:text-zinc-500 text-[11px]">{apt.coords}</span>
+                </div>
+
+                <div>
+                  <h3 class="text-base font-semibold text-zinc-950 dark:text-zinc-50">
+                    {apt.organization}
+                  </h3>
+                  <p class="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">
+                    Advisor: <strong class="text-zinc-900 dark:text-zinc-200 font-medium">{apt.advisor}</strong>
+                  </p>
+                </div>
+
+                <div class="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
+                  <p class="text-zinc-700 dark:text-zinc-300 font-medium">{apt.role}</p>
+                  <p class="mt-0.5">{apt.period}</p>
+                </div>
+
+                <div class="pt-1">
+                  <span class="inline-block text-[10px] font-mono tracking-tight px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800/60 text-zinc-500 dark:text-zinc-400 border border-black/[0.04] dark:border-white/[0.04]">
+                    {apt.specDomain}
+                  </span>
+                </div>
               </div>
-              <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 shrink-0">
-                {apt.period}
-              </span>
-            </div>
 
-            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-              {apt.description}
-            </p>
+              <!-- Right Column: Research Thesis & Experimental Proofs -->
+              <div class="md:col-span-8 space-y-3">
+                <h4 class="text-base sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 leading-snug">
+                  {apt.projectTitle}
+                </h4>
 
-            {apt.highlights && (
-              <ul class="list-disc list-inside space-y-1 text-xs text-zinc-600 dark:text-zinc-400 pt-1">
-                {apt.highlights.map((h) => (
-                  <li>{h}</li>
-                ))}
-              </ul>
-            )}
+                <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
+                  {apt.description}
+                </p>
 
-            <div class="flex flex-wrap gap-1.5 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
-              {apt.skills.map((skill) => (
-                <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-                  {skill}
-                </span>
-              ))}
+                {apt.highlights && (
+                  <ul class="space-y-1.5 pt-1 text-xs text-zinc-600 dark:text-zinc-400">
+                    {apt.highlights.map((h) => (
+                      <li class="flex items-start gap-2">
+                        <span class="text-cyan-600 dark:text-cyan-400 font-mono mt-0.5 shrink-0">—</span>
+                        <span class="leading-relaxed">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <div class="flex flex-wrap gap-1.5 pt-3 border-t border-black/[0.05] dark:border-white/[0.05]">
+                  {apt.skills.map((skill) => (
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-400">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         ))}
       </div>
     </section>
 
-    <!-- Section 3: Open-Source Contributions -->
+    <!-- Section 3: Open-Source Contributions (Subsystem Telemetry Spec Docket) -->
     <section id="open-source" class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
         <div>
-          <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
             Open-Source Contributions
           </h2>
           <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
@@ -204,50 +253,93 @@ const expSections = [
         </div>
       </div>
 
-      <div class="apple-card apple-card-interactive p-6 sm:p-7 rounded-2xl space-y-4">
-        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+      <!-- Architectural Subsystem Docket (No generic bubble card) -->
+      <div class="dossier-panel reticle-corner pt-6 pb-7 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-black/[0.05] dark:border-white/[0.05] pb-4">
           <div>
-            <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-              ros2_control: ROS 2 Control Framework
+            <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 mb-1">
+              <span class="text-cyan-600 dark:text-cyan-400 font-bold">[SUBSYSTEM.01]</span>
+              <span class="tala-divider">||</span>
+              <span>CORE ARCHITECTURE</span>
+              <span class="tala-divider">|</span>
+              <span class="text-emerald-600 dark:text-emerald-400 font-semibold">● ACTIVE UPSTREAM</span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+              ros2_control: Robot Operating System 2 Control Framework
             </h3>
-            <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
-              Core Framework Contributor • Upstream Pull Requests
+            <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-0.5">
+              Core Framework Contributor • Real-Time Determinism & Concurrency
             </p>
           </div>
+
           <a
             href="https://github.com/ros-controls/ros2_control"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-xs font-mono text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors shrink-0"
           >
-            ros-controls/ros2_control &rarr;
+            <span>ros-controls/ros2_control</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
           </a>
         </div>
 
-        <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-          Active contributor to the standard robotics control framework in ROS 2, focusing on real-time execution safety, fault isolation, and API modernization.
+        <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
+          Active contributor to the standard robotics control framework in ROS 2, focusing on eliminating non-deterministic lock contention in high-frequency hardware loops, ensuring fault isolation across dynamic plugins, and modernizing parameter systems.
         </p>
 
-        <ul class="list-disc list-inside space-y-1.5 text-xs text-zinc-600 dark:text-zinc-400">
-          <li><strong>Real-Time Safety & Mutex Locking:</strong> Migrated controller manager lock to RT-safe priority-inheritance mutex to eliminate priority inversion and timing delays in high-frequency control loops; implemented dynamic command toggling for hardware communication failure simulation.</li>
-          <li><strong>Fault Isolation & Testing:</strong> Designed comprehensive exception-handling test suites ensuring individual hardware plugin failures do not cascade to system-wide halts; enhanced error reporting to pinpoint failed hardware interfaces instantly.</li>
-          <li><strong>Parameter Architecture Modernization:</strong> Refactored deprecated parameter APIs across the ecosystem, removing technical debt and preventing downstream breakage.</li>
-        </ul>
+        <!-- Spec Blocks (Three Architectural Columns) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+          <div class="p-4 rounded-lg bg-zinc-50/70 dark:bg-zinc-900/40 border border-black/[0.05] dark:border-white/[0.05] space-y-2">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 font-bold block">
+              SPEC 01 // REAL-TIME CONCURRENCY
+            </span>
+            <h4 class="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+              Priority-Inheritance Mutex
+            </h4>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Migrated controller manager lock to RT-safe priority-inheritance mutex to eliminate priority inversion and jitter in 1 kHz control loops; implemented dynamic command toggling for hardware communication failure simulation.
+            </p>
+          </div>
 
-        <div class="flex flex-wrap gap-1.5 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
-          <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">C++20</span>
-          <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">ROS 2 Control</span>
-          <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">Real-Time Concurrency</span>
-          <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">POSIX RT Mutex</span>
-          <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">Unit Testing</span>
+          <div class="p-4 rounded-lg bg-zinc-50/70 dark:bg-zinc-900/40 border border-black/[0.05] dark:border-white/[0.05] space-y-2">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 font-bold block">
+              SPEC 02 // FAULT ISOLATION
+            </span>
+            <h4 class="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+              Cascade Failure Prevention
+            </h4>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Designed exception-handling test suites ensuring individual hardware plugin failures do not cascade into system-wide controller manager crashes, pinpointing failed hardware interfaces instantly.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-zinc-50/70 dark:bg-zinc-900/40 border border-black/[0.05] dark:border-white/[0.05] space-y-2">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 font-bold block">
+              SPEC 03 // API MODERNIZATION
+            </span>
+            <h4 class="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+              Technical Debt Elimination
+            </h4>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Refactored deprecated parameter APIs across the ecosystem, removing technical debt and preventing downstream breakage across commercial and academic robot hardware drivers.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04] text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
+          <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800">C++20</span>
+          <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800">POSIX RT Mutex</span>
+          <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800">Real-Time Concurrency</span>
+          <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800">ROS 2 Control</span>
+          <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800">Continuous Integration</span>
         </div>
       </div>
     </section>
 
-    <!-- Section 4: Technical Leadership -->
+    <!-- Section 4: Technical Leadership (Governance Ledger) -->
     <section id="leadership" class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
-        <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
           Technical Leadership
         </h2>
         <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
@@ -255,15 +347,15 @@ const expSections = [
         </p>
       </div>
 
-      <div class="space-y-4">
+      <div class="space-y-3">
         {leadershipAppointments.map((lead) => (
-          <div class="apple-card apple-card-interactive p-6 rounded-2xl space-y-2">
+          <div class="dossier-panel reticle-corner pt-5 pb-6 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all space-y-2">
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
               <div>
-                <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100">
+                <h3 class="text-base font-semibold text-zinc-950 dark:text-zinc-50">
                   {lead.role}
                 </h3>
-                <p class="text-xs font-medium text-zinc-600 dark:text-zinc-400">
+                <p class="text-xs font-medium text-cyan-700 dark:text-cyan-300 font-mono mt-0.5">
                   {lead.organization}
                 </p>
               </div>
@@ -276,9 +368,12 @@ const expSections = [
               {lead.details}
             </p>
 
-            <ul class="list-disc list-inside space-y-1 text-xs text-zinc-600 dark:text-zinc-400 pt-1">
+            <ul class="space-y-1 text-xs text-zinc-600 dark:text-zinc-400 pt-1">
               {lead.highlights.map((h) => (
-                <li>{h}</li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-600 dark:text-cyan-400 font-mono mt-0.5 shrink-0">—</span>
+                  <span class="leading-relaxed">{h}</span>
+                </li>
               ))}
             </ul>
           </div>

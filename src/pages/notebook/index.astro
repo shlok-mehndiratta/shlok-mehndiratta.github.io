@@ -13,9 +13,14 @@ const sortedEntries = allEntries.sort(
   title="Notebook | Shlok Mehndiratta"
   description="Technical essays, lab heuristics, and paper reading reflections by Shlok Mehndiratta."
 >
-  <div class="space-y-10 sm:space-y-12">
+  <div class="space-y-12 sm:space-y-16">
     <!-- Header -->
-    <header class="space-y-2">
+    <header class="space-y-3 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
+      <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+        <span>WRITING & REFLECTIONS</span>
+        <span class="tala-divider">||</span>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">{sortedEntries.length} ENTRIES</span>
+      </div>
       <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
         Notebook
       </h1>
@@ -24,8 +29,8 @@ const sortedEntries = allEntries.sort(
       </p>
     </header>
 
-    <!-- Notebook Grid -->
-    <section class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <!-- Notebook Ledger Grid -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
       {sortedEntries.map((entry) => (
         <NotebookCard entry={entry} />
       ))}

@@ -3,32 +3,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const machineLearningProjects = [
   {
+    dossierId: 'DOSSIER.01',
     title: 'Graph-Based ML Pipeline for 3D Point Cloud Segmentation',
     category: '3D Computer Vision & Graph ML',
     period: 'Dec 2024 – Jan 2025',
     context: 'GeoAI4Cities Lab',
-    description: 'A graph-based machine learning pipeline for segmenting large-scale urban 3D LiDAR point clouds. Modeled point clouds as spatial graphs with localized connectivity to encode spatial topology and relationships, incorporating RANSAC-based geometric filtering to remove sensor noise and outliers before graph construction.',
-    metrics: 'Improved segmentation accuracy and robustness against sensor noise over point-wise baselines.',
+    description: 'A graph-based machine learning pipeline for segmenting large-scale urban 3D LiDAR point clouds. Modeled point clouds as spatial graphs with localized connectivity to encode spatial topology and geometric relationships, incorporating RANSAC-based geometric filtering to remove sensor noise and outliers before graph construction.',
+    metrics: 'Robust segmentation accuracy and outlier resilience over standard point-wise baselines.',
     tech: ['PyTorch Geometric', 'Open3D', 'RANSAC', 'Python', 'NumPy', 'Scikit-learn'],
     github: 'https://github.com/shlok-mehndiratta',
   },
   {
+    dossierId: 'DOSSIER.02',
     title: 'Oil Spill Detection Using Sentinel-1 SAR Imagery',
-    category: 'Satellite Remote Sensing & Deep Learning',
+    category: 'Satellite Remote Sensing & Strategic Surveillance',
     period: 'Mar 2024 – May 2024',
-    context: 'Marine Pollution Monitoring',
-    description: 'An automated marine pollution monitoring pipeline using Sentinel-1 Synthetic Aperture Radar (SAR) dual-polarization (VV/VH) satellite imagery. Designed CNN architectures with domain-specific preprocessing (adaptive thresholding, speckle noise reduction) to differentiate oil slicks from biogenic look-alikes.',
-    metrics: 'Achieved higher detection accuracy and lower false alarms through contextual filtering.',
+    context: 'Marine Pollution & Radar Monitoring',
+    description: 'An automated maritime surveillance pipeline using European Space Agency Sentinel-1 Synthetic Aperture Radar (SAR) dual-polarization (VV/VH) satellite imagery. Designed CNN architectures with domain-specific preprocessing (adaptive thresholding, speckle noise reduction) to differentiate slick patterns from biogenic look-alikes.',
+    metrics: 'High detection precision and minimized false alarm rates through contextual filtering.',
     tech: ['TensorFlow', 'OpenCV', 'Sentinel-1 Toolbox', 'Python', 'NumPy', 'Matplotlib'],
     github: 'https://github.com/shlok-mehndiratta',
   },
   {
+    dossierId: 'DOSSIER.03',
     title: 'AI-Powered Contract Review & Negotiation Assistant',
-    category: 'Full-Stack AI & Cloud Systems',
+    category: 'Enterprise Systems & Cloud Orchestration',
     period: '2024',
     context: 'Infosys Springboard',
     description: 'Built an end-to-end legal document intelligence application with a FastAPI backend, Flutter cross-platform frontend, and Docker containerization. Applied large language models to automate legal contract review, structured clause extraction, and automated negotiation assistance.',
-    metrics: 'Containerized full-stack application with automated REST API endpoints.',
+    metrics: 'Production containerized full-stack deployment with automated RESTful endpoints.',
     tech: ['FastAPI', 'Flutter', 'Docker', 'Python', 'LLMs', 'REST APIs'],
     github: 'https://github.com/shlok-mehndiratta',
   },
@@ -36,29 +39,32 @@ const machineLearningProjects = [
 
 const courseworkProjects = [
   {
+    dossierId: 'DOSSIER.04',
     title: 'Closed-Loop MPC & Extended Kalman Filter Mobile Robot Tracking',
     course: 'Control Systems (ECS323) & EECS Lab (ECS327)',
     period: '2025 – 2026',
     description: 'Implemented a modular robot autonomy stack in ROS 2 and Gazebo. Designed and tuned an Extended Kalman Filter fusing visual odometry and IMU telemetry for state estimation in GPS-denied environments. Formulated event-triggered Model Predictive Control accounting for actuator saturation, comparing stability against classical Stanley and Pure Pursuit geometric controllers.',
-    metrics: 'Diagnosed and resolved actuator saturation instability in aggressive trajectory tracking.',
+    metrics: 'Diagnosed and resolved actuator saturation instability in high-curvature trajectory tracking.',
     tech: ['ROS 2', 'Gazebo', 'Extended Kalman Filter', 'Model Predictive Control', 'C++', 'Python'],
     github: 'https://github.com/shlok-mehndiratta',
   },
   {
+    dossierId: 'DOSSIER.05',
     title: 'CS50 Web Full-Stack Systems Suite (Harvard University)',
     course: 'CS50 Web Programming with Python & JavaScript',
     period: 'Jan 2024 – Jun 2025',
     description: 'Completed a five-project systems journey exploring persistent state, concurrency, and asynchronous system boundaries: Mail (single-page email client with async REST APIs), Network (social network with relational pagination and likes), Commerce (auction platform with multi-user bidding state), Wiki (markdown encyclopedia with persistent storage), and Search (query layout clone).',
-    metrics: 'Full reflective essay available in Notebook detailing architectural lessons.',
+    metrics: 'Full reflective essay available in Notebook detailing architectural lessons and state boundaries.',
     tech: ['Django', 'JavaScript', 'PostgreSQL', 'REST APIs', 'Python', 'HTML/CSS'],
     notebookLink: '/notebook/cs50-web-systems-journey',
   },
   {
+    dossierId: 'DOSSIER.06',
     title: 'Quantum Computing Foundations & Circuit Simulation',
     course: 'C-DAC & IIT Roorkee (Credential: CDACH/QML/275)',
     period: 'Jun 2025',
-    description: 'Completed an intensive 4-week program covering qubits, unitary operators, entanglement, and quantum teleportation circuits. Experimented with quantum circuit simulation and foundational quantum algorithms on statevector simulators.',
-    metrics: 'Supported by Ministry of Electronics and IT (MeitY), Govt. of India.',
+    description: 'Completed an intensive 4-week program covering qubits, unitary operators, entanglement, and quantum teleportation circuits. Experimented with quantum circuit simulation and foundational quantum algorithms on statevector simulators. Backed by MeitY, Government of India.',
+    metrics: 'Quantum circuit statevector simulations and unitary transformations validated.',
     tech: ['Quantum Computing', 'Linear Algebra', 'Simulators', 'Python'],
     github: 'https://github.com/shlok-mehndiratta',
   },
@@ -77,54 +83,68 @@ const projectSections = [
 >
   <div class="space-y-16 sm:space-y-20">
     <!-- Header -->
-    <header class="space-y-2">
+    <header class="space-y-3 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
+      <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+        <span>ENGINEERING BLUEPRINTS // TECHNICAL SPECIFICATIONS</span>
+        <span class="tala-divider">||</span>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">ROBOTICS & VISION</span>
+      </div>
       <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
         Projects
       </h1>
       <p class="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        Engineering builds spanning graph-based 3D point cloud learning, satellite remote sensing, containerized AI systems, and core robotics implementations.
+        Engineering builds spanning graph-based 3D point cloud learning, synthetic aperture radar remote sensing, closed-loop robot control, and quantum circuit simulations.
       </p>
     </header>
 
     <!-- Section 1: Machine Learning & Vision -->
     <section id="ml-vision" class="space-y-6">
-      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
-        <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-          Machine Learning & Vision
-        </h2>
-        <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-          LiDAR point cloud segmentation, satellite radar sensing, and document AI
-        </p>
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Machine Learning & Vision
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
+            LiDAR point cloud segmentation, satellite radar sensing, and document AI
+          </p>
+        </div>
+        <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+          (3 Systems)
+        </span>
       </div>
 
-      <div class="space-y-5">
+      <div class="space-y-2">
         {machineLearningProjects.map((proj) => (
-          <div class="apple-card apple-card-interactive p-6 sm:p-7 rounded-2xl space-y-3">
+          <div class="dossier-panel reticle-corner pt-6 pb-7 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all space-y-3">
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
               <div>
-                <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
-                  {proj.category} • {proj.context}
-                </span>
-                <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">
+                <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                  <span class="font-bold text-cyan-600 dark:text-cyan-400">[{proj.dossierId}]</span>
+                  <span class="tala-divider">|</span>
+                  <span class="text-zinc-600 dark:text-zinc-300 font-medium">{proj.category}</span>
+                  <span class="tala-divider">||</span>
+                  <span>{proj.context}</span>
+                </div>
+                <h3 class="text-base sm:text-lg font-semibold text-zinc-950 dark:text-zinc-50 mt-1">
                   {proj.title}
                 </h3>
               </div>
               <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 shrink-0">{proj.period}</span>
             </div>
 
-            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
               {proj.description}
             </p>
 
-            <div class="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/40 border border-black/[0.04] dark:border-white/[0.04] text-xs font-mono text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
-              <span class="text-zinc-400 uppercase font-semibold text-[10px]">Result:</span>
+            <div class="pl-3.5 border-l-2 border-cyan-500/50 dark:border-cyan-400/50 py-1 text-xs font-mono text-zinc-700 dark:text-zinc-300">
+              <span class="text-cyan-700 dark:text-cyan-300 font-semibold uppercase text-[10px] tracking-wider mr-1.5">BENCHMARK //</span>
               <span>{proj.metrics}</span>
             </div>
 
-            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-black/[0.04] dark:border-white/[0.04]">
               <div class="flex flex-wrap gap-1.5">
                 {proj.tech.map((t) => (
-                  <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
                     {t}
                   </span>
                 ))}
@@ -135,9 +155,9 @@ const projectSections = [
                   href={proj.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1 text-xs font-mono text-zinc-500 hover:text-black dark:hover:text-white transition-colors"
+                  class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
                 >
-                  <span>GitHub</span>
+                  <span>Repository</span>
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                 </a>
               )}
@@ -149,43 +169,50 @@ const projectSections = [
 
     <!-- Section 2: Robotics & Systems Builds -->
     <section id="robotics-systems" class="space-y-6">
-      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
-        <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-          Robotics & Systems Builds
-        </h2>
-        <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-          Closed-loop mobile robot control, Harvard CS50 Web suite, and quantum computing
-        </p>
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Robotics & Systems Builds
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
+            Closed-loop mobile robot control, Harvard CS50 Web suite, and quantum computing
+          </p>
+        </div>
+        <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+          (3 Implementations)
+        </span>
       </div>
 
-      <div class="space-y-5">
+      <div class="space-y-2">
         {courseworkProjects.map((proj) => (
-          <div class="apple-card apple-card-interactive p-6 sm:p-7 rounded-2xl space-y-3">
+          <div class="dossier-panel reticle-corner pt-6 pb-7 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all space-y-3">
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
               <div>
-                <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
-                  {proj.course}
-                </span>
-                <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">
+                <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500">
+                  <span class="font-bold text-cyan-600 dark:text-cyan-400">[{proj.dossierId}]</span>
+                  <span class="tala-divider">|</span>
+                  <span class="text-zinc-600 dark:text-zinc-300 font-medium">{proj.course}</span>
+                </div>
+                <h3 class="text-base sm:text-lg font-semibold text-zinc-950 dark:text-zinc-50 mt-1">
                   {proj.title}
                 </h3>
               </div>
               <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 shrink-0">{proj.period}</span>
             </div>
 
-            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
               {proj.description}
             </p>
 
-            <div class="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/40 border border-black/[0.04] dark:border-white/[0.04] text-xs font-mono text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
-              <span class="text-zinc-400 uppercase font-semibold text-[10px]">Note:</span>
+            <div class="pl-3.5 border-l-2 border-cyan-500/50 dark:border-cyan-400/50 py-1 text-xs font-mono text-zinc-700 dark:text-zinc-300">
+              <span class="text-cyan-700 dark:text-cyan-300 font-semibold uppercase text-[10px] tracking-wider mr-1.5">SPEC STATUS //</span>
               <span>{proj.metrics}</span>
             </div>
 
-            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-black/[0.04] dark:border-white/[0.04]">
               <div class="flex flex-wrap gap-1.5">
                 {proj.tech.map((t) => (
-                  <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
                     {t}
                   </span>
                 ))}
@@ -194,7 +221,7 @@ const projectSections = [
               {proj.notebookLink ? (
                 <a
                   href={proj.notebookLink}
-                  class="inline-flex items-center gap-1 text-xs font-mono text-zinc-500 hover:text-black dark:hover:text-white transition-colors"
+                  class="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-700 dark:text-cyan-300 hover:underline transition-colors"
                 >
                   <span>Read Reflection &rarr;</span>
                 </a>
@@ -203,9 +230,9 @@ const projectSections = [
                   href={proj.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1 text-xs font-mono text-zinc-500 hover:text-black dark:hover:text-white transition-colors"
+                  class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
                 >
-                  <span>GitHub</span>
+                  <span>Repository</span>
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                 </a>
               ) : null}
