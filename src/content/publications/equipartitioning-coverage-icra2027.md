@@ -1,21 +1,15 @@
 ---
-title: "Equi-partitioning coverage achieved via a hybrid interaction rule by distributed team of Unmanned Vehicles"
+title: "Multi-Robot Area Balancing In the Presence of Discrete Local Communication"
 authors: ["Santosh Tantravahi", "Nirman Jaiswal", "Shlok Mehndiratta", "P. B. Sujit", "Aditya Paranjape"]
-venue: "Submitted to IEEE International Conference on Robotics and Automation (ICRA 2027)"
+venue: "IEEE International Conference on Robotics and Automation (ICRA 2027)"
 year: 2026
 status: "under-review"
-takeaway: "Decentralized hybrid interaction rule enabling autonomous drone swarms to dynamically partition and monitor large areas; validated across 35+ real-world Crazyflie flight trials."
-abstract: "Developed a decentralized algorithm enabling autonomous drone swarms to dynamically partition and monitor large areas. The hybrid interaction rule enables a distributed team of unmanned aerial vehicles to achieve equi-partitioning coverage without centralized coordination or global communication topologies. The approach was systematically validated across 35+ real-world flight experiments using 3–5 Crazyflie nano-quadcopters and integrated into an autonomous wildfire detection and monitoring framework with ROS 2 and Software-In-The-Loop (SITL) simulations."
+takeaway: "Switches dynamically between a greedy rule and an altruistic heuristic for fast convergence to equitable area partition under discrete, opportunistic communication; demonstrated in SITL simulation of multi-drone wildfire containment."
+abstract: "In this paper, we present a method for area balancing by a team of robotic agents when the inter-agent communication is discrete and opportunistic. The motivation for this problem comes from a setting where a team of robots works in a distributed manner to achieve persistent coverage in an environment where long-range or global communication is not feasible. Our area balancing method switches between a greedy rule and an altruistic heuristic to obtain fast convergence to an equitable partition of the environment. As a stepping stone to experiments in realistic settings, we perform software-in-the-loop tests of the proposed algorithm, including using a novel swarm-aware ground control station, and demonstrate the performance of our algorithm through a Gazebo-based simulation of a multi-drone mission to extinguish forest fires."
 pdfUrl: ""
 codeUrl: ""
-bibtex: |
-  @inproceedings{tantravahi2026equipartitioning,
-    title={Equi-partitioning coverage achieved via a hybrid interaction rule by distributed team of Unmanned Vehicles},
-    author={Tantravahi, Santosh and Jaiswal, Nirman and Mehndiratta, Shlok and Sujit, P. B. and Paranjape, Aditya},
-    booktitle={Submitted to IEEE International Conference on Robotics and Automation (ICRA 2027)},
-    year={2026}
-  }
+bibtex: ""
 featured: true
-tags: ["Swarm Robotics", "Distributed Control", "Crazyflie", "Coverage Control"]
+tags: ["Swarm Robotics", "Discrete Communication", "Area Balancing", "Decentralized Coverage", "SITL Gazebo"]
 order: 1
 ---
