@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <radialGradient id="auraGrad" cx="50%" cy="42%" r="45%">
+      <stop offset="0%" stop-color="#0891b2" stop-opacity="0.25" />
+      <stop offset="60%" stop-color="#0891b2" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#0891b2" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" stroke-opacity="0.4" />
+    </pattern>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="1000" fill="url(#bgGrad)" />
+  <rect width="800" height="1000" fill="url(#gridPattern)" />
+  <circle cx="400" cy="420" r="320" fill="url(#auraGrad)" />
+
+  <!-- Subtle Concentric Sensing Radar Rings (Autonomy / Perception) -->
+  <circle cx="400" cy="420" r="160" fill="none" stroke="#67e8f9" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="4 4" />
+  <circle cx="400" cy="420" r="230" fill="none" stroke="#67e8f9" stroke-width="1" stroke-opacity="0.15" />
+  <circle cx="400" cy="420" r="300" fill="none" stroke="#67e8f9" stroke-width="1" stroke-opacity="0.1" stroke-dasharray="6 6" />
+
+  <!-- Corner Reticle Alignment Marks -->
+  <path d="M 30 50 L 30 30 L 50 30" fill="none" stroke="#67e8f9" stroke-width="1.5" stroke-opacity="0.5" />
+  <path d="M 770 50 L 770 30 L 750 30" fill="none" stroke="#67e8f9" stroke-width="1.5" stroke-opacity="0.5" />
+  <path d="M 30 950 L 30 970 L 50 970" fill="none" stroke="#67e8f9" stroke-width="1.5" stroke-opacity="0.5" />
+  <path d="M 770 950 L 770 970 L 750 970" fill="none" stroke="#67e8f9" stroke-width="1.5" stroke-opacity="0.5" />
+
+  <!-- Central Crosshair -->
+  <line x1="400" y1="390" x2="400" y2="450" stroke="#67e8f9" stroke-width="1" stroke-opacity="0.3" />
+  <line x1="370" y1="420" x2="430" y2="420" stroke="#67e8f9" stroke-width="1" stroke-opacity="0.3" />
+
+  <!-- Minimalist Researcher Silhouette -->
+  <g fill="#94a3b8" fill-opacity="0.85">
+    <!-- Head -->
+    <circle cx="400" cy="350" r="75" />
+    <!-- Shoulders / Torso -->
+    <path d="M 260 560 C 260 470, 310 450, 400 450 C 490 450, 540 470, 540 560 C 540 600, 260 600, 260 560 Z" />
+  </g>
+
+  <!-- Technical Telemetry / Coordinate Plate -->
+  <g font-family="monospace" text-anchor="middle">
+    <!-- Top Telemetry -->
+    <text x="400" y="80" font-size="12" fill="#67e8f9" letter-spacing="4" opacity="0.8">RESEARCHER DOSSIER // APPARATUS</text>
+    
+    <!-- Central Monogram -->
+    <circle cx="400" cy="420" r="32" fill="#0f172a" stroke="#67e8f9" stroke-width="1.5" stroke-opacity="0.6" />
+    <text x="400" y="426" font-size="18" font-weight="bold" fill="#f8fafc" letter-spacing="2">SM</text>
+
+    <!-- Bottom Metadata -->
+    <text x="400" y="760" font-size="20" font-weight="bold" fill="#f8fafc" letter-spacing="3">SHLOK MEHNDIRATTA</text>
+    <text x="400" y="795" font-size="13" fill="#94a3b8" letter-spacing="2">ELECTRICAL ENGINEERING &amp; COMPUTER SCIENCE</text>
+    <text x="400" y="825" font-size="12" fill="#67e8f9" letter-spacing="2" opacity="0.9">IISER BHOPAL • 23.28°N 77.27°E</text>
+    <text x="400" y="920" font-size="11" fill="#64748b" letter-spacing="1">[ DROP YOUR PHOTO AS /shlok-portrait.jpg ]</text>
+  </g>
+</svg>

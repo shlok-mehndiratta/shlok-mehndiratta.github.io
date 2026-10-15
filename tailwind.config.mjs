@@ -6,7 +6,7 @@ export default {
     extend: {
       colors: {
         canvas: {
-          light: '#fbfbfd', // Apple-grade crisp ambient neutral
+          light: '#f4f6f8', // Researched cool mineral off-white (reduces eye strain, tactile stone finish)
           dark: '#000000',  // Apple OLED deep black
         },
         surface: {
@@ -14,7 +14,7 @@ export default {
           dark: '#121214',  // Elevated Apple dark graphite surface
         },
         surfaceHover: {
-          light: '#f5f5f7',
+          light: '#edf0f4',
           dark: '#1a1a1e',  // Responsive elevation hover
         },
         border: {

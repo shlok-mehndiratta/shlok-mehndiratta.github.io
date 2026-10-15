@@ -7,16 +7,16 @@
 
 @layer base {
   :root {
-    --bg-canvas: #fbfbfd;
+    --bg-canvas: #f4f6f8;
     --bg-surface: #ffffff;
-    --bg-surface-hover: #f5f5f7;
-    --border-subtle: rgba(0, 0, 0, 0.06);
-    --border-hover: rgba(0, 0, 0, 0.12);
-    --text-primary: #111113;
-    --text-secondary: #5a5a60;
-    --text-muted: #8e8e93;
-    --accent: #000000;
-    --accent-subtle: rgba(0, 0, 0, 0.05);
+    --bg-surface-hover: #edf0f4;
+    --border-subtle: rgba(15, 23, 42, 0.08);
+    --border-hover: rgba(15, 23, 42, 0.16);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #0f172a;
+    --accent-subtle: rgba(15, 23, 42, 0.06);
   }
 
   html.dark {
