@@ -100,6 +100,7 @@ const leadershipExperience = [
 ];
 
 const expSections = [
+  { id: 'publications', label: 'Publications' },
   { id: 'research', label: 'Research Experience' },
   { id: 'open-source', label: 'Open Source' },
   { id: 'leadership', label: 'Leadership & Service' },
@@ -108,22 +109,45 @@ const expSections = [
 
 <BaseLayout
   title="Experience | Shlok Mehndiratta"
-  description="Research experience in robotics and control theory, open-source contributions to ROS 2 Control, and departmental leadership at IISER Bhopal."
+  description="Publications, research experience in robotics and control theory, open-source contributions to ROS 2 Control, and departmental leadership at IISER Bhopal."
   sections={expSections}
 >
-  <div class="space-y-16 sm:space-y-20">
+  <div class="space-y-16 sm:space-y-24">
     <!-- Clean Page Header -->
     <header class="space-y-3 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
       <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
         Experience
       </h1>
-      <p class="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        Academic research in vision-based drone swarms and sim-to-real tactile estimation, core upstream contributions to ROS 2 Control, and departmental leadership.
+      <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+        Publications under review, academic research appointments in robotics, core upstream engineering for ROS 2 Control, and departmental leadership.
       </p>
     </header>
 
-    <!-- Section 1: Research Experience -->
-    <section id="research" class="space-y-8">
+    <!-- Section 1: Publications & Preprints (On Top) -->
+    <section id="publications" class="space-y-6">
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Publications & Preprints
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
+            Conference manuscripts under review at ICRA 2027 and ACODS 2026
+          </p>
+        </div>
+        <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
+          ({sortedPubs.length} Manuscripts)
+        </span>
+      </div>
+
+      <div class="space-y-6">
+        {sortedPubs.map((pub) => (
+          <PublicationCard pub={pub} />
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 2: Research Experience -->
+    <section id="research" class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
@@ -138,87 +162,68 @@ const expSections = [
         </span>
       </div>
 
-      <!-- Research Labs Stream -->
-      <div class="space-y-4">
+      <!-- Opaque Elevated Research Cards -->
+      <div class="space-y-6 sm:space-y-8">
         {researchExperience.map((exp) => (
-          <div class="dossier-panel reticle-corner pt-6 pb-7 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-              <!-- Left Column: Organization, Advisor & Dates -->
-              <div class="md:col-span-4 space-y-2 border-b md:border-b-0 md:border-r border-black/[0.05] dark:border-white/[0.05] pb-4 md:pb-0 md:pr-4">
-                <div>
-                  <h3 class="text-base font-semibold text-zinc-950 dark:text-zinc-50">
-                    {exp.organization}
-                  </h3>
-                  <p class="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">
-                    Advisor: <strong class="text-zinc-900 dark:text-zinc-200 font-medium">{exp.advisor}</strong>
-                  </p>
-                </div>
-
-                <div class="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
-                  <p class="text-zinc-700 dark:text-zinc-300 font-medium">{exp.role}</p>
-                  <p class="mt-0.5 text-zinc-500">{exp.period}</p>
-                </div>
+          <article class="apple-card group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#121214] border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20 space-y-4">
+            <!-- Header Row -->
+            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-black/[0.05] dark:border-white/[0.05] pb-4">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+                  {exp.organization}
+                </h3>
+                <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-0.5">
+                  Advisor: <strong class="text-zinc-900 dark:text-zinc-200 font-medium">{exp.advisor}</strong>
+                </p>
               </div>
 
-              <!-- Right Column: Focus, Implementation & Tools -->
-              <div class="md:col-span-8 space-y-3">
-                <h4 class="text-base sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 leading-snug">
-                  {exp.projectTitle}
-                </h4>
-
-                <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
-                  {exp.description}
-                </p>
-
-                {exp.highlights && (
-                  <ul class="space-y-1.5 pt-1 text-xs text-zinc-600 dark:text-zinc-400">
-                    {exp.highlights.map((h) => (
-                      <li class="flex items-start gap-2">
-                        <span class="text-cyan-600 dark:text-cyan-400 font-mono mt-0.5 shrink-0">—</span>
-                        <span class="leading-relaxed">{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                <div class="flex flex-wrap gap-1.5 pt-3 border-t border-black/[0.05] dark:border-white/[0.05]">
-                  {exp.skills.map((skill) => (
-                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-400">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+              <div class="flex flex-wrap items-center gap-2 sm:self-start">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.05]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
+                  <span>{exp.period}</span>
+                </span>
+                <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                  {exp.role}
+                </span>
               </div>
             </div>
-          </div>
+
+            <!-- Body: Focus, Summary & Bullets -->
+            <div class="space-y-3 pt-1">
+              <h4 class="text-base sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 leading-snug">
+                {exp.projectTitle}
+              </h4>
+
+              <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
+                {exp.description}
+              </p>
+
+              {exp.highlights && (
+                <ul class="space-y-2 pt-1 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+                  {exp.highlights.map((h) => (
+                    <li class="flex items-start gap-2.5">
+                      <span class="text-cyan-600 dark:text-cyan-400 font-mono mt-0.5 shrink-0 font-bold">—</span>
+                      <span class="leading-relaxed">{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            <!-- Skills Pills -->
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-black/[0.05] dark:border-white/[0.05]">
+              {exp.skills.map((skill) => (
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </article>
         ))}
-      </div>
-
-      <!-- Associated Publications & Preprints Subsection -->
-      <div class="pt-6 border-t border-black/[0.06] dark:border-white/[0.06] space-y-4">
-        <div class="flex items-baseline justify-between">
-          <div>
-            <h3 class="text-lg font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-              Publications & Preprints
-            </h3>
-            <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-              Manuscripts stemming from laboratory research (under review at ICRA 2027 and ACODS 2026)
-            </p>
-          </div>
-          <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
-            ({sortedPubs.length} Manuscripts)
-          </span>
-        </div>
-
-        <div class="space-y-1">
-          {sortedPubs.map((pub) => (
-            <PublicationCard pub={pub} />
-          ))}
-        </div>
       </div>
     </section>
 
-    <!-- Section 2: Open-Source Contributions -->
+    <!-- Section 3: Open-Source Contributions -->
     <section id="open-source" class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
         <div>
@@ -231,14 +236,17 @@ const expSections = [
         </div>
       </div>
 
-      <!-- ros2_control Framework Card -->
-      <div class="dossier-panel reticle-corner pt-6 pb-7 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all space-y-5">
-        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-black/[0.05] dark:border-white/[0.05] pb-4">
+      <!-- Opaque ros2_control Framework Card -->
+      <article class="apple-card group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#121214] border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 border-b border-black/[0.05] dark:border-white/[0.05] pb-4">
           <div>
-            <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 mb-1">
-              <span class="text-emerald-600 dark:text-emerald-400 font-semibold">● ACTIVE UPSTREAM CONTRIBUTOR</span>
+            <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 mb-1.5">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>Active Upstream Contributor</span>
+              </span>
               <span>•</span>
-              <span>ROBOT CONTROL INFRASTRUCTURE</span>
+              <span>Robot Control Infrastructure</span>
             </div>
             <h3 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
               ros2_control: Robot Operating System 2 Control Framework
@@ -252,21 +260,21 @@ const expSections = [
             href="https://github.com/ros-controls/ros2_control"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors shrink-0"
+            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-zinc-800/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all shrink-0"
           >
             <span>ros-controls/ros2_control</span>
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
           </a>
         </div>
 
-        <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
+        <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
           Active contributor to the standard robotics control framework in ROS 2, focusing on eliminating non-deterministic lock contention in high-frequency hardware loops, ensuring fault isolation across dynamic plugins, and modernizing parameter systems.
         </p>
 
         <!-- Engineering Highlight Blocks -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
-          <div class="p-4 rounded-lg bg-zinc-50/70 dark:bg-zinc-900/40 border border-black/[0.05] dark:border-white/[0.05] space-y-1.5">
-            <h4 class="text-xs font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
+          <div class="p-4 sm:p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-black/[0.05] dark:border-white/[0.06] space-y-2">
+            <h4 class="text-xs sm:text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
               Real-Time Concurrency
             </h4>
@@ -275,8 +283,8 @@ const expSections = [
             </p>
           </div>
 
-          <div class="p-4 rounded-lg bg-zinc-50/70 dark:bg-zinc-900/40 border border-black/[0.05] dark:border-white/[0.05] space-y-1.5">
-            <h4 class="text-xs font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
+          <div class="p-4 sm:p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-black/[0.05] dark:border-white/[0.06] space-y-2">
+            <h4 class="text-xs sm:text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
               Cascade Failure Prevention
             </h4>
@@ -285,8 +293,8 @@ const expSections = [
             </p>
           </div>
 
-          <div class="p-4 rounded-lg bg-zinc-50/70 dark:bg-zinc-900/40 border border-black/[0.05] dark:border-white/[0.05] space-y-1.5">
-            <h4 class="text-xs font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
+          <div class="p-4 sm:p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-black/[0.05] dark:border-white/[0.06] space-y-2">
+            <h4 class="text-xs sm:text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
               API Modernization
             </h4>
@@ -296,17 +304,17 @@ const expSections = [
           </div>
         </div>
 
-        <div class="flex flex-wrap gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04] text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
-          <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800">C++20</span>
-          <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800">POSIX RT Mutex</span>
-          <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800">Real-Time Concurrency</span>
-          <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800">ROS 2 Control</span>
-          <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800">Continuous Integration</span>
+        <div class="flex flex-wrap gap-2 pt-3 border-t border-black/[0.04] dark:border-white/[0.04] text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
+          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">C++20</span>
+          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">POSIX RT Mutex</span>
+          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">Real-Time Concurrency</span>
+          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">ROS 2 Control</span>
+          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">Continuous Integration</span>
         </div>
-      </div>
+      </article>
     </section>
 
-    <!-- Section 3: Leadership & Academic Service -->
+    <!-- Section 4: Leadership & Academic Service -->
     <section id="leadership" class="space-y-6">
       <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
         <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
@@ -317,19 +325,19 @@ const expSections = [
         </p>
       </div>
 
-      <div class="space-y-4">
+      <div class="space-y-6">
         {leadershipExperience.map((lead) => (
-          <div class="dossier-panel reticle-corner pt-5 pb-6 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all space-y-2.5">
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+          <article class="apple-card group relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#121214] border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20 space-y-3.5">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-black/[0.05] dark:border-white/[0.05] pb-3">
               <div>
-                <h3 class="text-base font-semibold text-zinc-950 dark:text-zinc-50">
+                <h3 class="text-base sm:text-lg font-bold text-zinc-950 dark:text-zinc-50">
                   {lead.role}
                 </h3>
-                <p class="text-xs font-medium text-cyan-700 dark:text-cyan-300 font-mono mt-0.5">
+                <p class="text-xs sm:text-sm font-medium text-cyan-700 dark:text-cyan-300 font-mono mt-0.5">
                   {lead.organization}
                 </p>
               </div>
-              <span class="text-xs font-mono text-zinc-500 shrink-0">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-black/[0.04] dark:border-white/[0.04] shrink-0">
                 {lead.period}
               </span>
             </div>
@@ -338,15 +346,15 @@ const expSections = [
               {lead.details}
             </p>
 
-            <ul class="space-y-1.5 text-xs text-zinc-600 dark:text-zinc-400 pt-1">
+            <ul class="space-y-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 pt-1">
               {lead.highlights.map((h) => (
-                <li class="flex items-start gap-2">
-                  <span class="text-cyan-600 dark:text-cyan-400 font-mono mt-0.5 shrink-0">—</span>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-cyan-600 dark:text-cyan-400 font-mono mt-0.5 shrink-0 font-bold">—</span>
                   <span class="leading-relaxed">{h}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </article>
         ))}
       </div>
     </section>
