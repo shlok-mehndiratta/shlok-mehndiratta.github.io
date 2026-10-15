@@ -15,14 +15,14 @@ const { sections } = Astro.props;
 {sections && sections.length > 0 && (
   <nav
     id="stream-nav"
-    class="fixed left-[max(0.75rem,calc(50vw-28rem-12.5rem))] top-36 z-30 hidden lg:flex flex-col select-none pointer-events-auto transition-opacity duration-300"
+    class="fixed left-[max(1rem,calc(50vw-550px-140px))] top-36 z-30 hidden lg:flex flex-col select-none pointer-events-auto transition-opacity duration-300"
     aria-label="Section stream progress"
   >
     <!-- Microscopic Stream Origin Marker -->
     <div class="flex items-center gap-1.5 text-[9px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase mb-3.5 pl-0.5">
       <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 shadow-[0_0_6px_rgba(6,182,212,0.5)]"></span>
-      <span class="hidden xl:inline text-zinc-500 dark:text-zinc-400">STREAM</span>
-      <span class="hidden xl:inline text-zinc-300 dark:text-zinc-600">•</span>
+      <span class="hidden min-[1360px]:inline text-zinc-500 dark:text-zinc-400">STREAM</span>
+      <span class="hidden min-[1360px]:inline text-zinc-300 dark:text-zinc-600">•</span>
       <span class="text-[8px] text-zinc-400 dark:text-zinc-500">30.1°N</span>
     </div>
 
@@ -61,8 +61,8 @@ const { sections } = Astro.props;
             <span class="w-1 h-1 rounded-full bg-zinc-400 dark:bg-zinc-600 node-core"></span>
           </div>
 
-          <!-- Section Label (Expanded on xl, hover tooltip on lg) -->
-          <div class="hidden xl:flex flex-col">
+          <!-- Section Label (Expanded on wide desktop, hover tooltip on compact) -->
+          <div class="hidden min-[1360px]:flex flex-col">
             <span class="text-[11px] font-mono tracking-tight text-zinc-400 dark:text-zinc-500 node-label whitespace-nowrap">
               {section.label}
             </span>
@@ -73,8 +73,8 @@ const { sections } = Astro.props;
             )}
           </div>
 
-          <!-- Compact Hover Tooltip (Shown on lg only) -->
-          <div class="xl:hidden absolute left-6 px-2 py-1 rounded-md bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-[10px] font-mono whitespace-nowrap shadow-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-30">
+          <!-- Compact Hover Tooltip (Shown when labels are collapsed) -->
+          <div class="min-[1360px]:hidden absolute left-6 px-2 py-1 rounded-md bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-[10px] font-mono whitespace-nowrap shadow-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-30">
             {section.label}
           </div>
         </a>

@@ -199,41 +199,45 @@ const cardId = `pub-${pub.slug || Math.random().toString(36).substring(2, 9)}`;
 </article>
 
 <script is:inline>
-  const setupPubCards = () => {
-    document.querySelectorAll('[data-abstract-toggle]').forEach((btn) => {
-      btn.onclick = () => {
-        const id = btn.getAttribute('data-abstract-toggle');
-        const content = document.getElementById(`abstract-${id}`);
-        const icon = btn.querySelector('svg');
-        if (content) {
-          content.classList.toggle('hidden');
-          if (icon) {
-            icon.classList.toggle('rotate-180');
+  (function () {
+    if (window.__pubCardsListenerAttached) return;
+    window.__pubCardsListenerAttached = true;
+
+    document.addEventListener('click', function (e) {
+      // Abstract Toggle
+      const abstractBtn = e.target.closest('[data-abstract-toggle]');
+      if (abstractBtn) {
+        const id = abstractBtn.getAttribute('data-abstract-toggle');
+        if (id) {
+          const content = document.getElementById('abstract-' + id);
+          const icon = abstractBtn.querySelector('svg');
+          if (content) {
+            content.classList.toggle('hidden');
+            if (icon) {
+              icon.classList.toggle('rotate-180');
+            }
           }
         }
-      };
-    });
+        return;
+      }
 
-    document.querySelectorAll('[data-bibtex-copy]').forEach((btn) => {
-      btn.onclick = async () => {
-        const content = btn.getAttribute('data-bibtex-content');
-        const label = btn.querySelector('.btn-label');
+      // BibTeX Copy
+      const bibtexBtn = e.target.closest('[data-bibtex-copy]');
+      if (bibtexBtn) {
+        const content = bibtexBtn.getAttribute('data-bibtex-content');
+        const label = bibtexBtn.querySelector('.btn-label');
         if (content && label) {
-          try {
-            await navigator.clipboard.writeText(content);
+          navigator.clipboard.writeText(content).then(() => {
             const originalText = label.textContent;
             label.textContent = 'Copied!';
             setTimeout(() => {
               label.textContent = originalText;
             }, 2000);
-          } catch (err) {
+          }).catch((err) => {
             console.error('Failed to copy BibTeX:', err);
-          }
+          });
         }
-      };
+      }
     });
-  };
-
-  setupPubCards();
-  document.addEventListener('astro:page-load', setupPubCards);
+  })();
 </script>
