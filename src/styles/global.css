@@ -190,15 +190,13 @@ html.dark .telemetry-chip {
 
 /* Concept 1: Tactical Astrolabe Dot Matrix (Cartographic Precision & Stone Observatory Geometry) */
 .bg-dot-matrix {
-  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.22) 1.2px, transparent 1.4px);
+  background-size: 28px 28px;
   background-position: 0 0;
-  mask-image: radial-gradient(ellipse 85% 75% at 50% 30%, black 35%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 30%, black 35%, transparent 100%);
 }
 
 html.dark .bg-dot-matrix {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.18) 1.2px, transparent 1.4px);
 }
 
 /* Zero-jank CSS Grid Accordion Drawer */
