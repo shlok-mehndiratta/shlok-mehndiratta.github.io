@@ -7,9 +7,9 @@
 
 @layer base {
   :root {
-    --bg-canvas: #eef2f6;
+    --bg-canvas: #e5ebf2;
     --bg-surface: #ffffff;
-    --bg-surface-hover: #e2e8f0;
+    --bg-surface-hover: #dbe3ed;
     --border-subtle: rgba(15, 23, 42, 0.08);
     --border-hover: rgba(15, 23, 42, 0.16);
     --text-primary: #0f172a;
@@ -190,13 +190,48 @@ html.dark .telemetry-chip {
 
 /* Concept 1: Tactical Astrolabe Dot Matrix (Cartographic Precision & Stone Observatory Geometry) */
 .bg-dot-matrix {
-  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.095) 1.1px, transparent 1.3px);
-  background-size: 30px 30px;
+  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.11) 1.1px, transparent 1.3px);
+  background-size: 28px 28px;
   background-position: 0 0;
 }
 
 html.dark .bg-dot-matrix {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.085) 1.1px, transparent 1.3px);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.09) 1.1px, transparent 1.3px);
+}
+
+/* Concept 2: Glacial Harmonic Ambient Wash (Pure CSS Radial Atmosphere) */
+.glacial-wash-top {
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 850px;
+  height: 850px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.36) 0%, rgba(56, 189, 248, 0.24) 35%, rgba(14, 165, 233, 0.10) 58%, transparent 75%);
+  filter: blur(48px);
+  pointer-events: none;
+}
+
+html.dark .glacial-wash-top {
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.28) 0%, rgba(56, 189, 248, 0.16) 38%, transparent 72%);
+  filter: blur(48px);
+}
+
+.glacial-wash-bottom {
+  position: absolute;
+  top: 36%;
+  left: -120px;
+  width: 700px;
+  height: 700px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.22) 0%, rgba(34, 211, 238, 0.14) 35%, transparent 68%);
+  filter: blur(48px);
+  pointer-events: none;
+}
+
+html.dark .glacial-wash-bottom {
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.16) 0%, transparent 65%);
+  filter: blur(48px);
 }
 
 /* Zero-jank CSS Grid Accordion Drawer */
