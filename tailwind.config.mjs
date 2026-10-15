@@ -6,7 +6,7 @@ export default {
     extend: {
       colors: {
         canvas: {
-          light: '#f4f6f8', // Researched cool mineral off-white (reduces eye strain, tactile stone finish)
+          light: '#eef2f6', // Bespoke Himalayan Glacial Alabaster (calibrated cool off-white)
           dark: '#000000',  // Apple OLED deep black
         },
         surface: {
@@ -14,7 +14,7 @@ export default {
           dark: '#121214',  // Elevated Apple dark graphite surface
         },
         surfaceHover: {
-          light: '#edf0f4',
+          light: '#e2e8f0',
           dark: '#1a1a1e',  // Responsive elevation hover
         },
         border: {

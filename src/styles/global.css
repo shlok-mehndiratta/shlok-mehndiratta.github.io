@@ -7,9 +7,9 @@
 
 @layer base {
   :root {
-    --bg-canvas: #f4f6f8;
+    --bg-canvas: #eef2f6;
     --bg-surface: #ffffff;
-    --bg-surface-hover: #edf0f4;
+    --bg-surface-hover: #e2e8f0;
     --border-subtle: rgba(15, 23, 42, 0.08);
     --border-hover: rgba(15, 23, 42, 0.16);
     --text-primary: #0f172a;
@@ -190,13 +190,13 @@ html.dark .telemetry-chip {
 
 /* Concept 1: Tactical Astrolabe Dot Matrix (Cartographic Precision & Stone Observatory Geometry) */
 .bg-dot-matrix {
-  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.22) 1.2px, transparent 1.4px);
-  background-size: 28px 28px;
+  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.095) 1.1px, transparent 1.3px);
+  background-size: 30px 30px;
   background-position: 0 0;
 }
 
 html.dark .bg-dot-matrix {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.18) 1.2px, transparent 1.4px);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.085) 1.1px, transparent 1.3px);
 }
 
 /* Zero-jank CSS Grid Accordion Drawer */
