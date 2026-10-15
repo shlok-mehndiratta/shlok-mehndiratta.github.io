@@ -224,14 +224,14 @@ html.dark .glacial-wash-top {
   width: 700px;
   height: 700px;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.22) 0%, rgba(34, 211, 238, 0.14) 35%, transparent 68%);
-  filter: blur(48px);
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.07) 0%, rgba(34, 211, 238, 0.035) 35%, transparent 60%);
+  filter: blur(64px);
   pointer-events: none;
 }
 
 html.dark .glacial-wash-bottom {
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.16) 0%, transparent 65%);
-  filter: blur(48px);
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.05) 0%, transparent 55%);
+  filter: blur(64px);
 }
 
 /* Zero-jank CSS Grid Accordion Drawer */
