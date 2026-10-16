@@ -27,8 +27,13 @@
 
     <div class="mt-4 space-y-2 text-xs">
       <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Experience & Research</span>
+        <span class="text-zinc-600 dark:text-zinc-300">Experience & Education</span>
         <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">E</kbd>
+      </div>
+
+      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
+        <span class="text-zinc-600 dark:text-zinc-300">Publications & Preprints</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">U</kbd>
       </div>
 
       <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
@@ -96,6 +101,7 @@
       } else if (!modal?.classList.contains('hidden')) {
         const key = e.key.toLowerCase();
         if (key === 'e') window.location.href = '/experience';
+        else if (key === 'u') window.location.href = '/publications';
         else if (key === 'p') window.location.href = '/projects';
         else if (key === 'n') window.location.href = '/notebook';
         else if (key === 'a') window.location.href = '/archive';
