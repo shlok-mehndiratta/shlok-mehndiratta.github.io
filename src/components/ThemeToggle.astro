@@ -40,13 +40,17 @@
   </svg>
 </button>
 
-<script is:inline>
+<script>
+  import { sound } from '../utils/sound';
+
   const setupThemeToggle = () => {
     const toggle = document.getElementById('theme-toggle');
-    if (!toggle) return;
+    if (!toggle || toggle.dataset.soundBound) return;
+    toggle.dataset.soundBound = 'true';
 
     toggle.addEventListener('click', () => {
       const isDark = document.documentElement.classList.contains('dark');
+      sound.switch(!isDark);
       if (isDark) {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('theme', 'light');

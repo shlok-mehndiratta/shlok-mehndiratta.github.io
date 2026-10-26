@@ -1,0 +1,193 @@
+---
+// HeroPortrait3D.astro
+// Interactive 3D Pop-Out Architectural Portrait Stage
+// Cutout subject breaks out of the card backing plate into 3D space
+---
+
+<div
+  id="hero-portrait-container"
+  class="relative w-56 sm:w-64 md:w-68 lg:w-76 h-[285px] sm:h-[325px] md:h-[365px] lg:h-[390px] mx-auto md:mx-0 select-none group perspective-[1000px] mt-2 sm:mt-4 md:mt-2"
+>
+  <!-- Interactive 3D Floating Stage (Preserves 3D perspective for children) -->
+  <div
+    id="hero-portrait-card"
+    class="relative w-full h-full transition-all duration-300 ease-out will-change-transform"
+    style="transform-style: preserve-3d;"
+  >
+    <!-- Card Backing Plate (Architectural Datum Stage behind the subject) -->
+    <div
+      class="absolute bottom-3 inset-x-1.5 sm:inset-x-2 md:inset-x-3 h-[205px] sm:h-[235px] md:h-[265px] lg:h-[285px] rounded-2xl bg-surface-light dark:bg-surface-dark border border-[rgba(50,34,20,0.14)] dark:border-white/[0.12] shadow-apple-card dark:shadow-apple-card-dark overflow-hidden transition-all duration-300"
+      style="transform: translateZ(0px);"
+    >
+      <!-- Background Depth Atmosphere & Concentric Radar Reticles -->
+      <div class="absolute inset-0 pointer-events-none opacity-45 dark:opacity-35">
+        <!-- Soft Core Warmth Glow -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.95)_0%,rgba(238,229,216,0.35)_55%,transparent_80%)] dark:bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.10)_0%,rgba(22,22,26,0.45)_55%,transparent_80%)]"></div>
+
+        <!-- Radar Circles & Crosshair Datum -->
+        <svg class="w-full h-full text-zinc-800/[0.18] dark:text-zinc-200/[0.14]" viewBox="0 0 200 240" fill="none">
+          <!-- Concentric Orbit Rings -->
+          <circle cx="100" cy="110" r="85" stroke="currentColor" stroke-dasharray="2 4" stroke-width="0.75" />
+          <circle cx="100" cy="110" r="60" stroke="currentColor" stroke-width="0.75" opacity="0.6" />
+          <circle cx="100" cy="110" r="35" stroke="currentColor" stroke-dasharray="3 3" stroke-width="0.75" opacity="0.5" />
+
+          <!-- Crosshair Datum Axis -->
+          <line x1="100" y1="15" x2="100" y2="205" stroke="currentColor" stroke-width="0.6" stroke-dasharray="2 3" opacity="0.4" />
+          <line x1="10" y1="110" x2="190" y2="110" stroke="currentColor" stroke-width="0.6" stroke-dasharray="2 3" opacity="0.4" />
+
+          <!-- Corner Datum Ticks -->
+          <path d="M 10 20 L 10 10 L 20 10" stroke="currentColor" stroke-width="1.2" />
+          <path d="M 190 20 L 190 10 L 180 10" stroke="currentColor" stroke-width="1.2" />
+          <path d="M 10 220 L 10 230 L 20 230" stroke="currentColor" stroke-width="1.2" />
+          <path d="M 190 220 L 190 230 L 180 230" stroke="currentColor" stroke-width="1.2" />
+        </svg>
+      </div>
+
+      <!-- Specular Horizon Sheen Sweep (Traverses gently across the card on hover) -->
+      <div
+        id="portrait-specular-glare"
+        class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/25 dark:via-white/[0.08] to-transparent"
+        style="transform: translateZ(15px);"
+      ></div>
+
+      <!-- Bottom Grounding Vignette -->
+      <div class="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-black/[0.06] dark:from-black/40 to-transparent pointer-events-none"></div>
+    </div>
+
+    <!-- Cutout Portrait (Pops out beyond the top frame in true 3D space!) -->
+    <div
+      id="portrait-cutout-layer"
+      class="absolute bottom-3 inset-x-0 pointer-events-none flex items-end justify-center transition-transform duration-150 ease-out"
+      style="transform: translateZ(35px);"
+    >
+      <img
+        src="/shlok-portrait-cutout.png"
+        alt="Shlok Mehndiratta, EECS at IISER Bhopal"
+        class="h-[272px] sm:h-[310px] md:h-[350px] lg:h-[375px] w-auto max-w-none object-contain object-bottom drop-shadow-[0_14px_28px_rgba(35,22,12,0.26)] dark:drop-shadow-[0_16px_34px_rgba(0,0,0,0.85)] filter transition-all duration-300"
+        loading="eager"
+      />
+    </div>
+
+    <!-- Floating Archival Telemetry Pill (Mounted at base of card) -->
+    <div
+      class="absolute -bottom-1 inset-x-0.5 sm:inset-x-1 md:inset-x-2 pointer-events-auto"
+      style="transform: translateZ(42px);"
+    >
+      <div
+        class="px-2.5 sm:px-3.5 py-1.5 rounded-xl flex items-center justify-between gap-2 text-[10.5px] sm:text-xs font-mono bg-[#f4ece1] dark:bg-[#18181c] border border-[rgba(50,34,20,0.18)] dark:border-white/[0.16] shadow-[0_4px_16px_rgba(35,22,12,0.18),0_1px_2px_rgba(35,22,12,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_6px_20px_rgba(0,0,0,0.7),0_1px_2px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.15)]"
+      >
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse shrink-0"></span>
+          <span class="font-semibold text-zinc-950 dark:text-zinc-50 whitespace-nowrap">Shlok Mehndiratta</span>
+        </div>
+        <span class="text-zinc-600 dark:text-zinc-300 text-[9.5px] sm:text-[11px] shrink-0 font-medium whitespace-nowrap">IISER Bhopal</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Gentle breathing floating animation when idle */
+  @keyframes portraitIdleBreathe {
+    0%, 100% {
+      transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+      transform: translateY(-3px) rotateX(0.8deg) rotateY(-0.8deg);
+    }
+  }
+
+  #hero-portrait-card.is-idle {
+    animation: portraitIdleBreathe 6s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #hero-portrait-card.is-idle {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const container = document.getElementById('hero-portrait-container');
+    const card = document.getElementById('hero-portrait-card');
+    const cutout = document.getElementById('portrait-cutout-layer');
+    const specular = document.getElementById('portrait-specular-glare');
+    if (!container || !card || !cutout) return;
+
+    let bounds = null;
+    let isHovered = false;
+    let rafId = null;
+
+    let targetRotX = 0;
+    let targetRotY = 0;
+    let currentRotX = 0;
+    let currentRotY = 0;
+
+    const updateBounds = () => {
+      bounds = container.getBoundingClientRect();
+    };
+
+    const updateLerp = () => {
+      // Smooth linear interpolation (lerp factor 0.12)
+      currentRotX += (targetRotX - currentRotX) * 0.12;
+      currentRotY += (targetRotY - currentRotY) * 0.12;
+
+      if (isHovered) {
+        card.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+        cutout.style.transform = `translateZ(38px) translateX(${(currentRotY * 0.45).toFixed(1)}px)`;
+        if (specular) {
+          specular.style.transform = `translateZ(15px) translateX(${(-currentRotY * 5).toFixed(1)}px) translateY(${(-currentRotX * 5).toFixed(1)}px)`;
+        }
+      } else {
+        card.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+        cutout.style.transform = `translateZ(35px) translateX(0px)`;
+      }
+
+      // Keep running if difference is visible
+      if (Math.abs(targetRotX - currentRotX) > 0.05 || Math.abs(targetRotY - currentRotY) > 0.05 || isHovered) {
+        rafId = requestAnimationFrame(updateLerp);
+      } else {
+        rafId = null;
+        if (!isHovered) {
+          card.classList.add('is-idle');
+        }
+      }
+    };
+
+    container.addEventListener('mouseenter', () => {
+      isHovered = true;
+      card.classList.remove('is-idle');
+      updateBounds();
+      if (!rafId) rafId = requestAnimationFrame(updateLerp);
+    });
+
+    container.addEventListener('mousemove', (e) => {
+      if (!bounds) updateBounds();
+      const mouseX = e.clientX - bounds.left;
+      const mouseY = e.clientY - bounds.top;
+
+      const normX = (mouseX / bounds.width) * 2 - 1; // -1 to +1
+      const normY = (mouseY / bounds.height) * 2 - 1; // -1 to +1
+
+      // Subtle tilt: +/- 7 degrees
+      targetRotY = normX * 7;
+      targetRotX = -normY * 7;
+
+      if (!rafId) rafId = requestAnimationFrame(updateLerp);
+    });
+
+    container.addEventListener('mouseleave', () => {
+      isHovered = false;
+      targetRotX = 0;
+      targetRotY = 0;
+      if (!rafId) rafId = requestAnimationFrame(updateLerp);
+    });
+
+    window.addEventListener('resize', updateBounds, { passive: true });
+
+    // Initial idle state
+    card.classList.add('is-idle');
+  })();
+</script>

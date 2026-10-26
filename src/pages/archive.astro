@@ -4,33 +4,35 @@ import ArchiveCard from '../components/ArchiveCard.astro';
 import { getCollection } from 'astro:content';
 
 const allArchive = await getCollection('archive');
-const sortedArchive = allArchive.sort((a, b) => a.data.order - b.data.order);
+const sortedArchive = allArchive.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <BaseLayout
   title="Archive | Shlok Mehndiratta"
-  description="Photographs and telemetry from lab flight arenas, robot hardware, and IISER Bhopal by Shlok Mehndiratta."
+  description="Photographs and visual moments from academic workshops, laboratory experiments, and life by Shlok Mehndiratta."
 >
-  <div class="space-y-12 sm:space-y-16">
+  <div class="space-y-10 sm:space-y-12">
     <!-- Header -->
-    <header class="space-y-3 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
+    <header class="space-y-2 pb-5 border-b border-black/[0.08] dark:border-white/[0.08]">
       <div class="flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
-        <span class="uppercase tracking-wider">Field & Laboratory Photography</span>
+        <span class="uppercase tracking-wider">Visual Archive & Milestones</span>
         <span>•</span>
-        <span class="font-semibold text-zinc-800 dark:text-zinc-200">{sortedArchive.length} Images</span>
+        <span class="font-semibold text-zinc-800 dark:text-zinc-200">{sortedArchive.length} Moments</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+      <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
         Archive
       </h1>
-      <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        Photographs from laboratory flight arenas, robotics hardware experiments, and campus at IISER Bhopal.
+      <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed font-sans">
+        Moments from robotics research, academic workshops, laboratory experiments, and life arranged chronologically.
       </p>
     </header>
 
-    <!-- Archive Grid -->
-    <section class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <!-- Compact Masonry Grid -->
+    <section class="columns-1 sm:columns-2 lg:columns-3 gap-3.5 space-y-3.5">
       {sortedArchive.map((item) => (
-        <ArchiveCard item={item} />
+        <div class="break-inside-avoid">
+          <ArchiveCard item={item} />
+        </div>
       ))}
     </section>
   </div>

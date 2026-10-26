@@ -13,7 +13,7 @@ draft: false
 ![CS50 Web Full-Stack Architecture](/images/notebook/cs50-web-journey.svg)
 *The five progressive web projects I built during Harvard's CS50 Web curriculum in the summer of 2024.*
 
-*Course projects and source code are available on [GitHub](https://github.com/shlok-mehndiratta).*
+*Course projects and source code are available on [GitHub](https://github.com/shlok-mehndiratta/cs50web_projects).*
 
 ---
 

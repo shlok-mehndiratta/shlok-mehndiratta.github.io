@@ -198,15 +198,29 @@ const cardId = `pub-${pub.slug || Math.random().toString(36).substring(2, 9)}`;
   }
 </article>
 
-<script is:inline>
+<script>
+  import { sound } from '../utils/sound';
+
   (function () {
-    if (window.__pubCardsListenerAttached) return;
-    window.__pubCardsListenerAttached = true;
+    if ((window as unknown as { __pubCardsListenerAttached?: boolean }).__pubCardsListenerAttached) return;
+    (window as unknown as { __pubCardsListenerAttached?: boolean }).__pubCardsListenerAttached = true;
 
     document.addEventListener('click', function (e) {
-      // Abstract Toggle
-      const abstractBtn = e.target.closest('[data-abstract-toggle]');
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+
+      // 1. Abstract Toggle: Fluid Pop + Specular Light Glint
+      const abstractBtn = target.closest('[data-abstract-toggle]');
       if (abstractBtn) {
+        sound.pop();
+        const card = abstractBtn.closest('article');
+        if (card) {
+          card.classList.add('border-black/30', 'dark:border-white/35', 'shadow-specular');
+          setTimeout(() => {
+            card.classList.remove('border-black/30', 'dark:border-white/35');
+          }, 220);
+        }
+
         const id = abstractBtn.getAttribute('data-abstract-toggle');
         if (id) {
           const content = document.getElementById('abstract-' + id);
@@ -221,15 +235,16 @@ const cardId = `pub-${pub.slug || Math.random().toString(36).substring(2, 9)}`;
         return;
       }
 
-      // BibTeX Copy
-      const bibtexBtn = e.target.closest('[data-bibtex-copy]');
+      // 2. BibTeX Copy: Harmonic Chime
+      const bibtexBtn = target.closest('[data-bibtex-copy]');
       if (bibtexBtn) {
+        sound.chime();
         const content = bibtexBtn.getAttribute('data-bibtex-content');
         const label = bibtexBtn.querySelector('.btn-label');
         if (content && label) {
           navigator.clipboard.writeText(content).then(() => {
             const originalText = label.textContent;
-            label.textContent = 'Copied!';
+            label.textContent = 'Copied! ✓';
             setTimeout(() => {
               label.textContent = originalText;
             }, 2000);
@@ -237,6 +252,13 @@ const cardId = `pub-${pub.slug || Math.random().toString(36).substring(2, 9)}`;
             console.error('Failed to copy BibTeX:', err);
           });
         }
+        return;
+      }
+
+      // 3. Tactile external links (PDF / Code)
+      const extLink = target.closest('a[target="_blank"]');
+      if (extLink && extLink.closest('.apple-card')) {
+        sound.tap(e as MouseEvent);
       }
     });
   })();

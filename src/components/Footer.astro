@@ -23,17 +23,14 @@ import SignatureMark from './SignatureMark.astro';
 
       <!-- Center / Right: Structured Responsive Inputs -->
       <div class="flex-1 max-w-xl w-full space-y-2.5">
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+        <div>
           <input
             type="email"
             id="contact-email"
             required
             placeholder="your.email@institution.edu"
-            class="h-9 w-full sm:w-60 px-3 text-xs font-mono rounded-xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.08] dark:border-white/[0.08] text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-zinc-950 dark:focus:border-zinc-100 shadow-[inset_0_1px_2px_rgba(35,22,12,0.03)] dark:shadow-none transition-all"
+            class="h-9 w-full sm:max-w-xs px-3 text-xs font-mono rounded-xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.08] dark:border-white/[0.08] text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-zinc-950 dark:focus:border-zinc-100 shadow-[inset_0_1px_2px_rgba(35,22,12,0.03)] dark:shadow-none transition-all"
           />
-          <span class="hidden sm:inline-block text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
-            Direct dispatch
-          </span>
         </div>
 
         <div class="relative">
@@ -48,7 +45,7 @@ import SignatureMark from './SignatureMark.astro';
 
         <div class="flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-2 pt-0.5">
           <span class="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
-            Opens pre-filled in your default email client
+            Opens pre-filled in your mail client or copies draft
           </span>
           <button
             type="submit"
@@ -95,7 +92,7 @@ import SignatureMark from './SignatureMark.astro';
     <div class="flex flex-col items-center md:items-end gap-1.5 text-xs font-mono">
       <div class="flex flex-wrap items-center justify-center md:justify-end gap-x-4 gap-y-1">
         <a
-          href="https://scholar.google.com"
+          href="https://scholar.google.com/citations?hl=en&user=glDV-IAAAAAJ"
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
@@ -127,7 +124,7 @@ import SignatureMark from './SignatureMark.astro';
           X (Twitter)
         </a>
       </div>
-      <div>
+      <div class="flex items-center gap-2">
         <a
           href="mailto:shlokm23@iiserb.ac.in"
           class="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors whitespace-nowrap"
@@ -135,6 +132,21 @@ import SignatureMark from './SignatureMark.astro';
         >
           shlokm23@iiserb.ac.in
         </a>
+        <button
+          type="button"
+          id="copy-email-btn"
+          aria-label="Copy email address"
+          class="p-1 rounded-md text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer"
+          title="Copy email to clipboard"
+        >
+          <svg class="w-3.5 h-3.5 copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <svg class="w-3.5 h-3.5 check-icon hidden text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </button>
       </div>
     </div>
   </div>
@@ -169,21 +181,57 @@ import SignatureMark from './SignatureMark.astro';
 
   const setupQuickContact = () => {
     const form = document.getElementById('quick-contact-form');
+    
+    const handleCopy = (btn, text) => {
+      if (!btn) return;
+      navigator.clipboard.writeText(text).then(() => {
+        const copySvg = btn.querySelector('.copy-icon');
+        const checkSvg = btn.querySelector('.check-icon');
+        if (copySvg && checkSvg) {
+          copySvg.classList.add('hidden');
+          checkSvg.classList.remove('hidden');
+          setTimeout(() => {
+            copySvg.classList.remove('hidden');
+            checkSvg.classList.add('hidden');
+          }, 2500);
+        }
+      });
+    };
+
+    const copyBtnFooter = document.getElementById('copy-email-btn');
+    copyBtnFooter?.addEventListener('click', () => {
+      handleCopy(copyBtnFooter, 'shlokm23@iiserb.ac.in');
+    });
+
     if (!form) return;
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const email = document.getElementById('contact-email')?.value || '';
-      const message = document.getElementById('contact-message')?.value || '';
+      const email = document.getElementById('contact-email')?.value.trim() || '';
+      const message = document.getElementById('contact-message')?.value.trim() || '';
       const feedback = document.getElementById('contact-feedback');
       
-      const subject = encodeURIComponent(`Message from ${email} via shlokmehndiratta.me`);
-      const body = encodeURIComponent(`From: ${email}\n\nMessage:\n${message}\n\nSent from portfolio footer quick-contact.`);
+      const subject = encodeURIComponent(`Inquiry from ${email} via shlokmehndiratta.me`);
+      const body = encodeURIComponent(`From: ${email}\n\nMessage:\n${message}\n\n(Sent via portfolio quick-contact)`);
       window.location.href = `mailto:shlokm23@iiserb.ac.in?subject=${subject}&body=${body}`;
       
       if (feedback) {
-        feedback.textContent = '✓ Opening your email client to send message...';
+        feedback.innerHTML = `
+          <div class="flex items-center justify-end gap-2 flex-wrap text-emerald-600 dark:text-emerald-400">
+            <span>✓ Opening email client...</span>
+            <button type="button" id="copy-draft-btn" class="underline hover:text-emerald-700 dark:hover:text-emerald-300 font-medium cursor-pointer">
+              Click to copy message draft
+            </button>
+          </div>
+        `;
         feedback.classList.remove('hidden');
-        setTimeout(() => feedback.classList.add('hidden'), 5000);
+        
+        const copyDraftBtn = document.getElementById('copy-draft-btn');
+        copyDraftBtn?.addEventListener('click', () => {
+          const draftText = `To: shlokm23@iiserb.ac.in\nSubject: Inquiry from ${email}\n\nMessage:\n${message}`;
+          navigator.clipboard.writeText(draftText).then(() => {
+            if (copyDraftBtn) copyDraftBtn.textContent = 'Draft copied to clipboard!';
+          });
+        });
       }
     });
   };

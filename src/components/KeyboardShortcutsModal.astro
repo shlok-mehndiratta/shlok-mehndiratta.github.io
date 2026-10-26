@@ -100,10 +100,13 @@
   </div>
 </div>
 
-<script is:inline>
+<script>
+  import { sound } from '../utils/sound';
+
   (() => {
     const toggleTheme = () => {
       const isDark = document.documentElement.classList.contains('dark');
+      sound.switch(!isDark);
       if (isDark) {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('theme', 'light');
@@ -123,6 +126,7 @@
         trigger.dataset.shortcutBound = 'true';
         trigger.addEventListener('click', (e) => {
           e.preventDefault();
+          sound.whisper();
           modal?.classList.remove('hidden');
         });
       }
@@ -131,6 +135,7 @@
         closeBtn.dataset.shortcutBound = 'true';
         closeBtn.addEventListener('click', (e) => {
           e.preventDefault();
+          sound.tap();
           modal?.classList.add('hidden');
         });
       }
@@ -138,7 +143,10 @@
       if (modal && !modal.dataset.shortcutBound) {
         modal.dataset.shortcutBound = 'true';
         modal.addEventListener('click', (e) => {
-          if (e.target === modal) modal.classList.add('hidden');
+          if (e.target === modal) {
+            sound.tap();
+            modal.classList.add('hidden');
+          }
         });
       }
 
@@ -149,6 +157,16 @@
           toggleTheme();
         });
       }
+
+      modal?.querySelectorAll('a').forEach((link) => {
+        const el = link as HTMLElement;
+        if (!el.dataset.soundBound) {
+          el.dataset.soundBound = 'true';
+          el.addEventListener('click', (e) => {
+            sound.tap(e as MouseEvent);
+          });
+        }
+      });
     };
 
     if (document.readyState === 'loading') {
@@ -160,14 +178,14 @@
     document.addEventListener('astro:after-swap', bindModalEvents);
 
     // Global Keydown Handler: Registered once on window to function everywhere
-    if (!window.__globalShortcutsAttached) {
-      window.__globalShortcutsAttached = true;
+    if (!(window as unknown as { __globalShortcutsAttached?: boolean }).__globalShortcutsAttached) {
+      (window as unknown as { __globalShortcutsAttached?: boolean }).__globalShortcutsAttached = true;
 
       window.addEventListener('keydown', (e) => {
         // Protect form inputs and editable elements
         const activeEl = document.activeElement;
         const tagName = activeEl?.tagName;
-        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tagName) || activeEl?.isContentEditable) {
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tagName || '') || activeEl?.isContentEditable) {
           return;
         }
 
@@ -177,7 +195,9 @@
         if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
           e.preventDefault();
           if (modal) {
-            modal.classList.toggle('hidden');
+            const isHidden = modal.classList.toggle('hidden');
+            if (!isHidden) sound.whisper();
+            else sound.tap();
           }
           return;
         }
@@ -191,7 +211,9 @@
         if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
           e.preventDefault();
           if (modal) {
-            modal.classList.toggle('hidden');
+            const isHidden = modal.classList.toggle('hidden');
+            if (!isHidden) sound.whisper();
+            else sound.tap();
           }
           return;
         }
@@ -200,6 +222,7 @@
         if (e.key === 'Escape') {
           if (modal && !modal.classList.contains('hidden')) {
             e.preventDefault();
+            sound.tap();
             modal.classList.add('hidden');
           }
           return;
@@ -208,18 +231,25 @@
         // Site-wide navigation & actions throughout the entire website
         const key = e.key.toLowerCase();
         if (key === 'h') {
+          sound.tap();
           window.location.href = '/';
         } else if (key === 'e') {
+          sound.tap();
           window.location.href = '/experience';
         } else if (key === 'u') {
+          sound.tap();
           window.location.href = '/publications';
         } else if (key === 'p') {
+          sound.tap();
           window.location.href = '/projects';
         } else if (key === 'n') {
+          sound.tap();
           window.location.href = '/notebook';
         } else if (key === 'a') {
+          sound.tap();
           window.location.href = '/archive';
         } else if (key === 'r') {
+          sound.tap();
           window.location.href = '/resume';
         } else if (key === 't') {
           toggleTheme();

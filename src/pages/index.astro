@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import HeroPortrait3D from '../components/HeroPortrait3D.astro';
 
 // 1. Publications: Fetch both publications and sort by order
 const allPubs = await getCollection('publications');
@@ -50,7 +51,7 @@ const activeResearch = [
       'Belief-Space Control & Event-Triggering: Built a belief-space Model Predictive Controller (MPC) for the ground vehicle and an event-triggered aerial planner that only recalculates trajectories when tracking uncertainty requires it, cutting computation by 25× without losing accuracy.',
       'Full-System Gazebo Validation: Implemented modular ROS 2 nodes for lane segmentation, ArUco fiducial pose estimation, and Extended Kalman Filter (EKF) sensor fusion, validating the altitude scaling laws across curved tracks.',
     ],
-    paperLink: 'https://github.com/shlok-mehndiratta/COAST-Code',
+    paperLink: 'https://github.com/soododivyam/COAST-code',
     paperLinkLabel: 'COAST Open-Source Code (GitHub) ↗',
     skills: ['ROS 2', 'Gazebo', 'Model Predictive Control (MPC)', 'Extended Kalman Filter (EKF)', 'Computer Vision', 'Python'],
   },
@@ -73,6 +74,22 @@ const openSourceHighlight = {
 const selectedProjects = [
   {
     id: '01',
+    title: 'Robust Linear Control: A Belief-Coupled Tube-MPC Framework',
+    category: 'Robotics & Control Systems',
+    location: 'Linear Control Systems (ECS 334) • IISER Bhopal',
+    period: '2025 – 2026',
+    shortSummary: 'Developed a unified research framework for autonomous tracking that bridges robust control theory, high-dynamic flight trajectory validation, and closed-loop ROS 2 / Gazebo simulation.',
+    highlights: [
+      'Derived tracking feedback gains and tightened nominal state/input constraints using Robust Positively Invariant (RPI) sets under bounded external disturbances.',
+      'Validated high-dynamic 3D flight trajectories for micro-UAV hardware using Crazyflie SITL simulation containerized with Docker.',
+      'Integrated perception (OpenCV), state estimation (Extended Kalman Filter), and belief-space control within modular ROS 2 nodes in Gazebo Harmonic.',
+    ],
+    outcome: 'Guaranteed trajectory tracking stability within bounded disturbance tubes while closing the loop between perception, state estimation, and predictive control.',
+    tech: ['ROS 2 Jazzy', 'Gazebo Harmonic', 'Tube-MPC', 'Robust Control (RPI Sets)', 'EKF', 'Crazyflie SITL', 'Docker'],
+    github: 'https://github.com/shlok-mehndiratta/ugv_uav_control',
+  },
+  {
+    id: '02',
     title: '3D Point Cloud Segmentation with Graph Neural Networks',
     category: 'Computer Vision & 3D Learning',
     location: 'GeoAI4Cities Lab (Advisor: Dr. Vaibhav Kumar)',
@@ -81,18 +98,17 @@ const selectedProjects = [
     highlights: [
       'Represented 3D point clouds as localized graphs where each point connects to its nearest geometric neighbors to capture local topological shape.',
       'Applied RANSAC geometric filtering to suppress sensor reflections and sparse LiDAR noise before neural inference.',
-      'Trained graph neural networks in PyTorch Geometric, outperforming point-by-point classifiers in complex urban scenes.',
+      'Trained 3D deep graph networks in PyTorch, outperforming point-by-point classifiers in complex urban scenes.',
     ],
     outcome: 'Showed that learning from local geometric neighbors produces cleaner 3D boundaries than treating points in isolation.',
-    tech: ['PyTorch Geometric', 'Open3D', 'RANSAC', 'Python', '3D Vision'],
-    github: 'https://github.com/shlok-mehndiratta',
+    tech: ['PyTorch', 'Open3D', 'RANSAC', 'Python', '3D Vision'],
   },
   {
-    id: '02',
+    id: '03',
     title: 'Digital Logic Design & Bare-Metal AVR Microcontroller',
     category: 'Embedded Systems & Hardware',
-    location: 'Hardware Laboratory • IISER Bhopal',
-    period: 'Aug 2024 – Dec 2024',
+    location: 'IIT Hyderabad (with Dr. G V V Sharma) / IISER Bhopal',
+    period: 'Oct – Nov 2025',
     shortSummary: 'Designed fundamental digital logic circuits on breadboards and programmed an ATmega328P microcontroller using bare-metal AVR assembly and direct register manipulation, without external runtime libraries.',
     highlights: [
       'Wrote AVR assembly from scratch, directly writing to hardware control registers to manage timers, pin interrupts, and I/O ports.',
@@ -101,7 +117,7 @@ const selectedProjects = [
     ],
     outcome: 'Built a concrete, machine-level foundation in microcontroller execution, memory-mapped I/O, and synchronous digital logic.',
     tech: ['AVR Assembly', 'Direct Register I/O', 'ATmega328P', 'Digital Logic', 'Circuit Design'],
-    github: 'https://github.com/shlok-mehndiratta',
+    github: 'https://github.com/shlok-mehndiratta/IISERB-Code-Archive/tree/main/Digital-Design-Workshop',
   },
 ];
 
@@ -111,31 +127,31 @@ const compactNotes = allNotes
   .sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime())
   .slice(0, 2);
 
-// 6. Archive: 4 visual moments
+// 6. Archive: 4 visual moments arranged by date
 const allArchive = await getCollection('archive');
-const compactArchive = allArchive.sort((a, b) => a.data.order - b.data.order).slice(0, 4);
+const compactArchive = allArchive.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 4);
 
-// Technical Skills (Strictly from verified resume)
+// Technical Skills (Focused, high-ROI competencies synchronized with resume)
 const skillCategories = [
   {
-    category: 'Programming Languages',
-    items: ['Python', 'C++', 'MATLAB', 'Verilog', 'Assembly'],
+    category: 'Robotics & Control',
+    items: ['ROS 2 (C++ / Python)', 'ros2_control', 'Model Predictive Control (MPC)', 'State Estimation (EKF)', 'Gazebo Harmonic', 'OptiTrack Mocap'],
   },
   {
-    category: 'Robotics & Simulation',
-    items: ['ROS 2', 'Gazebo', 'NVIDIA Isaac Sim', 'NVIDIA Warp', 'Model Predictive Control', 'Extended Kalman Filter', 'OptiTrack Mocap'],
+    category: 'Simulation & Synthetic Data',
+    items: ['NVIDIA Isaac Sim', 'NVIDIA Warp (GPU Physics)', 'HDF5 Data Pipelines'],
   },
   {
-    category: 'Computer Vision & ML',
-    items: ['PyTorch', 'PyTorch Geometric', 'TensorFlow', 'OpenCV', 'SLAM', 'Reinforcement Learning'],
+    category: 'Vision & Machine Learning',
+    items: ['PyTorch', 'TensorFlow', 'OpenCV', 'Visual SLAM / Odometry', 'Reinforcement Learning'],
   },
   {
-    category: 'Data & ML Libraries',
-    items: ['NumPy', 'Pandas', 'scikit-learn', 'Open3D'],
+    category: 'Scientific Computing & ML',
+    items: ['NumPy', 'Pandas', 'scikit-learn', 'MATLAB / Simulink'],
   },
   {
-    category: 'Systems & Deployment',
-    items: ['Git / GitHub', 'Linux / Bash', 'Docker', 'FastAPI', 'LaTeX'],
+    category: 'Languages & Core Systems',
+    items: ['Python', 'C++ (17/20)', 'Verilog HDL', 'Linux (Bash / POSIX)', 'Docker', 'Git / GitHub CI', 'LaTeX'],
   },
 ];
 
@@ -160,120 +176,106 @@ const homeSections = [
   <div class="space-y-20 sm:space-y-28">
     <!-- Hero Section (Editorial Technical Identity & Personal Portrait) -->
     <section id="overview" class="pt-2 sm:pt-6">
-      <div class="flex flex-col md:flex-row md:items-start justify-between gap-8 sm:gap-12">
-        <!-- Left Column: Narrative, Focus & Clearly Visible Links -->
-        <div class="space-y-6 max-w-2xl">
-          <div class="space-y-3.5">
-            <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] sm:text-xs font-mono text-zinc-500 dark:text-zinc-400">
-              <span class="inline-flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:shadow-[0_0_8px_rgba(16,185,129,0.7)] animate-pulse"></span>
-                IISER Bhopal
-              </span>
-              <span class="text-zinc-400 dark:text-zinc-600 hidden sm:inline">•</span>
-              <span class="whitespace-nowrap">Graduating May 2027</span>
-              <span class="text-zinc-400 dark:text-zinc-600">•</span>
-              <span class="text-zinc-700 dark:text-zinc-300 font-semibold whitespace-nowrap">CPI: 8.87 / 10.0</span>
-            </div>
-
-            <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 leading-tight">
-              Shlok Mehndiratta
-            </h1>
-
-            <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-medium leading-snug">
-              BS in Electrical Engineering & Computer Science (EECS)
-            </p>
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 sm:gap-8 md:gap-12 items-start">
+        <!-- 1. Identity Header: Name & Degree (Order 1 on mobile, Col 1 Row 1 on desktop) -->
+        <div class="order-1 md:col-start-1 md:row-start-1 space-y-3.5 max-w-2xl">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] sm:text-xs font-mono text-zinc-500 dark:text-zinc-400">
+            <span class="inline-flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:shadow-[0_0_8px_rgba(16,185,129,0.7)] animate-pulse"></span>
+              IISER Bhopal
+            </span>
+            <span class="text-zinc-400 dark:text-zinc-600 hidden sm:inline">•</span>
+            <span class="whitespace-nowrap">Graduating May 2027</span>
+            <span class="text-zinc-400 dark:text-zinc-600">•</span>
+            <span class="text-zinc-700 dark:text-zinc-300 font-semibold whitespace-nowrap">CPI: 8.87 / 10.0</span>
           </div>
 
-          <div class="space-y-3.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed">
-            <p>
-              I am an undergraduate in Electrical Engineering and Computer Science at <span class="font-medium text-zinc-900 dark:text-zinc-100">IISER Bhopal</span>, with a foundation in control theory and learning-based methods. Currently, my work spans aerial robotics, multi-robot coordination, and dexterous manipulation, focusing on how control algorithms interface with physical hardware.
-            </p>
-            <p>
-              My primary interests lie in the intersection of control systems, physical dynamics, and simulation environments. I enjoy working on how learning-based approaches can complement low-level controllers, enabling robots to handle contact, uncertainty, and complex interactions. Looking forward, I aim to pursue graduate study (MS/PhD) to work on pioneering research in robotics, dedicated to doing meaningful work that bridges scientific discovery with deep-tech innovation.
-            </p>
-          </div>
+          <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 leading-tight">
+            Shlok Mehndiratta
+          </h1>
 
-          <!-- Social Profiles & Action Links -->
-          <div class="space-y-2.5 pt-1">
-            <!-- Row 1: External Channels -->
-            <div class="flex flex-wrap items-center gap-2">
-              <a
-                href="https://github.com/shlok-mehndiratta"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
-              >
-                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                <span>GitHub</span>
-              </a>
-
-              <a
-                href="https://linkedin.com/in/shlok-mehndiratta"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
-              >
-                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
-                <span>LinkedIn</span>
-              </a>
-
-              <a
-                href="https://scholar.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
-              >
-                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5 12 0z"/></svg>
-                <span>Scholar</span>
-              </a>
-
-              <a
-                href="https://x.com/ShlokMehndiratt"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
-              >
-                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                <span>X</span>
-              </a>
-            </div>
-
-            <!-- Row 2: Direct Contact Email & Curriculum Vitae -->
-            <div class="flex flex-wrap items-center gap-2">
-              <a
-                href="mailto:shlokm23@iiserb.ac.in"
-                class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
-              >
-                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                <span class="truncate max-w-[200px] sm:max-w-none">shlokm23@iiserb.ac.in</span>
-              </a>
-
-              <a
-                href="/resume"
-                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-zinc-950 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 text-xs font-mono font-medium shadow-[0_2px_8px_-1px_rgba(31,22,15,0.30),0_1px_2px_rgba(31,22,15,0.20),inset_0_1px_0_rgba(255,255,255,0.18)] hover:shadow-[0_4px_14px_-2px_rgba(31,22,15,0.40)] hover:-translate-y-0.5 dark:shadow-[0_0_16px_rgba(255,255,255,0.14)] transition-all shrink-0"
-              >
-                <svg class="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                <span>Curriculum Vitae</span>
-              </a>
-            </div>
-          </div>
+          <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-medium leading-snug">
+            BS in Electrical Engineering & Computer Science (EECS)
+          </p>
         </div>
 
-        <!-- Right Column: Personal Portrait Card -->
-        <div class="w-48 sm:w-56 md:w-60 shrink-0 mx-auto md:mx-0 self-start">
-          <div class="apple-card p-2 rounded-2xl">
-            <div class="relative w-full aspect-[4/5] overflow-hidden rounded-xl bg-black/[0.03] dark:white/[0.04]">
-              <img
-                src="/shlok-portrait.jpg"
-                onerror="this.onerror=null; this.src='/shlok-portrait.svg';"
-                alt="Shlok Mehndiratta, EECS at IISER Bhopal"
-                class="w-full h-full object-cover grayscale contrast-105 hover:grayscale-0 hover:contrast-100 transition-all duration-500"
-              />
-            </div>
-            <div class="pt-2 pb-0.5 px-1 flex items-center justify-between text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
-              <span class="text-zinc-800 dark:text-zinc-200 font-medium truncate">Shlok Mehndiratta</span>
-              <span class="shrink-0 text-zinc-400 dark:text-zinc-500">IISER Bhopal</span>
-            </div>
+        <!-- 2. Personal Portrait 3D Architectural Stage (Order 2 on mobile: sits right under the name/subtitle) -->
+        <div class="order-2 md:col-start-2 md:row-start-1 md:row-span-3 shrink-0 mx-auto md:mx-0 self-start pt-1 md:pt-2">
+          <HeroPortrait3D />
+        </div>
+
+        <!-- 3. Narrative Bio Paragraphs (Order 3 on mobile, Col 1 Row 2 on desktop) -->
+        <div class="order-3 md:col-start-1 md:row-start-2 space-y-3.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed max-w-2xl">
+          <p>
+            I am an undergraduate in Electrical Engineering and Computer Science at <span class="font-medium text-zinc-900 dark:text-zinc-100">IISER Bhopal</span>, with a foundation in control theory and learning-based methods. Currently, my work spans aerial robotics, multi-robot coordination, and dexterous manipulation, focusing on how control algorithms interface with physical hardware.
+          </p>
+          <p>
+            My primary interests lie in the intersection of control systems, physical dynamics, and simulation environments. I enjoy working on how learning-based approaches can complement low-level controllers, enabling robots to handle contact, uncertainty, and complex interactions. Looking forward, I aim to pursue graduate study (MS/PhD) to work on pioneering research in robotics, dedicated to doing meaningful work that bridges scientific discovery with deep-tech innovation.
+          </p>
+        </div>
+
+        <!-- 4. Social Profiles & Action Links (Order 4 on mobile, Col 1 Row 3 on desktop) -->
+        <div class="order-4 md:col-start-1 md:row-start-3 space-y-2.5 pt-1 max-w-2xl">
+          <!-- Row 1: External Channels -->
+          <div class="flex flex-wrap items-center gap-2">
+            <a
+              href="https://github.com/shlok-mehndiratta"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
+            >
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              <span>GitHub</span>
+            </a>
+
+            <a
+              href="https://linkedin.com/in/shlok-mehndiratta"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
+            >
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+
+            <a
+              href="https://scholar.google.com/citations?hl=en&user=glDV-IAAAAAJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
+            >
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5 12 0z"/></svg>
+              <span>Scholar</span>
+            </a>
+
+            <a
+              href="https://x.com/ShlokMehndiratt"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
+            >
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span>X</span>
+            </a>
+          </div>
+
+          <!-- Row 2: Direct Contact Email & Curriculum Vitae -->
+          <div class="flex flex-wrap items-center gap-2">
+            <a
+              href="mailto:shlokm23@iiserb.ac.in"
+              class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
+            >
+              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span class="truncate max-w-[200px] sm:max-w-none">shlokm23@iiserb.ac.in</span>
+            </a>
+
+            <a
+              href="/resume"
+              class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-zinc-950 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 text-xs font-mono font-medium shadow-[0_2px_8px_-1px_rgba(31,22,15,0.30),0_1px_2px_rgba(31,22,15,0.20),inset_0_1px_0_rgba(255,255,255,0.18)] hover:shadow-[0_4px_14px_-2px_rgba(31,22,15,0.40)] hover:-translate-y-0.5 dark:shadow-[0_0_16px_rgba(255,255,255,0.14)] transition-all shrink-0"
+            >
+              <svg class="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              <span>Curriculum Vitae</span>
+            </a>
           </div>
         </div>
       </div>
@@ -683,17 +685,32 @@ const homeSections = [
               </div>
             </details>
 
-            <div class="flex flex-wrap items-center gap-1.5 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
-              {proj.tech.map((t) => (
-                <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
-                  {t}
-                </span>
-              ))}
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+              <div class="flex flex-wrap gap-1.5">
+                {proj.tech.map((t) => (
+                  <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              {proj.github && (
+                <div class="flex items-center gap-3 text-xs font-mono">
+                  <a
+                    href={proj.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-700 transition-colors"
+                  >
+                    Repository ↗
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         ))}
 
-        <!-- Card 03: Full Project Repository & Coursework Directory -->
+        <!-- Card 04: Full Project Repository & Coursework Directory -->
         <a
           href="/projects"
           class="apple-card group block p-4 sm:p-5 rounded-xl border border-dashed border-black/15 dark:border-white/15 bg-surface-light/70 dark:bg-surface-dark/70 hover:bg-surface-light dark:hover:bg-surface-dark hover:border-black/30 dark:hover:border-white/30 transition-all space-y-3"
@@ -701,7 +718,7 @@ const homeSections = [
           <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-black/[0.05] dark:border-white/[0.05] pb-2.5">
             <div class="flex items-baseline gap-3">
               <span class="font-mono text-lg font-semibold text-zinc-400 dark:text-zinc-500 select-none">
-                03
+                04
               </span>
               <div>
                 <div class="flex items-center gap-2 text-[10px] font-mono text-zinc-500 dark:text-zinc-400 mb-0.5">
@@ -709,7 +726,7 @@ const homeSections = [
                     Repository Directory
                   </span>
                   <span>•</span>
-                  <span>47 Completed Courses &amp; 4 More Projects</span>
+                  <span>47 Completed Courses &amp; 2 More Systems</span>
                 </div>
                 <h3 class="text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50 group-hover:text-zinc-800 dark:group-hover:text-zinc-200 transition-colors">
                   Full Engineering Builds &amp; Academic Coursework Archive
@@ -722,16 +739,16 @@ const homeSections = [
           </div>
 
           <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans">
-            Explore 4 additional engineering systems including mobile robot MPC tracking in ROS 2, satellite radar vision for maritime oil spill detection, and full-stack web platforms, alongside comprehensive syllabi for 47 completed courses across Robotics, Control Systems, and Mathematics.
+            Explore additional engineering systems including the AI-Powered Car Lease and Loan Assistant (FastAPI, Flutter, Ollama Llama 3.2), the Harvard CS50 full-stack web systems suite, and comprehensive syllabi for 47 completed courses across Robotics, Control Systems, and Mathematics.
           </p>
 
           <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
             <div class="flex flex-wrap items-center gap-1.5">
               <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
-                Mobile Robot MPC
+                AI Contract Review
               </span>
               <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
-                Satellite SAR Vision
+                FastAPI &amp; Flutter
               </span>
               <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
                 CS50 Web Suite
@@ -837,7 +854,7 @@ const homeSections = [
             Photo Gallery
           </h2>
           <p class="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
-            Photographs from drone arenas, robot hardware, workshops, and campus moments.
+            Moments from academic workshops, campus at IISER Bhopal, and personal milestones.
           </p>
         </div>
         <a
@@ -854,9 +871,9 @@ const homeSections = [
         {compactArchive.map((item) => (
           <a
             href="/archive"
-            class="group apple-card block space-y-1.5 p-2 rounded-xl transition-all"
+            class="group apple-card block space-y-1 p-1.5 rounded-lg transition-all"
           >
-            <div class="tactile-plate w-full aspect-[4/3] rounded-lg overflow-hidden bg-black/[0.03] dark:bg-white/[0.04]">
+            <div class="tactile-plate w-full aspect-[4/3] rounded-md overflow-hidden bg-black/[0.03] dark:bg-white/[0.04]">
               <img
                 src={item.data.imageUrl}
                 alt={item.data.title}
@@ -865,11 +882,11 @@ const homeSections = [
               />
             </div>
             <div class="px-0.5 space-y-0.5">
-              <h3 class="text-xs font-semibold text-zinc-950 dark:text-zinc-50 truncate">
+              <h3 class="text-[11px] font-semibold text-zinc-950 dark:text-zinc-50 truncate leading-tight">
                 {item.data.title}
               </h3>
-              <p class="text-[10px] font-mono text-zinc-500 dark:text-zinc-400 truncate">
-                {item.data.location}
+              <p class="text-[9px] font-mono text-zinc-500 dark:text-zinc-400 truncate">
+                {new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric' }).format(item.data.date)}
               </p>
             </div>
           </a>

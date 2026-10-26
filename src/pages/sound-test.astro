@@ -189,6 +189,220 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
 
+    <!-- Advanced Acoustic Experiments -->
+    <section class="space-y-6 pt-6 border-t border-black/[0.08] dark:border-white/[0.08]">
+      <div>
+        <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded text-xs font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.08]">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse"></span>
+          <span>New Explorations</span>
+        </div>
+        <h2 class="text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 mt-2">
+          Advanced Acoustic Explorations
+        </h2>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+          Listen to the new suggestions live. Put on headphones to test stereo panning and subtle frequencies.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Exp 1: Spatial Stereo Panning -->
+        <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-wider font-semibold">Exploration A</span>
+              <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">Spatial Stereo Panning</h3>
+            </div>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">StereoPannerNode</span>
+          </div>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Pans the tap sound based on screen position. Tapping the left side triggers your left ear; tapping the right triggers your right ear. <em>Best with headphones.</em>
+          </p>
+          <div class="flex gap-2">
+            <button
+              id="test-pan-left"
+              class="flex-1 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all"
+            >
+              ◂ Left (-0.8)
+            </button>
+            <button
+              id="test-pan-center"
+              class="flex-1 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all"
+            >
+              Center (0.0)
+            </button>
+            <button
+              id="test-pan-right"
+              class="flex-1 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all"
+            >
+              Right (+0.8) ▸
+            </button>
+          </div>
+          <!-- Continuous Pan Slider Bar -->
+          <div class="space-y-1.5 pt-1">
+            <div class="flex justify-between text-[10px] font-mono text-zinc-400">
+              <span>Interactive Position Track (Move mouse across)</span>
+              <span id="pan-val-display" class="text-zinc-800 dark:text-zinc-200">0.00</span>
+            </div>
+            <div
+              id="spatial-track"
+              class="h-7 rounded-lg border border-dashed border-black/[0.15] dark:border-white/[0.15] bg-zinc-100/50 dark:bg-zinc-900/50 flex items-center justify-center cursor-crosshair text-[11px] font-mono text-zinc-400 select-none hover:border-black/[0.3] dark:hover:border-white/[0.3] transition-colors"
+            >
+              Hover & Click along this bar
+            </div>
+          </div>
+        </div>
+
+        <!-- Exp 2: Organic Pitch Micro-Variation -->
+        <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-wider font-semibold">Exploration B</span>
+              <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">Organic Anti-Fatigue Variance</h3>
+            </div>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">±3% Micro-Jitter</span>
+          </div>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Click repeatedly to feel the difference: robotic fixed pitch causes acoustic fatigue, whereas organic micro-variance feels like real physical hardware.
+          </p>
+          <div class="grid grid-cols-2 gap-2 pt-2">
+            <button
+              id="test-fixed-pitch"
+              class="p-2.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all text-left"
+            >
+              <div class="text-[10px] text-zinc-400">Fixed (Robotic)</div>
+              <div class="text-zinc-900 dark:text-zinc-100 font-semibold mt-0.5">Click Fast ×5 🤖</div>
+            </button>
+            <button
+              id="test-organic-pitch"
+              class="p-2.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-xs font-mono font-medium hover:bg-zinc-800 dark:hover:bg-white active:scale-95 transition-all text-left shadow-sm"
+            >
+              <div class="text-[10px] text-zinc-400 dark:text-zinc-500">Organic (±3% Flutter)</div>
+              <div class="font-semibold mt-0.5">Click Fast ×5 🌱</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Exp 3: Harmonic Shortcut Chording -->
+        <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-wider font-semibold">Exploration C</span>
+              <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">Harmonic Key Chording</h3>
+            </div>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">Musical Intervals</span>
+          </div>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Multi-stroke shortcuts (<kbd class="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 font-mono text-[10px]">G</kbd> then <kbd class="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 font-mono text-[10px]">R</kbd>) play an ascending musical interval instead of a plain beep.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <button
+              data-chord="fifth"
+              class="px-3 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all"
+            >
+              G → R (Perfect 5th) 🎵
+            </button>
+            <button
+              data-chord="third"
+              class="px-3 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all"
+            >
+              G → E (Major 3rd) 🎶
+            </button>
+            <button
+              data-chord="triad"
+              class="px-3 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all"
+            >
+              ⌘K Triad Arpeggio 🎹
+            </button>
+          </div>
+          <div class="text-[11px] font-mono text-zinc-500">
+            Tip: Press <kbd class="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-[10px]">G</kbd> then <kbd class="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-[10px]">R</kbd> or <kbd class="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-[10px]">E</kbd> on your physical keyboard right now.
+          </div>
+        </div>
+
+        <!-- Exp 4: Inertial Scroll Detents -->
+        <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-wider font-semibold">Exploration D</span>
+              <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">Inertial Scroll Detents</h3>
+            </div>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">10ms • Damped Notch</span>
+          </div>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Replicates turning the aperture ring of a Leica lens or Apple Watch crown. Scroll inside the box below to feel notched ticks.
+          </p>
+          <div class="flex items-center justify-between gap-2">
+            <div
+              id="scroll-detent-box"
+              class="flex-1 h-14 overflow-y-scroll rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-zinc-900 p-2 text-[11px] font-mono text-zinc-500 space-y-2 select-none"
+            >
+              <div>• Section 01: Adaptive Filter Design</div>
+              <div>• Section 02: Hardware Accelerators</div>
+              <div>• Section 03: Distributed State Estimation</div>
+              <div>• Section 04: Neural Signal Processing</div>
+              <div>• Section 05: FPGA Microarchitecture</div>
+            </div>
+            <button
+              id="test-single-detent"
+              class="px-3 py-3 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all text-center"
+            >
+              Single Tick ⚙️
+            </button>
+          </div>
+        </div>
+
+        <!-- Exp 5: Specular Light Glint Coupling -->
+        <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-wider font-semibold">Exploration E</span>
+              <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">Specular Light Sync</h3>
+            </div>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">Audio-Visual Haptic</span>
+          </div>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Simultaneous optical and acoustic feedback: clicking pulses a 1px specular light sheen around the card border in sync with the click.
+          </p>
+          <div
+            id="specular-card"
+            class="p-4 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-zinc-100/60 dark:bg-zinc-900/60 flex items-center justify-between cursor-pointer transition-all duration-300"
+          >
+            <div class="space-y-0.5">
+              <div class="text-xs font-medium text-zinc-900 dark:text-zinc-100">Titanium Specular Plate</div>
+              <div class="text-[11px] font-mono text-zinc-500">Click anywhere on this card</div>
+            </div>
+            <span class="text-xs font-mono px-2 py-1 rounded bg-black/5 dark:bg-white/10">Pulse ⚡</span>
+          </div>
+        </div>
+
+        <!-- Exp 6: Analog EECS Workbench Atmosphere -->
+        <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-mono text-cyan-600 dark:text-cyan-400 uppercase tracking-wider font-semibold">Exploration F</span>
+              <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">EECS Workbench Atmosphere</h3>
+            </div>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">60Hz + Warm Tape</span>
+          </div>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Procedural, ultra-quiet warm background floor (gain 0.012). Evokes late-night oscilloscope hardware lab work. Opt-in reading companion.
+          </p>
+          <div class="pt-2 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs font-mono text-zinc-500">
+              <span id="atmo-indicator" class="w-2 h-2 rounded-full bg-zinc-400"></span>
+              <span id="atmo-status">Atmosphere Inactive</span>
+            </div>
+            <button
+              id="toggle-atmo-btn"
+              class="px-3.5 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all shadow-sm"
+            >
+              Start Atmosphere 📻
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Live Interactive Test Widget -->
     <section class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4">
       <div class="flex items-center justify-between">
@@ -232,7 +446,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   import { sound } from '../utils/sound';
 
   const setupSoundDemo = () => {
-    // 1. Hook up all play buttons
+    // 1. Hook up core play buttons
     document.querySelectorAll('[data-sound]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const type = btn.getAttribute('data-sound');
@@ -272,7 +486,136 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       if (!sound.getMuted()) sound.tap();
     });
 
-    // 3. Interactive Component Simulation
+    // 3. Exploration A: Spatial Stereo Panning
+    document.getElementById('test-pan-left')?.addEventListener('click', () => sound.spatialTap(-0.8));
+    document.getElementById('test-pan-center')?.addEventListener('click', () => sound.spatialTap(0.0));
+    document.getElementById('test-pan-right')?.addEventListener('click', () => sound.spatialTap(0.8));
+
+    const spatialTrack = document.getElementById('spatial-track');
+    const panDisplay = document.getElementById('pan-val-display');
+
+    if (spatialTrack) {
+      const handleTrackPan = (e: MouseEvent, playSound = false) => {
+        const rect = spatialTrack.getBoundingClientRect();
+        const rawX = (e.clientX - rect.left) / rect.width;
+        const clampedX = Math.max(0, Math.min(1, rawX));
+        const panValue = parseFloat(((clampedX - 0.5) * 2).toFixed(2));
+
+        if (panDisplay) {
+          const dir = panValue < 0 ? 'Left' : panValue > 0 ? 'Right' : 'Center';
+          panDisplay.textContent = `${panValue > 0 ? '+' : ''}${panValue.toFixed(2)} (${dir})`;
+        }
+
+        if (playSound) {
+          sound.spatialTap(panValue);
+        }
+      };
+
+      spatialTrack.addEventListener('mousemove', (e) => handleTrackPan(e, false));
+      spatialTrack.addEventListener('click', (e) => handleTrackPan(e, true));
+    }
+
+    // 4. Exploration B: Organic Anti-Fatigue Variance
+    document.getElementById('test-fixed-pitch')?.addEventListener('click', () => {
+      sound.tap(750, 0.022); // Fixed
+    });
+    document.getElementById('test-organic-pitch')?.addEventListener('click', () => {
+      sound.organicTap(true); // Jitter
+    });
+
+    // 5. Exploration C: Harmonic Key Chording
+    document.querySelectorAll('[data-chord]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const chordType = btn.getAttribute('data-chord') as 'fifth' | 'third' | 'triad';
+        sound.chord(chordType);
+      });
+    });
+
+    // Real keyboard chord detector: G then R / E
+    let lastKey = '';
+    let lastKeyTime = 0;
+    window.addEventListener('keydown', (e) => {
+      const key = e.key.toLowerCase();
+      const now = Date.now();
+
+      if (key === 'g') {
+        lastKey = 'g';
+        lastKeyTime = now;
+        sound.tap(440, 0.03); // Root preview
+      } else if (lastKey === 'g' && now - lastKeyTime < 800) {
+        if (key === 'r') {
+          sound.chord('fifth');
+          lastKey = '';
+        } else if (key === 'e') {
+          sound.chord('third');
+          lastKey = '';
+        }
+      } else {
+        lastKey = '';
+      }
+    });
+
+    // 6. Exploration D: Inertial Scroll Detents
+    document.getElementById('test-single-detent')?.addEventListener('click', () => {
+      sound.scrollDetent();
+    });
+
+    const scrollBox = document.getElementById('scroll-detent-box');
+    let lastScrollPos = 0;
+    let lastTickTime = 0;
+
+    scrollBox?.addEventListener('scroll', () => {
+      const currentPos = scrollBox.scrollTop;
+      const delta = Math.abs(currentPos - lastScrollPos);
+      const now = Date.now();
+
+      // Trigger notch every 24px of scroll, throttled to max 1 tick every 45ms to avoid overload
+      if (delta >= 24 && now - lastTickTime > 45) {
+        sound.scrollDetent(1050 + Math.min(delta * 4, 300));
+        lastScrollPos = currentPos;
+        lastTickTime = now;
+      }
+    });
+
+    // 7. Exploration E: Specular Light Glint Coupling
+    const specularCard = document.getElementById('specular-card');
+    specularCard?.addEventListener('click', () => {
+      sound.pop();
+      specularCard.classList.add(
+        'border-white',
+        'shadow-[0_0_25px_rgba(255,255,255,0.45)]',
+        'scale-[1.01]'
+      );
+      setTimeout(() => {
+        specularCard.classList.remove(
+          'border-white',
+          'shadow-[0_0_25px_rgba(255,255,255,0.45)]',
+          'scale-[1.01]'
+        );
+      }, 200);
+    });
+
+    // 8. Exploration F: EECS Workbench Atmosphere
+    const atmoBtn = document.getElementById('toggle-atmo-btn');
+    const atmoIndicator = document.getElementById('atmo-indicator');
+    const atmoStatus = document.getElementById('atmo-status');
+
+    atmoBtn?.addEventListener('click', () => {
+      const isActive = sound.toggleAtmosphere();
+      if (atmoIndicator && atmoStatus && atmoBtn) {
+        if (isActive) {
+          atmoIndicator.className = 'w-2 h-2 rounded-full bg-cyan-500 animate-pulse';
+          atmoStatus.textContent = 'Atmosphere Active (60Hz Warm Tape)';
+          atmoBtn.textContent = 'Stop Atmosphere ⏹';
+        } else {
+          atmoIndicator.className = 'w-2 h-2 rounded-full bg-zinc-400';
+          atmoStatus.textContent = 'Atmosphere Inactive';
+          atmoBtn.textContent = 'Start Atmosphere 📻';
+        }
+      }
+    });
+
+    // 9. Interactive Component Simulation (Drawers & Copy)
     const drawerBtn = document.getElementById('demo-drawer-btn');
     const drawerContent = document.getElementById('demo-drawer-content');
     const drawerLabel = document.getElementById('demo-drawer-label');

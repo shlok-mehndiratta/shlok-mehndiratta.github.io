@@ -109,7 +109,7 @@ const navItems = [
     <!-- Quick Actions Mobile Row -->
     <div class="pt-2.5 mt-1 border-t border-black/[0.08] dark:border-white/[0.08] grid grid-cols-2 gap-2 text-[11px] font-mono">
       <a
-        href="/Shlok_Mehndiratta_Resume.pdf"
+        href="/docs/Shlok_Mehndiratta_Resume.pdf"
         download="Shlok_Mehndiratta_Resume.pdf"
         class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-black/[0.05] dark:bg-white/[0.06] text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
       >
@@ -131,8 +131,22 @@ const navItems = [
 <!-- Mobile Backdrop Blur Overlay -->
 <div id="mobile-backdrop" class="hidden md:hidden fixed inset-0 bg-black/35 dark:bg-black/70 backdrop-blur-xs z-40 transition-opacity"></div>
 
-<script is:inline>
-  const setupMobileMenu = () => {
+<script>
+  import { sound } from '../utils/sound';
+
+  const setupHeader = () => {
+    // 1. Subtle tactile tap on all navigation links in the header
+    document.querySelectorAll('header a, #mobile-menu a').forEach((link) => {
+      const el = link as HTMLElement;
+      if (!el.dataset.soundBound) {
+        el.dataset.soundBound = 'true';
+        el.addEventListener('click', (e) => {
+          sound.tap(e as MouseEvent);
+        });
+      }
+    });
+
+    // 2. Mobile Menu Handling
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     const backdrop = document.getElementById('mobile-backdrop');
@@ -140,7 +154,7 @@ const navItems = [
     const closeIcon = document.getElementById('close-icon');
     if (!btn || !menu) return;
 
-    const toggleMenu = (show) => {
+    const toggleMenu = (show?: boolean) => {
       const isHidden = typeof show === 'boolean' ? !show : !menu.classList.contains('hidden');
       if (isHidden) {
         menu.classList.add('hidden');
@@ -158,27 +172,25 @@ const navItems = [
       }
     };
 
-    btn.onclick = (e) => {
-      e.stopPropagation();
-      toggleMenu();
-    };
+    if (!btn.dataset.soundBound) {
+      btn.dataset.soundBound = 'true';
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sound.tap(e as MouseEvent);
+        toggleMenu();
+      });
+    }
 
-    if (backdrop) {
-      backdrop.onclick = () => toggleMenu(false);
+    if (backdrop && !backdrop.dataset.soundBound) {
+      backdrop.dataset.soundBound = 'true';
+      backdrop.addEventListener('click', () => toggleMenu(false));
     }
 
     // Auto-close on click outside
     document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && !btn.contains(e.target)) {
+      if (!menu.contains(e.target as Node) && !btn.contains(e.target as Node)) {
         toggleMenu(false);
       }
-    });
-
-    // Auto-close when clicking any link inside the mobile menu
-    menu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        toggleMenu(false);
-      });
     });
 
     if (new URLSearchParams(window.location.search).get('menu') === 'open') {
@@ -186,6 +198,6 @@ const navItems = [
     }
   };
 
-  setupMobileMenu();
-  document.addEventListener('astro:after-swap', setupMobileMenu);
+  setupHeader();
+  document.addEventListener('astro:after-swap', setupHeader);
 </script>

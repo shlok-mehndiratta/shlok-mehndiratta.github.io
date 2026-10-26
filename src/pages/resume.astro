@@ -84,6 +84,9 @@ const resumeSections = [
             <p class="text-xs font-mono text-zinc-600 dark:text-zinc-400">
               Grade XII: 95.8% | Grade X: 96.8%
             </p>
+            <p class="text-xs text-zinc-500 dark:text-zinc-400 font-sans mt-0.5">
+              • House Captain • Active in student leadership, inter-house debates, and sports
+            </p>
           </div>
 
           <!-- Structured Coursework Matrix -->
@@ -138,16 +141,16 @@ const resumeSections = [
               MOON Lab, IISER Bhopal • Undergraduate Research Student • Advisor: Dr. P. B. Sujit
             </p>
             <ul class="list-disc list-inside mt-1.5 space-y-1 text-zinc-600 dark:text-zinc-300">
-              <li>Developing vision-based trajectory planning for micro aerial vehicles (MAVs), handling dynamic obstacle avoidance and target tracking within camera field-of-view limits.</li>
-              <li>Assembling Crazyflie quadrotors and integrating an OptiTrack optical motion capture arena with ROS 2 for millimeter-precision localization during indoor flight experiments.</li>
-              <li>Investigating decentralized multi-agent coordination algorithms for persistent swarm area coverage under intermittent communication constraints.</li>
+              <li>Implemented spherical coordinate-based vision planning with extensions for moving target tracking and dynamic obstacle avoidance for MAVs, validating algorithms on ROS 2 simulation environment.</li>
+              <li>Concurrently assembling drone systems integrating flight controller, RC receiver, and telemetry modules; configuring and integrating OptiTrack mocap system with ROS for high-precision indoor localization during algorithm testing and validation.</li>
+              <li>Progressing toward multi-agent coordination: investigating decentralized swarm algorithms for cooperative coverage and autonomous missions.</li>
             </ul>
           </div>
 
           <div>
             <div class="flex justify-between items-baseline">
               <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">
-                Synthetic Data & Grasp Estimation for Dexterous Robot Hands
+                Learning Visual Contact Estimation from Photorealistic Synthetic Data
               </h3>
               <span class="font-mono text-zinc-400">April 2026 – Present</span>
             </div>
@@ -155,16 +158,16 @@ const resumeSections = [
               Robotics Research Center (RRC), IIIT Hyderabad • Research Intern • Advisor: Dr. Spandan Roy
             </p>
             <ul class="list-disc list-inside mt-1.5 space-y-1 text-zinc-600 dark:text-zinc-300">
-              <li>Building an automated simulation pipeline generating synthetic multi-view RGB-D images and contact heatmaps for the 16-DoF LEAP Hand in cluttered scenes.</li>
-              <li>Simulating physically stable hand grasps and camera sensor noise to prepare training data for real-world robot platforms.</li>
-              <li>Training neural network models on synthetic data to predict contact points and hand approach poses for grasping objects in clutter.</li>
+              <li>Building high-fidelity synthetic data engine generating paired multi-view RGB images, segmentation masks, and 3D contact/SDF supervision using GPU-accelerated physics (NVIDIA Warp) and photorealistic rendering (BlenderProc).</li>
+              <li>Training vision-conditioned neural models (ResNet/UNet/PointNet) to predict 3D contact distributions from camera images, leveraging synthetic supervision for downstream grasp generation and real-robot policy transfer on 16-DoF LEAP Hand platforms.</li>
+              <li>Targeting paper submission on learning-based contact prediction from visual data to top-tier robotics venues; scaling dataset generation across multi-GPU clusters for large-scale synthetic scene diversity.</li>
             </ul>
           </div>
 
           <div>
             <div class="flex justify-between items-baseline">
               <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">
-                COAST: Perception-Aware Aerial-Ground Tracking
+                Perception-Aware Altitude Optimization for Aerial-Ground Tracking
               </h3>
               <span class="font-mono text-zinc-400">Sept 2025 – July 2026</span>
             </div>
@@ -172,9 +175,8 @@ const resumeSections = [
               MuSic Lab, IISER Bhopal • Undergraduate Research Student • Advisor: Dr. Arijit Sen
             </p>
             <ul class="list-disc list-inside mt-1.5 space-y-1 text-zinc-600 dark:text-zinc-300">
-              <li>Developed COAST, a perception-aware UAV–UGV tracking framework where a single downward-facing aerial camera acts as the ground robot's sole sensor, with an optimal altitude policy balancing track coverage against camera measurement noise.</li>
-              <li>Built belief-space MPC, EKF state estimation, and an event-triggered aerial planner in ROS 2 and Gazebo, cutting planner computation by 25× at matched estimation accuracy.</li>
-              <li>Validated theoretical altitude scaling laws across curved tracks; accepted to ACODS 2026 with code released publicly on GitHub.</li>
+              <li>Developed closed-form altitude scheduling policy for UAV-UGV cooperative tracking by formalizing the altitude-coverage-resolution coupling; built belief-space MPC controller and event-triggered aerial planner achieving 25× compute reduction while maintaining estimation quality.</li>
+              <li>Constructed complete ROS 2/Gazebo testbed with unified logging protocol to validate theoretical predictions on sensor noise scaling, altitude optimality, and event-triggered performance across variable terrain curvature.</li>
             </ul>
           </div>
         </div>
@@ -189,25 +191,25 @@ const resumeSections = [
         <div class="space-y-3 text-xs">
           <div>
             <p class="text-zinc-900 dark:text-zinc-100 font-medium">
-              1. Santosh Tantravahi, Nirman Jaiswal, <strong>Shlok Mehndiratta</strong>, P. B. Sujit, Aditya Paranjape.
-            </p>
-            <p class="italic text-zinc-700 dark:text-zinc-300">
-              "Multi-Robot Area Balancing In the Presence of Discrete Local Communication."
-            </p>
-            <p class="text-zinc-500 font-mono mt-0.5">
-              Switches dynamically between greedy and altruistic heuristics for fast convergence to equitable partitions under discrete, opportunistic communication; validated in Gazebo-based SITL multi-drone fire containment. <strong>[Under Review at ICRA 2027]</strong>
-            </p>
-          </div>
-
-          <div>
-            <p class="text-zinc-900 dark:text-zinc-100 font-medium">
-              2. <strong>Shlok Mehndiratta</strong>, Divyam Sood, Prashant Gupta, Agniva Banerjee, Arijit Sen.
+              1. <strong>Shlok Mehndiratta</strong>, Divyam Sood, Prashant Gupta, Agniva Banerjee, Arijit Sen.
             </p>
             <p class="italic text-zinc-700 dark:text-zinc-300">
               "COAST: Altitude as a Coupled Perception Variable in Shared-Camera Aerial-Ground Tracking."
             </p>
             <p class="text-zinc-500 font-mono mt-0.5">
-              Formulates coupling between altitude, measurement noise covariance ($R \propto z^2$), and camera footprint; proves estimation-optimal altitude scheduling under path curvature with 25× compute reduction via event triggering. <strong>[Accepted to ACODS 2026]</strong>
+              Derived a closed-form altitude policy for shared-camera UAV-UGV tracking, where altitude trades off localization noise ($R \propto z^2$) against lane coverage. Validated in ROS 2/Gazebo; event-triggered planning cut aerial computation by 25× at matched estimation quality. <strong>[Accepted to ACODS 2026 (presenting Dec 2026)]</strong>
+            </p>
+          </div>
+
+          <div>
+            <p class="text-zinc-900 dark:text-zinc-100 font-medium">
+              2. Santosh Tantravahi, Nirman Jaiswal, <strong>Shlok Mehndiratta</strong>, J. Leitner, Aditya Paranjape, P. B. Sujit.
+            </p>
+            <p class="italic text-zinc-700 dark:text-zinc-300">
+              "Multi-Robot Area Balancing in the Presence of Discrete Local Communication."
+            </p>
+            <p class="text-zinc-500 font-mono mt-0.5">
+              Developed a decentralized area-balancing algorithm for drone swarms under opportunistic local communication, alternating greedy and altruistic rules for fast convergence. Validated in 35+ Crazyflie flights (3–5 drones) and Gazebo/SITL wildfire missions. <strong>[Submitted to ICRA 2027]</strong>
             </p>
           </div>
         </div>
@@ -239,36 +241,36 @@ const resumeSections = [
         <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
           Technical Skills
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Programming Languages:</strong> Python, C++, MATLAB, Verilog, Assembly, JavaScript</p>
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Robotics & Simulation:</strong> ROS 2, Gazebo, NVIDIA Isaac Sim, NVIDIA Warp, Model Predictive Control, Extended Kalman Filter</p>
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Computer Vision & ML:</strong> PyTorch, PyTorch Geometric, TensorFlow, OpenCV, SLAM, Reinforcement Learning</p>
-          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Systems & Deployment:</strong> Git/GitHub, Linux/Bash, Docker, FastAPI, LaTeX, NumPy, Pandas, scikit-learn, Open3D</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Programming Languages:</strong> Python, C++, MATLAB, Verilog, Assembly</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Robotics & Simulation:</strong> ROS 2, ros2_control, Gazebo, NVIDIA Isaac Sim, Model Predictive Control (MPC), Extended Kalman Filter (EKF)</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Computer Vision & ML:</strong> PyTorch, TensorFlow, OpenCV, Visual SLAM, Reinforcement Learning</p>
+          <p><strong class="font-mono text-zinc-900 dark:text-zinc-100">Data & ML Libraries:</strong> NumPy, Pandas, scikit-learn</p>
+          <p class="sm:col-span-2"><strong class="font-mono text-zinc-900 dark:text-zinc-100">Systems & Deployment:</strong> Git/GitHub, Linux/Bash, Docker, LaTeX</p>
         </div>
       </section>
 
       <!-- Leadership & Activities -->
       <section id="co-curricular" class="space-y-3">
         <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
-          Leadership & Academic Service
+          Co-Curricular & Leadership
         </h2>
 
         <div class="space-y-2.5 text-xs text-zinc-600 dark:text-zinc-300">
           <div>
+            <strong class="text-zinc-900 dark:text-zinc-100">Computing and Networking Council, IISER Bhopal:</strong> Aug 2024 – April 2026. Vice Secretary (Aug 2024 – Sept 2025), Technical Head for Techno-Cult Festival 2025. Founded EECS Club and organized 10+ workshops on ROS, ML, and embedded systems; managed infrastructure and technical events for 1,500+ participant techno-cultural festival.
+          </div>
+          <div>
+            <strong class="text-zinc-900 dark:text-zinc-100">Google Developer Group, IISER Bhopal:</strong> Aug 2024 – Aug 2025. Web Development Lead. Directed campus platform development and mentored students in software engineering practices and collaborative development.
+          </div>
+          <div>
             <strong class="text-zinc-900 dark:text-zinc-100">Student Placement Representative (EECS Department, IISER Bhopal):</strong> Aug 2026 – Present. Connecting recruiters with graduating students, coordinating campus drives with the placement cell, and organizing technical mock interviews and resume reviews.
           </div>
           <div>
-            <strong class="text-zinc-900 dark:text-zinc-100">Computing and Networking Council (CNC), IISER Bhopal:</strong> Vice Secretary (Aug 2024 – Sept 2025), Student Advisor (Oct 2025 – Present). Led a 90-member council team, organized 10+ technical workshops and talks, and managed outreach, content planning, and student engagement across campus.
-          </div>
-          <div>
-            <strong class="text-zinc-900 dark:text-zinc-100">Annual Techno-Cultural Fest, Aarohan, IISER Bhopal:</strong> Technical Head (Nov 2024 – Mar 2025). Directed the technical team in building event web platforms and registration systems for 1,500+ attendees; managed technical logistics and led corporate sponsorship outreach for technical events.
-          </div>
-          <div>
-            <strong class="text-zinc-900 dark:text-zinc-100">Google Developer Group (GDG On Campus), IISER Bhopal:</strong> Web-Dev Lead (Aug 2024 – Aug 2025). Led development and maintenance of campus tech projects and web platforms; mentored students in collaborative software engineering and Git workflows.
+            <strong class="text-zinc-900 dark:text-zinc-100">Research Interests:</strong> Autonomous robotics and intelligent systems. Combining classical control with learning methods for real-world deployment. Multi-modal perception, robot control, and multi-agent coordination.
           </div>
           <div>
             <strong class="text-zinc-900 dark:text-zinc-100">Interests:</strong> Lawn Tennis, Cricket, Guitar.
-          </div>
         </div>
       </section>
 
@@ -330,7 +332,7 @@ const resumeSections = [
 
       <div class="pt-2 flex flex-col sm:flex-row items-center gap-2 border-t border-black/[0.06] dark:border-white/[0.08]">
         <a
-          href="/Shlok_Mehndiratta_Resume.pdf"
+          href="/docs/Shlok_Mehndiratta_Resume.pdf"
           download="Shlok_Mehndiratta_Resume.pdf"
           class="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-950 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 text-xs font-mono font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-[0_2px_8px_rgba(31,22,15,0.20)] hover:shadow-[0_4px_12px_rgba(31,22,15,0.30)]"
         >
@@ -339,7 +341,7 @@ const resumeSections = [
         </a>
 
         <a
-          href="/Shlok_Mehndiratta_Resume.pdf"
+          href="/docs/Shlok_Mehndiratta_Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           class="w-full sm:w-auto tactile-btn inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all"
@@ -362,7 +364,7 @@ const resumeSections = [
       const openModal = () => {
         // Trigger download
         const link = document.createElement('a');
-        link.href = '/Shlok_Mehndiratta_Resume.pdf';
+        link.href = '/docs/Shlok_Mehndiratta_Resume.pdf';
         link.download = 'Shlok_Mehndiratta_Resume.pdf';
         document.body.appendChild(link);
         link.click();
