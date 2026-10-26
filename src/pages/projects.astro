@@ -297,7 +297,6 @@ const certifications = [
   {
     title: "CS50's Web Programming with Python and JavaScript",
     issuer: 'Harvard University (edX)',
-    credentialId: 'Verified Certificate',
     period: '2024 – 2025',
     description: 'A hands-on software engineering program from Harvard. Covered building complete web applications from scratch, including Django backends, relational SQL databases, interactive JavaScript frontends, user authentication, automated testing, and web security.',
     skills: ['Django', 'Python', 'JavaScript', 'SQL & Django ORM', 'REST APIs', 'CI/CD & Testing', 'Web Security'],
@@ -623,21 +622,17 @@ const projectsSchema = {
               <button
                 type="button"
                 data-discipline-target={idx}
-                class={`course-nav-btn group text-left px-3.5 py-2.5 rounded-xl transition-all flex items-center justify-between border cursor-pointer ${
-                  idx === 0
-                    ? 'active bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 border-zinc-950 dark:border-zinc-100 shadow-[0_2px_8px_rgba(31,22,15,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] font-semibold'
-                    : 'text-zinc-900 dark:text-zinc-200 bg-surface-light dark:bg-surface-dark border-border-subtle shadow-[0_1px_3px_rgba(35,22,12,0.05),inset_0_1px_0_rgba(255,255,255,0.7)] hover:bg-white dark:hover:bg-white/[0.06] hover:border-border-hover hover:-translate-y-0.5'
-                }`}
+                class={`course-nav-btn group text-left px-3.5 py-2.5 rounded-xl transition-all flex items-center justify-between border cursor-pointer ${idx === 0 ? 'active' : ''}`}
               >
                 <div class="flex items-center gap-2.5 min-w-0">
-                  <span class="font-mono text-xs font-extrabold text-zinc-950 dark:text-zinc-100 select-none">
+                  <span class="course-nav-num font-mono text-xs font-bold select-none">
                     0{idx + 1}
                   </span>
                   <span class="text-xs sm:text-[13px] font-semibold truncate">
                     {cat.discipline.replace(' and ', ' & ')}
                   </span>
                 </div>
-                <span class="font-mono text-[10px] text-zinc-700 dark:text-zinc-300 font-semibold bg-black/[0.05] dark:bg-white/[0.07] px-2 py-0.5 rounded ml-2 shrink-0">
+                <span class="course-nav-badge font-mono text-[10px] font-semibold px-2 py-0.5 rounded ml-2 shrink-0">
                   {cat.courses.length}
                 </span>
               </button>
@@ -647,17 +642,17 @@ const projectsSchema = {
             <button
               type="button"
               data-discipline-target={courseworkDisciplines.length}
-              class="course-nav-btn group text-left px-3.5 py-2.5 rounded-xl transition-all flex items-center justify-between border text-zinc-900 dark:text-zinc-200 bg-surface-light dark:bg-surface-dark border-border-subtle shadow-[0_1px_3px_rgba(35,22,12,0.05),inset_0_1px_0_rgba(255,255,255,0.7)] hover:bg-white dark:hover:bg-white/[0.06] hover:border-border-hover hover:-translate-y-0.5 cursor-pointer"
+              class="course-nav-btn group text-left px-3.5 py-2.5 rounded-xl transition-all flex items-center justify-between border cursor-pointer"
             >
               <div class="flex items-center gap-2.5 min-w-0">
-                <span class="font-mono text-xs font-extrabold text-zinc-950 dark:text-zinc-100 select-none">
+                <span class="course-nav-num font-mono text-xs font-bold select-none">
                   0{courseworkDisciplines.length + 1}
                 </span>
                 <span class="text-xs sm:text-[13px] font-semibold truncate">
                   Natural Sciences & Breadth
                 </span>
               </div>
-              <span class="font-mono text-[10px] text-zinc-700 dark:text-zinc-300 font-semibold bg-black/[0.05] dark:bg-white/[0.07] px-2 py-0.5 rounded ml-2 shrink-0">
+              <span class="course-nav-badge font-mono text-[10px] font-semibold px-2 py-0.5 rounded ml-2 shrink-0">
                 {otherCourses.length}
               </span>
             </button>
@@ -796,9 +791,11 @@ const projectsSchema = {
               <h3 class="text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
                 {cert.title}
               </h3>
-              <span class="text-[10px] font-mono text-zinc-500 dark:text-zinc-400 font-semibold tracking-wider uppercase shrink-0">
-                {cert.credentialId}
-              </span>
+              {cert.credentialId && (
+                <span class="text-[10px] font-mono text-zinc-500 dark:text-zinc-400 font-semibold tracking-wider uppercase shrink-0">
+                  {cert.credentialId}
+                </span>
+              )}
             </div>
 
             <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans">
@@ -895,46 +892,9 @@ const projectsSchema = {
 
         // Update active nav button
         navButtons.forEach(function (b) {
-          b.classList.remove(
-            'active',
-            'bg-zinc-950',
-            'text-white',
-            'dark:bg-zinc-100',
-            'dark:text-zinc-950',
-            'border-zinc-950',
-            'dark:border-zinc-100',
-            'shadow-sm',
-            'font-semibold'
-          );
-          b.classList.add(
-            'text-zinc-900',
-            'dark:text-zinc-200',
-            'bg-surface-light',
-            'dark:bg-surface-dark',
-            'border-black/10',
-            'dark:border-white/[0.08]'
-          );
+          b.classList.remove('active');
         });
-
-        btn.classList.add(
-          'active',
-          'bg-zinc-950',
-          'text-white',
-          'dark:bg-zinc-100',
-          'dark:text-zinc-950',
-          'border-zinc-950',
-          'dark:border-zinc-100',
-          'shadow-sm',
-          'font-semibold'
-        );
-        btn.classList.remove(
-          'text-zinc-900',
-          'dark:text-zinc-200',
-          'bg-surface-light',
-          'dark:bg-surface-dark',
-          'border-black/10',
-          'dark:border-white/[0.08]'
-        );
+        btn.classList.add('active');
 
         // Show matching panel
         panels.forEach(function (panel) {
@@ -948,3 +908,88 @@ const projectsSchema = {
     });
   })();
 </script>
+
+<style>
+  /* Base state: unselected button */
+  .course-nav-btn {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #3f3f46;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+  :global(.dark) .course-nav-btn {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #d4d4d8;
+    box-shadow: none;
+  }
+  .course-nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.16);
+    color: #09090b;
+    transform: translateY(-1px);
+  }
+  :global(.dark) .course-nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .course-nav-num {
+    opacity: 0.6;
+    color: inherit;
+  }
+  .course-nav-badge {
+    background-color: rgba(0, 0, 0, 0.06);
+    color: inherit;
+  }
+  :global(.dark) .course-nav-badge {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: inherit;
+  }
+
+  /* Active / Selected state - High contrast, stable on hover */
+  .course-nav-btn.active {
+    background-color: #09090b !important;
+    border-color: #09090b !important;
+    color: #fafafa !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18) !important;
+    transform: none !important;
+  }
+  .course-nav-btn.active:hover {
+    background-color: #18181b !important;
+    border-color: #18181b !important;
+    color: #ffffff !important;
+  }
+  .course-nav-btn.active .course-nav-num {
+    opacity: 0.75;
+    color: #ffffff !important;
+  }
+  .course-nav-btn.active .course-nav-badge {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+  }
+
+  /* Active / Selected state in Dark mode */
+  :global(.dark) .course-nav-btn.active {
+    background-color: #f4f4f5 !important;
+    border-color: #f4f4f5 !important;
+    color: #09090b !important;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.12) !important;
+    transform: none !important;
+  }
+  :global(.dark) .course-nav-btn.active:hover {
+    background-color: #e4e4e7 !important;
+    border-color: #e4e4e7 !important;
+    color: #09090b !important;
+  }
+  :global(.dark) .course-nav-btn.active .course-nav-num {
+    opacity: 0.75;
+    color: #09090b !important;
+  }
+  :global(.dark) .course-nav-btn.active .course-nav-badge {
+    background-color: rgba(0, 0, 0, 0.12) !important;
+    color: #09090b !important;
+  }
+</style>
