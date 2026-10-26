@@ -19,107 +19,212 @@
       </h3>
       <button
         id="shortcuts-close-btn"
-        class="text-xs font-mono text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700"
+        type="button"
+        class="text-xs font-mono text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700 cursor-pointer"
+        aria-label="Close shortcuts modal"
       >
         ESC
       </button>
     </div>
 
-    <div class="mt-4 space-y-2 text-xs">
-      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Experience & Education</span>
-        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">E</kbd>
-      </div>
+    <div class="mt-4 space-y-1.5 text-xs">
+      <a
+        href="/"
+        class="flex items-center justify-between p-2 rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer group"
+      >
+        <span class="text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 font-medium">Home (Overview)</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-white/[0.1]">H</kbd>
+      </a>
 
-      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Publications & Preprints</span>
-        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">U</kbd>
-      </div>
+      <a
+        href="/experience"
+        class="flex items-center justify-between p-2 rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer group"
+      >
+        <span class="text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 font-medium">Experience & Education</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-white/[0.1]">E</kbd>
+      </a>
 
-      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Projects (Systems, Coursework, Hardware)</span>
-        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">P</kbd>
-      </div>
+      <a
+        href="/publications"
+        class="flex items-center justify-between p-2 rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer group"
+      >
+        <span class="text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 font-medium">Publications & Preprints</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-white/[0.1]">U</kbd>
+      </a>
 
-      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Notebook (Thoughts & Notes)</span>
-        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">N</kbd>
-      </div>
+      <a
+        href="/projects"
+        class="flex items-center justify-between p-2 rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer group"
+      >
+        <span class="text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 font-medium">Projects & Coursework</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-white/[0.1]">P</kbd>
+      </a>
 
-      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Archive (Lab Artifacts & Encounters)</span>
-        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">A</kbd>
-      </div>
+      <a
+        href="/notebook"
+        class="flex items-center justify-between p-2 rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer group"
+      >
+        <span class="text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 font-medium">Notebook (Essays & Notes)</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-white/[0.1]">N</kbd>
+      </a>
 
-      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Resume / CV</span>
-        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">R</kbd>
-      </div>
+      <a
+        href="/archive"
+        class="flex items-center justify-between p-2 rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer group"
+      >
+        <span class="text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 font-medium">Archive (Lab Artifacts & Moments)</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-white/[0.1]">A</kbd>
+      </a>
 
-      <div class="flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
-        <span class="text-zinc-600 dark:text-zinc-300">Toggle Theme (Light / Dark)</span>
-        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">T</kbd>
-      </div>
+      <a
+        href="/resume"
+        class="flex items-center justify-between p-2 rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer group"
+      >
+        <span class="text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 font-medium">Resume / Curriculum Vitae</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-white/[0.1]">R</kbd>
+      </a>
+
+      <button
+        id="modal-theme-toggle-btn"
+        type="button"
+        class="w-full flex items-center justify-between p-2 rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer group text-left"
+      >
+        <span class="text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 font-medium">Toggle Theme (Light / Dark)</span>
+        <kbd class="font-mono text-[11px] px-2 py-0.5 rounded bg-zinc-200/70 dark:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-white/[0.1]">T</kbd>
+      </button>
     </div>
 
-    <div class="mt-5 pt-3 border-t border-black/[0.06] dark:border-white/[0.06] text-center text-[11px] text-zinc-400 dark:text-zinc-500 font-mono">
-      Tip: Press <span class="text-zinc-700 dark:text-zinc-300 font-semibold">?</span> or <span class="text-zinc-700 dark:text-zinc-300 font-semibold">⌘K</span> anywhere on the site.
+    <div class="mt-5 pt-3 border-t border-black/[0.06] dark:border-white/[0.06] text-center text-[11px] text-zinc-500 dark:text-zinc-400 font-mono">
+      Tip: Press <span class="text-zinc-800 dark:text-zinc-200 font-semibold">?</span> or <span class="text-zinc-800 dark:text-zinc-200 font-semibold">⌘K</span> anywhere on the site.
     </div>
   </div>
 </div>
 
 <script is:inline>
-  const setupShortcuts = () => {
-    const modal = document.getElementById('shortcuts-modal');
-    const closeBtn = document.getElementById('shortcuts-close-btn');
-    const trigger = document.getElementById('cmd-k-trigger');
-
-    const openModal = () => modal?.classList.remove('hidden');
-    const closeModal = () => modal?.classList.add('hidden');
-
-    trigger?.addEventListener('click', openModal);
-    closeBtn?.addEventListener('click', closeModal);
-
-    modal?.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
-
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        if (modal?.classList.contains('hidden')) {
-          openModal();
-        } else {
-          closeModal();
-        }
-      } else if (e.key === '?' && !e.shiftKey) {
-        openModal();
-      } else if (e.key === 'Escape') {
-        closeModal();
-      } else if (!modal?.classList.contains('hidden')) {
-        const key = e.key.toLowerCase();
-        if (key === 'e') window.location.href = '/experience';
-        else if (key === 'u') window.location.href = '/publications';
-        else if (key === 'p') window.location.href = '/projects';
-        else if (key === 'n') window.location.href = '/notebook';
-        else if (key === 'a') window.location.href = '/archive';
-        else if (key === 'r') window.location.href = '/resume';
-        else if (key === 't') {
-          const isDark = document.documentElement.classList.contains('dark');
-          if (isDark) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-          } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-          }
-        }
+  (() => {
+    const toggleTheme = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
       }
-    });
-  };
+    };
 
-  setupShortcuts();
-  document.addEventListener('astro:after-swap', setupShortcuts);
+    const bindModalEvents = () => {
+      const modal = document.getElementById('shortcuts-modal');
+      const closeBtn = document.getElementById('shortcuts-close-btn');
+      const trigger = document.getElementById('cmd-k-trigger');
+      const themeBtn = document.getElementById('modal-theme-toggle-btn');
+
+      if (trigger && !trigger.dataset.shortcutBound) {
+        trigger.dataset.shortcutBound = 'true';
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          modal?.classList.remove('hidden');
+        });
+      }
+
+      if (closeBtn && !closeBtn.dataset.shortcutBound) {
+        closeBtn.dataset.shortcutBound = 'true';
+        closeBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          modal?.classList.add('hidden');
+        });
+      }
+
+      if (modal && !modal.dataset.shortcutBound) {
+        modal.dataset.shortcutBound = 'true';
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.classList.add('hidden');
+        });
+      }
+
+      if (themeBtn && !themeBtn.dataset.shortcutBound) {
+        themeBtn.dataset.shortcutBound = 'true';
+        themeBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          toggleTheme();
+        });
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bindModalEvents);
+    } else {
+      bindModalEvents();
+    }
+    document.addEventListener('astro:page-load', bindModalEvents);
+    document.addEventListener('astro:after-swap', bindModalEvents);
+
+    // Global Keydown Handler: Registered once on window to function everywhere
+    if (!window.__globalShortcutsAttached) {
+      window.__globalShortcutsAttached = true;
+
+      window.addEventListener('keydown', (e) => {
+        // Protect form inputs and editable elements
+        const activeEl = document.activeElement;
+        const tagName = activeEl?.tagName;
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tagName) || activeEl?.isContentEditable) {
+          return;
+        }
+
+        const modal = document.getElementById('shortcuts-modal');
+
+        // Cmd+K or Ctrl+K to toggle shortcuts modal
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          if (modal) {
+            modal.classList.toggle('hidden');
+          }
+          return;
+        }
+
+        // Never hijack native browser system shortcuts (Cmd+R, Ctrl+P, Alt+Left, etc.)
+        if (e.metaKey || e.ctrlKey || e.altKey) {
+          return;
+        }
+
+        // Question mark ('?' or Shift+'/') toggles shortcuts modal
+        if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
+          e.preventDefault();
+          if (modal) {
+            modal.classList.toggle('hidden');
+          }
+          return;
+        }
+
+        // Escape closes modal if open
+        if (e.key === 'Escape') {
+          if (modal && !modal.classList.contains('hidden')) {
+            e.preventDefault();
+            modal.classList.add('hidden');
+          }
+          return;
+        }
+
+        // Site-wide navigation & actions throughout the entire website
+        const key = e.key.toLowerCase();
+        if (key === 'h') {
+          window.location.href = '/';
+        } else if (key === 'e') {
+          window.location.href = '/experience';
+        } else if (key === 'u') {
+          window.location.href = '/publications';
+        } else if (key === 'p') {
+          window.location.href = '/projects';
+        } else if (key === 'n') {
+          window.location.href = '/notebook';
+        } else if (key === 'a') {
+          window.location.href = '/archive';
+        } else if (key === 'r') {
+          window.location.href = '/resume';
+        } else if (key === 't') {
+          toggleTheme();
+        }
+      });
+    }
+  })();
 </script>

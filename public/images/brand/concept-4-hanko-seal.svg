@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" fill="none">
+  <!-- Japanese / Architect Hanko Seal -->
+  <rect x="5.5" y="5.5" width="29" height="29" rx="6" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="20" y1="8" x2="20" y2="32" stroke="currentColor" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="2 2"/>
+  <text x="12.5" y="25" text-anchor="middle" font-family="'Newsreader', serif" font-style="italic" font-size="14" font-weight="600" fill="currentColor">S</text>
+  <text x="27.5" y="25" text-anchor="middle" font-family="'Newsreader', serif" font-style="italic" font-size="14" font-weight="600" fill="currentColor">M</text>
+</svg>

@@ -1,0 +1,154 @@
+# Shlok Mehndiratta: Comprehensive Academic & Research Portfolio
+
+This document contains the complete, canonical text of the personal and research portfolio of Shlok Mehndiratta, formatted for Large Language Models (LLMs), answer engines, and retrieval-augmented generation (RAG) systems.
+
+---
+
+## 1. Biography and Identity
+
+- **Name:** Shlok Mehndiratta
+- **Current Position:** Senior Undergraduate Student (BS in Electrical Engineering & Computer Science)
+- **Institution:** Indian Institute of Science Education and Research (IISER) Bhopal, India
+- **Department:** Department of Electrical Engineering & Computer Science (EECS)
+- **Cumulative Performance Index (CPI):** 8.87 / 10.0
+- **Expected Graduation:** May 2027
+- **Future Goals:** Aspiring MS/PhD researcher in robotics and autonomous systems.
+- **Institutional Email:** shlokm23@iiserb.ac.in
+- **Portfolio Website:** https://shlokmehndiratta.me
+- **Verified External Profiles:**
+  - GitHub: https://github.com/shlok-mehndiratta
+  - LinkedIn: https://linkedin.com/in/shlok-mehndiratta
+  - Google Scholar: https://scholar.google.com
+  - X / Twitter: https://x.com/ShlokMehndiratt
+
+### Narrative Summary
+Shlok Mehndiratta is an undergraduate researcher with a background spanning classical control theory, state estimation, and machine learning methods. His current investigations center on aerial robotics, decentralized multi-robot coordination, and dexterous manipulation. A recurring focus in his work is resolving the friction between algorithmic abstractions and physical hardware limitations: sensor noise, communication latency, field-of-view limits, contact dynamics, and actuator saturation.
+
+---
+
+## 2. Research Appointments and Laboratory Experience
+
+### Research Intern | Robotics Research Center (RRC), IIIT Hyderabad
+- **Duration:** April 2026 – Present
+- **Faculty Advisor:** Dr. Spandan Roy
+- **Research Topic:** Synthetic Simulation & Vision-Based Grasp Estimation for Dexterous Robot Hands (16-DoF LEAP Hand)
+- **Core Contributions:**
+  1. Automated Data Pipeline: Developed a synthetic multi-view RGB-D and contact heatmap generation pipeline across multi-object clutter scenes, structured into high-throughput HDF5 files.
+  2. Physics Simulation: Evaluated stable robotic hand grasping in NVIDIA Isaac Sim and NVIDIA Warp, rendering dynamic scenes with physically based lighting and sensor noise models to match laboratory camera feeds.
+  3. Render Pipeline Optimization: Enhanced GPU throughput by batching scenes and memory-caching 3D asset representations.
+  4. Grasp Affordance Learning: Trained neural network architectures on synthetic datasets to predict multi-finger approach poses and 3D contact fields on complex objects.
+- **Core Technologies:** Python, PyTorch, 16-DoF LEAP Hand, NVIDIA Isaac Sim, NVIDIA Warp, HDF5, BlenderProc.
+
+### Undergraduate Research Student | MOON Lab, IISER Bhopal
+- **Duration:** May 2026 – Present
+- **Faculty Advisor:** Dr. P. B. Sujit
+- **Research Topic:** Vision-Based Autonomous Navigation and Swarm Coordination
+- **Core Contributions:**
+  1. Trajectory Optimization: Formulated flight trajectory optimization algorithms for micro aerial vehicles that actively enforce camera field-of-view constraints during target tracking and obstacle avoidance.
+  2. Hardware Testbed Assembly: Assembled physical Crazyflie micro quadrotors with custom radio communication hardware and integrated them with an OptiTrack optical motion capture arena via ROS 2 for millimeter-level state localization.
+  3. Decentralized Swarms: Analyzed decentralized algorithms enabling multi-drone teams to achieve dynamic coverage and balanced patrol duties under intermittent communication bandwidth.
+- **Core Technologies:** ROS 2, Crazyflie Quadrotors, OptiTrack Mocap, Trajectory Planning, C++, Python.
+
+### Undergraduate Research Student | MuSic Lab, IISER Bhopal
+- **Duration:** September 2025 – July 2026
+- **Faculty Advisor:** Dr. Arijit Sen
+- **Research Topic:** COAST: Perception-Aware Aerial-Ground Tracking in GPS-Denied Environments
+- **Core Contributions:**
+  1. Optimal Altitude Policy: Modeled camera measurement noise scaling with UAV flight altitude, deriving and proving that the estimation-optimal altitude equals the lowest height that keeps the track search region inside the camera's field of view.
+  2. Belief-Space Control: Developed a belief-space Model Predictive Controller (MPC) for the ground vehicle coupled with an event-triggered aerial planner that only re-computes UAV trajectories when tracking uncertainty exceeds threshold bounds, achieving a 25x reduction in computational load without loss of tracking accuracy.
+  3. Gazebo & ROS 2 Validation: Implemented modular ROS 2 nodes for lane segmentation, ArUco fiducial marker pose estimation, and Extended Kalman Filter (EKF) sensor fusion.
+- **Publication:** Accepted at ACODS 2026.
+- **Core Technologies:** ROS 2, Gazebo, Model Predictive Control (MPC), Extended Kalman Filter (EKF), Computer Vision, Python.
+
+---
+
+## 3. Publications and Preprints
+
+### Publication 1: COAST: Perception-Aware Aerial-Ground Tracking
+- **Title:** COAST: Coupled-Altitude Shared-camera Tracking for Autonomous Ground Vehicles
+- **Authors:** Shlok Mehndiratta, Dr. Arijit Sen
+- **Status:** Accepted
+- **Venue:** Advances in Control & Optimization of Dynamical Systems (ACODS 2026)
+- **Year:** 2026
+- **Abstract:** In GPS-denied environments where a downward-facing unmanned aerial vehicle (UAV) camera serves as the ground robot’s only tracking sensor, flight altitude creates a fundamental trade-off: flying higher expands the visual coverage area but degrades resolution and increases measurement noise. We treat UAV altitude as an active control variable, analytically deriving an optimal altitude policy that balances this coverage-accuracy tradeoff. We integrate this policy into a belief-space Model Predictive Control architecture with event-triggered replanning, cutting aerial replanning computations by 25x while maintaining millimeter-accurate ground vehicle tracking.
+- **Repository:** https://github.com/shlok-mehndiratta/COAST-Code
+
+### Publication 2: Decentralized Multi-Agent Area Coverage
+- **Title:** Decentralized Coverage Control for Heterogeneous Aerial-Ground Swarms under Intermittent Communication
+- **Authors:** Shlok Mehndiratta, Dr. P. B. Sujit
+- **Status:** Under Review
+- **Venue:** IEEE International Conference on Robotics and Automation (ICRA 2027)
+- **Year:** 2027
+- **Abstract:** Investigates decentralized Voronoi-based coverage algorithms for collaborative teams of aerial and ground robots operating in environments with intermittent communication links and non-convex obstacle distributions.
+
+---
+
+## 4. Open Source Contributions
+
+### ros2_control Framework (Robot Operating System 2)
+- **Repository:** https://github.com/ros-controls/ros2_control
+- **Role:** Upstream Contributor (5 merged / reviewed Pull Requests)
+- **Period:** August 2024 – Present
+- **Technical Summary:** Contributed to ROS 2's core real-time robot controller execution framework. Migrated controller mutex locks to POSIX priority-inheritance mutexes (`PTHREAD_PRIO_INHERIT`) to resolve priority inversion and eliminate latency spikes in 1 kHz hardware loops. Authored unit and integration test suites validating controller lifecycle state transitions and error recovery under simulated hardware faults.
+- **Keywords:** C++20, ROS 2, Real-Time Systems, Thread Safety, POSIX RT Mutexes, Controller Manager.
+
+---
+
+## 5. Engineering Projects
+
+1. **3D Point Cloud Segmentation with Graph Neural Networks**
+   - *Period:* Dec 2024 – Jan 2025
+   - *Laboratory:* GeoAI4Cities Lab (Advisor: Dr. Vaibhav Kumar)
+   - *Summary:* Modeled large-scale 3D LiDAR point clouds as localized spatial graphs connecting points to nearest geometric neighbors. Applied RANSAC geometric filtering to suppress sparse LiDAR noise and trained graph neural networks in PyTorch Geometric, demonstrating that local neighborhood topology yields cleaner 3D object boundaries than point-by-point classifiers.
+
+2. **Digital Logic Design & Bare-Metal AVR Microcontroller**
+   - *Period:* Aug 2024 – Dec 2024
+   - *Laboratory:* Hardware Laboratory, IISER Bhopal
+   - *Summary:* Programmed the ATmega328P microcontroller in bare-metal AVR assembly with direct hardware register manipulation, bypassing external runtime libraries. Designed synchronous digital logic circuits (counters, decoders, multiplexers) on breadboards to drive displays with cycle-accurate timing.
+
+3. **Mobile Robot Tracking with MPC and Kalman Filter**
+   - *Period:* 2025 – 2026
+   - *Summary:* Simulated a two-wheeled differential drive robot in ROS 2 and Gazebo. Fused noisy simulated camera and IMU measurements with an Extended Kalman Filter and developed Model Predictive Control to steer around sharp trajectories without slipping, respecting wheel torque limits.
+
+4. **Maritime Oil Spill Detection with Satellite Radar**
+   - *Period:* 2024 (Smart India Hackathon)
+   - *Summary:* Automated maritime monitoring system integrating live AIS vessel tracking with European Space Agency Sentinel-1 Synthetic Aperture Radar (SAR) imagery to detect and verify ocean surface oil slicks day or night through cloud cover.
+
+5. **Full-Stack Web Systems Suite (Harvard CS50 Web)**
+   - *Period:* Summer 2024
+   - *Summary:* Built five full-stack web applications from first principles using Django, SQL databases, and asynchronous JavaScript, emphasizing relational schema invariants and client-server race condition resilience.
+
+---
+
+## 6. Technical Skills Matrix
+
+- **Programming Languages:** Python, C++, C, MATLAB, Verilog, AVR Assembly, JavaScript, SQL, HTML/CSS.
+- **Robotics & Control Frameworks:** ROS 2 (Humble/Iron), Gazebo, NVIDIA Isaac Sim, NVIDIA Warp, Model Predictive Control (MPC), Extended Kalman Filter (EKF), OptiTrack Motion Capture, Crazyflie Swarms.
+- **Machine Learning & Perception:** PyTorch, PyTorch Geometric, OpenCV, TensorFlow, Open3D, RANSAC, SLAM, Reinforcement Learning.
+- **Systems & Hardware Tools:** Linux/Bash, Git/GitHub, Docker, FastAPI, ATmega328P, ESP32, Spartan-6 FPGA, LaTeX.
+
+---
+
+## 7. Academic Coursework (IISER Bhopal)
+
+Shlok has completed 47 semester-wise academic courses, including:
+- **Robotics & Control:** Control Systems (ECS323), System Identification, Digital Signal Processing, State-Space Control.
+- **Computer Science & Algorithms:** Data Structures & Algorithms, Computer Networks, Operating Systems, Computer Architecture, Database Management.
+- **Mathematics & Foundations:** Linear Algebra, Multivariable Calculus, Ordinary & Partial Differential Equations, Probability & Statistics, Numerical Methods, Complex Analysis.
+- **Physics & Electronics:** Digital Circuits and Systems, Analog Electronics, Microprocessors & Microcontrollers, Classical Mechanics, Electrodynamics, Quantum Physics.
+
+---
+
+## 8. Verifiable Citation Format
+
+To cite Shlok Mehndiratta or his accepted research:
+
+```bibtex
+@inproceedings{mehndiratta2026coast,
+  title={COAST: Coupled-Altitude Shared-camera Tracking for Autonomous Ground Vehicles},
+  author={Mehndiratta, Shlok and Sen, Arijit},
+  booktitle={Advances in Control & Optimization of Dynamical Systems (ACODS)},
+  year={2026},
+  url={https://shlokmehndiratta.me/publications}
+}
+```

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7f2ea"/>
+      <stop offset="100%" stop-color="#efe7da"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#241b14" stroke-width="0.5" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+
+  <!-- Outer Elegant Frame -->
+  <rect x="40" y="40" width="1120" height="595" rx="16" fill="none" stroke="#241b14" stroke-width="1" stroke-opacity="0.12"/>
+  <rect x="52" y="52" width="1096" height="571" rx="12" fill="none" stroke="#241b14" stroke-width="0.5" stroke-dasharray="4 4" stroke-opacity="0.15"/>
+
+  <!-- Corner Technical Markers -->
+  <path d="M 40 60 L 40 40 L 60 40" fill="none" stroke="#241b14" stroke-width="2" stroke-opacity="0.3"/>
+  <path d="M 1160 60 L 1160 40 L 1140 40" fill="none" stroke="#241b14" stroke-width="2" stroke-opacity="0.3"/>
+  <path d="M 40 615 L 40 635 L 60 635" fill="none" stroke="#241b14" stroke-width="2" stroke-opacity="0.3"/>
+  <path d="M 1160 615 L 1160 635 L 1140 635" fill="none" stroke="#241b14" stroke-width="2" stroke-opacity="0.3"/>
+
+  <!-- Center Icon Plate -->
+  <g transform="translate(600, 290)">
+    <circle r="56" fill="#fbf8f0" stroke="#241b14" stroke-width="1" stroke-opacity="0.15"/>
+    <!-- Minimalist Camera / Image Icon -->
+    <path d="M -24 -10 L -16 -20 L 16 -20 L 24 -10 L 32 -10 C 35 -10 37 -8 37 -5 L 37 20 C 37 23 35 25 32 25 L -32 25 C -35 25 -37 23 -37 20 L -37 -5 C -37 -8 -35 -10 -32 -10 Z" fill="none" stroke="#786654" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="0" cy="7" r="12" fill="none" stroke="#786654" stroke-width="2"/>
+    <circle cx="22" cy="-2" r="3" fill="#786654"/>
+  </g>
+
+  <!-- Typography Labels -->
+  <text x="600" y="390" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#241b14" letter-spacing="0.5">
+    Article Image Template
+  </text>
+  <text x="600" y="420" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="#786654" letter-spacing="1">
+    [ 1200 × 675 // REPLACE WITH YOUR PHOTO OR DIAGRAM ]
+  </text>
+  <text x="600" y="448" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#998774">
+    Supports PNG, JPG, WebP, and SVG files in /public/images/notebook/
+  </text>
+</svg>

@@ -3,6 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import StreamNav from '../components/StreamNav.astro';
 import KeyboardShortcutsModal from '../components/KeyboardShortcutsModal.astro';
+import BreathingAmbientBackground from '../components/BreathingAmbientBackground.astro';
 import '../styles/global.css';
 
 interface SectionItem {
@@ -15,17 +16,137 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  tags?: string[];
   sections?: SectionItem[];
+  schema?: Record<string, any>;
 }
 
 const {
-  title = 'Shlok Mehndiratta | EECS @ IISER Bhopal',
-  description = 'Personal website, research portfolio, and digital archive of Shlok Mehndiratta. Senior undergraduate in EECS at IISER Bhopal.',
+  title = 'Shlok Mehndiratta | Robotics & Autonomous Systems @ IISER Bhopal',
+  description = 'Personal website and research portfolio of Shlok Mehndiratta. Senior undergraduate in EECS at IISER Bhopal investigating autonomous drone swarms, perception-aware tracking, and dexterous robot manipulation.',
   image = '/og-image.png',
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  tags = [],
   sections,
+  schema,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://shlokmehndiratta.me');
+const siteUrl = 'https://shlokmehndiratta.me';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteUrl);
+const ogImageURL = new URL(image, Astro.site || siteUrl).toString();
+
+// Generate dynamic breadcrumb items based on current path
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbItems = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: 'Home',
+    item: siteUrl,
+  },
+  ...pathSegments.map((segment, index) => {
+    const itemUrl = `${siteUrl}/${pathSegments.slice(0, index + 1).join('/')}`;
+    const formattedName = segment
+      .split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+    return {
+      '@type': 'ListItem',
+      position: index + 2,
+      name: formattedName,
+      item: itemUrl,
+    };
+  }),
+];
+
+// Base Structured Data (Person & WebSite entities)
+const personSchema = {
+  '@type': 'Person',
+  '@id': `${siteUrl}/#person`,
+  name: 'Shlok Mehndiratta',
+  givenName: 'Shlok',
+  familyName: 'Mehndiratta',
+  url: siteUrl,
+  image: `${siteUrl}/shlok-portrait.jpg`,
+  jobTitle: 'Robotics & Autonomous Systems Researcher',
+  description: 'Senior EECS undergraduate researcher at IISER Bhopal investigating autonomous drone swarms, perception-aware aerial-ground tracking, and synthetic simulation for dexterous manipulation.',
+  email: 'mailto:shlokm23@iiserb.ac.in',
+  worksFor: [
+    {
+      '@type': 'EducationalOrganization',
+      name: 'Indian Institute of Science Education and Research (IISER) Bhopal',
+      url: 'https://www.iiserb.ac.in'
+    },
+    {
+      '@type': 'ResearchOrganization',
+      name: 'Robotics Research Center (RRC), IIIT Hyderabad',
+      url: 'https://robotics.iiit.ac.in'
+    }
+  ],
+  alumniOf: {
+    '@type': 'EducationalOrganization',
+    name: 'IISER Bhopal'
+  },
+  sameAs: [
+    'https://github.com/shlok-mehndiratta',
+    'https://linkedin.com/in/shlok-mehndiratta',
+    'https://scholar.google.com',
+    'https://x.com/ShlokMehndiratt'
+  ],
+  knowsAbout: [
+    'Robotics',
+    'Aerial Robotics',
+    'Autonomous Drone Swarms',
+    'Model Predictive Control (MPC)',
+    'State Estimation',
+    'Extended Kalman Filter (EKF)',
+    'Robot Operating System (ROS 2)',
+    'Computer Vision',
+    'Dexterous Robot Manipulation',
+    '16-DoF LEAP Hand',
+    'Crazyflie Micro Quadrotors',
+    'OptiTrack Motion Capture',
+    'NVIDIA Isaac Sim',
+    'NVIDIA Warp',
+    'Graph Neural Networks',
+    'Bare-Metal AVR Assembly'
+  ]
+};
+
+const websiteSchema = {
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  url: siteUrl,
+  name: 'Shlok Mehndiratta',
+  description: 'Research portfolio, publications, and engineering projects of Shlok Mehndiratta.',
+  publisher: {
+    '@id': `${siteUrl}/#person`
+  },
+  inLanguage: 'en-US'
+};
+
+const schemaGraph: any[] = [personSchema, websiteSchema];
+
+if (pathSegments.length > 0) {
+  schemaGraph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbItems,
+  });
+}
+
+if (schema) {
+  schemaGraph.push(schema);
+}
+
+const fullSchemaJson = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': schemaGraph,
+});
 ---
 
 <!doctype html>
@@ -38,49 +159,54 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://shlokmeh
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Shlok Mehndiratta" />
-    <meta name="keywords" content="Shlok Mehndiratta, IISER Bhopal, EECS, Signal Processing, Graph Neural Networks, State Estimation, Convex Optimization, Research" />
+    <meta
+      name="keywords"
+      content="Shlok Mehndiratta, Robotics Researcher, Aerial Robotics, Autonomous Drone Swarms, Crazyflie Quadrotors, Model Predictive Control, MPC, Extended Kalman Filter, EKF, State Estimation, Computer Vision, Dexterous Robot Manipulation, LEAP Hand, ROS 2, NVIDIA Isaac Sim, NVIDIA Warp, Graph Neural Networks, Bare-Metal AVR, IISER Bhopal, IIIT Hyderabad Robotics Research Center, ACODS 2026, ICRA 2027"
+    />
+
+    <!-- Search Engine & Web Crawler Directives -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- AEO (Answer Engine Optimization) & AI Agent Discovery -->
+    <link rel="alternate" type="text/markdown" title="LLM Context (llms.txt)" href="/llms.txt" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
     <!-- Open Graph / Meta -->
-    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Shlok Mehndiratta" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:secure_url" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:locale" content="en_US" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    {tags.map((tag) => <meta property="article:tag" content={tag} />)}
 
-    <!-- Twitter -->
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ShlokMehndiratt" />
+    <meta name="twitter:creator" content="@ShlokMehndiratt" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={ogImageURL} />
 
-    <!-- JSON-LD Structured Data for Google Scholar & Web Indexing -->
-    <script type="application/ld+json" is:inline>
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Shlok Mehndiratta",
-        "url": "https://shlokmehndiratta.me",
-        "jobTitle": "Undergraduate Researcher in EECS",
-        "worksFor": {
-          "@type": "EducationalOrganization",
-          "name": "Indian Institute of Science Education and Research (IISER) Bhopal"
-        },
-        "alumniOf": {
-          "@type": "EducationalOrganization",
-          "name": "IISER Bhopal"
-        },
-        "email": "mailto:shlok@iiserb.ac.in",
-        "sameAs": [
-          "https://github.com/shlokmehndiratta",
-          "https://scholar.google.com",
-          "https://linkedin.com/in/shlokmehndiratta"
-        ]
-      }
-    </script>
+    <!-- JSON-LD Structured Data Graph -->
+    <script type="application/ld+json" is:inline set:html={fullSchemaJson} />
 
     <!-- Anti-FOUC Theme Initialization Script -->
     <script is:inline>
       const getInitialTheme = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const themeParam = urlParams.get('theme');
+        if (themeParam === 'light' || themeParam === 'dark') {
+          return themeParam;
+        }
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
           return savedTheme;
@@ -96,25 +222,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://shlokmeh
       }
     </script>
   </head>
-  <body class="bg-canvas-light dark:bg-canvas-dark text-zinc-900 dark:text-zinc-100 flex flex-col min-h-screen selection:bg-black/10 selection:text-black dark:selection:bg-white/15 dark:selection:text-white antialiased relative">
-    <!-- Ambient Atmospheric Canvas (Concept 1: Tactical Dot Matrix + Concept 2: Glacial Harmonic Wash) -->
-    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none" aria-hidden="true">
-      <!-- Concept 2: Glacial Harmonic Ambient Wash (Top-Right Celestial Bloom) -->
-      <div class="glacial-wash-top"></div>
+  <body class="bg-canvas-light dark:bg-canvas-dark text-zinc-900 dark:text-zinc-100 flex flex-col min-h-screen selection:bg-zinc-800/15 selection:text-zinc-900 dark:selection:bg-white/20 dark:selection:text-white antialiased relative overflow-x-hidden">
+    <!-- Specular Apex Horizon Filament (Subtle 1px edge light at top of viewport) -->
+    <div class="pointer-events-none fixed top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-black/15 dark:via-white/20 to-transparent z-50" aria-hidden="true"></div>
 
-      <!-- Concept 2: Sub-Harmonic Grounding (Mid/Bottom-Left Soft Counter-Balance) -->
-      <div class="glacial-wash-bottom"></div>
-
-      <!-- Concept 1: Tactical Astrolabe Coordinate Dot Matrix Grid -->
-      <div class="absolute inset-0 bg-dot-matrix"></div>
-    </div>
+    <!-- Dark Mode: Breathing Ambient Aurora / Living Canvas -->
+    <BreathingAmbientBackground />
 
     <Header />
 
     {sections && sections.length > 0 && <StreamNav sections={sections} />}
 
-    <!-- Main Container -->
-    <div class="relative z-10 flex-grow w-full max-w-4xl lg:max-w-[960px] xl:max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8 xl:translate-x-6">
+    <!-- Main Centered Container (Expanded to max-w-5xl for wider, airy layout) -->
+    <div class="relative z-10 flex-grow w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8">
       <main class="w-full pt-20 sm:pt-28 pb-16 sm:pb-24">
         <slot />
       </main>

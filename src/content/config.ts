@@ -25,10 +25,12 @@ const notebookCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     publishedDate: z.date(),
-    type: z.enum(['deep-dive', 'heuristic', 'paper-note', 'bookshelf']).default('deep-dive'),
+    type: z.enum(['workshop', 'lab-story', 'deep-dive', 'experience', 'reading', 'essay', 'thought', 'book-summary', 'paper-note', 'bookshelf']).default('experience'),
     readTime: z.string().default('5 min read'),
     summary: z.string(),
     tags: z.array(z.string()).default([]),
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });

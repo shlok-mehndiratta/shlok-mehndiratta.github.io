@@ -7,365 +7,455 @@ const educationData = {
   period: 'August 2023 – Present',
   expectedGrad: 'May 2027',
   cpi: '8.87 / 10.0',
-  usEquivalent: '3.55+ / 4.0',
+  normalizedCpi: '3.55 / 4.0',
+  department: 'Department of Electrical Engineering & Computer Science',
   location: 'Bhopal, Madhya Pradesh, India',
-  schooling: [
-    { exam: 'CBSE Class XII (Senior Secondary)', score: '95.8%', year: '2023', place: 'Roorkee, India' },
-    { exam: 'CBSE Class X (Secondary)', score: '96.8%', year: '2021', place: 'Roorkee, India' },
+};
+
+const schoolingData = {
+  board: 'Central Board of Secondary Education (CBSE)',
+  location: 'Roorkee, Uttarakhand, India',
+  records: [
+    { exam: 'Class XII (Senior Secondary)', score: '95.8%', year: '2023' },
+    { exam: 'Class X (Secondary School)', score: '96.8%', year: '2021' },
   ],
 };
 
 const researchExperience = [
   {
+    id: 'rrc-iiit-hyderabad',
     role: 'Research Intern',
     organization: 'Robotics Research Center (RRC), IIIT Hyderabad',
     advisor: 'Dr. Spandan Roy',
     period: 'April 2026 – Present',
-    projectTitle: 'Learning Visual Contact Estimation from Photorealistic Synthetic Data',
-    description: 'Building a high-fidelity synthetic data engine to supervise 3D contact distribution prediction directly from single-view and multi-view camera imagery for dexterous manipulation.',
+    projectTitle: 'Synthetic Data & Grasp Estimation for Dexterous Robot Hands',
+    description: 'Working on synthetic simulation and vision-based grasp estimation for the 16-DoF LEAP Hand. Because physical robot hand experiments are slow to collect, we generate synthetic training data with camera images and contact maps to train grasping policies.',
     contributions: [
       {
-        title: 'GPU-Accelerated Physics Engine',
-        desc: 'Engineered high-throughput simulation in NVIDIA Warp and BlenderProc to generate dense multi-view RGB, segmentation, and 3D contact/SDF ground truth.',
+        title: 'Synthetic Data Generation',
+        desc: 'Built an automated pipeline generating synthetic multi-view RGB-D images and contact heatmaps for multi-object scenes, saved into structured HDF5 files.',
       },
       {
-        title: 'Vision-Conditioned Estimation',
-        desc: 'Trained neural representations (ResNet/PointNet) to predict continuous 3D surface contact manifolds directly from camera imagery for downstream grasp generation.',
+        title: 'Physics & Sensor Simulation',
+        desc: 'Tested stable hand grasps in simulation, rendering scenes with path-traced lighting and sensor noise to closely match real camera feeds.',
       },
       {
-        title: 'Sim-to-Real Hardware Transfer',
-        desc: 'Deploying neural policies for physical robot transfer on 16-DoF LEAP Hand platforms across multi-GPU compute clusters.',
+        title: 'Pipeline Batching & Caching',
+        desc: 'Improved rendering throughput across GPUs by organizing batch scenes and caching 3D asset files in memory to avoid repeated loading.',
+      },
+      {
+        title: 'Grasp Affordance Learning',
+        desc: 'Trained neural models on simulated data to predict hand approach poses and contact points for grasping objects in cluttered scenes.',
       },
     ],
-    skills: ['NVIDIA Warp', 'BlenderProc', 'PyTorch', '16-DoF LEAP Hand', '3D Contact / SDF', 'Sim-to-Real'],
+    skills: ['Python', 'PyTorch', 'Robot Manipulation', '16-DoF LEAP Hand', 'Simulation', 'HDF5'],
   },
   {
+    id: 'moon-lab',
     role: 'Undergraduate Research Student',
     organization: 'MOON Lab, IISER Bhopal',
     advisor: 'Dr. P. B. Sujit',
     period: 'May 2026 – Present',
-    projectTitle: 'Vision-Based Autonomous Navigation and Swarm Coordination',
-    description: 'Formulating spherical coordinate vision planning and multi-agent coordination algorithms, validating autonomous flight policies across physical Crazyflie quadrotors and indoor motion capture arenas.',
+    projectTitle: 'Autonomous Drone Navigation & Multi-Agent Swarms',
+    description: 'Working on autonomous navigation and coordination for small drone teams, testing algorithms in simulation and on physical Crazyflie quadrotors in a motion capture arena.',
     contributions: [
       {
-        title: 'Spherical Vision Planning',
-        desc: 'Formulated vision-space spherical trajectory generation for micro aerial vehicles (MAVs), handling active target tracking and dynamic obstacle avoidance in ROS 2.',
+        title: 'Camera-Aware Flight Planning',
+        desc: 'Developed trajectory planning algorithms that keep targets in the drone camera’s view while avoiding obstacles along the flight path.',
       },
       {
-        title: 'Hardware Arena & State Estimation',
-        desc: 'Assembled micro quadrotor flight hardware and configured OptiTrack optical motion capture integration with ROS 2 for millimeter-precision localization.',
+        title: 'Drone Assembly & Arena Integration',
+        desc: 'Assembled Crazyflie quadrotors and integrated an OptiTrack motion capture system with ROS 2 for indoor position feedback during flight experiments.',
       },
       {
-        title: 'Decentralized Swarm Coordination',
-        desc: 'Investigating persistent area coverage and dynamic partition balancing under intermittent, discrete inter-agent communication constraints.',
+        title: 'Swarm Coordination',
+        desc: 'Investigating decentralized algorithms for drone teams to divide and cover search areas efficiently under limited communication.',
       },
     ],
-    skills: ['ROS 2', 'OptiTrack Mocap', 'Crazyflie Swarm', 'Spherical Vision Planning', 'C++', 'Python'],
+    skills: ['ROS 2', 'Crazyflie Swarms', 'OptiTrack Mocap', 'Trajectory Planning', 'C++', 'Python'],
   },
   {
+    id: 'music-lab',
     role: 'Undergraduate Research Student',
     organization: 'MuSic Lab, IISER Bhopal',
     advisor: 'Dr. Arijit Sen',
     period: 'Sept 2025 – July 2026',
-    projectTitle: 'Perception-Aware Altitude Optimization for Aerial-Ground Tracking',
-    description: 'Formulated the altitude-coverage-resolution trade-off in shared-camera UAV-UGV tracking systems, developing closed-form altitude scheduling and constraint-aware control balancing camera field-of-view against ground resolution.',
+    projectTitle: 'COAST: Perception-Aware Aerial-Ground Tracking',
+    description: 'In GPS-denied environments where a drone’s camera acts as the eyes for a ground robot, flying higher gives a wider view of the track but makes camera measurements noisier. We analyzed this trade-off and derived an optimal flight altitude policy to keep the ground robot tracking smoothly.',
     contributions: [
       {
-        title: 'Perception-Coupled Altitude Scheduling',
-        desc: 'Derived closed-form altitude scheduling balancing camera field-of-view against sensor noise covariance scaling (R ∝ z²) in shared-camera tracking.',
+        title: 'Optimal Altitude Analysis',
+        desc: 'Modeled how camera noise increases with altitude, and showed that the best flight altitude is the lowest height that keeps the track search area in view.',
       },
       {
-        title: 'Belief-Space MPC & Triggering',
-        desc: 'Built a belief-space ground controller with an event-triggered aerial planner, cutting compute by 25× while preserving estimation bounds.',
+        title: 'Ground Control & Event-Triggered Planning',
+        desc: 'Implemented Model Predictive Control on the ground robot and an event-triggered planner on the drone that recalculates paths only when needed, cutting computation by 25×.',
       },
       {
-        title: 'Full-System Gazebo Testbed',
-        desc: 'Engineered unified ROS 2/Gazebo simulation testbed across variable terrain curvature and realistic sensor noise regimes.',
+        title: 'ROS 2 & Gazebo Simulation',
+        desc: 'Built the simulation environment with lane detection, marker tracking, and Kalman filtering, verifying the altitude policy across tracks with different curvatures.',
       },
     ],
-    skills: ['Belief-Space MPC', 'Extended Kalman Filter', 'ROS 2', 'Gazebo', 'Event-Triggered Planning'],
+    paperLink: 'https://github.com/shlok-mehndiratta/COAST-Code',
+    paperLinkLabel: 'COAST Open-Source Code (GitHub) ↗',
+    skills: ['ROS 2', 'Gazebo', 'Model Predictive Control', 'Kalman Filter', 'Computer Vision', 'Python'],
   },
   {
+    id: 'geoai4cities',
     role: 'Student Research Intern',
     organization: 'GeoAI4Cities Lab',
-    advisor: 'Research Group',
+    advisor: 'Dr. Vaibhav Kumar',
     period: 'Dec 2024 – Jan 2025',
-    projectTitle: 'Graph-Based ML Pipeline for 3D Point Cloud Segmentation',
-    description: 'Developed structured graph-based representations for segmenting large-scale urban 3D LiDAR point clouds with high noise tolerance.',
+    projectTitle: '3D Point Cloud Segmentation with Graph Neural Networks',
+    description: 'Built a machine learning pipeline using graph neural networks to classify 3D LiDAR point cloud scans of urban areas into categories like buildings, roads, and trees.',
     contributions: [
       {
-        title: 'Spatial Graph Modeling',
-        desc: 'Constructed localized geometric graphs in PyTorch Geometric to represent large-scale urban LiDAR point clouds with high topological expressiveness.',
+        title: 'Neighborhood Graph Modeling',
+        desc: 'Represented 3D point clouds as graphs connecting neighboring points to capture local geometric shapes.',
       },
       {
-        title: 'Noise-Resilient Filtering',
-        desc: 'Combined geometric RANSAC filtering with topological graph features to suppress sparse LiDAR sensor noise and improve segmentation accuracy.',
+        title: 'Noise Filtering & Classification',
+        desc: 'Used RANSAC filtering to clean up stray sensor noise and trained graph neural networks in PyTorch Geometric to accurately segment urban structures.',
       },
     ],
-    skills: ['PyTorch Geometric', 'Open3D', 'RANSAC', 'Graph ML', 'Python'],
+    skills: ['PyTorch Geometric', 'Open3D', 'RANSAC', 'Python', '3D Point Clouds'],
   },
 ];
 
 const leadershipExperience = [
   {
+    id: 'lead-placement',
     role: 'Student Placement Representative',
     organization: 'EECS Department, IISER Bhopal',
-    period: 'Aug 2024 – Present',
-    details: 'Departmental Career Liaison & Student Advocacy',
+    period: 'Aug 2026 – Present',
+    details: '',
+    shortDesc: 'Connecting technology companies and research organizations with graduating EECS students for campus placements and internships.',
     highlights: [
-      'Liaising with industry recruiters, technology companies, and R&D organizations to establish graduate placement and internship opportunities.',
-      'Organizing departmental placement preparation sessions, technical mock interviews, and student recruitment drives.',
-      'Advocating for student cohort interests and coordinating career development initiatives with institute administration.',
+      'Coordinating recruitment drives, technical tests, and interview schedules with the institute placement cell.',
+      'Organizing peer preparation sessions, including technical mock interviews, coding problem walkthroughs, and resume reviews.',
     ],
   },
   {
-    role: 'Student Advisor & Former Vice Secretary',
+    id: 'lead-cnc',
+    role: 'Vice Secretary',
     organization: 'Computing and Networking Council (CNC), IISER Bhopal',
-    period: 'Aug 2024 – Present',
-    details: 'Vice Secretary (Aug 2024 – Sept 2025) • Student Advisor (Oct 2025 – Present) • Technical Head for Aarohan 2025',
+    period: 'Aug 2024 – Sept 2025',
+    details: 'Vice Secretary (Aug 2024 – Sept 2025) • Student Advisor (Oct 2025 – Present)',
+    shortDesc: 'Led a 90-member council team managing computing facilities, coordinating 10+ technical workshops, and driving campus tech initiatives.',
     highlights: [
-      'Founded the EECS Club at IISER Bhopal; coordinated 10+ hands-on technical workshops on ROS 2, machine learning, and embedded systems.',
-      'Directed 90-member multidisciplinary council across technical, logistics, and outreach operations.',
-      'Managed infrastructure, digital platforms, and technical competitions for the institute flagship festival with 1,500+ participants.',
+      'Led a 90-member council team and coordinated 10+ technical workshops, hands-on tutorials, and talks on robotics and software tools.',
+      'Managed outreach, content planning, and student engagement initiatives across campus.',
+      'Founded the EECS Club at IISER Bhopal to support student-led hardware and robotics projects.',
     ],
   },
   {
-    role: 'Web Development Lead',
+    id: 'lead-aarohan',
+    role: 'Technical Head',
+    organization: 'Aarohan (Annual Techno-Cultural Fest), IISER Bhopal',
+    period: 'Nov 2024 – Mar 2025',
+    details: '',
+    shortDesc: 'Directed the technical team building event platforms and managed technical operations and sponsorship outreach for flagship competitions.',
+    highlights: [
+      'Directed the technical team in building and managing event-related web platforms, portals, and registration systems for 1,500+ participants.',
+      'Oversaw technical logistics, equipment, and live systems to ensure smooth execution of large-scale cultural and technical events.',
+      'Actively led corporate outreach and sponsorship initiatives for technical competitions, hackathons, and guest speaker sessions.',
+    ],
+  },
+  {
+    id: 'lead-gdg',
+    role: 'Web-Dev Lead',
     organization: 'Google Developer Group (GDG On Campus), IISER Bhopal',
     period: 'Aug 2024 – Aug 2025',
-    details: 'Campus Technical Platform Lead',
+    details: '',
+    shortDesc: 'Led the development of campus tech projects and web platforms while mentoring students in collaborative software development.',
     highlights: [
-      'Led end-to-end development of campus web platforms with responsive architectures.',
-      'Mentored students in collaborative software engineering, version control standards, and code review pipelines.',
+      'Led the development and maintenance of campus tech projects and event web platforms.',
+      'Mentored students in collaborative software practices, Git version control, and open-source contributions.',
     ],
   },
 ];
 
 const expSections = [
   { id: 'education', label: 'Education' },
-  { id: 'research', label: 'Research Experience' },
+  { id: 'research', label: 'Research' },
   { id: 'open-source', label: 'Open Source' },
-  { id: 'leadership', label: 'Leadership & Service' },
+  { id: 'leadership', label: 'Leadership' },
 ];
+
+const experienceSchema = {
+  '@type': 'ItemList',
+  name: 'Research & Academic Experience of Shlok Mehndiratta',
+  itemListElement: researchExperience.map((exp, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Role',
+      roleName: exp.role,
+      description: exp.description,
+      sponsor: {
+        '@type': 'Organization',
+        name: exp.organization,
+      },
+    },
+  })),
+};
 ---
 
 <BaseLayout
   title="Experience | Shlok Mehndiratta"
-  description="Academic education at IISER Bhopal, research appointments in robotics and control theory, open-source contributions to ROS 2 Control, and departmental leadership."
+  description="Academic education at IISER Bhopal, research in robotics and control theory, open-source contributions to ROS 2 Control, and departmental leadership."
   sections={expSections}
+  schema={experienceSchema}
 >
-  <div class="space-y-16 sm:space-y-24">
+  <div class="space-y-10 sm:space-y-12">
     <!-- Clean Page Header -->
-    <header class="space-y-3 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
-      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+    <header class="pb-4 border-b border-black/[0.08] dark:border-white/[0.08]">
+      <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
         Experience
       </h1>
-      <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        Academic education at IISER Bhopal, research appointments across university laboratories, core upstream engineering for ROS 2 Control, and departmental leadership.
-      </p>
     </header>
 
-    <!-- Section 1: Education & Academic Foundations -->
-    <section id="education" class="space-y-6">
-      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-        <div>
-          <div class="flex items-center gap-2 mb-1.5">
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold tracking-wider uppercase bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20">
-              01 // ACADEMIC FOUNDATIONS
-            </span>
-            <span class="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">Degree & Institutional Credentials</span>
-          </div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Education
-          </h2>
-          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1 max-w-2xl leading-relaxed">
-            Undergraduate academic study in Electrical Engineering and Computer Science at IISER Bhopal.
-          </p>
-        </div>
-        <span class="text-xs font-mono px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-400 border border-black/[0.04] dark:border-white/[0.05] shrink-0 self-start sm:self-auto">
-          {educationData.period} • Bhopal, India
+    <!-- Section 1: Education -->
+    <section id="education" class="space-y-4">
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between gap-3">
+        <h2 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+          Education
+        </h2>
+        <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+          {educationData.period}
         </span>
       </div>
 
-      <!-- Opaque Elevated Education Dossier Card -->
-      <article class="apple-card group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#121214] border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20 space-y-6">
+      <!-- Undergraduate Degree Card (IISER Bhopal) -->
+      <article class="apple-card group relative p-5 sm:p-6 md:p-7 rounded-2xl bg-surface-light dark:bg-surface-dark border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20 space-y-4">
         <!-- Institution & Degree Header -->
-        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-black/[0.05] dark:border-white/[0.05] pb-5">
-          <div class="space-y-1">
-            <div class="flex items-center gap-2">
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                <span>Active Degree Candidate</span>
-              </span>
-            </div>
-            <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-black/[0.05] dark:border-white/[0.05] pb-3.5">
+          <div class="space-y-1 min-w-0">
+            <h3 class="text-base sm:text-lg font-bold tracking-tight text-zinc-950 dark:text-zinc-50 leading-snug">
               {educationData.institution}
             </h3>
-            <p class="text-sm sm:text-base font-medium text-zinc-700 dark:text-zinc-300">
-              {educationData.degree}
-            </p>
-            <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
-              {educationData.location} • Expected Graduation: {educationData.expectedGrad}
-            </p>
-          </div>
-
-          <!-- Academic Standing Metric Pill / Badge -->
-          <div class="flex sm:flex-col items-baseline sm:items-end justify-between sm:justify-start gap-1 p-3.5 sm:p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-black/[0.05] dark:border-white/[0.06] shrink-0">
-            <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Cumulative CPI</span>
-            <div class="flex items-baseline gap-1">
-              <span class="text-2xl font-bold font-mono tracking-tight text-zinc-950 dark:text-zinc-50">{educationData.cpi}</span>
-            </div>
-            <span class="text-[10px] font-mono text-zinc-400 dark:text-zinc-500">({educationData.usEquivalent} US Scale)</span>
-          </div>
-        </div>
-
-        <!-- Secondary Pre-University Metrics & Notes -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-          {educationData.schooling.map((school) => (
-            <div class="p-3.5 rounded-xl bg-zinc-50/70 dark:bg-zinc-900/40 border border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between">
-              <div>
-                <p class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{school.exam}</p>
-                <p class="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">{school.place} • {school.year}</p>
-              </div>
-              <span class="text-xs font-mono font-bold text-zinc-900 dark:text-zinc-100 px-2 py-0.5 rounded bg-zinc-200/60 dark:bg-zinc-800">
-                {school.score}
+            <div class="flex flex-wrap sm:flex-nowrap items-baseline gap-x-2 gap-y-0.5">
+              <span class="text-xs sm:text-sm font-semibold text-zinc-800 dark:text-zinc-200">
+                {educationData.degree}
+              </span>
+              <span class="text-[11px] sm:text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">
+                (Expected: {educationData.expectedGrad})
               </span>
             </div>
-          ))}
+            <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+              {educationData.department} • {educationData.location}
+            </p>
+          </div>
+
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono font-medium bg-black/[0.04] dark:bg-white/[0.06] text-zinc-800 dark:text-zinc-200 border border-black/[0.06] dark:border-white/[0.08] shrink-0 self-start">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span>{educationData.period}</span>
+          </span>
         </div>
 
-        <!-- Clean Coursework Referral (Lightweight, No Heavy Tables) -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04] text-xs text-zinc-500 dark:text-zinc-400">
-          <span>Foundational coursework in Linear Algebra, Multivariable Calculus, Control Systems, Signals & Systems, and Algorithms.</span>
+        <!-- Minimal, Clean, Distinguishable CPI Metric + Direct Coursework Link in single row -->
+        <div class="tactile-plate flex flex-wrap items-center justify-between gap-3 p-2.5 sm:p-3 rounded-xl bg-surfaceSubtle-light/35 dark:bg-white/[0.03] text-xs font-mono">
+          <div class="flex items-baseline gap-2">
+            <span class="text-zinc-500 dark:text-zinc-400 font-medium">Cumulative CPI:</span>
+            <span class="font-bold text-zinc-950 dark:text-zinc-50 text-xs sm:text-sm tracking-tight">{educationData.cpi}</span>
+            <span class="text-zinc-500 dark:text-zinc-400 font-medium">({educationData.normalizedCpi})</span>
+          </div>
           <a
-            href="/resume#education"
-            class="inline-flex items-center gap-1 font-mono text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors shrink-0 font-medium"
+            href="/projects#coursework"
+            class="tactile-btn inline-flex items-center gap-1 font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 font-medium text-xs px-2.5 py-1 rounded-lg"
           >
-            <span>View institute coursework matrix</span>
-            <span>→</span>
+            <span>[View coursework details &rarr;]</span>
           </a>
+        </div>
+      </article>
+
+      <!-- Standalone Pre-University Schooling Card -->
+      <article class="apple-card group relative p-4 sm:p-5 md:p-6 md:px-7 rounded-2xl bg-surface-light dark:bg-surface-dark border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-sm sm:text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+                {schoolingData.board}
+              </h3>
+              <span class="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
+                • {schoolingData.location}
+              </span>
+            </div>
+            <p class="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
+              Pre-University Schooling
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            {schoolingData.records.map((rec) => (
+              <div class="tactile-plate px-2.5 py-1 rounded-lg bg-surfaceSubtle-light/35 dark:bg-white/[0.03] flex items-center gap-2 text-xs font-mono">
+                <span class="text-zinc-700 dark:text-zinc-300 font-medium">{rec.exam} ({rec.year}):</span>
+                <span class="font-bold text-zinc-950 dark:text-zinc-50">{rec.score}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </article>
     </section>
 
-    <!-- Section 2: Research Experience (Minimal Chronological Spine) -->
-    <section id="research" class="space-y-6 pt-10 sm:pt-14 border-t border-black/[0.08] dark:border-white/[0.08]">
-      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-        <div>
-          <div class="flex items-center gap-2 mb-1.5">
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold tracking-wider uppercase bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
-              02 // RESEARCH EXPERIENCE
-            </span>
-            <span class="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">Academic & University Labs</span>
-          </div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Research Experience
-          </h2>
-          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1 max-w-2xl leading-relaxed">
-            Chronological research appointments across university laboratories, investigating dexterous manipulation, aerial swarms, and perception-coupled flight.
-          </p>
-        </div>
-        <span class="text-xs font-mono px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-400 border border-black/[0.04] dark:border-white/[0.05] shrink-0 self-start sm:self-auto">
-          {researchExperience.length} Labs • 2024 — Present
+    <!-- Section 2: Research Experience -->
+    <section id="research" class="space-y-4 pt-8 sm:pt-10 border-t border-black/[0.08] dark:border-white/[0.08]">
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between gap-3">
+        <h2 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+          Research Experience
+        </h2>
+        <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+          2024 – Present
         </span>
       </div>
 
       <!-- Minimal Chronological Spine Layout -->
-      <div class="relative pl-5 sm:pl-8 space-y-8 sm:space-y-10">
+      <div class="relative space-y-6 sm:space-y-8 min-[1140px]:-ml-28 min-[1140px]:w-[calc(100%+7rem)]">
         <!-- Continuous Timeline Track Spine -->
-        <div class="absolute left-2 sm:left-3 top-4 bottom-4 w-[1.5px] bg-gradient-to-b from-cyan-500 via-zinc-200 to-zinc-200 dark:via-zinc-800 dark:to-zinc-800 rounded-full pointer-events-none"></div>
+        <div class="absolute left-2 sm:left-28 md:left-32 top-5 bottom-5 w-[1.5px] bg-black/10 dark:bg-white/10 rounded-full pointer-events-none"></div>
 
         {researchExperience.map((exp) => {
           const isActive = exp.period.includes('Present');
+          const [startDate, endDate] = exp.period.split(/[–—]/).map((s) => s.trim());
           return (
-            <div class="relative group">
+            <div class="relative group flex flex-col sm:flex-row sm:items-start">
+              <!-- Left Side: Chronological Date Anchor (2 Lines: Start Date on 1st, End Date on 2nd) -->
+              <div class="hidden sm:flex flex-col items-end w-28 md:w-32 pr-4 pt-6 shrink-0 text-right select-none font-mono">
+                <span class={`text-xs font-semibold tracking-tight ${
+                  isActive ? 'text-zinc-950 dark:text-zinc-50' : 'text-zinc-700 dark:text-zinc-300'
+                }`}>
+                  {startDate}
+                </span>
+                <div class="flex items-center gap-1.5 mt-0.5">
+                  {isActive && <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>}
+                  <span class={`text-[11px] font-medium ${
+                    isActive ? 'text-emerald-700 dark:text-emerald-400 font-semibold' : 'text-zinc-500 dark:text-zinc-400'
+                  }`}>
+                    – {endDate}
+                  </span>
+                </div>
+              </div>
+
               <!-- Waypoint Milestone Node on the Spine -->
-              <div class="absolute -left-5 sm:-left-8 top-7 -translate-x-1/2 flex items-center justify-center">
+              <div class="absolute left-2 sm:left-28 md:left-32 top-7 -translate-x-1/2 flex items-center justify-center z-10">
                 {isActive ? (
                   <span class="relative flex h-3.5 w-3.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-60"></span>
-                    <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-canvas-light dark:bg-canvas-dark border-2 border-cyan-500 items-center justify-center">
-                      <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-30"></span>
+                    <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-canvas-light dark:bg-canvas-dark border-2 border-emerald-500 items-center justify-center">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                     </span>
                   </span>
                 ) : (
-                  <span class="w-3 h-3 rounded-full bg-canvas-light dark:bg-canvas-dark border-2 border-zinc-400 dark:border-zinc-600"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-canvas-light dark:bg-canvas-dark border-2 border-zinc-400 dark:border-zinc-500"></span>
                 )}
               </div>
 
-              <!-- Elevated Research Dossier Card -->
-              <article class="apple-card group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#121214] border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20 space-y-5">
-                <!-- Header Row -->
-                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-black/[0.05] dark:border-white/[0.05] pb-4">
-                  <div>
-                    <div class="flex items-center gap-2 mb-1">
-                      {isActive && (
-                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/20">
-                          <span class="w-1 h-1 rounded-full bg-cyan-500 animate-pulse"></span>
-                          <span>ACTIVE RESEARCH</span>
-                        </span>
-                      )}
+              <!-- Mobile Date Badge (< sm:) -->
+              <div class="sm:hidden pl-6 pb-2 flex items-center gap-2">
+                <span class={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-mono font-medium ${
+                  isActive
+                    ? 'bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/20'
+                    : 'bg-black/[0.04] dark:bg-white/[0.06] text-zinc-700 dark:text-zinc-300'
+                }`}>
+                  {isActive && <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>}
+                  <span>{startDate} – {endDate}</span>
+                </span>
+              </div>
+
+              <!-- Main Content Card (Expands smoothly) -->
+              <div class="flex-1 min-w-0 pl-6 sm:pl-7">
+                <article class="apple-card group relative p-5 sm:p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20 space-y-3.5">
+                  <!-- Header Row: Organization & Role -->
+                  <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2.5 border-b border-black/[0.05] dark:border-white/[0.05] pb-3">
+                    <div>
+                      <h3 class="text-base sm:text-lg font-bold tracking-tight text-zinc-950 dark:text-zinc-50 leading-snug">
+                        {exp.organization}
+                      </h3>
+                      <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                        Advisor: <span class="font-serif italic font-medium text-zinc-800 dark:text-zinc-200">{exp.advisor}</span>
+                      </p>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-                      {exp.organization}
-                    </h3>
-                    <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1">
-                      Advisor: <strong class="text-zinc-900 dark:text-zinc-200 font-semibold">{exp.advisor}</strong>
+
+                    <div class="flex items-center gap-2 self-start">
+                      <span class="text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 px-2 py-0.5 rounded bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.05] dark:border-white/[0.06]">
+                        {exp.role}
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Core Project Overview (Always Visible) -->
+                  <div class="space-y-1.5">
+                    <h4 class="text-sm sm:text-base font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 leading-snug">
+                      {exp.projectTitle}
+                    </h4>
+                    <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans">
+                      {exp.description}
                     </p>
                   </div>
 
-                  <div class="flex flex-wrap items-center gap-2 sm:self-start">
-                    <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium ${
-                      isActive
-                        ? 'bg-cyan-50 dark:bg-cyan-950/40 text-cyan-800 dark:text-cyan-300 border border-cyan-500/30'
-                        : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.05]'
-                    }`}>
-                      <span class={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-cyan-500' : 'bg-zinc-400 dark:bg-zinc-500'}`}></span>
-                      <span>{exp.period}</span>
+                  <!-- Collapsible Technical Investigations Drawer -->
+                  <div id={`details-${exp.id}`} class="exp-drawer hidden pt-3 border-t border-black/[0.05] dark:border-white/[0.05] space-y-2.5">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold block">
+                      Technical Investigations & Contributions
                     </span>
-                    <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
-                      {exp.role}
-                    </span>
-                  </div>
-                </div>
-
-                <!-- Body: Project Focus & Narrative Overview -->
-                <div class="space-y-3">
-                  <h4 class="text-base sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 leading-snug">
-                    {exp.projectTitle}
-                  </h4>
-
-                  <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
-                    {exp.description}
-                  </p>
-
-                  <!-- Structured Key Contributions Grid (Clean, Labeled, No Dash Bullets) -->
-                  {exp.contributions && (
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
+                    <div class="space-y-2">
                       {exp.contributions.map((c) => (
-                        <div class="p-3.5 sm:p-4 rounded-xl bg-zinc-50/80 dark:bg-zinc-900/50 border border-black/[0.04] dark:border-white/[0.05] space-y-1.5 flex flex-col justify-between">
-                          <div class="flex items-center gap-1.5 text-xs font-semibold text-zinc-900 dark:text-zinc-100">
-                            <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 shrink-0"></span>
-                            <span>{c.title}</span>
+                        <div class="text-xs sm:text-[13px] text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans pl-3 border-l-2 border-zinc-300 dark:border-zinc-700 space-y-1.5">
+                          <div>
+                            <strong class="font-semibold text-zinc-950 dark:text-zinc-100">{c.title}:</strong>{' '}
+                            <span class="text-zinc-600 dark:text-zinc-400">{c.desc}</span>
                           </div>
-                          <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans">
-                            {c.desc}
-                          </p>
+                          {c.bullets && c.bullets.length > 0 && (
+                            <ul class="space-y-1 pl-3.5 list-disc text-xs text-zinc-600 dark:text-zinc-400 font-sans">
+                              {c.bullets.map((b) => (
+                                <li class="leading-relaxed">
+                                  <span>{b}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                         </div>
                       ))}
                     </div>
-                  )}
-                </div>
 
-                <!-- Skills & Platforms Pills -->
-                <div class="flex flex-wrap gap-1.5 pt-4 border-t border-black/[0.05] dark:border-white/[0.05]">
-                  {exp.skills.map((skill) => (
-                    <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </article>
+                    {exp.paperLink && (
+                      <div class="pt-2.5 border-t border-black/[0.05] dark:border-white/[0.05] flex items-center gap-3 text-xs font-mono">
+                        <a
+                          href={exp.paperLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1.5 text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-zinc-50 font-medium underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-600 transition-colors"
+                        >
+                          <span>{exp.paperLinkLabel || 'Paper, Code & Data ↗'}</span>
+                        </a>
+                      </div>
+                    )}
+                  </div>
+
+                  <!-- Card Bottom Bar: Skills Chips (Left) & Collapsible Toggle (Right) -->
+                  <div class="pt-3 border-t border-black/[0.05] dark:border-white/[0.05] flex flex-wrap items-center justify-between gap-2.5">
+                    <div class="flex flex-wrap gap-1.5">
+                      {exp.skills.map((skill) => (
+                        <span class="tech-chip text-[10px] sm:text-[11px] font-mono px-2 py-0.5 rounded-md">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+
+                    <button
+                      type="button"
+                      data-exp-toggle={`details-${exp.id}`}
+                      class="exp-toggle-btn tactile-btn inline-flex items-center gap-1.5 text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 px-2.5 py-1 rounded-lg font-medium shrink-0 ml-auto cursor-pointer"
+                      aria-expanded="false"
+                    >
+                      <span class="exp-toggle-text" data-closed="Technical Details" data-open="Hide Details">Technical Details</span>
+                      <svg class="w-3.5 h-3.5 transform transition-transform duration-200 exp-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </article>
+              </div>
             </div>
           );
         })}
@@ -373,44 +463,25 @@ const expSections = [
     </section>
 
     <!-- Section 3: Open-Source Contributions -->
-    <section id="open-source" class="space-y-6 pt-10 sm:pt-14 border-t border-black/[0.08] dark:border-white/[0.08]">
-      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-        <div>
-          <div class="flex items-center gap-2 mb-1.5">
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold tracking-wider uppercase bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 border border-indigo-500/20">
-              03 // SYSTEMS ENGINEERING
-            </span>
-            <span class="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">Core Upstream Infrastructure</span>
-          </div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Open-Source Contributions
-          </h2>
-          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1 max-w-2xl leading-relaxed">
-            Upstream systems engineering for global robotics infrastructure, real-time determinism, and concurrency control.
-          </p>
-        </div>
-        <span class="text-xs font-mono px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-400 border border-black/[0.04] dark:border-white/[0.05] shrink-0 self-start sm:self-auto">
-          ros2_control • Core Contributor
+    <section id="open-source" class="space-y-4 pt-8 sm:pt-10 border-t border-black/[0.08] dark:border-white/[0.08]">
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between gap-3">
+        <h2 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+          Open Source
+        </h2>
+        <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+          ros2_control • Contributor
         </span>
       </div>
 
-      <!-- Opaque ros2_control Framework Card -->
-      <article class="apple-card group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#121214] border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20 space-y-5">
-        <div class="flex flex-col lg:flex-row lg:items-baseline justify-between gap-4 border-b border-black/[0.05] dark:border-white/[0.05] pb-4">
+      <!-- Collapsible ros2_control Framework Card -->
+      <article class="apple-card group relative p-5 sm:p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20 space-y-3.5">
+        <div class="flex flex-col lg:flex-row lg:items-baseline justify-between gap-3 border-b border-black/[0.05] dark:border-white/[0.05] pb-3">
           <div>
-            <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 mb-1.5">
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                <span>Active Upstream Contributor</span>
-              </span>
-              <span>•</span>
-              <span>Robot Control Infrastructure</span>
-            </div>
-            <h3 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            <h3 class="text-base sm:text-lg font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
               ros2_control: Robot Operating System 2 Control Framework
             </h3>
             <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-0.5">
-              Core Framework Contributor • Real-Time Determinism, Controller Chaining & Fault Injection
+              Real-Time Determinism, Controller Chaining & Fault Injection
             </p>
           </div>
 
@@ -420,29 +491,29 @@ const expSections = [
               href="https://github.com/search?q=involves%3Ashlok-mehndiratta+is%3Apr+repo%3Aros-controls%2Fros2_control&type=pullrequests"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-zinc-800/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all shrink-0"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark hover:bg-surfaceHover-light dark:hover:bg-surfaceHover-dark text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-all shrink-0"
               title="View Pull Requests authored or reviewed by Shlok Mehndiratta in ros2_control"
             >
               <svg class="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" viewBox="0 0 16 16" fill="currentColor"><path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"></path></svg>
-              <span>Pull Requests (8 PRs)</span>
+              <span>Pull Requests (5 PRs)</span>
             </a>
 
             <a
               href="https://github.com/search?q=involves%3Ashlok-mehndiratta+is%3Aissue+repo%3Aros-controls%2Fros2_control&type=issues"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-zinc-800/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all shrink-0"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark hover:bg-surfaceHover-light dark:hover:bg-surfaceHover-dark text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 transition-all shrink-0"
               title="View Issues and discussions involved in ros2_control"
             >
               <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" viewBox="0 0 16 16" fill="currentColor"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path></svg>
-              <span>Issues (5 Issues)</span>
+              <span>Issues & Discussions</span>
             </a>
 
             <a
               href="https://github.com/ros-controls/ros2_control"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-zinc-800/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all shrink-0"
+              class="tactile-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 shrink-0"
             >
               <span>ros-controls/ros2_control</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
@@ -450,81 +521,89 @@ const expSections = [
           </div>
         </div>
 
-        <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
+        <!-- Overview Paragraph (Always Visible) -->
+        <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
           Active contributor to the standard robotics control framework in ROS 2, focusing on eliminating non-deterministic lock contention in high-frequency hardware loops, resolving controller chaining topology, and engineering communication fault-injection testbeds.
         </p>
 
-        <!-- Engineering Highlight Blocks (Directly mapped to PRs and Issues) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
-          <div class="p-4 sm:p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-black/[0.05] dark:border-white/[0.06] space-y-2">
-            <h4 class="text-xs sm:text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
-              RT Mutex & Safety (PR #3197)
-            </h4>
-            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Identified non-deterministic mutex acquisition in <code class="text-[11px] font-mono px-1 rounded bg-zinc-200/50 dark:bg-zinc-800">publish_activity()</code> called from the 1 kHz <code class="text-[11px] font-mono px-1 rounded bg-zinc-200/50 dark:bg-zinc-800">update()</code> loop. Migrated the controller manager's <code class="text-[11px] font-mono px-1 rounded bg-zinc-200/50 dark:bg-zinc-800">controllers_lock_</code> to an RT-safe Priority Inheritance (PI) recursive mutex to eliminate priority inversion and bound execution jitter (#3145).
-            </p>
-          </div>
+        <!-- Collapsible PR Deep-Dive Blocks -->
+        <div id="details-ros2-control" class="exp-drawer hidden pt-3 border-t border-black/[0.05] dark:border-white/[0.05] space-y-3">
+          <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold block">
+            Technical Architecture & Merged Implementations
+          </span>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <div class="tactile-plate p-4 rounded-xl bg-surface-light dark:bg-surface-dark space-y-1.5">
+              <h4 class="text-xs sm:text-[13px] font-semibold text-zinc-950 dark:text-zinc-50 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100 shrink-0"></span>
+                RT Mutex & Safety (PR #3197)
+              </h4>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Identified non-deterministic mutex acquisition in <code class="text-[11px] font-mono px-1 rounded bg-black/[0.04] dark:bg-white/[0.06]">publish_activity()</code> called from the 1 kHz <code class="text-[11px] font-mono px-1 rounded bg-black/[0.04] dark:bg-white/[0.06]">update()</code> loop. Migrated the controller manager's <code class="text-[11px] font-mono px-1 rounded bg-black/[0.04] dark:bg-white/[0.06]">controllers_lock_</code> to an RT-safe Priority Inheritance (PI) recursive mutex to eliminate priority inversion and bound execution jitter (#3145).
+              </p>
+            </div>
 
-          <div class="p-4 sm:p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-black/[0.05] dark:border-white/[0.06] space-y-2">
-            <h4 class="text-xs sm:text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
-              Chaining & Sorting (PR #3108)
-            </h4>
-            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Resolved topological sorting and state interface chaining flaws in multi-controller pipelines. Prevented duplicate fallback controller invocations and ensured pure state chainable controllers execute in correct topological precedence relative to their state consumers (#1123, #2420).
-            </p>
-          </div>
+            <div class="tactile-plate p-4 rounded-xl bg-surface-light dark:bg-surface-dark space-y-1.5">
+              <h4 class="text-xs sm:text-[13px] font-semibold text-zinc-950 dark:text-zinc-50 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100 shrink-0"></span>
+                Chaining & Sorting (PR #3108)
+              </h4>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Resolved topological sorting and state interface chaining flaws in multi-controller pipelines. Prevented duplicate fallback controller invocations and ensured pure state chainable controllers execute in correct topological precedence relative to their state consumers (#1123, #2420).
+              </p>
+            </div>
 
-          <div class="p-4 sm:p-5 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-black/[0.05] dark:border-white/[0.06] space-y-2">
-            <h4 class="text-xs sm:text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
-              Hardware Fault Injection (PR #3241, #3228)
-            </h4>
-            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Implemented a dynamic command toggling service in <code class="text-[11px] font-mono px-1 rounded bg-zinc-200/50 dark:bg-zinc-800">MockHardware</code> to simulate hardware communication drops (#3214); designed component exception-handling test suites preventing plugin crashes from destabilizing the manager (#1530).
-            </p>
+            <div class="tactile-plate p-4 rounded-xl bg-surface-light dark:bg-surface-dark space-y-1.5">
+              <h4 class="text-xs sm:text-[13px] font-semibold text-zinc-950 dark:text-zinc-50 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100 shrink-0"></span>
+                Hardware Fault Injection (PR #3241, #3228)
+              </h4>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Implemented a dynamic command toggling service in <code class="text-[11px] font-mono px-1 rounded bg-black/[0.04] dark:bg-white/[0.06]">MockHardware</code> to simulate hardware communication drops (#3214); designed component exception-handling test suites preventing plugin crashes from destabilizing the manager (#1530).
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="flex flex-wrap gap-2 pt-3 border-t border-black/[0.04] dark:border-white/[0.04] text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
-          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">C++20</span>
-          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">POSIX RT Mutex</span>
-          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">Priority Inheritance</span>
-          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">Real-Time Determinism</span>
-          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">Controller Chaining</span>
-          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">Fault Injection</span>
-          <span class="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-800">ROS 2 Control</span>
+        <!-- Bottom Bar: Skills Tags & Toggle Button -->
+        <div class="flex flex-wrap items-center justify-between gap-2.5 pt-3 border-t border-black/[0.04] dark:border-white/[0.04]">
+          <div class="flex flex-wrap gap-1.5 text-[10px] font-mono text-zinc-600 dark:text-zinc-400">
+            <span class="tech-chip px-2 py-0.5 rounded">C++20</span>
+            <span class="tech-chip px-2 py-0.5 rounded">POSIX RT Mutex</span>
+            <span class="tech-chip px-2 py-0.5 rounded">Priority Inheritance</span>
+            <span class="tech-chip px-2 py-0.5 rounded">Controller Chaining</span>
+            <span class="tech-chip px-2 py-0.5 rounded">Fault Injection</span>
+          </div>
+
+          <button
+            type="button"
+            data-exp-toggle="details-ros2-control"
+            class="exp-toggle-btn tactile-btn inline-flex items-center gap-1.5 text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 px-2.5 py-1 rounded-lg font-medium shrink-0 ml-auto cursor-pointer"
+            aria-expanded="false"
+          >
+            <span class="exp-toggle-text" data-closed="Technical Highlights" data-open="Hide Highlights">Technical Highlights</span>
+            <svg class="w-3.5 h-3.5 transform transition-transform duration-200 exp-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
         </div>
       </article>
     </section>
 
     <!-- Section 4: Leadership & Academic Service -->
-    <section id="leadership" class="space-y-6 pt-10 sm:pt-14 border-t border-black/[0.08] dark:border-white/[0.08]">
-      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-        <div>
-          <div class="flex items-center gap-2 mb-1.5">
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold tracking-wider uppercase bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
-              04 // LEADERSHIP & GOVERNANCE
-            </span>
-            <span class="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">Institutional Advocacy</span>
-          </div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Leadership & Academic Service
-          </h2>
-          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1 max-w-2xl leading-relaxed">
-            Departmental career advocacy, student governance, and technical community building across IISER Bhopal.
-          </p>
-        </div>
-        <span class="text-xs font-mono px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-400 border border-black/[0.04] dark:border-white/[0.05] shrink-0 self-start sm:self-auto">
-          {leadershipExperience.length} Positions • IISER Bhopal
+    <section id="leadership" class="space-y-4 pt-8 sm:pt-10 border-t border-black/[0.08] dark:border-white/[0.08]">
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between gap-3">
+        <h2 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+          Leadership & Academic Service
+        </h2>
+        <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+          IISER Bhopal
         </span>
       </div>
 
       <!-- Minimal Chronological Spine Layout for Leadership -->
-      <div class="relative pl-5 sm:pl-8 space-y-8 sm:space-y-10">
+      <div class="relative pl-5 sm:pl-8 space-y-6 sm:space-y-7">
         <!-- Continuous Timeline Track Spine -->
-        <div class="absolute left-2 sm:left-3 top-4 bottom-4 w-[1.5px] bg-gradient-to-b from-amber-500 via-zinc-200 to-zinc-200 dark:via-zinc-800 dark:to-zinc-800 rounded-full pointer-events-none"></div>
+        <div class="absolute left-2 sm:left-3 top-4 bottom-4 w-[1.5px] bg-black/10 dark:bg-white/10 rounded-full pointer-events-none"></div>
 
         {leadershipExperience.map((lead) => {
           const isActive = lead.period.includes('Present');
@@ -533,58 +612,77 @@ const expSections = [
               <!-- Waypoint Milestone Node on the Spine -->
               <div class="absolute -left-5 sm:-left-8 top-7 -translate-x-1/2 flex items-center justify-center">
                 {isActive ? (
-                  <span class="relative flex h-3.5 w-3.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-60"></span>
-                    <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-canvas-light dark:bg-canvas-dark border-2 border-amber-500 items-center justify-center">
-                      <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                  <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-40"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-canvas-light dark:bg-canvas-dark border-2 border-emerald-500 items-center justify-center">
+                      <span class="w-1 h-1 rounded-full bg-emerald-500"></span>
                     </span>
                   </span>
                 ) : (
-                  <span class="w-3 h-3 rounded-full bg-canvas-light dark:bg-canvas-dark border-2 border-zinc-400 dark:border-zinc-600"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-canvas-light dark:bg-canvas-dark border-2 border-zinc-400 dark:border-zinc-500"></span>
                 )}
               </div>
 
-              <!-- Elevated Leadership Card -->
-              <article class="apple-card group relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#121214] border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20 space-y-3.5">
-                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 border-b border-black/[0.05] dark:border-white/[0.05] pb-3">
+              <!-- Elevated Collapsible Leadership Card -->
+              <article class="apple-card group relative p-5 sm:p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20 space-y-3">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 border-b border-black/[0.05] dark:border-white/[0.05] pb-2.5">
                   <div>
-                    <div class="flex items-center gap-2 mb-1">
-                      {isActive && (
-                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
-                          <span class="w-1 h-1 rounded-full bg-amber-500 animate-pulse"></span>
-                          <span>ACTIVE ROLE</span>
-                        </span>
-                      )}
-                    </div>
-                    <h3 class="text-base sm:text-lg font-bold text-zinc-950 dark:text-zinc-50">
+                    <h3 class="text-sm sm:text-base font-semibold text-zinc-950 dark:text-zinc-50">
                       {lead.role}
                     </h3>
-                    <p class="text-xs sm:text-sm font-medium text-amber-700 dark:text-amber-400 font-mono mt-0.5">
+                    <p class="text-xs font-mono text-zinc-600 dark:text-zinc-400 mt-0.5">
                       {lead.organization}
                     </p>
                   </div>
-                  <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium shrink-0 self-start sm:self-auto ${
+                  <span class={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-medium shrink-0 self-start sm:self-auto ${
                     isActive
-                      ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-500/30'
-                      : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.05]'
+                      ? 'bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30'
+                      : 'bg-black/[0.03] dark:bg-white/[0.05] text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.05]'
                   }`}>
-                    <span class={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-amber-500' : 'bg-zinc-400 dark:bg-zinc-500'}`}></span>
+                    <span class={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-emerald-500' : 'bg-zinc-400 dark:bg-zinc-500'}`}></span>
                     <span>{lead.period}</span>
                   </span>
                 </div>
 
-                <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
-                  {lead.details}
+                <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans">
+                  {lead.shortDesc}
                 </p>
 
-                <ul class="space-y-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 pt-1">
-                  {lead.highlights.map((h) => (
-                    <li class="flex items-start gap-2.5">
-                      <span class="text-amber-600 dark:text-amber-400 font-mono mt-0.5 shrink-0 font-bold">—</span>
-                      <span class="leading-relaxed">{h}</span>
-                    </li>
-                  ))}
-                </ul>
+                {lead.details && (
+                  <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                    {lead.details}
+                  </p>
+                )}
+
+                <!-- Collapsible Initiatives Drawer -->
+                <div id={`details-${lead.id}`} class="exp-drawer hidden pt-2.5 border-t border-black/[0.05] dark:border-white/[0.05] space-y-2">
+                  <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold block">
+                    Key Responsibilities & Outcomes
+                  </span>
+                  <ul class="space-y-1.5 text-xs sm:text-[13px] text-zinc-600 dark:text-zinc-400">
+                    {lead.highlights.map((h) => (
+                      <li class="flex items-start gap-2">
+                        <span class="text-zinc-400 dark:text-zinc-500 font-mono shrink-0 font-bold">•</span>
+                        <span class="leading-relaxed">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <!-- Bottom Toggle Button -->
+                <div class="pt-2 border-t border-black/[0.04] dark:border-white/[0.04] flex justify-end">
+                  <button
+                    type="button"
+                    data-exp-toggle={`details-${lead.id}`}
+                    class="exp-toggle-btn inline-flex items-center gap-1.5 text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 px-2.5 py-1 rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark hover:bg-surfaceHover-light dark:hover:bg-surfaceHover-dark transition-all shadow-2xs font-medium"
+                    aria-expanded="false"
+                  >
+                    <span class="exp-toggle-text" data-closed="Initiatives & Impact" data-open="Hide Impact">Initiatives & Impact</span>
+                    <svg class="w-3.5 h-3.5 transform transition-transform duration-200 exp-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                </div>
               </article>
             </div>
           );
@@ -593,3 +691,40 @@ const expSections = [
     </section>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    document.addEventListener('click', function (e) {
+      const toggleBtn = e.target.closest('[data-exp-toggle]');
+      if (!toggleBtn) return;
+
+      const targetId = toggleBtn.getAttribute('data-exp-toggle');
+      if (!targetId) return;
+
+      const detailsEl = document.getElementById(targetId);
+      if (!detailsEl) return;
+
+      const isHidden = detailsEl.classList.contains('hidden');
+      const chevron = toggleBtn.querySelector('.exp-chevron');
+      const textLabel = toggleBtn.querySelector('.exp-toggle-text');
+
+      if (isHidden) {
+        detailsEl.classList.remove('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        if (chevron) chevron.classList.add('rotate-180');
+        if (textLabel) {
+          const openText = textLabel.getAttribute('data-open');
+          if (openText) textLabel.textContent = openText;
+        }
+      } else {
+        detailsEl.classList.add('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        if (chevron) chevron.classList.remove('rotate-180');
+        if (textLabel) {
+          const closedText = textLabel.getAttribute('data-closed');
+          if (closedText) textLabel.textContent = closedText;
+        }
+      }
+    });
+  })();
+</script>

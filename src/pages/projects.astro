@@ -1,245 +1,964 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const machineLearningProjects = [
+const engineeringProjects = [
   {
-    dossierId: 'DOSSIER.01',
-    title: 'Graph-Based ML Pipeline for 3D Point Cloud Segmentation',
-    category: '3D Computer Vision & Graph ML',
+    id: 'mpc-ekf-tracking',
+    title: 'Mobile Robot Tracking with MPC and Kalman Filter',
+    filterCategory: 'robotics-embedded',
+    category: 'Robotics & Control',
+    location: 'IISER Bhopal',
+    period: '2025 – 2026',
+    shortSummary: 'I built a navigation system for a mobile robot in ROS 2 and Gazebo. It tracks the robot’s position with a Kalman filter and uses predictive control so it steers smoothly around sharp turns without slipping.',
+    highlights: [
+      'Simulated a two-wheeled mobile robot in Gazebo and connected all sensors and controllers using ROS 2 nodes.',
+      'Fused noisy camera data and IMU measurements with an Extended Kalman Filter so the robot can estimate its exact position without GPS.',
+      'Implemented Model Predictive Control (MPC) to plan steering and speed commands ahead of time, accounting for motor limits so the wheels don’t skid.',
+      'Tested the system against traditional controllers like Stanley and Pure Pursuit to make sure the robot stays stable on tight corners.',
+    ],
+    outcome: 'Kept the robot steady on sharp turns by making sure the controller respects the physical limits of the motors.',
+    tech: ['ROS 2', 'Gazebo', 'Kalman Filter', 'Model Predictive Control', 'C++', 'Python'],
+    github: 'https://github.com/shlok-mehndiratta',
+  },
+  {
+    id: 'digital-design-assembly',
+    title: 'Digital Circuits & Bare-Metal Assembly Workshop',
+    filterCategory: 'robotics-embedded',
+    category: 'Embedded & Hardware',
+    location: 'IIT Hyderabad (with Dr. G V V Sharma)',
+    period: 'Oct – Nov 2025',
+    shortSummary: 'I designed core digital circuits and programmed an Arduino using low-level assembly code and direct register access, skipping external libraries entirely.',
+    highlights: [
+      'Wrote AVR assembly code from scratch and wrote directly to hardware registers to control clock timers, inputs, and output pins.',
+      'Designed digital building blocks including decade counters, 4-to-7 line decoders, and logic gates.',
+      'Wired physical circuits on a breadboard to drive seven-segment displays with precise hardware timing.',
+    ],
+    outcome: 'Gained a deep, hands-on understanding of how microcontrollers execute code at the register and machine level.',
+    tech: ['AVR Assembly', 'Direct Registers', 'Arduino', 'Digital Circuits', 'Breadboard Prototyping'],
+    github: 'https://github.com/shlok-mehndiratta',
+  },
+  {
+    id: 'graph-pointcloud-segmentation',
+    title: '3D Point Cloud Segmentation with Graph Neural Networks',
+    filterCategory: 'vision-ml',
+    category: 'Computer Vision & ML',
+    location: 'GeoAI4Cities Lab (Advisor: Dr. Vaibhav Kumar)',
     period: 'Dec 2024 – Jan 2025',
-    context: 'GeoAI4Cities Lab',
-    description: 'A graph-based machine learning pipeline for segmenting large-scale urban 3D LiDAR point clouds. Modeled point clouds as spatial graphs with localized connectivity to encode spatial topology and geometric relationships, incorporating RANSAC-based geometric filtering to remove sensor noise and outliers before graph construction.',
-    metrics: 'Robust segmentation accuracy and outlier resilience over standard point-wise baselines.',
-    tech: ['PyTorch Geometric', 'Open3D', 'RANSAC', 'Python', 'NumPy', 'Scikit-learn'],
+    shortSummary: 'I developed a machine learning pipeline that uses graph neural networks to label large 3D urban LiDAR scans, helping computers tell buildings, roads, and trees apart.',
+    highlights: [
+      'Represented 3D point clouds as graphs where each point connects to its nearest geometric neighbors to capture surrounding shapes.',
+      'Applied RANSAC geometric filtering to clean up sensor reflections and stray noise before running predictions.',
+      'Trained a graph neural network in PyTorch Geometric, outperforming standard point-by-point classifiers in complex city scenes.',
+    ],
+    outcome: 'Showed that learning from local geometric neighbors produces much cleaner 3D boundaries than treating points in isolation.',
+    tech: ['PyTorch Geometric', 'Open3D', 'RANSAC', 'Python', '3D Vision'],
     github: 'https://github.com/shlok-mehndiratta',
   },
   {
-    dossierId: 'DOSSIER.02',
-    title: 'Oil Spill Detection Using Sentinel-1 SAR Imagery',
-    category: 'Satellite Remote Sensing & Strategic Surveillance',
-    period: 'Mar 2024 – May 2024',
-    context: 'Marine Pollution & Radar Monitoring',
-    description: 'An automated maritime surveillance pipeline using European Space Agency Sentinel-1 Synthetic Aperture Radar (SAR) dual-polarization (VV/VH) satellite imagery. Designed CNN architectures with domain-specific preprocessing (adaptive thresholding, speckle noise reduction) to differentiate slick patterns from biogenic look-alikes.',
-    metrics: 'High detection precision and minimized false alarm rates through contextual filtering.',
-    tech: ['TensorFlow', 'OpenCV', 'Sentinel-1 Toolbox', 'Python', 'NumPy', 'Matplotlib'],
-    github: 'https://github.com/shlok-mehndiratta',
-  },
-  {
-    dossierId: 'DOSSIER.03',
-    title: 'AI-Powered Contract Review & Negotiation Assistant',
-    category: 'Enterprise Systems & Cloud Orchestration',
+    id: 'oil-spill-detection',
+    title: 'Detecting Maritime Oil Spills with Satellite Imagery',
+    filterCategory: 'vision-ml',
+    category: 'Remote Sensing & Vision',
+    location: 'Smart India Hackathon • Dept. of Earth Sciences',
     period: '2024',
-    context: 'Infosys Springboard',
-    description: 'Built an end-to-end legal document intelligence application with a FastAPI backend, Flutter cross-platform frontend, and Docker containerization. Applied large language models to automate legal contract review, structured clause extraction, and automated negotiation assistance.',
-    metrics: 'Production containerized full-stack deployment with automated RESTful endpoints.',
+    shortSummary: 'Built an automated system for maritime authorities that spots suspicious ship movements and verifies potential oil leaks using European Space Agency radar satellites.',
+    highlights: [
+      'Analyzed live vessel tracking data (AIS) to flag ships behaving abnormally, such as making sudden unplanned stops or loops in open water.',
+      'Fetched matching Sentinel-1 radar (SAR) satellite imagery to inspect the ocean surface around those ships, working day or night and through clouds.',
+      'Used computer vision to tell real oil slicks apart from natural look-alikes like seaweed patches or calm waters.',
+    ],
+    outcome: 'Delivered a prototype that helps maritime authorities verify potential pollution events in a few hours rather than days.',
+    tech: ['Python', 'Computer Vision', 'Sentinel-1 SAR', 'AIS Data', 'OpenCV', 'TensorFlow'],
+    github: 'https://github.com/shlok-mehndiratta',
+  },
+  {
+    id: 'cs50-web-suite',
+    title: 'Full-Stack Web Systems Suite',
+    filterCategory: 'software-systems',
+    category: 'Software Systems',
+    location: 'Harvard University CS50 Web',
+    period: 'Jan 2024 – Jun 2025',
+    shortSummary: 'I built five full-stack web applications to master how databases, asynchronous APIs, authentication, and state management work together in production.',
+    highlights: [
+      'Built a single-page email client in JavaScript that loads, archives, and replies to emails dynamically without refreshing the page.',
+      'Developed an online auction marketplace with real-time bidding, user watchlists, and listing management using Django and SQL.',
+      'Created a social network with user following and paginated feeds, an editable encyclopedia using Markdown, and a search engine interface.',
+    ],
+    outcome: 'Built a rock-solid foundation in backend architecture, relational database modeling, and frontend APIs. I also wrote a detailed reflection notebook essay about the journey.',
+    tech: ['Django', 'JavaScript', 'PostgreSQL', 'REST APIs', 'Python', 'HTML/CSS'],
+    notebookLink: '/notebook/cs50-web-systems-journey',
+  },
+  {
+    id: 'contract-review-assistant',
+    title: 'AI Assistant for Car Lease & Loan Contracts',
+    filterCategory: 'software-systems',
+    category: 'AI & Web Applications',
+    location: 'Infosys Springboard Virtual Internship 6.0',
+    period: '2024',
+    shortSummary: 'I created a mobile-friendly AI assistant that helps everyday buyers make sense of complicated car financing agreements, spot hidden fees, and negotiate better deals.',
+    highlights: [
+      'Used large language models to read lengthy loan and lease agreements and automatically highlight interest rates, mileage caps, and early exit penalties.',
+      'Integrated public car pricing databases so buyers can check whether the dealer is offering a fair market price.',
+      'Built a fast backend with FastAPI and Docker, paired with a clean, responsive Flutter mobile app for easy document uploads.',
+    ],
+    outcome: 'Turned confusing multi-page auto finance contracts into clear, plain-English summaries so buyers can make smart financial decisions.',
     tech: ['FastAPI', 'Flutter', 'Docker', 'Python', 'LLMs', 'REST APIs'],
     github: 'https://github.com/shlok-mehndiratta',
   },
 ];
 
-const courseworkProjects = [
+const courseworkDisciplines = [
   {
-    dossierId: 'DOSSIER.04',
-    title: 'Closed-Loop MPC & Extended Kalman Filter Mobile Robot Tracking',
-    course: 'Control Systems (ECS323) & EECS Lab (ECS327)',
-    period: '2025 – 2026',
-    description: 'Implemented a modular robot autonomy stack in ROS 2 and Gazebo. Designed and tuned an Extended Kalman Filter fusing visual odometry and IMU telemetry for state estimation in GPS-denied environments. Formulated event-triggered Model Predictive Control accounting for actuator saturation, comparing stability against classical Stanley and Pure Pursuit geometric controllers.',
-    metrics: 'Diagnosed and resolved actuator saturation instability in high-curvature trajectory tracking.',
-    tech: ['ROS 2', 'Gazebo', 'Extended Kalman Filter', 'Model Predictive Control', 'C++', 'Python'],
-    github: 'https://github.com/shlok-mehndiratta',
+    discipline: 'Robotics, Autonomy & Control Systems',
+    description: 'Feedback control, state-space models, system identification, and physical robot experiments.',
+    courses: [
+      {
+        code: 'ECS323',
+        name: 'Control Systems',
+        relevance: 'Classical feedback loops, stability margins, Bode and Nyquist criteria, and PID controller tuning.',
+      },
+      {
+        code: 'ECS334',
+        name: 'Linear Control Systems',
+        relevance: 'State-space formulation, controllability and observability matrices, and state feedback controller synthesis.',
+      },
+      {
+        code: 'ECS204',
+        name: 'Signals and Systems',
+        relevance: 'Continuous and discrete-time signals, Fourier and Laplace transforms, frequency response, and filtering.',
+      },
+      {
+        code: 'ECS301',
+        name: 'Principles of Communications',
+        relevance: 'Analog and digital modulation schemes, signal bandwidth, noise analysis, and data transmission protocols.',
+      },
+    ],
   },
   {
-    dossierId: 'DOSSIER.05',
-    title: 'CS50 Web Full-Stack Systems Suite (Harvard University)',
-    course: 'CS50 Web Programming with Python & JavaScript',
-    period: 'Jan 2024 – Jun 2025',
-    description: 'Completed a five-project systems journey exploring persistent state, concurrency, and asynchronous system boundaries: Mail (single-page email client with async REST APIs), Network (social network with relational pagination and likes), Commerce (auction platform with multi-user bidding state), Wiki (markdown encyclopedia with persistent storage), and Search (query layout clone).',
-    metrics: 'Full reflective essay available in Notebook detailing architectural lessons and state boundaries.',
-    tech: ['Django', 'JavaScript', 'PostgreSQL', 'REST APIs', 'Python', 'HTML/CSS'],
-    notebookLink: '/notebook/cs50-web-systems-journey',
+    discipline: 'AI, Vision & Machine Learning',
+    description: 'Deep computer vision, graph neural networks, federated learning, and core algorithmic theory.',
+    courses: [
+      {
+        code: 'DSE602',
+        name: 'Computer Vision',
+        instructor: 'Samiran Das',
+        status: 'Ongoing',
+        relevance: 'Geometric camera models, multi-view 3D reconstruction, optical flow, visual odometry, and deep perceptual representations.',
+      },
+      {
+        code: 'DSE423',
+        name: 'Machine Learning with Graphs',
+        instructor: 'Akash Anil',
+        status: 'Ongoing',
+        relevance: 'Graph neural networks (GNNs), message passing architectures, node/graph classification, link prediction, and relational learning.',
+      },
+      {
+        code: 'ECS431',
+        name: 'Federated Learning: Foundations and Applications',
+        instructor: 'Haroon Rashid Lone',
+        status: 'Ongoing',
+        relevance: 'Distributed and privacy-preserving machine learning, client aggregation algorithms, communication efficiency, and non-IID data.',
+      },
+      {
+        code: 'DSE317',
+        name: 'Machine Learning',
+        relevance: 'Supervised and unsupervised learning, empirical risk minimization, loss functions, and regularization.',
+      },
+      {
+        code: 'ECS310',
+        name: 'Algorithms',
+        relevance: 'Algorithm design paradigms, divide-and-conquer, greedy techniques, dynamic programming, and complexity classes.',
+      },
+      {
+        code: 'ECS202',
+        name: 'Data Structures and Algorithms',
+        relevance: 'Balanced trees, graph algorithms, hash tables, sorting routines, and asymptotic complexity analysis.',
+      },
+      {
+        code: 'ECS307',
+        name: 'Theory of Computation',
+        relevance: 'Finite automata, context-free grammars, Turing machines, decidability, and reductions.',
+      },
+      {
+        code: 'ECS102',
+        name: 'Introduction to Programming',
+        relevance: 'Structured problem solving, memory models, modular design, and procedural programming in C/C++.',
+      },
+    ],
   },
   {
-    dossierId: 'DOSSIER.06',
-    title: 'Quantum Computing Foundations & Circuit Simulation',
-    course: 'C-DAC & IIT Roorkee (Credential: CDACH/QML/275)',
-    period: 'Jun 2025',
-    description: 'Completed an intensive 4-week program covering qubits, unitary operators, entanglement, and quantum teleportation circuits. Experimented with quantum circuit simulation and foundational quantum algorithms on statevector simulators. Backed by MeitY, Government of India.',
-    metrics: 'Quantum circuit statevector simulations and unitary transformations validated.',
-    tech: ['Quantum Computing', 'Linear Algebra', 'Simulators', 'Python'],
-    github: 'https://github.com/shlok-mehndiratta',
+    discipline: 'Computer Architecture & Digital Systems',
+    description: 'Processor microarchitecture, digital logic design, embedded circuits, and hands-on laboratory setups.',
+    courses: [
+      {
+        code: 'ECS409',
+        name: 'Computer Organisation',
+        instructor: 'Sukarn Agarwal',
+        status: 'Ongoing',
+        relevance: 'Processor microarchitecture, instruction pipelining, cache memory hierarchies, hazard handling, and memory management.',
+      },
+      {
+        code: 'ECS326',
+        name: 'Digital Circuits and Systems',
+        relevance: 'Combinational logic, synchronous sequential circuits, state machine synthesis, and FPGA timing analysis.',
+      },
+      {
+        code: 'ECS321',
+        name: 'Electronic Devices',
+        relevance: 'Semiconductor physics, p-n junctions, BJT/MOSFET operation, and physical device characteristics.',
+      },
+      {
+        code: 'ECS325',
+        name: 'Analog Circuits',
+        relevance: 'Operational amplifiers, active filters, feedback amplifiers, and signal conditioning for sensors.',
+      },
+      {
+        code: 'ECS203',
+        name: 'Basic Electronics',
+        relevance: 'Diode circuits, transistor DC biasing, small-signal models, and basic amplifier topologies.',
+      },
+      {
+        code: 'ECS327',
+        name: 'EECS Laboratory I',
+        relevance: 'Hands-on experimentation with microcontrollers, sensor interfacing, signal acquisition, and instrumentation.',
+      },
+      {
+        code: 'ECS330',
+        name: 'EECS Laboratory II',
+        relevance: 'Advanced laboratory experiments in digital signal processing, hardware communication, and closed-loop control.',
+      },
+    ],
+  },
+  {
+    discipline: 'Mathematical & Network Foundations',
+    description: 'Complex network science, numerical optimization, linear algebra, multivariable calculus, and probability.',
+    courses: [
+      {
+        code: 'ECS414',
+        name: 'Network Science: Theory and Applications',
+        instructor: 'Kundan Kandhway',
+        status: 'Ongoing',
+        relevance: 'Complex network topologies, spectral graph analysis, centrality metrics, community detection, and dynamical processes.',
+      },
+      {
+        code: 'DSE311',
+        name: 'Applied Optimization',
+        relevance: 'Unconstrained and constrained convex optimization, gradient descent variants, KKT conditions, and interior-point solvers.',
+      },
+      {
+        code: 'MTH102',
+        name: 'Linear Algebra',
+        relevance: 'Vector spaces, linear mappings, matrix decompositions, eigenvalues, eigenvectors, and singular value decomposition.',
+      },
+      {
+        code: 'MTH201',
+        name: 'Multivariable Calculus',
+        relevance: 'Partial derivatives, gradients, multiple integrals, vector fields, and multivariable optimization.',
+      },
+      {
+        code: 'MTH202',
+        name: 'Probability and Statistics',
+        relevance: 'Probability distributions, joint density functions, random variables, statistical estimation, and hypothesis tests.',
+      },
+      {
+        code: 'ECS201',
+        name: 'Discrete Mathematics I',
+        relevance: 'Propositional logic, set theory, relations, combinatorics, proof techniques, and graph basics.',
+      },
+      {
+        code: 'MTH101',
+        name: 'Calculus I',
+        relevance: 'Limits, continuity, single-variable differential and integral calculus, and Taylor series expansions.',
+      },
+    ],
+  },
+];
+
+const otherCourses = [
+  { code: 'CHE103', name: 'Engineering Design and Drawing' },
+  { code: 'CHM101', name: 'General Chemistry' },
+  { code: 'CHM112', name: 'Basic Organic Chemistry I' },
+  { code: 'CHM114', name: 'Chemistry Laboratory I' },
+  { code: 'PHY101', name: 'Mechanics' },
+  { code: 'PHY103', name: 'General Physics Laboratory I' },
+  { code: 'PHY106', name: 'Quantum Physics' },
+  { code: 'PHY206', name: 'Physics Through Computational Thinking' },
+  { code: 'EES101', name: 'Earth Materials and Processes' },
+  { code: 'EES102', name: 'Introduction to Environmental Sciences' },
+  { code: 'CHE201', name: 'Engineering Mechanics (Solid and Fluid)' },
+  { code: 'CHE204', name: 'Chemical Process Calculations' },
+  { code: 'CHE205', name: 'Chemical Engineering Thermodynamics' },
+  { code: 'CHE206', name: 'Introduction to Chemical Engineering Laboratory' },
+  { code: 'CHE208', name: 'Chemical Process Technology' },
+  { code: 'ECO101', name: 'Principles of Economics I' },
+  { code: 'ECO102', name: 'Principles of Economics II' },
+  { code: 'ECO201', name: 'Econometrics I' },
+  { code: 'HSS105', name: 'Advanced Academic Communication Skills' },
+  { code: 'IPR500', name: 'Law Relating to Intellectual Property and Patents' },
+  { code: 'PT101', name: 'Physical Training' },
+];
+
+const certifications = [
+  {
+    title: 'Quantum Computing Program',
+    issuer: 'C-DAC & IIT Roorkee (Supported by MeitY)',
+    credentialId: 'CDACH/QML/275',
+    period: 'June 2025',
+    description: 'Completed a 4-week program on Quantum Computing, jointly conducted by C-DAC and IIT Roorkee with support from MeitY. Covered fundamentals of qubits, quantum gates, entanglement, and teleportation, along with hands-on practice in quantum simulators, quantum algorithms (Deutsch–Jozsa, Simon’s, Grover’s, HHL), and an introduction to Quantum Machine Learning (QML).',
+    skills: ['Quantum Computing', 'Qubit Gates & Circuits', 'Grover & HHL Algorithms', 'Quantum Simulators', 'QML Introduction', 'Python'],
+    linkText: 'Credential CDACH/QML/275',
+  },
+  {
+    title: "CS50's Web Programming with Python and JavaScript",
+    issuer: 'Harvard University (edX)',
+    credentialId: 'Verified Certificate',
+    period: '2024 – 2025',
+    description: 'A hands-on software engineering program from Harvard. Covered building complete web applications from scratch, including Django backends, relational SQL databases, interactive JavaScript frontends, user authentication, automated testing, and web security.',
+    skills: ['Django', 'Python', 'JavaScript', 'SQL & Django ORM', 'REST APIs', 'CI/CD & Testing', 'Web Security'],
+    link: '/notebook/cs50-web-systems-journey',
+    linkText: 'Read my notebook reflection →',
+  },
+  {
+    title: 'Infosys Springboard Virtual Internship 6.0',
+    issuer: 'Infosys Springboard',
+    credentialId: 'Virtual Internship 6.0',
+    period: '2024',
+    description: 'Completed a virtual internship focused on developing practical AI applications. Built the Car Lease and Loan Contract Review Assistant, combining large language models for clause extraction with a FastAPI backend and a Flutter mobile app.',
+    skills: ['Large Language Models (LLMs)', 'FastAPI', 'Flutter', 'Docker', 'Python', 'REST APIs'],
+    linkText: 'Verified Track Completion',
   },
 ];
 
 const projectSections = [
-  { id: 'ml-vision', label: 'ML & Vision' },
-  { id: 'robotics-systems', label: 'Robotics & Builds' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'coursework', label: 'Coursework' },
+  { id: 'certifications', label: 'Certifications' },
 ];
+
+const projectsSchema = {
+  '@type': 'ItemList',
+  name: 'Engineering Projects by Shlok Mehndiratta',
+  description: 'Robotics, control systems, and computer vision projects developed by Shlok Mehndiratta.',
+  itemListElement: engineeringProjects.map((p, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'SoftwareSourceCode',
+      name: p.title,
+      description: p.shortSummary,
+      programmingLanguage: p.tech,
+      codeRepository: p.github,
+      author: {
+        '@type': 'Person',
+        '@id': 'https://shlokmehndiratta.me/#person',
+        name: 'Shlok Mehndiratta',
+      },
+    },
+  })),
+};
 ---
 
 <BaseLayout
-  title="Projects & Builds | Shlok Mehndiratta"
-  description="Machine learning pipelines, full-stack systems, and coursework engineering builds by Shlok Mehndiratta."
+  title="Projects | Shlok Mehndiratta"
+  description="Technical projects, academic coursework at IISER Bhopal, and specialized certifications by Shlok Mehndiratta."
   sections={projectSections}
+  schema={projectsSchema}
 >
-  <div class="space-y-16 sm:space-y-20">
-    <!-- Header -->
-    <header class="space-y-3 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
-      <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
-        <span>ENGINEERING BLUEPRINTS // TECHNICAL SPECIFICATIONS</span>
-        <span class="tala-divider">||</span>
-        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">ROBOTICS & VISION</span>
-      </div>
-      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-        Projects
+  <!-- Content Container (Balanced and Centered) -->
+  <div class="space-y-12 sm:space-y-16">
+    <!-- Clean Personalized Page Header -->
+    <header class="pb-4 border-b border-black/[0.08] dark:border-white/[0.08]">
+      <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        Projects & Coursework
       </h1>
-      <p class="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        Engineering builds spanning graph-based 3D point cloud learning, synthetic aperture radar remote sensing, closed-loop robot control, and quantum circuit simulations.
+      <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1 max-w-2xl leading-relaxed font-sans">
+        A collection of projects I have built and courses I have taken during my degree at IISER Bhopal. I enjoy working at the intersection of robotics, control, computer vision, and software, taking mathematical ideas and turning them into working systems.
       </p>
     </header>
 
-    <!-- Section 1: Machine Learning & Vision -->
-    <section id="ml-vision" class="space-y-6">
-      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
+    <!-- Stream 1: Technical Projects -->
+    <section id="projects" class="space-y-5">
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Machine Learning & Vision
+          <h2 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Featured Projects
           </h2>
-          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-            LiDAR point cloud segmentation, satellite radar sensing, and document AI
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+            Systems I have designed and built across robotics, vision, and software.
           </p>
         </div>
-        <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
-          (3 Systems)
-        </span>
+
+        <!-- Minimal Monochrome Category Filter -->
+        <div class="flex flex-wrap items-center gap-1.5" id="project-filters">
+          <button
+            type="button"
+            data-filter="all"
+            class="filter-btn active px-2.5 py-1 rounded-lg text-xs font-mono font-medium"
+          >
+            All (6)
+          </button>
+          <button
+            type="button"
+            data-filter="robotics-embedded"
+            class="filter-btn px-2.5 py-1 rounded-lg text-xs font-mono font-medium"
+          >
+            Robotics & Hardware (2)
+          </button>
+          <button
+            type="button"
+            data-filter="vision-ml"
+            class="filter-btn px-2.5 py-1 rounded-lg text-xs font-mono font-medium"
+          >
+            Vision & ML (2)
+          </button>
+          <button
+            type="button"
+            data-filter="software-systems"
+            class="filter-btn px-2.5 py-1 rounded-lg text-xs font-mono font-medium"
+          >
+            Software & Systems (2)
+          </button>
+        </div>
       </div>
 
-      <div class="space-y-2">
-        {machineLearningProjects.map((proj) => (
-          <div class="dossier-panel reticle-corner pt-6 pb-7 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all space-y-3">
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-              <div>
-                <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500">
-                  <span class="font-bold text-cyan-600 dark:text-cyan-400">[{proj.dossierId}]</span>
-                  <span class="tala-divider">|</span>
-                  <span class="text-zinc-600 dark:text-zinc-300 font-medium">{proj.category}</span>
-                  <span class="tala-divider">||</span>
-                  <span>{proj.context}</span>
+      <!-- Architectural Technical Ledger Stream (Open, Unboxed, Monograph Style) -->
+      <div class="divide-y divide-black/[0.08] dark:divide-white/[0.08] border-t border-black/[0.08] dark:border-white/[0.08]" id="projects-stream">
+        {engineeringProjects.map((proj, idx) => {
+          const indexNum = String(idx + 1).padStart(2, '0');
+          return (
+            <article
+              data-project-item
+              data-category={proj.filterCategory}
+              class="project-entry py-8 sm:py-10 first:pt-6 last:pb-4 group transition-colors"
+            >
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-start">
+                <!-- Mobile-first Title & Index Header (< lg) -->
+                <div class="lg:hidden space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2.5">
+                      <span class="proj-index-number font-mono text-xl sm:text-2xl font-semibold text-zinc-800 dark:text-zinc-100 tracking-tight select-none">
+                        {indexNum}
+                      </span>
+                      <span class="tech-chip text-[10px] font-mono uppercase tracking-wider font-semibold px-2 py-0.5 rounded">
+                        {proj.category}
+                      </span>
+                    </div>
+                    <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">{proj.period}</span>
+                  </div>
+                  <h3 class="text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50 leading-snug">
+                    {proj.title}
+                  </h3>
+                  <div class="text-xs font-mono text-zinc-600 dark:text-zinc-400">{proj.location}</div>
                 </div>
-                <h3 class="text-base sm:text-lg font-semibold text-zinc-950 dark:text-zinc-50 mt-1">
-                  {proj.title}
-                </h3>
+
+                <!-- Left Rail: Monospace Index & Context (Desktop >= lg) -->
+                <div class="hidden lg:block lg:col-span-4 space-y-3">
+                  <div class="flex items-baseline gap-3">
+                    <span class="proj-index-number font-mono text-2xl sm:text-3xl font-semibold text-zinc-800 dark:text-zinc-100 tracking-tight select-none">
+                      {indexNum}
+                    </span>
+                    <span class="tech-chip text-[10px] sm:text-[11px] font-mono uppercase tracking-wider font-semibold px-2 py-0.5 rounded">
+                      {proj.category}
+                    </span>
+                  </div>
+
+                  <div class="text-xs font-mono space-y-0.5">
+                    <div class="text-zinc-800 dark:text-zinc-200 font-medium">{proj.location}</div>
+                    <div class="text-zinc-500 dark:text-zinc-400">{proj.period}</div>
+                  </div>
+
+                  <!-- Inline Tech Stack Tags -->
+                  <div class="pt-1 flex flex-wrap gap-1.5">
+                    {proj.tech.map((t) => (
+                      <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <!-- External Links -->
+                  <div class="pt-1">
+                    {proj.notebookLink ? (
+                      <a
+                        href={proj.notebookLink}
+                        class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-900 dark:text-zinc-100 font-medium underline decoration-zinc-400 hover:decoration-zinc-950 dark:hover:decoration-zinc-50 transition-colors"
+                      >
+                        <span>Read notebook essay</span>
+                        <span>&rarr;</span>
+                      </a>
+                    ) : proj.github ? (
+                      <a
+                        href={proj.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+                      >
+                        <span>View on GitHub</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                      </a>
+                    ) : null}
+                  </div>
+                </div>
+
+                <!-- Right Rail: Project Narrative & Overview -->
+                <div class="lg:col-span-8 space-y-3.5">
+                  <!-- Title (Desktop >= lg) -->
+                  <h3 class="hidden lg:block text-base sm:text-lg font-bold tracking-tight text-zinc-950 dark:text-zinc-50 leading-snug">
+                    {proj.title}
+                  </h3>
+
+                  <!-- Plain English Summary (Always Visible Overview) -->
+                  <p class="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans">
+                    {proj.shortSummary}
+                  </p>
+
+                  <!-- Inline Tech Stack Tags & Links for Mobile (< lg) -->
+                  <div class="lg:hidden space-y-2 pt-0.5">
+                    <div class="flex flex-wrap gap-1.5">
+                      {proj.tech.map((t) => (
+                        <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    {proj.notebookLink ? (
+                      <div>
+                        <a
+                          href={proj.notebookLink}
+                          class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-900 dark:text-zinc-100 font-medium underline decoration-zinc-400 hover:decoration-zinc-950 dark:hover:decoration-zinc-50 transition-colors"
+                        >
+                          <span>Read notebook essay</span>
+                          <span>&rarr;</span>
+                        </a>
+                      </div>
+                    ) : proj.github ? (
+                      <div>
+                        <a
+                          href={proj.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors"
+                        >
+                          <span>View on GitHub</span>
+                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
+                      </div>
+                    ) : null}
+                  </div>
+
+                  <!-- Collapsible Details Dropdown -->
+                  <details class="group/proj-drawer pt-1">
+                    <summary class="tactile-btn list-none [&::-webkit-details-marker]:hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono font-medium cursor-pointer select-none">
+                      <span class="group-open/proj-drawer:hidden flex items-center gap-1.5">
+                        <span>View details & architecture</span>
+                      </span>
+                      <span class="hidden group-open/proj-drawer:inline-flex items-center gap-1.5">
+                        <span>Hide details</span>
+                      </span>
+                      <svg
+                        class="w-3.5 h-3.5 text-zinc-400 group-hover/proj-drawer:text-zinc-700 dark:group-hover/proj-drawer:text-zinc-200 transition-transform duration-200 group-open/proj-drawer:rotate-180"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </summary>
+
+                    <!-- Detailed Drawer: Revealed on Click -->
+                    <div class="pt-3.5 space-y-3.5 border-t border-black/[0.05] dark:border-white/[0.05] mt-3">
+                      <!-- Direct Implementation Highlights -->
+                      <div class="space-y-2">
+                        <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold select-none">
+                          What I built & tested
+                        </div>
+                        <ul class="space-y-2 text-xs sm:text-[13px] text-zinc-700 dark:text-zinc-300 font-sans leading-relaxed">
+                          {proj.highlights.map((h) => (
+                            <li class="flex items-start gap-2.5">
+                              <span class="text-zinc-400 dark:text-zinc-500 font-mono text-xs shrink-0 select-none mt-0.5">•</span>
+                              <span>{h}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <!-- Key Takeaway / Insight Callout -->
+                      {proj.outcome && (
+                        <div class="pt-2.5 border-t border-black/[0.06] dark:border-white/[0.06] text-xs text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed">
+                          <span class="font-semibold text-zinc-900 dark:text-zinc-100 font-mono text-[11px] uppercase tracking-wide mr-1.5 select-none">
+                            Key takeaway:
+                          </span>
+                          <span>{proj.outcome}</span>
+                        </div>
+                      )}
+                    </div>
+                  </details>
+                </div>
               </div>
-              <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 shrink-0">{proj.period}</span>
-            </div>
-
-            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
-              {proj.description}
-            </p>
-
-            <div class="pl-3.5 border-l-2 border-cyan-500/50 dark:border-cyan-400/50 py-1 text-xs font-mono text-zinc-700 dark:text-zinc-300">
-              <span class="text-cyan-700 dark:text-cyan-300 font-semibold uppercase text-[10px] tracking-wider mr-1.5">BENCHMARK //</span>
-              <span>{proj.metrics}</span>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-black/[0.04] dark:border-white/[0.04]">
-              <div class="flex flex-wrap gap-1.5">
-                {proj.tech.map((t) => (
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {proj.github && (
-                <a
-                  href={proj.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-                >
-                  <span>Repository</span>
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                </a>
-              )}
-            </div>
-          </div>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </section>
 
-    <!-- Section 2: Robotics & Systems Builds -->
-    <section id="robotics-systems" class="space-y-6">
-      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
+    <!-- Stream 2: Academic Coursework Matrix (Expansive Split-Rail Stream) -->
+    <section id="coursework" class="space-y-6 pt-8 sm:pt-10 border-t border-black/[0.08] dark:border-white/[0.08] scroll-mt-24 sm:scroll-mt-28">
+      <!-- Section Header -->
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Robotics & Systems Builds
-          </h2>
-          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-            Closed-loop mobile robot control, Harvard CS50 Web suite, and quantum computing
+          <div class="flex items-center gap-2">
+            <h2 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+              Academic Coursework
+            </h2>
+            <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 inline-flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              47 Courses Total
+            </span>
+          </div>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+            Current ongoing courses and completed curriculum tracks from my Electrical Engineering & Computer Science degree at IISER Bhopal.
           </p>
         </div>
-        <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500">
-          (3 Implementations)
+        <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+          IISER Bhopal EECS
         </span>
       </div>
 
-      <div class="space-y-2">
-        {courseworkProjects.map((proj) => (
-          <div class="dossier-panel reticle-corner pt-6 pb-7 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all space-y-3">
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-              <div>
-                <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500">
-                  <span class="font-bold text-cyan-600 dark:text-cyan-400">[{proj.dossierId}]</span>
-                  <span class="tala-divider">|</span>
-                  <span class="text-zinc-600 dark:text-zinc-300 font-medium">{proj.course}</span>
+      <!-- Expansive 12-Column Split Rail (Matching Featured Projects Architecture) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <!-- Left Rail (lg:col-span-4): Disciplines Index -->
+        <div class="lg:col-span-4 space-y-2.5">
+          <div class="text-xs font-mono uppercase tracking-wider text-zinc-700 dark:text-zinc-400 font-bold select-none pb-1">
+            Curriculum Tracks
+          </div>
+
+          <nav class="flex flex-col space-y-2" id="coursework-nav" aria-label="Coursework disciplines">
+            {courseworkDisciplines.map((cat, idx) => (
+              <button
+                type="button"
+                data-discipline-target={idx}
+                class={`course-nav-btn group text-left px-3.5 py-2.5 rounded-xl transition-all flex items-center justify-between border cursor-pointer ${
+                  idx === 0
+                    ? 'active bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 border-zinc-950 dark:border-zinc-100 shadow-[0_2px_8px_rgba(31,22,15,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] font-semibold'
+                    : 'text-zinc-900 dark:text-zinc-200 bg-surface-light dark:bg-surface-dark border-border-subtle shadow-[0_1px_3px_rgba(35,22,12,0.05),inset_0_1px_0_rgba(255,255,255,0.7)] hover:bg-white dark:hover:bg-white/[0.06] hover:border-border-hover hover:-translate-y-0.5'
+                }`}
+              >
+                <div class="flex items-center gap-2.5 min-w-0">
+                  <span class="font-mono text-xs font-extrabold text-zinc-950 dark:text-zinc-100 select-none">
+                    0{idx + 1}
+                  </span>
+                  <span class="text-xs sm:text-[13px] font-semibold truncate">
+                    {cat.discipline.replace(' and ', ' & ')}
+                  </span>
                 </div>
-                <h3 class="text-base sm:text-lg font-semibold text-zinc-950 dark:text-zinc-50 mt-1">
-                  {proj.title}
-                </h3>
+                <span class="font-mono text-[10px] text-zinc-700 dark:text-zinc-300 font-semibold bg-black/[0.05] dark:bg-white/[0.07] px-2 py-0.5 rounded ml-2 shrink-0">
+                  {cat.courses.length}
+                </span>
+              </button>
+            ))}
+
+            <!-- Foundations & Breadth -->
+            <button
+              type="button"
+              data-discipline-target={courseworkDisciplines.length}
+              class="course-nav-btn group text-left px-3.5 py-2.5 rounded-xl transition-all flex items-center justify-between border text-zinc-900 dark:text-zinc-200 bg-surface-light dark:bg-surface-dark border-border-subtle shadow-[0_1px_3px_rgba(35,22,12,0.05),inset_0_1px_0_rgba(255,255,255,0.7)] hover:bg-white dark:hover:bg-white/[0.06] hover:border-border-hover hover:-translate-y-0.5 cursor-pointer"
+            >
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="font-mono text-xs font-extrabold text-zinc-950 dark:text-zinc-100 select-none">
+                  0{courseworkDisciplines.length + 1}
+                </span>
+                <span class="text-xs sm:text-[13px] font-semibold truncate">
+                  Natural Sciences & Breadth
+                </span>
               </div>
-              <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 shrink-0">{proj.period}</span>
+              <span class="font-mono text-[10px] text-zinc-700 dark:text-zinc-300 font-semibold bg-black/[0.05] dark:bg-white/[0.07] px-2 py-0.5 rounded ml-2 shrink-0">
+                {otherCourses.length}
+              </span>
+            </button>
+          </nav>
+        </div>
+
+        <!-- Right Rail (lg:col-span-8 - Expands Fully to the Right Edge!) -->
+        <div class="lg:col-span-8 w-full min-w-0">
+          <div id="coursework-panels">
+            {courseworkDisciplines.map((cat, idx) => (
+              <div
+                data-discipline-panel={idx}
+                class={`discipline-panel space-y-4 ${idx === 0 ? '' : 'hidden'}`}
+              >
+                <!-- Panel Header -->
+                <div class="border-b border-black/[0.05] dark:border-white/[0.06] pb-2.5 flex items-baseline justify-between gap-3">
+                  <div>
+                    <h3 class="text-base sm:text-lg font-bold tracking-tight text-zinc-950 dark:text-zinc-50 flex items-center gap-2">
+                      <span>{cat.discipline}</span>
+                      {cat.isOngoing && (
+                        <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 font-medium">
+                          Active Semester
+                        </span>
+                      )}
+                    </h3>
+                    <p class="text-xs text-zinc-500 dark:text-zinc-400 font-sans mt-0.5">
+                      {cat.description}
+                    </p>
+                  </div>
+                  <span class="font-mono text-[11px] text-zinc-400 dark:text-zinc-500 shrink-0">
+                    {cat.courses.length} Courses
+                  </span>
+                </div>
+
+                <!-- Expansive 2-Column Course Cards Grid (Fills 100% of Right Space!) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
+                  {cat.courses.map((course) => (
+                    <div class="apple-card p-3.5 sm:p-4 rounded-xl bg-surface-light dark:bg-surface-dark border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark flex flex-col justify-between space-y-2.5 hover:border-black/15 dark:hover:border-white/15 transition-all">
+                      <div class="space-y-1.5">
+                        <div class="flex items-start justify-between gap-2">
+                          <h4 class="text-xs sm:text-[13px] font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight leading-snug">
+                            {course.name}
+                          </h4>
+                          <div class="flex items-center gap-1.5 shrink-0">
+                            {course.status && (
+                              <span class="inline-flex items-center gap-1 text-[9px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 px-1.5 py-0.5 rounded font-semibold">
+                                <span class="w-1 h-1 rounded-full bg-emerald-500 animate-pulse"></span>
+                                {course.status}
+                              </span>
+                            )}
+                            <span class="font-mono text-[10px] text-zinc-600 dark:text-zinc-400 bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.05] dark:border-white/[0.06] px-1.5 py-0.5 rounded font-medium">
+                              {course.code}
+                            </span>
+                          </div>
+                        </div>
+                        {course.instructor && (
+                          <div class="text-[11px] font-mono text-zinc-500 dark:text-zinc-400 flex items-center gap-1">
+                            <span class="text-zinc-400 dark:text-zinc-500">Instructor:</span>
+                            <span class="text-zinc-700 dark:text-zinc-300 font-medium">{course.instructor}</span>
+                          </div>
+                        )}
+                        <p class="text-[11px] text-zinc-500 dark:text-zinc-400 font-sans leading-relaxed">
+                          {course.relevance}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            <!-- Panel 05: Foundations & Breadth (Expansive 3-Column Grid) -->
+            <div
+              data-discipline-panel={courseworkDisciplines.length}
+              class="discipline-panel space-y-4 hidden"
+            >
+              <div class="border-b border-black/[0.05] dark:border-white/[0.06] pb-2.5 flex items-baseline justify-between gap-3">
+                <div>
+                  <h3 class="text-base sm:text-lg font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+                    Foundations & Academic Breadth
+                  </h3>
+                  <p class="text-xs text-zinc-500 dark:text-zinc-400 font-sans mt-0.5">
+                    Foundational natural sciences, chemical engineering, economics, and humanities courses.
+                  </p>
+                </div>
+                <span class="font-mono text-[11px] text-zinc-400 dark:text-zinc-500 shrink-0">
+                  {otherCourses.length} Courses
+                </span>
+              </div>
+
+              <!-- Full-width 3-Column Chip Matrix -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                {otherCourses.map((c) => (
+                  <div class="flex items-center justify-between py-2 px-2.5 rounded-lg bg-surface-light dark:bg-surface-dark border border-black/[0.05] dark:border-white/[0.06] hover:border-black/15 dark:hover:border-white/15 transition-all text-xs">
+                    <span class="text-zinc-800 dark:text-zinc-200 font-medium truncate mr-2 text-[11px] sm:text-xs">
+                      {c.name}
+                    </span>
+                    <span class="font-mono text-[10px] text-zinc-500 dark:text-zinc-400 shrink-0">
+                      {c.code}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stream 3: Certifications & Training -->
+    <section id="certifications" class="space-y-5 pt-8 sm:pt-10 border-t border-black/[0.08] dark:border-white/[0.08]">
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Certifications & Training
+          </h2>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+            Practical workshops and certified programs I have completed alongside my degree.
+          </p>
+        </div>
+        <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+          {certifications.length} Programs
+        </span>
+      </div>
+
+      <!-- Single Column: One Card Per Horizontal Line -->
+      <div class="grid grid-cols-1 gap-4 sm:gap-5">
+        {certifications.map((cert) => (
+          <article class="apple-card group relative p-5 sm:p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-black/[0.06] dark:border-white/[0.08] shadow-apple-card dark:shadow-apple-card-dark hover:border-black/15 dark:hover:border-white/15 transition-all space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5 border-b border-black/[0.05] dark:border-white/[0.05] pb-2 text-xs font-mono">
+              <span class="text-zinc-800 dark:text-zinc-200 font-semibold">{cert.issuer}</span>
+              <span class="text-zinc-400 dark:text-zinc-500 text-[11px]">{cert.period}</span>
             </div>
 
-            <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
-              {proj.description}
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <h3 class="text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+                {cert.title}
+              </h3>
+              <span class="text-[10px] font-mono text-zinc-500 dark:text-zinc-400 font-semibold tracking-wider uppercase shrink-0">
+                {cert.credentialId}
+              </span>
+            </div>
+
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans">
+              {cert.description}
             </p>
 
-            <div class="pl-3.5 border-l-2 border-cyan-500/50 dark:border-cyan-400/50 py-1 text-xs font-mono text-zinc-700 dark:text-zinc-300">
-              <span class="text-cyan-700 dark:text-cyan-300 font-semibold uppercase text-[10px] tracking-wider mr-1.5">SPEC STATUS //</span>
-              <span>{proj.metrics}</span>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-black/[0.04] dark:border-white/[0.04]">
+            <div class="pt-3 border-t border-black/[0.04] dark:border-white/[0.04] flex flex-wrap items-center justify-between gap-2.5">
               <div class="flex flex-wrap gap-1.5">
-                {proj.tech.map((t) => (
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-                    {t}
+                {cert.skills.map((s) => (
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.05] dark:border-white/[0.06] text-zinc-600 dark:text-zinc-400">
+                    {s}
                   </span>
                 ))}
               </div>
 
-              {proj.notebookLink ? (
+              {cert.link ? (
                 <a
-                  href={proj.notebookLink}
-                  class="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-700 dark:text-cyan-300 hover:underline transition-colors"
+                  href={cert.link}
+                  class="inline-flex items-center gap-1 text-xs font-mono text-zinc-900 dark:text-zinc-100 underline decoration-zinc-400 hover:decoration-zinc-950 dark:hover:decoration-zinc-50 transition-colors font-medium"
                 >
-                  <span>Read Reflection &rarr;</span>
+                  <span>{cert.linkText}</span>
                 </a>
-              ) : proj.github ? (
-                <a
-                  href={proj.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-                >
-                  <span>Repository</span>
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                </a>
-              ) : null}
+              ) : (
+                <span class="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
+                  {cert.linkText}
+                </span>
+              )}
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </section>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    // 1. Interactive Category Filter Tabs (Stable Catalogue Indexing)
+    const filterContainer = document.getElementById('project-filters');
+    if (filterContainer) {
+      filterContainer.addEventListener('click', function (e) {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+
+        const targetFilter = btn.getAttribute('data-filter');
+        const allBtns = filterContainer.querySelectorAll('.filter-btn');
+
+        allBtns.forEach(function (b) {
+          b.classList.remove('active');
+        });
+        btn.classList.add('active');
+
+        const items = document.querySelectorAll('[data-project-item]');
+        items.forEach(function (item) {
+          const cat = item.getAttribute('data-category');
+          if (targetFilter === 'all' || cat === targetFilter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    // 2. Upper-Viewport Scroll for Academic Coursework when redirected or hash targeted
+    const handleCourseworkScroll = function () {
+      if (window.location.hash === '#coursework') {
+        const el = document.getElementById('coursework');
+        if (el) {
+          setTimeout(function () {
+            // Position header gracefully in the upper portion of the viewport below navbar
+            const navOffset = 90;
+            const targetY = el.getBoundingClientRect().top + window.pageYOffset - navOffset;
+            window.scrollTo({ top: targetY, behavior: 'smooth' });
+          }, 120);
+        }
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', handleCourseworkScroll);
+    } else {
+      handleCourseworkScroll();
+    }
+    window.addEventListener('hashchange', handleCourseworkScroll);
+
+    // 3. Coursework Split-Rail Discipline Switcher
+    const navButtons = document.querySelectorAll('.course-nav-btn');
+    const panels = document.querySelectorAll('.discipline-panel');
+
+    navButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const targetIdx = btn.getAttribute('data-discipline-target');
+
+        // Update active nav button
+        navButtons.forEach(function (b) {
+          b.classList.remove(
+            'active',
+            'bg-zinc-950',
+            'text-white',
+            'dark:bg-zinc-100',
+            'dark:text-zinc-950',
+            'border-zinc-950',
+            'dark:border-zinc-100',
+            'shadow-sm',
+            'font-semibold'
+          );
+          b.classList.add(
+            'text-zinc-900',
+            'dark:text-zinc-200',
+            'bg-surface-light',
+            'dark:bg-surface-dark',
+            'border-black/10',
+            'dark:border-white/[0.08]'
+          );
+        });
+
+        btn.classList.add(
+          'active',
+          'bg-zinc-950',
+          'text-white',
+          'dark:bg-zinc-100',
+          'dark:text-zinc-950',
+          'border-zinc-950',
+          'dark:border-zinc-100',
+          'shadow-sm',
+          'font-semibold'
+        );
+        btn.classList.remove(
+          'text-zinc-900',
+          'dark:text-zinc-200',
+          'bg-surface-light',
+          'dark:bg-surface-dark',
+          'border-black/10',
+          'dark:border-white/[0.08]'
+        );
+
+        // Show matching panel
+        panels.forEach(function (panel) {
+          if (panel.getAttribute('data-discipline-panel') === targetIdx) {
+            panel.classList.remove('hidden');
+          } else {
+            panel.classList.add('hidden');
+          }
+        });
+      });
+    });
+  })();
+</script>

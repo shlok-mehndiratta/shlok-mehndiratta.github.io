@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141210"/>
+      <stop offset="50%" stop-color="#181614"/>
+      <stop offset="100%" stop-color="#0f0e0d"/>
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#faf7f2"/>
+      <stop offset="100%" stop-color="#e6dfd3"/>
+    </linearGradient>
+    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg-grad)"/>
+  <rect width="1200" height="630" fill="url(#grid-pattern)"/>
+
+  <!-- Outer Architectural Border -->
+  <rect x="40" y="40" width="1120" height="550" rx="24" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.1"/>
+  <rect x="48" y="48" width="1104" height="534" rx="18" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.05"/>
+
+  <!-- Top Status Badge -->
+  <g transform="translate(80, 85)">
+    <rect width="360" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.12"/>
+    <circle cx="20" cy="17" r="4.5" fill="#10b981"/>
+    <text x="36" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" letter-spacing="1.5" fill="#34d399">IISER BHOPAL • GRADUATING MAY 2027</text>
+  </g>
+
+  <!-- Monogram Brandmark (Right Side) -->
+  <g transform="translate(1010, 80)">
+    <rect width="90" height="90" rx="20" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.15"/>
+    <path d="M 30 65 L 30 25 L 45 42 L 60 25 L 60 65" fill="none" stroke="#faf7f2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Main Headline Identity -->
+  <g transform="translate(80, 220)">
+    <text font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="800" letter-spacing="-1.5" fill="url(#text-grad)">
+      Shlok Mehndiratta
+    </text>
+    <text y="58" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="600" letter-spacing="-0.5" fill="#d4c7b5">
+      Robotics &amp; Autonomous Systems Researcher
+    </text>
+    <text y="105" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400" fill="#9c8f80">
+      Autonomous Drone Swarms • Visual Contact Estimation • Real-Time Systems
+    </text>
+  </g>
+
+  <!-- Middle Research Pills -->
+  <g transform="translate(80, 390)">
+    <!-- Pill 1: ACODS 2026 -->
+    <rect x="0" y="0" width="220" height="38" rx="10" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.1"/>
+    <text x="18" y="24" font-family="'JetBrains Mono', monospace, sans-serif" font-size="13" font-weight="600" fill="#10b981">✓ Accepted • ACODS 2026</text>
+
+    <!-- Pill 2: ICRA 2027 -->
+    <rect x="235" y="0" width="235" height="38" rx="10" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.1"/>
+    <text x="253" y="24" font-family="'JetBrains Mono', monospace, sans-serif" font-size="13" font-weight="600" fill="#38bdf8">◷ Under Review • ICRA 2027</text>
+
+    <!-- Pill 3: IIIT Hyderabad RRC -->
+    <rect x="485" y="0" width="220" height="38" rx="10" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.1"/>
+    <text x="503" y="24" font-family="'JetBrains Mono', monospace, sans-serif" font-size="13" font-weight="600" fill="#fbbf24">✦ IIIT-H RRC Intern</text>
+
+    <!-- Pill 4: ros2_control -->
+    <rect x="720" y="0" width="210" height="38" rx="10" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.1"/>
+    <text x="738" y="24" font-family="'JetBrains Mono', monospace, sans-serif" font-size="13" font-weight="600" fill="#e2e8f0">⚙ ros2_control Upstream</text>
+  </g>
+
+  <!-- Bottom Divider Rule -->
+  <line x1="80" y1="475" x2="1100" y2="475" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.1"/>
+
+  <!-- Footer Meta Details -->
+  <g transform="translate(80, 520)">
+    <text font-family="'JetBrains Mono', monospace, sans-serif" font-size="15" font-weight="600" fill="#faf7f2">
+      shlokmehndiratta.me
+    </text>
+    <text x="230" y="0" font-family="'JetBrains Mono', monospace, sans-serif" font-size="14" fill="#8c8275">
+      •  CPI: 8.87 / 10.0  •  EECS Department, IISER Bhopal
+    </text>
+    <text x="1020" y="0" text-anchor="end" font-family="'JetBrains Mono', monospace, sans-serif" font-size="13" fill="#6b7280">
+      ROS 2 • MPC • PyTorch • Crazyflie
+    </text>
+  </g>
+</svg>

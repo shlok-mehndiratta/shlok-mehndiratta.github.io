@@ -1,0 +1,84 @@
+---
+// OpticalBreadboardBackground.astro
+// Option 1: Optical Breadboard & Coordinate Cadence (Thorlabs / Newport Laboratory Table)
+---
+
+<div
+  id="optical-breadboard-bg"
+  class="pointer-events-none fixed inset-0 z-0 overflow-hidden select-none"
+  aria-hidden="true"
+>
+  <!-- Full-Screen M6 Reticle Crosshair Grid Pattern -->
+  <svg class="w-full h-full absolute inset-0 text-stone-900/[0.13] dark:text-white/[0.14] [mask-image:radial-gradient(ellipse_95%_85%_at_50%_20%,black_50%,rgba(0,0,0,0.6)_80%,transparent_98%)]">
+    <defs>
+      <!-- 48px x 48px Repeating Optical Breadboard Cell -->
+      <pattern
+        id="breadboard-cell"
+        width="48"
+        height="48"
+        patternUnits="userSpaceOnUse"
+        patternTransform="translate(0, 0)"
+      >
+        <!-- Center Optical Tapped M6 Hole (Micro Circle) -->
+        <circle cx="24" cy="24" r="1.75" fill="none" stroke="currentColor" stroke-width="0.8" />
+        
+        <!-- Precision Coordinate Reticle Crosshair (+) -->
+        <path
+          d="M 24 19 L 24 29 M 19 24 L 29 24"
+          stroke="currentColor"
+          stroke-width="0.9"
+          stroke-linecap="round"
+        />
+
+        <!-- Secondary Corner Alignment Micro-Pins (Subtle 0.8px pinpricks) -->
+        <circle cx="0" cy="0" r="0.75" fill="currentColor" opacity="0.6" />
+        <circle cx="48" cy="0" r="0.75" fill="currentColor" opacity="0.6" />
+        <circle cx="0" cy="48" r="0.75" fill="currentColor" opacity="0.6" />
+        <circle cx="48" cy="48" r="0.75" fill="currentColor" opacity="0.6" />
+      </pattern>
+    </defs>
+
+    <!-- Canvas Grid Surface Fill -->
+    <rect width="100%" height="100%" fill="url(#breadboard-cell)" />
+  </svg>
+
+  <!-- Left Margin Calibrated Vertical Coordinate Ruler (Visible along the left screen border) -->
+  <div class="hidden sm:flex flex-col justify-between absolute left-2.5 top-20 bottom-16 w-8 text-zinc-500/70 dark:text-zinc-500/70 font-mono text-[9px] pointer-events-none z-0">
+    <div class="flex items-center gap-1.5"><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span><span>00</span></div>
+    <div class="flex items-center gap-1.5"><span class="w-1.5 h-px bg-zinc-500/30 dark:bg-zinc-500/40"></span><span>10</span></div>
+    <div class="flex items-center gap-1.5"><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span><span>20</span></div>
+    <div class="flex items-center gap-1.5"><span class="w-1.5 h-px bg-zinc-500/30 dark:bg-zinc-500/40"></span><span>30</span></div>
+    <div class="flex items-center gap-1.5"><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span><span>40</span></div>
+    <div class="flex items-center gap-1.5"><span class="w-1.5 h-px bg-zinc-500/30 dark:bg-zinc-500/40"></span><span>50</span></div>
+    <div class="flex items-center gap-1.5"><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span><span>60</span></div>
+    <div class="flex items-center gap-1.5"><span class="w-1.5 h-px bg-zinc-500/30 dark:bg-zinc-500/40"></span><span>70</span></div>
+    <div class="flex items-center gap-1.5"><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span><span>80</span></div>
+    <div class="flex items-center gap-1.5"><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span><span>90</span></div>
+  </div>
+
+  <!-- Right Margin Calibrated Vertical Coordinate Ruler (Visible along the right screen border) -->
+  <div class="hidden sm:flex flex-col justify-between items-end absolute right-2.5 top-20 bottom-16 w-8 text-zinc-500/70 dark:text-zinc-500/70 font-mono text-[9px] pointer-events-none z-0">
+    <div class="flex items-center gap-1.5"><span>00</span><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span></div>
+    <div class="flex items-center gap-1.5"><span>10</span><span class="w-1.5 h-px bg-zinc-500/30 dark:bg-zinc-500/40"></span></div>
+    <div class="flex items-center gap-1.5"><span>20</span><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span></div>
+    <div class="flex items-center gap-1.5"><span>30</span><span class="w-1.5 h-px bg-zinc-500/30 dark:bg-zinc-500/40"></span></div>
+    <div class="flex items-center gap-1.5"><span>40</span><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span></div>
+    <div class="flex items-center gap-1.5"><span>50</span><span class="w-1.5 h-px bg-zinc-500/30 dark:bg-zinc-500/40"></span></div>
+    <div class="flex items-center gap-1.5"><span>60</span><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span></div>
+    <div class="flex items-center gap-1.5"><span>70</span><span class="w-1.5 h-px bg-zinc-500/30 dark:bg-zinc-500/40"></span></div>
+    <div class="flex items-center gap-1.5"><span>80</span><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span></div>
+    <div class="flex items-center gap-1.5"><span>90</span><span class="w-2 h-px bg-zinc-500/40 dark:bg-zinc-500/50"></span></div>
+  </div>
+
+  <!-- Calibrated Top Corner Precision Stamps -->
+  <div class="hidden lg:flex items-center justify-between absolute top-4 inset-x-6 text-[9px] font-mono text-zinc-500/60 dark:text-zinc-500/60 pointer-events-none z-0">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-1 h-1 rounded-full bg-emerald-500/70"></span>
+      <span>ORIGIN: (X: 00, Y: 00) • REF: EECS-IISERB</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span>M6 THREAD MATRIX • 48mm CADENCE</span>
+      <span>AXIS: [X+ →]</span>
+    </div>
+  </div>
+</div>

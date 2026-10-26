@@ -1,5 +1,5 @@
 @import 'katex/dist/katex.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,35 +7,37 @@
 
 @layer base {
   :root {
-    --bg-canvas: #e5ebf2;
-    --bg-surface: #ffffff;
-    --bg-surface-hover: #dbe3ed;
-    --border-subtle: rgba(15, 23, 42, 0.08);
-    --border-hover: rgba(15, 23, 42, 0.16);
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #94a3b8;
-    --accent: #0f172a;
-    --accent-subtle: rgba(15, 23, 42, 0.06);
+    --bg-canvas: #e5dcce;       /* Rich warm coffee parchment / grounded oat craft */
+    --bg-surface: #eee5d8;      /* Soft steamed café latte surface */
+    --bg-surface-subtle: #ded3c1;
+    --bg-surface-hover: #d8ccb8;
+    --border-subtle: rgba(50, 34, 20, 0.15);
+    --border-hover: rgba(50, 34, 20, 0.25);
+    --text-primary: #1f160f;    /* Deep roasted espresso */
+    --text-secondary: #524335;  /* Warm mocha walnut */
+    --text-muted: #7c6a5a;      /* Muted café latte */
+    --accent: #1f160f;
+    --accent-subtle: rgba(60, 42, 28, 0.08);
   }
 
   html.dark {
-    --bg-canvas: #000000;
-    --bg-surface: #121214;
-    --bg-surface-hover: #1a1a1e;
-    --border-subtle: rgba(255, 255, 255, 0.08);
+    --bg-canvas: #0a0a0c;       /* Velvet Obsidian: warm neutral dark canvas */
+    --bg-surface: #121215;      /* Sculpted Titanium Graphite */
+    --bg-surface-subtle: #151518; /* Subtle Inset Tiles & Badges */
+    --bg-surface-hover: #18181c;  /* Elevated Titanium Hover */
+    --border-subtle: rgba(255, 255, 255, 0.07);
     --border-hover: rgba(255, 255, 255, 0.16);
-    --text-primary: #f5f5f7;
-    --text-secondary: #98989d;
-    --text-muted: #636366;
-    --accent: #ffffff;
-    --accent-subtle: rgba(255, 255, 255, 0.1);
+    --text-primary: #f4f4f5;    /* Soft luminous zinc-100 (avoids eye halation) */
+    --text-secondary: #a1a1aa;  /* Refined zinc-400 */
+    --text-muted: #71717a;      /* Muted zinc-500 */
+    --accent: #fafafa;
+    --accent-subtle: rgba(255, 255, 255, 0.06);
   }
 
   body {
     background-color: var(--bg-canvas);
     color: var(--text-primary);
-    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -64,191 +66,219 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--border-hover);
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
-/* Apple-grade Card Elevation & Precision Specular utilities (Lively, tactile, minimal) */
+/* Tactile Architectural Card Elevation (Calibrated Multi-Layer Elevation & Specular Rim) */
 .apple-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 1rem;
   box-shadow: 
-    0 1px 2px rgba(15, 23, 42, 0.04),
-    0 4px 16px -2px rgba(15, 23, 42, 0.05),
-    0 12px 28px -4px rgba(15, 23, 42, 0.03),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.85),
+    0 1px 3px 0 rgba(35, 22, 12, 0.07),
+    0 6px 16px -2px rgba(35, 22, 12, 0.08),
+    0 16px 36px -6px rgba(35, 22, 12, 0.06);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .apple-card:hover {
   border-color: var(--border-hover);
   transform: translateY(-2px);
   box-shadow: 
-    0 2px 4px rgba(15, 23, 42, 0.04),
-    0 8px 24px -2px rgba(15, 23, 42, 0.08),
-    0 20px 40px -6px rgba(15, 23, 42, 0.06),
-    inset 0 1px 0 0 rgba(255, 255, 255, 1);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+    0 2px 5px 0 rgba(35, 22, 12, 0.09),
+    0 10px 24px -2px rgba(35, 22, 12, 0.11),
+    0 24px 48px -8px rgba(35, 22, 12, 0.08);
 }
 
 html.dark .apple-card {
   box-shadow: 
-    0 2px 12px -2px rgba(0, 0, 0, 0.75),
-    0 8px 28px -4px rgba(0, 0, 0, 0.65),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.07);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+    0 4px 20px -2px rgba(0, 0, 0, 0.6);
 }
 
 html.dark .apple-card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-1.5px);
   box-shadow: 
-    0 4px 20px -2px rgba(0, 0, 0, 0.9),
-    0 16px 40px -4px rgba(0, 0, 0, 0.85),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    0 12px 32px -4px rgba(0, 0, 0, 0.75);
 }
 
-/* Bespoke Architectural Dossier & Manuscript Styling (Non-generic, open editorial) */
-.dossier-panel {
-  position: relative;
-  background-color: transparent;
-  border-top: 1px solid var(--border-subtle);
-  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.dossier-panel:hover {
-  border-color: var(--border-hover);
-}
-
-.dossier-panel::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: transparent;
-  transition: background-color 0.24s ease;
-}
-
-.dossier-panel:hover::before {
-  background-color: rgb(8, 145, 178); /* cyan-600 */
-}
-
-html.dark .dossier-panel:hover::before {
-  background-color: rgb(103, 232, 249); /* cyan-300 */
-}
-
-/* Tactical Corner Crosshair Marks */
-.reticle-corner {
-  position: relative;
-}
-
-.reticle-corner::before,
-.reticle-corner::after {
-  content: '+';
-  position: absolute;
-  font-family: 'Geist Mono', monospace;
-  font-size: 11px;
-  line-height: 1;
-  color: var(--text-muted);
-  opacity: 0.4;
+/* Tactile Archival Paper Micro-Grain Filter */
+.vellum-grain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  transition: opacity 0.2s ease, color 0.2s ease;
+  z-index: 1;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-.reticle-corner:hover::before,
-.reticle-corner:hover::after {
-  opacity: 0.85;
-  color: rgb(8, 145, 178);
+html.dark .vellum-grain {
+  opacity: 0.02;
 }
 
-html.dark .reticle-corner:hover::before,
-html.dark .reticle-corner:hover::after {
-  color: rgb(103, 232, 249);
+/* Tactile Precision Engineering Reticle Grid (Masked Blueprint Dot Matrix) */
+.engineering-grid {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(70, 52, 38, 0.075) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center top;
+  -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 15%, transparent 75%);
+  mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 15%, transparent 75%);
 }
 
-.reticle-corner::before {
-  top: -6px;
-  left: -4px;
+html.dark .engineering-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
 }
 
-.reticle-corner::after {
-  top: -6px;
-  right: -4px;
-}
-
-/* Classical Rhythmic Cadence Divider (Indian Classical Tala / Matra) */
-.tala-divider {
-  display: inline-block;
-  color: var(--text-muted);
-  opacity: 0.35;
-  font-family: 'Geist Mono', monospace;
-  margin: 0 0.45rem;
-  user-select: none;
-}
-
-/* Defense & Aviation Telemetry Tag */
-.telemetry-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: 'Geist Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 0.15rem 0.5rem;
-  border-radius: 0.25rem;
+/* Tactile Architectural Filter Button */
+.filter-btn {
+  background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  background-color: rgba(0, 0, 0, 0.02);
   color: var(--text-secondary);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.70),
+    0 1px 3px 0 rgba(35, 22, 12, 0.06),
+    0 1px 1px 0 rgba(35, 22, 12, 0.03);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html.dark .telemetry-chip {
-  background-color: rgba(255, 255, 255, 0.03);
+.filter-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.85),
+    0 3px 8px -1px rgba(35, 22, 12, 0.09);
 }
 
-/* Concept 1: Tactical Astrolabe Dot Matrix (Cartographic Precision & Stone Observatory Geometry) */
-.bg-dot-matrix {
-  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.11) 1.1px, transparent 1.3px);
-  background-size: 28px 28px;
-  background-position: 0 0;
+.filter-btn.active {
+  background-color: var(--text-primary);
+  color: var(--bg-canvas);
+  border-color: var(--text-primary);
+  box-shadow: 
+    0 2px 6px 0 rgba(31, 22, 15, 0.28),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.20);
 }
 
-html.dark .bg-dot-matrix {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.09) 1.1px, transparent 1.3px);
+html.dark .filter-btn {
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+    0 1px 3px 0 rgba(0, 0, 0, 0.4);
 }
 
-/* Concept 2: Glacial Harmonic Ambient Wash (Pure CSS Radial Atmosphere) */
-.glacial-wash-top {
-  position: absolute;
-  top: -120px;
-  right: -80px;
-  width: 850px;
-  height: 850px;
-  border-radius: 9999px;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.36) 0%, rgba(56, 189, 248, 0.24) 35%, rgba(14, 165, 233, 0.10) 58%, transparent 75%);
-  filter: blur(48px);
-  pointer-events: none;
+html.dark .filter-btn:hover {
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    0 4px 12px 0 rgba(0, 0, 0, 0.6);
 }
 
-html.dark .glacial-wash-top {
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.28) 0%, rgba(56, 189, 248, 0.16) 38%, transparent 72%);
-  filter: blur(48px);
+html.dark .filter-btn.active {
+  box-shadow: 
+    0 2px 8px 0 rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
 }
 
-.glacial-wash-bottom {
-  position: absolute;
-  top: 36%;
-  left: -120px;
-  width: 700px;
-  height: 700px;
-  border-radius: 9999px;
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.07) 0%, rgba(34, 211, 238, 0.035) 35%, transparent 60%);
-  filter: blur(64px);
-  pointer-events: none;
+/* Mobile Navigation Drawer */
+#mobile-menu {
+  background-color: var(--bg-surface) !important;
+  opacity: 1 !important;
 }
 
-html.dark .glacial-wash-bottom {
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.05) 0%, transparent 55%);
-  filter: blur(64px);
+/* Tactile Pill Buttons */
+.tactile-btn {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.70),
+    0 1px 3px 0 rgba(35, 22, 12, 0.06),
+    0 1px 1px 0 rgba(35, 22, 12, 0.03);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tactile-btn:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.85),
+    0 3px 8px -1px rgba(35, 22, 12, 0.09);
+}
+
+html.dark .tactile-btn {
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+    0 1px 3px 0 rgba(0, 0, 0, 0.4);
+}
+
+html.dark .tactile-btn:hover {
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    0 4px 12px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* Tactile Archival Chips & Specular Badges */
+.tech-chip {
+  background-color: rgba(222, 211, 193, 0.40);
+  border: 1px solid rgba(50, 34, 20, 0.12);
+  color: var(--text-secondary);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.65),
+    0 1px 2px 0 rgba(35, 22, 12, 0.03);
+  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-chip:hover {
+  background-color: rgba(222, 211, 193, 0.70);
+  border-color: rgba(50, 34, 20, 0.22);
+  color: var(--text-primary);
+}
+
+html.dark .tech-chip {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+}
+
+html.dark .tech-chip:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Tactile Embedded Plates & Callout Boxes */
+.tactile-plate {
+  border: 1px solid var(--border-subtle);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.75),
+    0 1px 3px 0 rgba(35, 22, 12, 0.05);
+}
+
+html.dark .tactile-plate {
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+    0 1px 3px 0 rgba(0, 0, 0, 0.4);
 }
 
 /* Zero-jank CSS Grid Accordion Drawer */
@@ -357,4 +387,25 @@ html.dark .glacial-wash-bottom {
   border: none;
   border-top: 1px solid var(--border-subtle);
   margin: 2.5rem 0;
+}
+
+.prose-custom img {
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  margin: 2rem auto 0.6rem auto;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.05);
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.prose-custom img + em,
+.prose-custom p:has(> img) + p > em {
+  display: block;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  margin-top: 0.5rem;
+  margin-bottom: 1.8rem;
+  font-style: italic;
 }

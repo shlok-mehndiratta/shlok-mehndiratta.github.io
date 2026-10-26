@@ -1,0 +1,303 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="UI Sound Lab & Preview Bench | Shlok Mehndiratta"
+  description="Interactive sound design preview bench for minimal UI micro-interactions."
+>
+  <div class="space-y-12 max-w-3xl mx-auto">
+    <!-- Header -->
+    <header class="space-y-3 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
+      <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded text-xs font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.08]">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Acoustic Micro-Design Lab</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        Minimal UI Sound Samples
+      </h1>
+      <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        Preview and test procedural micro-sounds synthesized on the fly via the Web Audio API. These sounds have <strong>0 KB download overhead</strong>, sub-millisecond latency, and are tuned with low-gain exponential damping to feel tactile and subtle rather than loud or intrusive.
+      </p>
+    </header>
+
+    <!-- Master Controls -->
+    <section class="p-5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Global Sound State</h3>
+        <p class="text-xs text-zinc-500 font-mono mt-0.5">Toggle sound engine on or off across the site</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button
+          id="toggle-sound-btn"
+          type="button"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-medium border border-black/[0.08] dark:border-white/[0.08] bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 hover:text-black dark:hover:text-white transition-colors"
+        >
+          <span id="sound-indicator" class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span id="sound-state-label">Audio Enabled</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Sound Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <!-- 1. Ceramic Tap -->
+      <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4 hover:border-black/[0.18] dark:hover:border-white/[0.18] transition-all">
+        <div class="flex items-start justify-between">
+          <div>
+            <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">Sound 01</span>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">The Ceramic Tap</h3>
+          </div>
+          <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">22ms • 750Hz</span>
+        </div>
+        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          Ultra-short, damped physical pulse. Replicates an iPhone Taptic Engine micro-click or a damped membrane switch.
+        </p>
+        <div class="pt-2 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between">
+          <span class="text-[11px] font-mono text-zinc-400">Where: Nav tabs, buttons</span>
+          <button
+            data-sound="tap"
+            class="px-3.5 py-1.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-xs font-mono font-medium hover:bg-zinc-800 dark:hover:bg-white active:scale-95 transition-all shadow-sm"
+          >
+            Play Tap 🔊
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. Magnetic Snap -->
+      <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4 hover:border-black/[0.18] dark:hover:border-white/[0.18] transition-all">
+        <div class="flex items-start justify-between">
+          <div>
+            <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">Sound 02</span>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">The Magnetic Snap</h3>
+          </div>
+          <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">35ms • Bi-Tone</span>
+        </div>
+        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          Two-tone physical micro-switch. Higher pitch when entering light mode, deeper pitch when sliding into dark mode.
+        </p>
+        <div class="pt-2 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between">
+          <span class="text-[11px] font-mono text-zinc-400">Where: ThemeToggle, filters</span>
+          <div class="flex gap-1.5">
+            <button
+              data-sound="switch-light"
+              class="px-2.5 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all"
+            >
+              Light ☀️
+            </button>
+            <button
+              data-sound="switch-dark"
+              class="px-2.5 py-1.5 rounded-lg border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 transition-all"
+            >
+              Dark 🌙
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Fluid Bubble Pop -->
+      <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4 hover:border-black/[0.18] dark:hover:border-white/[0.18] transition-all">
+        <div class="flex items-start justify-between">
+          <div>
+            <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">Sound 03</span>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">The Fluid Pop</h3>
+          </div>
+          <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">38ms • Sweep</span>
+        </div>
+        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          Soft, organic upward pitch sweep (320Hz → 780Hz). Perfect for revealing content accordions without mechanical harshness.
+        </p>
+        <div class="pt-2 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between">
+          <span class="text-[11px] font-mono text-zinc-400">Where: Abstract / BibTeX drawers</span>
+          <button
+            data-sound="pop"
+            class="px-3.5 py-1.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-xs font-mono font-medium hover:bg-zinc-800 dark:hover:bg-white active:scale-95 transition-all shadow-sm"
+          >
+            Play Pop 🫧
+          </button>
+        </div>
+      </div>
+
+      <!-- 4. Harmonic Chime -->
+      <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4 hover:border-black/[0.18] dark:hover:border-white/[0.18] transition-all">
+        <div class="flex items-start justify-between">
+          <div>
+            <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">Sound 04</span>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">The Harmonic Chime</h3>
+          </div>
+          <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">120ms • C6 + G6</span>
+        </div>
+        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          Consonant musical fifth blip with smooth exponential decay. Inspired by Apple AirDrop / Apple Pay gentle confirmation.
+        </p>
+        <div class="pt-2 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between">
+          <span class="text-[11px] font-mono text-zinc-400">Where: Copy BibTeX, Email copied</span>
+          <button
+            data-sound="chime"
+            class="px-3.5 py-1.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-xs font-mono font-medium hover:bg-zinc-800 dark:hover:bg-white active:scale-95 transition-all shadow-sm"
+          >
+            Play Chime ✨
+          </button>
+        </div>
+      </div>
+
+      <!-- 5. Aperture Shutter -->
+      <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4 hover:border-black/[0.18] dark:hover:border-white/[0.18] transition-all">
+        <div class="flex items-start justify-between">
+          <div>
+            <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">Sound 05</span>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">The Aperture Shutter</h3>
+          </div>
+          <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">28ms • Twin Click</span>
+        </div>
+        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          Twin impulse micro-clicks mimicking a precision Leica M rangefinder mechanical shutter. Evokes lab instrumentation inspection.
+        </p>
+        <div class="pt-2 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between">
+          <span class="text-[11px] font-mono text-zinc-400">Where: Archive images, micrographs</span>
+          <button
+            data-sound="shutter"
+            class="px-3.5 py-1.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-xs font-mono font-medium hover:bg-zinc-800 dark:hover:bg-white active:scale-95 transition-all shadow-sm"
+          >
+            Play Shutter 📷
+          </button>
+        </div>
+      </div>
+
+      <!-- 6. Airy Whisper -->
+      <div class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4 hover:border-black/[0.18] dark:hover:border-white/[0.18] transition-all">
+        <div class="flex items-start justify-between">
+          <div>
+            <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">Sound 06</span>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mt-0.5">The Airy Whisper</h3>
+          </div>
+          <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500">80ms • Resonant</span>
+        </div>
+        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          Low-passed resonant sine rise and fall. Subtle spatial feedback when summoning the keyboard command palette.
+        </p>
+        <div class="pt-2 border-t border-black/[0.04] dark:border-white/[0.04] flex items-center justify-between">
+          <span class="text-[11px] font-mono text-zinc-400">Where: ⌘K palette open, ESC close</span>
+          <button
+            data-sound="whisper"
+            class="px-3.5 py-1.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-xs font-mono font-medium hover:bg-zinc-800 dark:hover:bg-white active:scale-95 transition-all shadow-sm"
+          >
+            Play Whisper 🌬️
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Interactive Test Widget -->
+    <section class="p-6 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark shadow-specular space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Live Component Simulation</h3>
+          <p class="text-xs text-zinc-500 font-mono mt-0.5">Experience how these sounds feel combined in real UI components</p>
+        </div>
+        <span class="text-xs font-mono text-zinc-400">Interactive</span>
+      </div>
+
+      <div class="p-4 rounded-xl border border-black/[0.06] dark:border-white/[0.06] bg-zinc-50/50 dark:bg-zinc-900/40 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-zinc-900 dark:text-zinc-100">Sample Paper: Adaptive State Estimation</span>
+          <button
+            id="demo-drawer-btn"
+            type="button"
+            class="px-2.5 py-1 text-xs font-mono rounded border border-black/[0.08] dark:border-white/[0.08] hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-colors"
+          >
+            <span id="demo-drawer-label">Toggle Abstract ▾</span>
+          </button>
+        </div>
+
+        <div id="demo-drawer-content" class="hidden text-xs text-zinc-600 dark:text-zinc-400 pt-2 border-t border-black/[0.04] dark:border-white/[0.04] leading-relaxed">
+          This sample text simulates expanding an abstract. Notice the subtle bubble pop when opening or closing this drawer, and click below to test the copy chime feedback.
+          <div class="pt-2">
+            <button
+              id="demo-copy-btn"
+              type="button"
+              class="px-3 py-1 rounded bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-xs font-mono"
+            >
+              Copy BibTeX (Hear Chime)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  import { sound } from '../utils/sound';
+
+  const setupSoundDemo = () => {
+    // 1. Hook up all play buttons
+    document.querySelectorAll('[data-sound]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const type = btn.getAttribute('data-sound');
+        if (type === 'tap') sound.tap();
+        else if (type === 'switch-light') sound.switch(false);
+        else if (type === 'switch-dark') sound.switch(true);
+        else if (type === 'pop') sound.pop();
+        else if (type === 'chime') sound.chime();
+        else if (type === 'shutter') sound.shutter();
+        else if (type === 'whisper') sound.whisper();
+      });
+    });
+
+    // 2. Hook up Global Mute Toggle
+    const muteBtn = document.getElementById('toggle-sound-btn');
+    const indicator = document.getElementById('sound-indicator');
+    const label = document.getElementById('sound-state-label');
+
+    const updateUI = () => {
+      const isMuted = sound.getMuted();
+      if (indicator && label) {
+        if (isMuted) {
+          indicator.className = 'w-2 h-2 rounded-full bg-zinc-400';
+          label.textContent = 'Audio Muted';
+        } else {
+          indicator.className = 'w-2 h-2 rounded-full bg-emerald-500';
+          label.textContent = 'Audio Enabled';
+        }
+      }
+    };
+
+    updateUI();
+
+    muteBtn?.addEventListener('click', () => {
+      sound.toggleMute();
+      updateUI();
+      if (!sound.getMuted()) sound.tap();
+    });
+
+    // 3. Interactive Component Simulation
+    const drawerBtn = document.getElementById('demo-drawer-btn');
+    const drawerContent = document.getElementById('demo-drawer-content');
+    const drawerLabel = document.getElementById('demo-drawer-label');
+
+    drawerBtn?.addEventListener('click', () => {
+      sound.pop();
+      if (drawerContent) {
+        const isHidden = drawerContent.classList.toggle('hidden');
+        if (drawerLabel) {
+          drawerLabel.textContent = isHidden ? 'Toggle Abstract ▾' : 'Close Abstract ▴';
+        }
+      }
+    });
+
+    const copyBtn = document.getElementById('demo-copy-btn');
+    copyBtn?.addEventListener('click', () => {
+      sound.chime();
+      const original = copyBtn.textContent;
+      copyBtn.textContent = 'Copied! ✓';
+      setTimeout(() => {
+        copyBtn.textContent = original;
+      }, 2000);
+    });
+  };
+
+  setupSoundDemo();
+  document.addEventListener('astro:after-swap', setupSoundDemo);
+</script>

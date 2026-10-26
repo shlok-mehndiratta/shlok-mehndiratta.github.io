@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cs50-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8f4ec"/>
+      <stop offset="100%" stop-color="#eee5d6"/>
+    </linearGradient>
+    <pattern id="cs50-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#241b14" stroke-width="0.5" stroke-opacity="0.05"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#cs50-bg)"/>
+  <rect width="1200" height="675" fill="url(#cs50-grid)"/>
+
+  <!-- Border Frame -->
+  <rect x="30" y="30" width="1140" height="615" rx="16" fill="none" stroke="#241b14" stroke-width="1" stroke-opacity="0.12"/>
+
+  <!-- Header Strip -->
+  <rect x="50" y="50" width="1100" height="60" rx="8" fill="#fbf8f0" stroke="#241b14" stroke-width="0.8" stroke-opacity="0.08"/>
+  <circle cx="75" cy="80" r="5" fill="#d9534f"/>
+  <circle cx="95" cy="80" r="5" fill="#f0ad4e"/>
+  <circle cx="115" cy="80" r="5" fill="#5cb85c"/>
+  <text x="145" y="85" font-family="'JetBrains Mono', monospace" font-size="13" fill="#5c4a3b" font-weight="600">HARVARD CS50 WEB // THE FULL-STACK ARCHITECTURE JOURNEY</text>
+  <text x="1120" y="85" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="12" fill="#8c7866">5 PROJECTS • SUMMER 2024</text>
+
+  <!-- 5 Project Step Cards -->
+  <!-- 1. Search -->
+  <g transform="translate(60, 150)">
+    <rect width="200" height="440" rx="12" fill="#fbf8f0" stroke="#241b14" stroke-width="1" stroke-opacity="0.1"/>
+    <rect x="0" y="0" width="200" height="36" rx="12" fill="#241b14" fill-opacity="0.04"/>
+    <text x="16" y="24" font-family="'JetBrains Mono', monospace" font-size="11" fill="#786654" font-weight="bold">01 • SEARCH</text>
+    <text x="16" y="65" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#241b14">HTML &amp; CSS</text>
+    <text x="16" y="90" font-family="system-ui, sans-serif" font-size="11" fill="#706050">Google UI Clone</text>
+    <line x1="16" y1="108" x2="184" y2="108" stroke="#241b14" stroke-opacity="0.08"/>
+    <text x="16" y="130" font-family="system-ui, sans-serif" font-size="11" fill="#5c4a3b" width="168">
+      <tspan x="16" dy="0">• Layout constraints</tspan>
+      <tspan x="16" dy="18">• Responsive forms</tspan>
+      <tspan x="16" dy="18">• Image search</tspan>
+      <tspan x="16" dy="18">• Query parameter</tspan>
+      <tspan x="16" dy="18">  routing</tspan>
+    </text>
+    <rect x="16" y="380" width="168" height="36" rx="6" fill="#efe7da"/>
+    <text x="100" y="403" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#443527" font-weight="600">Pure Frontend</text>
+  </g>
+
+  <!-- Arrow 1-2 -->
+  <path d="M 270 370 L 290 370" stroke="#786654" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3"/>
+
+  <!-- 2. Wiki -->
+  <g transform="translate(300, 150)">
+    <rect width="200" height="440" rx="12" fill="#fbf8f0" stroke="#241b14" stroke-width="1" stroke-opacity="0.1"/>
+    <rect x="0" y="0" width="200" height="36" rx="12" fill="#241b14" fill-opacity="0.04"/>
+    <text x="16" y="24" font-family="'JetBrains Mono', monospace" font-size="11" fill="#786654" font-weight="bold">02 • WIKI</text>
+    <text x="16" y="65" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#241b14">Django Routes</text>
+    <text x="16" y="90" font-family="system-ui, sans-serif" font-size="11" fill="#706050">Encyclopedia</text>
+    <line x1="16" y1="108" x2="184" y2="108" stroke="#241b14" stroke-opacity="0.08"/>
+    <text x="16" y="130" font-family="system-ui, sans-serif" font-size="11" fill="#5c4a3b">
+      <tspan x="16" dy="0">• Markdown to HTML</tspan>
+      <tspan x="16" dy="18">• Persistent storage</tspan>
+      <tspan x="16" dy="18">• New entry forms</tspan>
+      <tspan x="16" dy="18">• Title substring search</tspan>
+      <tspan x="16" dy="18">• Random entry jump</tspan>
+    </text>
+    <rect x="16" y="380" width="168" height="36" rx="6" fill="#efe7da"/>
+    <text x="100" y="403" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#443527" font-weight="600">Backend &amp; Files</text>
+  </g>
+
+  <!-- Arrow 2-3 -->
+  <path d="M 510 370 L 530 370" stroke="#786654" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3"/>
+
+  <!-- 3. Commerce -->
+  <g transform="translate(540, 150)">
+    <rect width="200" height="440" rx="12" fill="#fbf8f0" stroke="#241b14" stroke-width="1" stroke-opacity="0.1"/>
+    <rect x="0" y="0" width="200" height="36" rx="12" fill="#241b14" fill-opacity="0.04"/>
+    <text x="16" y="24" font-family="'JetBrains Mono', monospace" font-size="11" fill="#786654" font-weight="bold">03 • COMMERCE</text>
+    <text x="16" y="65" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#241b14">SQL Models</text>
+    <text x="16" y="90" font-family="system-ui, sans-serif" font-size="11" fill="#706050">Auction Marketplace</text>
+    <line x1="16" y1="108" x2="184" y2="108" stroke="#241b14" stroke-opacity="0.08"/>
+    <text x="16" y="130" font-family="system-ui, sans-serif" font-size="11" fill="#5c4a3b">
+      <tspan x="16" dy="0">• Relational schema</tspan>
+      <tspan x="16" dy="18">• User authentication</tspan>
+      <tspan x="16" dy="18">• Bid validation logic</tspan>
+      <tspan x="16" dy="18">• Watchlist tracking</tspan>
+      <tspan x="16" dy="18">• Category grouping</tspan>
+    </text>
+    <rect x="16" y="380" width="168" height="36" rx="6" fill="#efe7da"/>
+    <text x="100" y="403" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#443527" font-weight="600">Database &amp; Auth</text>
+  </g>
+
+  <!-- Arrow 3-4 -->
+  <path d="M 750 370 L 770 370" stroke="#786654" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3"/>
+
+  <!-- 4. Mail -->
+  <g transform="translate(780, 150)">
+    <rect width="200" height="440" rx="12" fill="#fbf8f0" stroke="#241b14" stroke-width="1" stroke-opacity="0.1"/>
+    <rect x="0" y="0" width="200" height="36" rx="12" fill="#241b14" fill-opacity="0.04"/>
+    <text x="16" y="24" font-family="'JetBrains Mono', monospace" font-size="11" fill="#786654" font-weight="bold">04 • MAIL</text>
+    <text x="16" y="65" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#241b14">Async JS &amp; API</text>
+    <text x="16" y="90" font-family="system-ui, sans-serif" font-size="11" fill="#706050">Single-Page Client</text>
+    <line x1="16" y1="108" x2="184" y2="108" stroke="#241b14" stroke-opacity="0.08"/>
+    <text x="16" y="130" font-family="system-ui, sans-serif" font-size="11" fill="#5c4a3b">
+      <tspan x="16" dy="0">• Zero page reloads</tspan>
+      <tspan x="16" dy="18">• Fetch API endpoints</tspan>
+      <tspan x="16" dy="18">• Dynamic DOM render</tspan>
+      <tspan x="16" dy="18">• Archive &amp; read states</tspan>
+      <tspan x="16" dy="18">• Compose &amp; reply flow</tspan>
+    </text>
+    <rect x="16" y="380" width="168" height="36" rx="6" fill="#efe7da"/>
+    <text x="100" y="403" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#443527" font-weight="600">Single Page App</text>
+  </g>
+
+  <!-- Arrow 4-5 -->
+  <path d="M 990 370 L 1010 370" stroke="#786654" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3"/>
+
+  <!-- 5. Network -->
+  <g transform="translate(1020, 150)">
+    <rect width="120" height="440" rx="12" fill="#fbf8f0" stroke="#241b14" stroke-width="1" stroke-opacity="0.1"/>
+    <rect x="0" y="0" width="120" height="36" rx="12" fill="#241b14" fill-opacity="0.04"/>
+    <text x="10" y="24" font-family="'JetBrains Mono', monospace" font-size="10" fill="#786654" font-weight="bold">05 • NETWORK</text>
+    <text x="10" y="65" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#241b14">Full Stack</text>
+    <text x="10" y="85" font-family="system-ui, sans-serif" font-size="10" fill="#706050">Social Platform</text>
+    <line x1="10" y1="98" x2="110" y2="98" stroke="#241b14" stroke-opacity="0.08"/>
+    <text x="10" y="118" font-family="system-ui, sans-serif" font-size="10" fill="#5c4a3b">
+      <tspan x="10" dy="0">• User follows</tspan>
+      <tspan x="10" dy="16">• Pagination</tspan>
+      <tspan x="10" dy="16">• In-place edit</tspan>
+      <tspan x="10" dy="16">• Dynamic likes</tspan>
+      <tspan x="10" dy="16">• Security checks</tspan>
+    </text>
+    <rect x="10" y="380" width="100" height="36" rx="6" fill="#efe7da"/>
+    <text x="60" y="403" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#443527" font-weight="600">Complete App</text>
+  </g>
+</svg>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SignatureMark from '../../components/SignatureMark.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -13,10 +14,16 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
-const typeLabels = {
-  'deep-dive': 'Deep Dive',
-  'heuristic': 'Heuristic',
-  'paper-note': 'Paper Note',
+const typeLabels: Record<string, string> = {
+  'workshop': 'Workshop & Teaching',
+  'lab-story': 'Hardware & Lab Story',
+  'deep-dive': 'Engineering & Systems',
+  'experience': 'Campus & Field Life',
+  'reading': 'Reading & Reflection',
+  'thought': 'Perspective & Note',
+  'essay': 'Engineering & Systems',
+  'book-summary': 'Reading & Reflection',
+  'paper-note': 'Paper Reflection',
   'bookshelf': 'Bookshelf Note',
 };
 
@@ -25,11 +32,39 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
   month: 'long',
   day: 'numeric',
 }).format(entry.data.publishedDate);
+
+const articleSchema = {
+  '@type': 'TechArticle',
+  '@id': `https://shlokmehndiratta.me/notebook/${entry.slug}#article`,
+  headline: entry.data.title,
+  description: entry.data.summary,
+  datePublished: entry.data.publishedDate.toISOString(),
+  inLanguage: 'en-US',
+  author: {
+    '@type': 'Person',
+    '@id': 'https://shlokmehndiratta.me/#person',
+    name: 'Shlok Mehndiratta',
+    url: 'https://shlokmehndiratta.me',
+  },
+  publisher: {
+    '@type': 'Person',
+    '@id': 'https://shlokmehndiratta.me/#person',
+    name: 'Shlok Mehndiratta',
+  },
+  image: entry.data.image ? new URL(entry.data.image, Astro.site || 'https://shlokmehndiratta.me').toString() : undefined,
+  keywords: entry.data.tags.join(', '),
+  articleSection: typeLabels[entry.data.type] || 'Reflections',
+};
 ---
 
 <BaseLayout
   title={`${entry.data.title} | Shlok's Notebook`}
   description={entry.data.summary}
+  image={entry.data.image}
+  type="article"
+  publishedTime={entry.data.publishedDate.toISOString()}
+  tags={entry.data.tags}
+  schema={articleSchema}
 >
   <article class="max-w-2xl mx-auto space-y-8">
     <!-- Back Navigation -->
@@ -44,7 +79,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
     <!-- Header -->
     <header class="space-y-4 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
       <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-zinc-500 dark:text-zinc-400">
-        <span class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
+        <span class="px-2 py-0.5 rounded bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.05] dark:border-white/[0.06] text-zinc-700 dark:text-zinc-300">
           {typeLabels[entry.data.type]}
         </span>
         <span>•</span>
@@ -65,7 +100,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
         entry.data.tags && entry.data.tags.length > 0 && (
           <div class="flex flex-wrap gap-1.5 pt-2">
             {entry.data.tags.map((tag) => (
-              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.05] dark:border-white/[0.06] text-zinc-600 dark:text-zinc-400">
                 #{tag}
               </span>
             ))}
@@ -79,10 +114,17 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
       <Content />
     </div>
 
-    <!-- Article Footer -->
-    <div class="pt-8 border-t border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between text-xs font-mono text-zinc-500">
-      <span>Curated in Shlok's Notebook</span>
-      <a href="/notebook" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors">
+    <!-- Editorial Sign-off with Handcrafted Signature -->
+    <div class="pt-8 border-t border-black/[0.08] dark:border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <SignatureMark class="h-8 w-auto text-zinc-800 dark:text-zinc-200" />
+        <div class="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
+          <span>Shlok Mehndiratta</span>
+          <span class="mx-1.5">•</span>
+          <span>IISER Bhopal</span>
+        </div>
+      </div>
+      <a href="/notebook" class="text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors self-start sm:self-auto">
         ← Return to notebook
       </a>
     </div>

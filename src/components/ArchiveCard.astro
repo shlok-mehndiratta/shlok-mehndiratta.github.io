@@ -24,34 +24,33 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 ---
 
 <div
-  class="group relative overflow-hidden rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-zinc-50/50 dark:bg-zinc-900/40 p-2 transition-all hover:border-black/20 dark:hover:border-white/20"
+  class="apple-card group relative overflow-hidden rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-surface-light dark:bg-surface-dark p-2.5 sm:p-3 shadow-apple-card dark:shadow-apple-card-dark transition-all hover:border-black/15 dark:hover:border-white/20"
 >
-  <!-- Technical Frame Header -->
-  <div class="flex items-center justify-between text-[10px] font-mono text-zinc-400 dark:text-zinc-500 pb-1.5 px-1">
+  <!-- Frame Header -->
+  <div class="flex items-center justify-between text-[11px] font-mono text-zinc-400 dark:text-zinc-500 pb-2 px-1">
     <div class="flex items-center gap-1.5">
-      <span class="text-cyan-600 dark:text-cyan-400 font-bold">PLATE //</span>
-      <span class="truncate uppercase">{category}</span>
+      <span class="tech-chip font-semibold uppercase tracking-wider text-[10px] px-2 py-0.5 rounded">{category}</span>
     </div>
-    <div class="flex items-center gap-1">
+    <div class="flex items-center gap-1.5 text-[10px]">
       {location && <span>{location}</span>}
-      <span class="tala-divider">|</span>
+      {location && <span>•</span>}
       <span>{formattedDate}</span>
     </div>
   </div>
 
-  <!-- Image Container with Reticle Corner Markers -->
-  <div class="relative w-full overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-800" style={`aspect-ratio: ${aspectRatio};`}>
+  <!-- Image Container -->
+  <div class="tactile-plate relative w-full overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800" style={`aspect-ratio: ${aspectRatio};`}>
     <img
       src={imageUrl}
       alt={title}
       loading="lazy"
-      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 filter grayscale contrast-110 group-hover:grayscale-0 group-hover:contrast-100"
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 filter grayscale contrast-105 group-hover:grayscale-0 group-hover:contrast-100"
     />
-    <!-- Subtle hover overlay with laboratory telemetry -->
+    <!-- Subtle hover overlay with caption -->
     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3.5 text-white">
       {instrument && (
-        <span class="inline-block text-[10px] font-mono text-cyan-300 mb-1">
-          APPARATUS // {instrument}
+        <span class="inline-block text-[10px] font-mono text-zinc-300 mb-1">
+          {instrument}
         </span>
       )}
       <p class="text-xs line-clamp-3 text-zinc-200 leading-relaxed font-sans">{caption}</p>
@@ -60,7 +59,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 
   <!-- Bottom Details Bar -->
   <div class="pt-2 px-1 flex items-baseline justify-between text-xs">
-    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 truncate text-xs">{title}</h4>
+    <h4 class="font-semibold text-zinc-950 dark:text-zinc-50 truncate text-xs">{title}</h4>
     {instrument && (
       <span class="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 truncate ml-2">
         {instrument}

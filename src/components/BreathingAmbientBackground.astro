@@ -1,0 +1,138 @@
+---
+// BreathingAmbientBackground.astro
+// Option 3: Breathing Ambient Aurora / Living Canvas
+---
+
+<div
+  id="breathing-ambient-container"
+  class="pointer-events-none fixed inset-0 z-0 overflow-hidden select-none will-change-transform hidden dark:block"
+  aria-hidden="true"
+>
+  <div id="ambient-parallax-layer" class="relative w-full h-full transition-transform duration-700 ease-out">
+    <!-- Primary Apex Aurora: Radiant steamed milk key light (Light) / Soft titanium bloom (Dark) -->
+    <div
+      class="ambient-orb-primary absolute -top-16 sm:-top-24 left-1/2 -translate-x-1/2 w-[900px] sm:w-[1250px] h-[620px] sm:h-[720px] rounded-full blur-[70px] sm:blur-[90px] pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(255,253,248,0.92)_0%,rgba(250,240,225,0.70)_25%,rgba(235,215,188,0.40)_50%,rgba(215,190,158,0.15)_70%,transparent_80%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.08)_0%,rgba(210,230,255,0.04)_30%,rgba(180,210,245,0.015)_60%,transparent_75%)]"
+    ></div>
+
+    <!-- Secondary Orbital Aurora: Warm vanilla crema bloom (Light) / Subtle titanium bloom (Dark) -->
+    <div
+      class="ambient-orb-secondary absolute top-[18%] -right-20 sm:-right-28 w-[600px] sm:w-[780px] h-[550px] rounded-full blur-[75px] sm:blur-[100px] pointer-events-none bg-[radial-gradient(circle_at_center,rgba(255,250,238,0.85)_0%,rgba(245,230,208,0.55)_35%,rgba(225,202,172,0.25)_60%,transparent_75%)] dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06)_0%,rgba(200,220,255,0.025)_35%,transparent_70%)]"
+    ></div>
+
+    <!-- Tertiary Ambient Shimmer: Warm oat foam counter-balance (Light) / Gentle titanium shimmer (Dark) -->
+    <div
+      class="ambient-orb-tertiary absolute top-[52%] -left-20 sm:-left-28 w-[500px] sm:w-[650px] h-[500px] rounded-full blur-[75px] sm:blur-[100px] pointer-events-none bg-[radial-gradient(circle_at_center,rgba(255,248,235,0.80)_0%,rgba(240,224,200,0.48)_40%,rgba(220,196,168,0.20)_65%,transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.04)_0%,rgba(190,215,255,0.015)_40%,transparent_70%)]"
+    ></div>
+  </div>
+</div>
+
+<style>
+  /* Hardware-accelerated smooth organic breathing keyframes */
+  .ambient-orb-primary {
+    animation: ambientBreathePrimary 10s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  }
+
+  .ambient-orb-secondary {
+    animation: ambientBreatheSecondary 14s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  }
+
+  .ambient-orb-tertiary {
+    animation: ambientBreatheTertiary 12s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse;
+  }
+
+  @keyframes ambientBreathePrimary {
+    0% {
+      transform: translate3d(-50%, 0, 0) scale(0.96);
+      opacity: 0.50;
+    }
+    50% {
+      transform: translate3d(-48%, 24px, 0) scale(1.10);
+      opacity: 0.68;
+    }
+    100% {
+      transform: translate3d(-52%, -12px, 0) scale(1.02);
+      opacity: 0.54;
+    }
+  }
+
+  @keyframes ambientBreatheSecondary {
+    0% {
+      transform: translate3d(0, 0, 0) scale(0.94);
+      opacity: 0.38;
+    }
+    50% {
+      transform: translate3d(-35px, 45px, 0) scale(1.12);
+      opacity: 0.58;
+    }
+    100% {
+      transform: translate3d(20px, -20px, 0) scale(1);
+      opacity: 0.44;
+    }
+  }
+
+  @keyframes ambientBreatheTertiary {
+    0% {
+      transform: translate3d(0, 0, 0) scale(0.95);
+      opacity: 0.30;
+    }
+    50% {
+      transform: translate3d(30px, -35px, 0) scale(1.10);
+      opacity: 0.50;
+    }
+    100% {
+      transform: translate3d(-18px, 20px, 0) scale(1);
+      opacity: 0.36;
+    }
+  }
+
+  /* Accessibility: Disable motion if requested by user */
+  @media (prefers-reduced-motion: reduce) {
+    .ambient-orb-primary,
+    .ambient-orb-secondary,
+    .ambient-orb-tertiary {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Subtle interactive mouse parallax with dampened lerp
+  (() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const layer = document.getElementById('ambient-parallax-layer');
+    if (!layer) return;
+
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let rafId = null;
+
+    const onMouseMove = (e) => {
+      const halfW = window.innerWidth / 2;
+      const halfH = window.innerHeight / 2;
+      // Max displacement: +/- 18px horizontally, +/- 12px vertically
+      targetX = ((e.clientX - halfW) / halfW) * 18;
+      targetY = ((e.clientY - halfH) / halfH) * 12;
+    };
+
+    const updateParallax = () => {
+      // Smooth linear interpolation (lerp factor 0.05)
+      currentX += (targetX - currentX) * 0.05;
+      currentY += (targetY - currentY) * 0.05;
+
+      layer.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
+      rafId = requestAnimationFrame(updateParallax);
+    };
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    rafId = requestAnimationFrame(updateParallax);
+
+    // Clean up if document unloads
+    document.addEventListener('astro:before-swap', () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+    }, { once: true });
+  })();
+</script>

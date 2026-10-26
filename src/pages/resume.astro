@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SignatureMark from '../components/SignatureMark.astro';
 
 const resumeSections = [
   { id: 'education', label: 'Education' },
@@ -30,11 +31,12 @@ const resumeSections = [
 
       <div class="flex items-center gap-2.5 print:hidden">
         <button
-          onclick="window.print()"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-black/[0.1] dark:border-white/[0.1] text-xs font-mono bg-zinc-100/70 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 transition-colors"
+          id="trigger-download-btn"
+          type="button"
+          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-zinc-950 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 text-xs font-mono font-medium shadow-[0_2px_8px_rgba(31,22,15,0.20)] hover:shadow-[0_4px_12px_rgba(31,22,15,0.30)] hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all cursor-pointer active:scale-[0.98]"
         >
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-          <span>Print / PDF</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          <span>Download PDF</span>
         </button>
       </div>
     </header>
@@ -85,7 +87,7 @@ const resumeSections = [
           </div>
 
           <!-- Structured Coursework Matrix -->
-          <div class="mt-3 p-4 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-zinc-50/50 dark:bg-zinc-900/30 text-xs space-y-2">
+          <div class="mt-3 p-4 rounded-xl tactile-plate text-xs space-y-2">
             <p class="font-mono text-[11px] font-semibold text-zinc-800 dark:text-zinc-200">
               Selected Institute Coursework Matrix (IISER Bhopal):
             </p>
@@ -136,16 +138,16 @@ const resumeSections = [
               MOON Lab, IISER Bhopal • Undergraduate Research Student • Advisor: Dr. P. B. Sujit
             </p>
             <ul class="list-disc list-inside mt-1.5 space-y-1 text-zinc-600 dark:text-zinc-300">
-              <li>Implementing spherical coordinate-based vision planning with extensions for moving target tracking and dynamic obstacle avoidance for MAVs, validating algorithms on ROS 2 simulation environment.</li>
-              <li>Concurrently assembling drone systems integrating flight controller, RC receiver, and telemetry modules; configuring and integrating OptiTrack mocap system with ROS for high-precision indoor localization during algorithm testing and validation.</li>
-              <li>Progressing toward multi-agent coordination: investigating decentralized swarm algorithms for cooperative coverage and autonomous missions.</li>
+              <li>Developing vision-based trajectory planning for micro aerial vehicles (MAVs), handling dynamic obstacle avoidance and target tracking within camera field-of-view limits.</li>
+              <li>Assembling Crazyflie quadrotors and integrating an OptiTrack optical motion capture arena with ROS 2 for millimeter-precision localization during indoor flight experiments.</li>
+              <li>Investigating decentralized multi-agent coordination algorithms for persistent swarm area coverage under intermittent communication constraints.</li>
             </ul>
           </div>
 
           <div>
             <div class="flex justify-between items-baseline">
               <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">
-                Learning Visual Contact Estimation from Photorealistic Synthetic Data
+                Synthetic Data & Grasp Estimation for Dexterous Robot Hands
               </h3>
               <span class="font-mono text-zinc-400">April 2026 – Present</span>
             </div>
@@ -153,16 +155,16 @@ const resumeSections = [
               Robotics Research Center (RRC), IIIT Hyderabad • Research Intern • Advisor: Dr. Spandan Roy
             </p>
             <ul class="list-disc list-inside mt-1.5 space-y-1 text-zinc-600 dark:text-zinc-300">
-              <li>Building high-fidelity synthetic data engine generating paired multi-view RGB images, segmentation masks, and 3D contact/SDF supervision using GPU-accelerated physics (NVIDIA Warp) and photorealistic rendering (BlenderProc).</li>
-              <li>Training vision-conditioned neural models (ResNet/UNet/PointNet) to predict 3D contact distributions from camera images, leveraging synthetic supervision for downstream grasp generation and real-robot policy transfer on 16-DoF LEAP Hand platforms.</li>
-              <li>Targeting paper submission on learning-based contact prediction from visual data to top-tier robotics venues; scaling dataset generation across multi-GPU clusters for large-scale synthetic scene diversity.</li>
+              <li>Building an automated simulation pipeline generating synthetic multi-view RGB-D images and contact heatmaps for the 16-DoF LEAP Hand in cluttered scenes.</li>
+              <li>Simulating physically stable hand grasps and camera sensor noise to prepare training data for real-world robot platforms.</li>
+              <li>Training neural network models on synthetic data to predict contact points and hand approach poses for grasping objects in clutter.</li>
             </ul>
           </div>
 
           <div>
             <div class="flex justify-between items-baseline">
               <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">
-                Perception-Aware Altitude Optimization for Aerial-Ground Tracking
+                COAST: Perception-Aware Aerial-Ground Tracking
               </h3>
               <span class="font-mono text-zinc-400">Sept 2025 – July 2026</span>
             </div>
@@ -170,8 +172,9 @@ const resumeSections = [
               MuSic Lab, IISER Bhopal • Undergraduate Research Student • Advisor: Dr. Arijit Sen
             </p>
             <ul class="list-disc list-inside mt-1.5 space-y-1 text-zinc-600 dark:text-zinc-300">
-              <li>Developed closed-form altitude scheduling policy for UAV-UGV cooperative tracking by formalizing the altitude-coverage-resolution coupling; built belief-space MPC controller and event-triggered aerial planner achieving 25× compute reduction while maintaining estimation quality.</li>
-              <li>Constructed complete ROS 2/Gazebo testbed with unified logging protocol to validate theoretical predictions on sensor noise scaling, altitude optimality, and event-triggered performance across variable terrain curvature.</li>
+              <li>Developed COAST, a perception-aware UAV–UGV tracking framework where a single downward-facing aerial camera acts as the ground robot's sole sensor, with an optimal altitude policy balancing track coverage against camera measurement noise.</li>
+              <li>Built belief-space MPC, EKF state estimation, and an event-triggered aerial planner in ROS 2 and Gazebo, cutting planner computation by 25× at matched estimation accuracy.</li>
+              <li>Validated theoretical altitude scaling laws across curved tracks; accepted to ACODS 2026 with code released publicly on GitHub.</li>
             </ul>
           </div>
         </div>
@@ -186,25 +189,25 @@ const resumeSections = [
         <div class="space-y-3 text-xs">
           <div>
             <p class="text-zinc-900 dark:text-zinc-100 font-medium">
-              1. Santosh Tantravahi, Nirman Jaiswal, <strong>Shlok Mehndiratta</strong>, P.B. Sujit, Aditya Paranjape.
+              1. Santosh Tantravahi, Nirman Jaiswal, <strong>Shlok Mehndiratta</strong>, P. B. Sujit, Aditya Paranjape.
             </p>
             <p class="italic text-zinc-700 dark:text-zinc-300">
-              "Equi-partitioning coverage achieved via a hybrid interaction rule by distributed team of Unmanned Vehicles."
+              "Multi-Robot Area Balancing In the Presence of Discrete Local Communication."
             </p>
             <p class="text-zinc-500 font-mono mt-0.5">
-              Developed decentralized algorithm enabling autonomous drone swarms to dynamically partition and monitor large areas; validated across 35+ real-world flight experiments using 3–5 Crazyflie nano-quadcopters. <strong>[Submitted to ICRA 2027]</strong>
+              Switches dynamically between greedy and altruistic heuristics for fast convergence to equitable partitions under discrete, opportunistic communication; validated in Gazebo-based SITL multi-drone fire containment. <strong>[Under Review at ICRA 2027]</strong>
             </p>
           </div>
 
           <div>
             <p class="text-zinc-900 dark:text-zinc-100 font-medium">
-              2. <strong>Shlok Mehndiratta†</strong>, Divyam Sood†, Prashant Gupta†, Agniva Banerjee, Arijit Sen.
+              2. <strong>Shlok Mehndiratta</strong>, Divyam Sood, Prashant Gupta, Agniva Banerjee, Arijit Sen.
             </p>
             <p class="italic text-zinc-700 dark:text-zinc-300">
               "COAST: Altitude as a Coupled Perception Variable in Shared-Camera Aerial-Ground Tracking."
             </p>
             <p class="text-zinc-500 font-mono mt-0.5">
-              Formal write-up of the altitude-coverage-accuracy coupling and closed-form policy, with full derivation and reproducible ROS 2/Gazebo validation. (†Equal contribution). <strong>[Submitted to ACODS 2026]</strong>
+              Formulates coupling between altitude, measurement noise covariance ($R \propto z^2$), and camera footprint; proves estimation-optimal altitude scheduling under path curvature with 25× compute reduction via event triggering. <strong>[Accepted to ACODS 2026]</strong>
             </p>
           </div>
         </div>
@@ -247,27 +250,146 @@ const resumeSections = [
       <!-- Leadership & Activities -->
       <section id="co-curricular" class="space-y-3">
         <h2 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-b border-black/[0.06] dark:border-white/[0.06] pb-1.5">
-          Leadership & Activities
+          Leadership & Academic Service
         </h2>
 
         <div class="space-y-2.5 text-xs text-zinc-600 dark:text-zinc-300">
           <div>
-            <strong class="text-zinc-900 dark:text-zinc-100">AI-Powered Contract Review & Negotiation Assistant (Infosys Springboard):</strong> Built end-to-end LLM-based contract analysis application with FastAPI backend, Flutter frontend, and Docker containerization.
+            <strong class="text-zinc-900 dark:text-zinc-100">Student Placement Representative (EECS Department, IISER Bhopal):</strong> Aug 2026 – Present. Connecting recruiters with graduating students, coordinating campus drives with the placement cell, and organizing technical mock interviews and resume reviews.
           </div>
           <div>
-            <strong class="text-zinc-900 dark:text-zinc-100">CS50 Web Programming Suite (Harvard University):</strong> Built full-stack applications including single-page email client, social network, and auction platform using Django, JavaScript, and SQL.
+            <strong class="text-zinc-900 dark:text-zinc-100">Computing and Networking Council (CNC), IISER Bhopal:</strong> Vice Secretary (Aug 2024 – Sept 2025), Student Advisor (Oct 2025 – Present). Led a 90-member council team, organized 10+ technical workshops and talks, and managed outreach, content planning, and student engagement across campus.
           </div>
           <div>
-            <strong class="text-zinc-900 dark:text-zinc-100">Computing and Networking Council (CNC), IISER Bhopal:</strong> Vice Secretary (2024–2025), Student Advisor, Technical Head for Aarohan 2025. Founded EECS Club and organized 10+ workshops on ROS, ML, and embedded systems for 1,500+ participants.
+            <strong class="text-zinc-900 dark:text-zinc-100">Annual Techno-Cultural Fest, Aarohan, IISER Bhopal:</strong> Technical Head (Nov 2024 – Mar 2025). Directed the technical team in building event web platforms and registration systems for 1,500+ attendees; managed technical logistics and led corporate sponsorship outreach for technical events.
           </div>
           <div>
-            <strong class="text-zinc-900 dark:text-zinc-100">Google Developer Group (GDG On Campus), IISER Bhopal:</strong> Web Development Lead (2024–2025). Directed campus platforms and mentored students in collaborative software development.
+            <strong class="text-zinc-900 dark:text-zinc-100">Google Developer Group (GDG On Campus), IISER Bhopal:</strong> Web-Dev Lead (Aug 2024 – Aug 2025). Led development and maintenance of campus tech projects and web platforms; mentored students in collaborative software engineering and Git workflows.
           </div>
           <div>
             <strong class="text-zinc-900 dark:text-zinc-100">Interests:</strong> Lawn Tennis, Cricket, Guitar.
           </div>
         </div>
       </section>
+
+      <!-- Verified Sign-Off Section -->
+      <section class="pt-6 border-t border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between">
+        <div>
+          <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+            I hereby declare all stated information to be authentic and verifiable.
+          </p>
+          <p class="text-[11px] font-mono text-zinc-400 dark:text-zinc-500 mt-0.5">
+            Shlok Mehndiratta • IISER Bhopal
+          </p>
+        </div>
+        <SignatureMark class="h-9 w-auto text-zinc-800 dark:text-zinc-200 shrink-0" />
+      </section>
     </div>
   </div>
+
+  <!-- Resume Download Confirmation Modal -->
+  <div id="resume-download-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <!-- Backdrop overlay -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/60 dark:bg-black/75 backdrop-blur-xs transition-opacity"></div>
+
+    <!-- Modal Content Card -->
+    <div class="relative w-full max-w-md p-6 rounded-2xl bg-surface-light dark:bg-surface-dark border border-black/[0.1] dark:border-white/[0.12] shadow-[0_24px_60px_-12px_rgba(35,22,12,0.22),inset_0_1px_0_0_rgba(255,255,255,0.9)] dark:shadow-2xl space-y-5 z-10 animate-fade-in text-zinc-900 dark:text-zinc-100">
+      <div class="flex items-start justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-500/20 shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+              Curriculum Vitae (PDF)
+            </h3>
+            <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+              Overleaf LaTeX Edition • Updated Sept 2026
+            </p>
+          </div>
+        </div>
+
+        <button
+          id="close-modal-btn"
+          type="button"
+          aria-label="Close modal"
+          class="p-1 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-black/[0.05] dark:hover:bg-white/[0.05] transition-colors cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <div class="space-y-2 text-xs text-zinc-600 dark:text-zinc-300 font-sans leading-relaxed">
+        <p>
+          Your download has started for <strong class="text-zinc-900 dark:text-zinc-100 font-mono">Shlok_Mehndiratta_Resume.pdf</strong>.
+        </p>
+        <p class="text-zinc-500 dark:text-zinc-400 text-[11px]">
+          This document is compiled directly from the Overleaf LaTeX source repository and contains full academic records, publications, and lab appointments.
+        </p>
+      </div>
+
+      <div class="pt-2 flex flex-col sm:flex-row items-center gap-2 border-t border-black/[0.06] dark:border-white/[0.08]">
+        <a
+          href="/Shlok_Mehndiratta_Resume.pdf"
+          download="Shlok_Mehndiratta_Resume.pdf"
+          class="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-950 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 text-xs font-mono font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-[0_2px_8px_rgba(31,22,15,0.20)] hover:shadow-[0_4px_12px_rgba(31,22,15,0.30)]"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          <span>Download Again</span>
+        </a>
+
+        <a
+          href="/Shlok_Mehndiratta_Resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto tactile-btn inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-100 transition-all"
+        >
+          <span>Open in Browser ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    const setupDownloadModal = () => {
+      const trigger = document.getElementById('trigger-download-btn');
+      const modal = document.getElementById('resume-download-modal');
+      const closeBtn = document.getElementById('close-modal-btn');
+      const backdrop = document.getElementById('modal-backdrop');
+
+      if (!trigger || !modal) return;
+
+      const openModal = () => {
+        // Trigger download
+        const link = document.createElement('a');
+        link.href = '/Shlok_Mehndiratta_Resume.pdf';
+        link.download = 'Shlok_Mehndiratta_Resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Show modal
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeModal = () => {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      };
+
+      trigger.onclick = openModal;
+      if (closeBtn) closeBtn.onclick = closeModal;
+      if (backdrop) backdrop.onclick = closeModal;
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+          closeModal();
+        }
+      });
+    };
+
+    setupDownloadModal();
+    document.addEventListener('astro:after-swap', setupDownloadModal);
+  </script>
 </BaseLayout>

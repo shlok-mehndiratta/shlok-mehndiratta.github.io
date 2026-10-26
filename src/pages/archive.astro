@@ -14,16 +14,16 @@ const sortedArchive = allArchive.sort((a, b) => a.data.order - b.data.order);
   <div class="space-y-12 sm:space-y-16">
     <!-- Header -->
     <header class="space-y-3 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
-      <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
-        <span>PHOTOGRAPHIC PLATES & TELEMETRY</span>
-        <span class="tala-divider">||</span>
-        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">{sortedArchive.length} PLATES</span>
+      <div class="flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+        <span class="uppercase tracking-wider">Field & Laboratory Photography</span>
+        <span>•</span>
+        <span class="font-semibold text-zinc-800 dark:text-zinc-200">{sortedArchive.length} Images</span>
       </div>
-      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
         Archive
       </h1>
-      <p class="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        Photographs and telemetry from lab flight arenas, robot hardware, and IISER Bhopal.
+      <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+        Photographs from laboratory flight arenas, robotics hardware experiments, and campus at IISER Bhopal.
       </p>
     </header>
 

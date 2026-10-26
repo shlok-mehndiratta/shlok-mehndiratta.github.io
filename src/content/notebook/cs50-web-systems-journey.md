@@ -1,46 +1,54 @@
 ---
-title: "CS50 Web: Learning Full-Stack Development the Systems Way"
-publishedDate: 2025-06-15
+title: "Full-Stack Web Development Through Harvard's CS50 Web"
+publishedDate: 2024-08-10
 type: "deep-dive"
-readTime: "8 min read"
-summary: "CS50 Web was less about frameworks and more about learning how state, consistency, and system boundaries behave as complexity increases. A reflection on how five progressively complex projects reshaped systems thinking."
-tags: ["Systems", "Web Development", "State Modeling", "CS50"]
+readTime: "5 min read"
+summary: "Building full-stack web applications from scratch during the summer of 2024, why understanding core systems still matters, and how it shaped my transition into robotics."
+tags: ["Web Development", "Python", "JavaScript", "Django", "CS50", "Reflections"]
+image: "/images/notebook/cs50-web-journey.svg"
+imageAlt: "Full-Stack Architecture and Project Progression in Harvard CS50 Web"
 draft: false
 ---
 
-I began CS50's Web Programming with Python and JavaScript expecting a structured introduction to full-stack development. What I encountered instead was a gradual immersion into systems thinking—where state, abstraction boundaries, and failure modes mattered more than syntax.
+![CS50 Web Full-Stack Architecture](/images/notebook/cs50-web-journey.svg)
+*The five progressive web projects I built during Harvard's CS50 Web curriculum in the summer of 2024.*
 
-The course unfolded slowly over time, from early 2024 through June 2025, which allowed concepts to settle through implementation rather than memorization.
-
-### 1. Search: Interfaces Encode Assumptions
-
-The first project, **Search**, focused purely on HTML and CSS. While it appeared trivial, it introduced an important idea: *interfaces encode assumptions*. Even without backend logic, layout decisions constrain user behavior and expectations.
-
-### 2. Wiki: Persistent State & Invariants
-
-The **Wiki** project marked the entry of persistent state. Implementing page creation, editing, and Markdown rendering in Django made it clear that once state exists, consistency becomes the developer's responsibility. Data modeling stopped being an implementation detail and became central to correctness.
-
-### 3. Commerce: Multi-User Concurrency & Edge Cases
-
-**Commerce** expanded the system to multiple users interacting with shared state. Bids, listings, and watchlists were not independent features—each interaction expanded the system's state space exponentially. Edge cases were no longer optional; they defined whether the system was correct.
-
-### 4. Mail: Asynchronous Mental Models
-
-**Mail** was the first project that forced asynchronous thinking. Building a single-page email client using JavaScript and REST APIs removed the safety net of full page reloads. Bugs persisted across UI states, and debugging required tracing behavior across frontend–backend boundaries.
-
-### 5. Network: Emergent Complexity
-
-The **Network** project combined everything into a small-scale social platform. Authentication, relational data modeling, pagination, and asynchronous updates had to coexist coherently. At this stage, complexity no longer came from individual features but from their interactions.
+*Course projects and source code are available on [GitHub](https://github.com/shlok-mehndiratta).*
 
 ---
 
-### The Underlying Lesson: Discipline
+### Foundations in Full-Stack Systems
 
-By the end of the course, the most important lesson was clear: CS50 Web was not teaching web development—it was teaching **discipline**. 
+Before transitioning into robotics, I spent the summer of 2024 working through Harvard's CS50 Web Programming with Python and JavaScript. Rather than relying on modern framework templates or automated code generators, I wanted to understand web systems from first principles: writing HTML and CSS by hand, managing relational databases, and handling asynchronous requests in JavaScript.
 
-- Discipline in reasoning about state and state transitions
-- Respecting data invariants at every layer
-- Debugging behavior across boundaries instead of isolated code snippets
-- Accepting that a system can function without actually being correct
+---
 
-These lessons transferred directly to my later work in robotics, control systems, and state estimation, where hidden assumptions and unmodeled state are even more unforgiving.
+### Frontend Precision and User Perception
+
+First-time exposure to web development often starts with browser inspect tools, giving the impression that user interfaces are merely cosmetic arrangements of boxes and text.
+
+Building functional interfaces quickly disproves this assumption by highlighting how directly visual precision influences user trust. When someone visits a website, they cannot see the database schemas or server architecture, but they immediately notice a misaligned button, an awkward margin collapse, or an input field cut off on a phone screen. Even small visual bugs make an interface feel fragile or unfinished. Visual consistency is what builds immediate trust before a user ever interacts with the backend.
+
+---
+
+### Backend State and Edge Cases
+
+Building an auction application like Commerce shifted my attention from basic syntax to state validation.
+
+Standard user flows are straightforward, but real systems break on edge cases: sellers attempting to bid on their own items, simultaneous bids arriving at the exact same dollar amount, or bids placed after an auction closes. Working through these specifications taught me that data integrity must be guaranteed at the database and server layer, never left to client-side checks that can be bypassed.
+
+---
+
+### Relevance of Web Fundamentals in the AI Era
+
+With AI tools generating boilerplate code in seconds, learning web fundamentals from first principles matters more than ever.
+
+Automated assistants can generate standard layouts, but they still struggle when runtime issues occur: race conditions in asynchronous callbacks, silent token expirations, or mismatched component states. Without a solid mental model of how the browser event loop, network requests, and database transactions work, debugging becomes guesswork. Understanding these fundamentals gives you the intuition to trace failures and fix them when tools fall short.
+
+---
+
+### Transition to Robotics and Control Systems
+
+Completing CS50 Web gave me a solid grounding in software design, asynchronous events, and state handling. Later in my undergraduate studies, I began exploring robotics and control systems, and that was where my real interest took shape.
+
+While software engineering on the web is largely about managing data flows and user interfaces, robotics brings code into contact with the physical world. Dealing with real hardware means accounting for sensor noise, actuator limits, aerodynamics, and contact dynamics in real time. I found that working with physical systems, where mathematical models translate directly into hardware behavior, was what genuinely excited me. That experience motivated me to pivot toward robotics research, focusing on aerial vehicles, multi-agent systems, and manipulation. The software discipline from web development still carries over directly into building reliable robot architectures today.

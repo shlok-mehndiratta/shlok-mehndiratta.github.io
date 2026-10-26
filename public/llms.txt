@@ -1,0 +1,43 @@
+# Shlok Mehndiratta
+
+> Senior undergraduate researcher in Electrical Engineering and Computer Science (EECS) at the Indian Institute of Science Education and Research (IISER) Bhopal (graduating May 2027, CPI: 8.87/10.0). Research focuses on aerial robotics, decentralized multi-drone swarms, vision-based state estimation, model predictive control (MPC), and synthetic simulation for dexterous manipulation. Intends to pursue MS/PhD research in robotics.
+
+## Core Identity & Academic Background
+- **Full Name:** Shlok Mehndiratta
+- **Affiliation:** Department of Electrical Engineering & Computer Science, IISER Bhopal, India
+- **Degree:** Bachelor of Science (BS) in Electrical Engineering & Computer Science
+- **Graduation Date:** May 2027
+- **Academic Standing:** CPI 8.87 / 10.0
+- **Email:** shlokm23@iiserb.ac.in
+- **Website:** https://shlokmehndiratta.me
+- **Profiles:**
+  - GitHub: https://github.com/shlok-mehndiratta
+  - LinkedIn: https://linkedin.com/in/shlok-mehndiratta
+  - Google Scholar: https://scholar.google.com
+  - X / Twitter: https://x.com/ShlokMehndiratt
+
+## Primary Research Appointments
+- [IIIT Hyderabad Robotics Research Center (RRC)](https://shlokmehndiratta.me/experience#research): Research Intern (April 2026 – Present) under Dr. Spandan Roy. Synthetic simulation and vision-based grasp estimation for the 16-DoF LEAP Hand using NVIDIA Warp, Isaac Sim, and HDF5 dataset pipelines.
+- [MOON Lab, IISER Bhopal](https://shlokmehndiratta.me/experience#research): Undergraduate Research Student (May 2026 – Present) under Dr. P. B. Sujit. Vision-based trajectory planning and decentralized swarm coordination for Crazyflie quadrotors localized with OptiTrack motion capture.
+- [MuSic Lab, IISER Bhopal](https://shlokmehndiratta.me/experience#research): Undergraduate Research Student (Sept 2025 – July 2026) under Dr. Arijit Sen. Developed COAST (Coupled-Altitude Shared-camera Tracking), deriving an optimal UAV altitude policy to balance camera resolution against field-of-view coverage in GPS-denied environments.
+
+## Academic Publications & Preprints
+- [COAST: Coupled-Altitude Shared-camera Tracking for Autonomous Ground Vehicles](https://shlokmehndiratta.me/publications): Accepted at ACODS 2026 (Advances in Control & Optimization of Dynamical Systems). Analytically proves the estimation-optimal UAV altitude for downward-facing tracking cameras and couples it with belief-space MPC.
+- [Decentralized Multi-Agent Area Coverage under Intermittent Communication](https://shlokmehndiratta.me/publications): Under Review at ICRA 2027 (IEEE International Conference on Robotics and Automation). Investigates Voronoi-based distributed coverage for aerial-ground swarms with bandwidth limits.
+
+## Open Source Contributions
+- [ros2_control Framework (ros-controls)](https://shlokmehndiratta.me/experience#open-source): Upstream contributor to ROS 2's core real-time robot control framework. Migrated controller locks to POSIX priority-inheritance mutexes to prevent priority inversion latency spikes in high-frequency hardware loops; authored controller lifecycle error-handling test suites.
+
+## Selected Engineering Projects
+- [3D Point Cloud Segmentation with Graph Neural Networks](https://shlokmehndiratta.me/projects): Modeled 3D LiDAR scans as localized spatial graphs using PyTorch Geometric and RANSAC filtering for urban scene classification.
+- [Digital Logic Design & Bare-Metal AVR Microcontroller](https://shlokmehndiratta.me/projects): Low-level assembly programming and direct register manipulation on the ATmega328P without external runtime libraries; synchronous digital logic breadboard builds.
+- [Mobile Robot Tracking with MPC and Kalman Filter](https://shlokmehndiratta.me/projects): Simulated two-wheeled mobile robot in Gazebo and ROS 2 using an Extended Kalman Filter (EKF) for sensor fusion and Model Predictive Control for dynamic trajectory tracking.
+- [Maritime Oil Spill Detection with Sentinel-1 Radar](https://shlokmehndiratta.me/projects): Automated pipeline integrating AIS vessel tracking with European Space Agency Sentinel-1 Synthetic Aperture Radar (SAR) satellite imagery to identify maritime pollution events.
+
+## Notebook & Technical Writing
+- [Organizing an ESP32 IoT Workshop at IISER Bhopal](https://shlokmehndiratta.me/notebook/esp32-iot-workshop-iiserb): Hands-on hardware pedagogy, late-night hostel bench preparation, and I2C address conflict troubleshooting.
+- [Timing Side-Channel Analysis on an FPGA](https://shlokmehndiratta.me/notebook/fpga-side-channel-attack): Exploiting data-dependent early-exit timing leaks on a Spartan-6 FPGA board to recover secrets, and designing constant-time parallel logic.
+- [Full-Stack Web Development Through Harvard's CS50 Web](https://shlokmehndiratta.me/notebook/cs50-web-systems-journey): Building web systems from first principles in the AI era and how software discipline shaped the transition to robotics.
+
+## Full Extended Digest
+- For complete text of all research, coursework, and technical reflections, see: https://shlokmehndiratta.me/llms-full.txt

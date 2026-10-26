@@ -1,256 +1,878 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PublicationCard from '../components/PublicationCard.astro';
-import NotebookCard from '../components/NotebookCard.astro';
-import ArchiveCard from '../components/ArchiveCard.astro';
 import { getCollection } from 'astro:content';
 
+// 1. Publications: Fetch both publications and sort by order
 const allPubs = await getCollection('publications');
-const featuredPub = allPubs.sort((a, b) => a.data.order - b.data.order)[0];
+const sortedPubs = allPubs.sort((a, b) => a.data.order - b.data.order);
 
+// 2. Research Experiences (from experience.astro)
+// 2. Research Experiences (from experience.astro)
+const activeResearch = [
+  {
+    role: 'Research Intern',
+    organization: 'Robotics Research Center (RRC), IIIT Hyderabad',
+    period: 'April 2026 – Present',
+    advisor: 'Dr. Spandan Roy',
+    topic: 'Synthetic Data & Grasp Estimation for Dexterous Robot Hands',
+    summary: 'Working on synthetic simulation and vision-based grasp estimation for the 16-DoF LEAP Hand. Because physical robot hand experiments are slow to collect, we generate synthetic training data with camera images and contact maps to train grasping policies.',
+    highlights: [
+      'Synthetic Data Generation: Built an automated pipeline generating synthetic multi-view RGB-D images and contact heatmaps for multi-object scenes, saved into structured HDF5 files.',
+      'Physics & Sensor Simulation: Tested stable hand grasps in simulation, rendering scenes with path-traced lighting and sensor noise to closely match real camera feeds.',
+      'Pipeline Batching & Caching: Improved rendering throughput across GPUs by organizing batch scenes and caching 3D asset files in memory to avoid repeated loading.',
+      'Grasp Affordance Learning: Trained neural models on simulated data to predict hand approach poses and contact points for grasping objects in cluttered scenes.',
+    ],
+    skills: ['Python', 'PyTorch', 'Robot Manipulation', '16-DoF LEAP Hand', 'Simulation', 'HDF5'],
+  },
+  {
+    role: 'Undergraduate Research Student',
+    organization: 'MOON Lab, IISER Bhopal',
+    period: 'May 2026 – Present',
+    advisor: 'Dr. P. B. Sujit',
+    topic: 'Vision-Based Autonomous Navigation and Swarm Coordination',
+    summary: 'Developing vision-based trajectory planning and decentralized multi-drone coordination algorithms, transferring flight policies from ROS 2 simulation onto physical Crazyflie quadrotors in an OptiTrack motion capture arena.',
+    highlights: [
+      'Vision-Based Navigation: Designing trajectory planning algorithms for aerial vehicles that actively respect camera field-of-view limits during dynamic obstacle avoidance and target tracking.',
+      'Hardware Assembly & Integration: Assembled Crazyflie micro quadrotors with custom radio hardware and configured OptiTrack optical motion capture with ROS 2 for millimeter localization.',
+      'Swarm Coordination: Investigating decentralized algorithms for multi-drone teams to achieve cooperative area coverage and balanced patrol duties under intermittent communication.',
+    ],
+    skills: ['ROS 2', 'Crazyflie Swarms', 'OptiTrack Mocap', 'Trajectory Planning', 'C++', 'Python'],
+  },
+  {
+    role: 'Undergraduate Research Student',
+    organization: 'MuSic Lab, IISER Bhopal',
+    period: 'Sept 2025 – July 2026',
+    advisor: 'Dr. Arijit Sen',
+    topic: 'COAST: Perception-Aware Aerial-Ground Tracking',
+    summary: 'In GPS-denied environments where a single downward-facing UAV camera serves as the ground robot’s only sensor, flight altitude creates a fundamental trade-off: flying higher expands lane coverage but degrades image resolution and measurement accuracy. We treated flight altitude as an active control variable and analytically derived an optimal altitude policy to balance this coverage-accuracy tradeoff, developing COAST (Coupled-Altitude Shared-camera Tracking).',
+    highlights: [
+      'Optimal Altitude Policy: Modeled how camera measurement noise increases with flight altitude, proving the estimation-optimal altitude equals the lowest height that keeps the track search region inside the camera field-of-view.',
+      'Belief-Space Control & Event-Triggering: Built a belief-space Model Predictive Controller (MPC) for the ground vehicle and an event-triggered aerial planner that only recalculates trajectories when tracking uncertainty requires it, cutting computation by 25× without losing accuracy.',
+      'Full-System Gazebo Validation: Implemented modular ROS 2 nodes for lane segmentation, ArUco fiducial pose estimation, and Extended Kalman Filter (EKF) sensor fusion, validating the altitude scaling laws across curved tracks.',
+    ],
+    paperLink: 'https://github.com/shlok-mehndiratta/COAST-Code',
+    paperLinkLabel: 'COAST Open-Source Code (GitHub) ↗',
+    skills: ['ROS 2', 'Gazebo', 'Model Predictive Control (MPC)', 'Extended Kalman Filter (EKF)', 'Computer Vision', 'Python'],
+  },
+];
+
+// 3. Open Source Contribution (from experience.astro)
+const openSourceHighlight = {
+  framework: 'ros2_control',
+  title: 'Robot Operating System 2 Control Framework',
+  repoUrl: 'https://github.com/ros-controls/ros2_control',
+  role: 'Contributor',
+  period: 'Aug 2024 – Present',
+  summary: 'Contributed to ROS 2\'s real-time control framework by migrating controller locks to priority-inheritance mutexes to prevent latency spikes in high-frequency hardware loops, along with test suites for controller error handling.',
+  prUrl: 'https://github.com/search?q=involves%3Ashlok-mehndiratta+is%3Apr+repo%3Aros-controls%2Fros2_control&type=pullrequests',
+  issuesUrl: 'https://github.com/search?q=involves%3Ashlok-mehndiratta+is%3Aissue+repo%3Aros-controls%2Fros2_control&type=issues',
+  skills: ['C++20', 'ROS 2', 'Real-Time Control', 'Thread Safety', 'POSIX RT Mutex'],
+};
+
+// 4. Selected Projects (from projects.astro - omitting ros2_control to avoid repetition)
+const selectedProjects = [
+  {
+    id: '01',
+    title: '3D Point Cloud Segmentation with Graph Neural Networks',
+    category: 'Computer Vision & 3D Learning',
+    location: 'GeoAI4Cities Lab (Advisor: Dr. Vaibhav Kumar)',
+    period: 'Dec 2024 – Jan 2025',
+    shortSummary: 'Built a machine learning pipeline that models 3D LiDAR point clouds as graphs connecting points to geometric neighbors, using RANSAC filtering to classify urban scenes.',
+    highlights: [
+      'Represented 3D point clouds as localized graphs where each point connects to its nearest geometric neighbors to capture local topological shape.',
+      'Applied RANSAC geometric filtering to suppress sensor reflections and sparse LiDAR noise before neural inference.',
+      'Trained graph neural networks in PyTorch Geometric, outperforming point-by-point classifiers in complex urban scenes.',
+    ],
+    outcome: 'Showed that learning from local geometric neighbors produces cleaner 3D boundaries than treating points in isolation.',
+    tech: ['PyTorch Geometric', 'Open3D', 'RANSAC', 'Python', '3D Vision'],
+    github: 'https://github.com/shlok-mehndiratta',
+  },
+  {
+    id: '02',
+    title: 'Digital Logic Design & Bare-Metal AVR Microcontroller',
+    category: 'Embedded Systems & Hardware',
+    location: 'Hardware Laboratory • IISER Bhopal',
+    period: 'Aug 2024 – Dec 2024',
+    shortSummary: 'Designed fundamental digital logic circuits on breadboards and programmed an ATmega328P microcontroller using bare-metal AVR assembly and direct register manipulation, without external runtime libraries.',
+    highlights: [
+      'Wrote AVR assembly from scratch, directly writing to hardware control registers to manage timers, pin interrupts, and I/O ports.',
+      'Designed synchronous digital circuits including decade counters, decoders, and discrete logic gates.',
+      'Wired physical breadboard circuits to drive multiplexed seven-segment displays with cycle-accurate timing.',
+    ],
+    outcome: 'Built a concrete, machine-level foundation in microcontroller execution, memory-mapped I/O, and synchronous digital logic.',
+    tech: ['AVR Assembly', 'Direct Register I/O', 'ATmega328P', 'Digital Logic', 'Circuit Design'],
+    github: 'https://github.com/shlok-mehndiratta',
+  },
+];
+
+// 5. Notebook: 2 recent entries with compact presentation
 const allNotes = await getCollection('notebook', ({ data }) => !data.draft);
-const recentNote = allNotes.sort(
-  (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
-)[0];
+const compactNotes = allNotes
+  .sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime())
+  .slice(0, 2);
 
+// 6. Archive: 4 visual moments
 const allArchive = await getCollection('archive');
-const previewArchive = allArchive.sort((a, b) => a.data.order - b.data.order).slice(0, 4);
+const compactArchive = allArchive.sort((a, b) => a.data.order - b.data.order).slice(0, 4);
 
+// Technical Skills (Strictly from verified resume)
+const skillCategories = [
+  {
+    category: 'Programming Languages',
+    items: ['Python', 'C++', 'MATLAB', 'Verilog', 'Assembly'],
+  },
+  {
+    category: 'Robotics & Simulation',
+    items: ['ROS 2', 'Gazebo', 'NVIDIA Isaac Sim', 'NVIDIA Warp', 'Model Predictive Control', 'Extended Kalman Filter', 'OptiTrack Mocap'],
+  },
+  {
+    category: 'Computer Vision & ML',
+    items: ['PyTorch', 'PyTorch Geometric', 'TensorFlow', 'OpenCV', 'SLAM', 'Reinforcement Learning'],
+  },
+  {
+    category: 'Data & ML Libraries',
+    items: ['NumPy', 'Pandas', 'scikit-learn', 'Open3D'],
+  },
+  {
+    category: 'Systems & Deployment',
+    items: ['Git / GitHub', 'Linux / Bash', 'Docker', 'FastAPI', 'LaTeX'],
+  },
+];
+
+// Stream navigation anchors
 const homeSections = [
   { id: 'overview', label: 'Overview' },
+  { id: 'publications', label: 'Publications' },
+  { id: 'skills', label: 'Skills' },
   { id: 'research', label: 'Research' },
-  { id: 'systems', label: 'Open Source' },
-  { id: 'writing', label: 'Writing' },
-  { id: 'archive', label: 'Field & Lab' },
+  { id: 'open-source', label: 'Open Source' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'notebook', label: 'Notebook' },
+  { id: 'archive', label: 'Gallery' },
 ];
 ---
 
 <BaseLayout
   title="Shlok Mehndiratta | Robotics & Autonomous Systems @ IISER Bhopal"
-  description="Personal website of Shlok Mehndiratta. EECS undergraduate researcher at IISER Bhopal working across robotics, control theory, state estimation, and learning for autonomous systems."
+  description="Personal website and research portfolio of Shlok Mehndiratta. Senior EECS undergraduate at IISER Bhopal investigating autonomous drone swarms, visual contact estimation, and real-time robotic systems."
   sections={homeSections}
 >
-  <div class="space-y-16 sm:space-y-24">
+  <div class="space-y-20 sm:space-y-28">
     <!-- Hero Section (Editorial Technical Identity & Personal Portrait) -->
-    <section id="overview" class="pt-2">
-      <div class="flex flex-col-reverse md:flex-row md:items-start justify-between gap-8 sm:gap-12">
-        <!-- Left: Narrative & Identity -->
-        <div class="space-y-5 max-w-2xl">
-          <div class="space-y-2">
-            <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
-              <span class="text-cyan-600 dark:text-cyan-400 font-bold">RESEARCHER</span>
-              <span class="tala-divider">||</span>
-              <span>IISER BHOPAL</span>
-              <span class="tala-divider">|</span>
-              <span>23.28°N 77.27°E</span>
+    <section id="overview" class="pt-2 sm:pt-6">
+      <div class="flex flex-col md:flex-row md:items-start justify-between gap-8 sm:gap-12">
+        <!-- Left Column: Narrative, Focus & Clearly Visible Links -->
+        <div class="space-y-6 max-w-2xl">
+          <div class="space-y-3.5">
+            <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] sm:text-xs font-mono text-zinc-500 dark:text-zinc-400">
+              <span class="inline-flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:shadow-[0_0_8px_rgba(16,185,129,0.7)] animate-pulse"></span>
+                IISER Bhopal
+              </span>
+              <span class="text-zinc-400 dark:text-zinc-600 hidden sm:inline">•</span>
+              <span class="whitespace-nowrap">Graduating May 2027</span>
+              <span class="text-zinc-400 dark:text-zinc-600">•</span>
+              <span class="text-zinc-700 dark:text-zinc-300 font-semibold whitespace-nowrap">CPI: 8.87 / 10.0</span>
             </div>
 
-            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 leading-tight">
               Shlok Mehndiratta
             </h1>
 
-            <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed">
-              Electrical Engineering & Computer Science senior at <span class="text-zinc-950 dark:text-zinc-100 font-semibold">IISER Bhopal</span>. Investigating autonomous drone swarms, visual contact estimation, and real-time control.
+            <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-medium leading-snug">
+              BS in Electrical Engineering & Computer Science (EECS)
             </p>
           </div>
 
-          <p class="text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-300 font-sans">
-            My work grounds theoretical control and estimation algorithms on physical hardware testbeds—from vision-based aerial swarms in OptiTrack arenas (MOON Lab) to GPU physics simulation (NVIDIA Warp) for 16-DoF dexterous hands (RRC IIIT Hyderabad) and upstream contributions to <code class="text-xs font-mono px-1.5 py-0.5 rounded bg-zinc-200/60 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">ros2_control</code>.
-          </p>
-
-          <!-- Action Triggers (Disciplined Athletic Form) -->
-          <div class="flex flex-wrap items-center gap-3 pt-1">
-            <a
-              href="/experience"
-              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-950 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 text-xs sm:text-sm font-medium shadow-sm hover:bg-zinc-800 dark:hover:bg-white transition-all"
-            >
-              <span>Experience & Research</span>
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </a>
-
-            <a
-              href="/projects"
-              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-black/[0.08] dark:border-white/[0.1] bg-transparent hover:bg-black/[0.03] dark:hover:bg-white/[0.03] text-zinc-800 dark:text-zinc-200 text-xs sm:text-sm font-medium transition-all"
-            >
-              <span>Projects & Builds</span>
-            </a>
-
-            <a
-              href="/resume"
-              class="inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors font-mono"
-            >
-              <span>Curriculum Vitae</span>
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-            </a>
+          <div class="space-y-3.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed">
+            <p>
+              I am an undergraduate in Electrical Engineering and Computer Science at <span class="font-medium text-zinc-900 dark:text-zinc-100">IISER Bhopal</span>, with a foundation in control theory and learning-based methods. Currently, my work spans aerial robotics, multi-robot coordination, and dexterous manipulation, focusing on how control algorithms interface with physical hardware.
+            </p>
+            <p>
+              My primary interests lie in the intersection of control systems, physical dynamics, and simulation environments. I enjoy working on how learning-based approaches can complement low-level controllers, enabling robots to handle contact, uncertainty, and complex interactions. Looking forward, I aim to pursue graduate study (MS/PhD) to work on pioneering research in robotics, dedicated to doing meaningful work that bridges scientific discovery with deep-tech innovation.
+            </p>
           </div>
 
-          <!-- Social & Academic Links -->
-          <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 pt-2 text-xs font-mono text-zinc-500 dark:text-zinc-400 border-t border-black/[0.05] dark:border-white/[0.06]">
-            <a href="https://github.com/shlok-mehndiratta" target="_blank" rel="noopener noreferrer" class="hover:text-black dark:hover:text-white transition-colors">
-              GitHub
-            </a>
-            <span>•</span>
-            <a href="https://linkedin.com/in/shlok-mehndiratta" target="_blank" rel="noopener noreferrer" class="hover:text-black dark:hover:text-white transition-colors">
-              LinkedIn
-            </a>
-            <span>•</span>
-            <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer" class="hover:text-black dark:hover:text-white transition-colors">
-              Google Scholar
-            </a>
-            <span>•</span>
-            <a href="https://x.com/ShlokMehndiratt" target="_blank" rel="noopener noreferrer" class="hover:text-black dark:hover:text-white transition-colors">
-              X (Twitter)
-            </a>
-            <span>•</span>
-            <a href="mailto:shlokm23@iiserb.ac.in" class="hover:text-black dark:hover:text-white transition-colors">
-              shlokm23@iiserb.ac.in
-            </a>
+          <!-- Social Profiles & Action Links -->
+          <div class="space-y-2.5 pt-1">
+            <!-- Row 1: External Channels -->
+            <div class="flex flex-wrap items-center gap-2">
+              <a
+                href="https://github.com/shlok-mehndiratta"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
+              >
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                <span>GitHub</span>
+              </a>
+
+              <a
+                href="https://linkedin.com/in/shlok-mehndiratta"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
+              >
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
+                <span>LinkedIn</span>
+              </a>
+
+              <a
+                href="https://scholar.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
+              >
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5 12 0z"/></svg>
+                <span>Scholar</span>
+              </a>
+
+              <a
+                href="https://x.com/ShlokMehndiratt"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
+              >
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <span>X</span>
+              </a>
+            </div>
+
+            <!-- Row 2: Direct Contact Email & Curriculum Vitae -->
+            <div class="flex flex-wrap items-center gap-2">
+              <a
+                href="mailto:shlokm23@iiserb.ac.in"
+                class="tactile-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-zinc-800 dark:text-zinc-200 text-xs font-mono font-medium transition-all"
+              >
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <span class="truncate max-w-[200px] sm:max-w-none">shlokm23@iiserb.ac.in</span>
+              </a>
+
+              <a
+                href="/resume"
+                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-zinc-950 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 text-xs font-mono font-medium shadow-[0_2px_8px_-1px_rgba(31,22,15,0.30),0_1px_2px_rgba(31,22,15,0.20),inset_0_1px_0_rgba(255,255,255,0.18)] hover:shadow-[0_4px_14px_-2px_rgba(31,22,15,0.40)] hover:-translate-y-0.5 dark:shadow-[0_0_16px_rgba(255,255,255,0.14)] transition-all shrink-0"
+              >
+                <svg class="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <span>Curriculum Vitae</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Right: Personal Portrait Plate -->
-        <div class="w-full sm:w-56 md:w-64 shrink-0 self-start">
-          <div class="reticle-corner p-2 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-zinc-50/60 dark:bg-zinc-900/40">
-            <div class="flex items-center justify-between text-[9px] font-mono text-zinc-400 dark:text-zinc-500 pb-1.5 px-0.5 uppercase tracking-wider">
-              <span class="text-cyan-600 dark:text-cyan-400 font-bold">PORTRAIT // APPARATUS</span>
-              <span>23.28°N</span>
-            </div>
-            <div class="relative w-full aspect-[4/5] overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-800">
+        <!-- Right Column: Personal Portrait Card -->
+        <div class="w-48 sm:w-56 md:w-60 shrink-0 mx-auto md:mx-0 self-start">
+          <div class="apple-card p-2 rounded-2xl">
+            <div class="relative w-full aspect-[4/5] overflow-hidden rounded-xl bg-black/[0.03] dark:white/[0.04]">
               <img
                 src="/shlok-portrait.jpg"
                 onerror="this.onerror=null; this.src='/shlok-portrait.svg';"
-                alt="Shlok Mehndiratta — EECS Researcher at IISER Bhopal"
-                class="w-full h-full object-cover grayscale contrast-110 hover:grayscale-0 hover:contrast-100 transition-all duration-500"
+                alt="Shlok Mehndiratta, EECS at IISER Bhopal"
+                class="w-full h-full object-cover grayscale contrast-105 hover:grayscale-0 hover:contrast-100 transition-all duration-500"
               />
-              <div class="absolute inset-0 border border-black/10 dark:border-white/10 pointer-events-none rounded-lg"></div>
             </div>
-            <div class="pt-2 px-0.5 flex items-center justify-between text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
+            <div class="pt-2 pb-0.5 px-1 flex items-center justify-between text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
               <span class="text-zinc-800 dark:text-zinc-200 font-medium truncate">Shlok Mehndiratta</span>
-              <span class="shrink-0 text-zinc-500">IISER Bhopal</span>
+              <span class="shrink-0 text-zinc-400 dark:text-zinc-500">IISER Bhopal</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 1: Research (Editorial Manuscript Docket) -->
-    <section id="research" class="space-y-5">
-      <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Research
-          </h2>
-          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-            Autonomous drone swarms and vision-based control manuscripts
-          </p>
-        </div>
-        <a href="/experience" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors font-mono">
-          All Publications &rarr;
-        </a>
-      </div>
-
-      <div>
-        <PublicationCard pub={featuredPub} />
-      </div>
-    </section>
-
-    <!-- Section 2: Open Source (Subsystem Telemetry Spec Docket) -->
-    <section id="systems" class="space-y-5">
-      <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Open Source
-          </h2>
-          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-            Real-time safety and diagnostic test suites for ros2_control
-          </p>
-        </div>
-        <a href="/experience#open-source" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors font-mono">
-          Full Subsystem Spec &rarr;
-        </a>
-      </div>
-
-      <div class="dossier-panel reticle-corner pt-6 pb-7 px-4 -mx-4 rounded-xl hover:bg-black/[0.015] dark:hover:bg-white/[0.015] transition-all space-y-3">
-        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-black/[0.05] dark:border-white/[0.05] pb-3">
-          <div>
-            <div class="flex items-center gap-1.5 text-xs font-mono text-zinc-400 dark:text-zinc-500 mb-1">
-              <span class="text-cyan-600 dark:text-cyan-400 font-bold">[SUBSYSTEM.01]</span>
-              <span class="tala-divider">||</span>
-              <span>ROS 2 CONTROL FRAMEWORK</span>
-              <span class="tala-divider">|</span>
-              <span class="text-emerald-600 dark:text-emerald-400 font-semibold">● ACTIVE UPSTREAM</span>
-            </div>
-            <h3 class="text-base sm:text-lg font-semibold text-zinc-950 dark:text-zinc-50">
-              ros2_control: Real-Time Safety & Diagnostics
-            </h3>
+    <!-- Section 1: Publications (Unboxed, Minimal Layout) -->
+    <section id="publications" class="space-y-6 pt-16 sm:pt-20 border-t-2 border-black/[0.1] dark:border-white/[0.12]">
+      <!-- Section Header with Distinct Monograph Taxonomy -->
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="inline-flex items-center justify-center px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 shadow-[0_1px_3px_rgba(31,22,15,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] dark:shadow-[0_0_10px_rgba(255,255,255,0.15)]">01</span>
+            <span class="text-[11px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 font-semibold">Publications</span>
           </div>
-          <a
-            href="https://github.com/ros-controls/ros2_control"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-xs font-mono text-zinc-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors shrink-0"
-          >
-            ros-controls/ros2_control &rarr;
-          </a>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Publications
+          </h2>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
+            Research papers in multi-robot swarms, area coverage, and state tracking.
+          </p>
         </div>
+        <a
+          href="/publications"
+          class="text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors font-medium shrink-0 flex items-center gap-1"
+        >
+          <span>All publications & BibTeX</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
 
-        <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
-          Migrated the controller manager lock to an RT-safe priority-inheritance mutex to eliminate priority inversion and latency spikes in high-frequency control loops; built dynamic command toggling and exception-handling test suites preventing cascaded hardware failures.
-        </p>
+      <!-- Both Publications Listed with Clear Distinction -->
+      <div class="grid grid-cols-1 gap-4">
+        {sortedPubs.map((pub) => {
+          const { title, authors, venue, year, status, takeaway, tags } = pub.data;
+          const isAccepted = status === 'accepted';
+          const statusBadge = isAccepted ? 'Accepted • ACODS 2026' : 'Under Review • ICRA 2027';
 
-        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04] text-[10px] font-mono text-zinc-500">
-          <span class="bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded text-zinc-700 dark:text-zinc-300">C++20</span>
-          <span class="bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded text-zinc-700 dark:text-zinc-300">ROS 2</span>
-          <span class="bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded text-zinc-700 dark:text-zinc-300">POSIX RT Mutex</span>
-          <span class="bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded text-zinc-700 dark:text-zinc-300">Deterministic Control</span>
-        </div>
+          return (
+            <article class="apple-card p-4 sm:p-5 rounded-xl space-y-2.5">
+              <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                <span class={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_1px_2px_rgba(35,22,12,0.04)] ${
+                  isAccepted
+                    ? 'bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/20'
+                    : 'bg-sky-500/10 text-sky-800 dark:text-sky-300 border border-sky-500/20'
+                }`}>
+                  <span class={`w-1.5 h-1.5 rounded-full ${isAccepted ? 'bg-emerald-500' : 'bg-sky-500'}`}></span>
+                  <span>{statusBadge}</span>
+                </span>
+                <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">{year}</span>
+              </div>
+
+              <h3 class="text-base sm:text-lg font-bold tracking-tight text-zinc-950 dark:text-zinc-50 leading-snug">
+                <a href="/publications" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">
+                  {title}
+                </a>
+              </h3>
+
+              <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans">
+                {authors.map((author, i) => (
+                  <span class={author === 'Shlok Mehndiratta' ? 'font-semibold text-zinc-950 dark:text-zinc-100' : ''}>
+                    {author}{i < authors.length - 1 ? ', ' : ''}
+                  </span>
+                ))}
+              </p>
+
+              <p class="text-xs font-serif italic text-zinc-500 dark:text-zinc-400">
+                {venue}
+              </p>
+
+              {takeaway && (
+                <p class="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed font-sans pt-0.5">
+                  <span class="font-semibold text-zinc-900 dark:text-zinc-100">Key takeaway:</span> {takeaway}
+                </p>
+              )}
+
+              <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                {tags.slice(0, 3).map((tag) => (
+                  <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
 
-    <!-- Section 3: Writing (Editorial Essay Ledger) -->
-    {
-      recentNote && (
-        <section id="writing" class="space-y-5">
-          <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
+    <!-- Section 2: Technical Skills (Minimal, Classy, Typographic Matrix) -->
+    <section id="skills" class="space-y-6 pt-16 sm:pt-20 border-t-2 border-black/[0.1] dark:border-white/[0.12]">
+      <!-- Section Header with Distinct Monograph Taxonomy -->
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="inline-flex items-center justify-center px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 shadow-[0_1px_3px_rgba(31,22,15,0.25),inset_0_1px_0_rgba(255,255,255,0.15)]">02</span>
+            <span class="text-[11px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 font-semibold">Technical Skills</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Technical Skills
+          </h2>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
+            Technical proficiencies in programming, robotics & simulation, computer vision & ML, and systems deployment.
+          </p>
+        </div>
+        <a
+          href="/resume#skills"
+          class="text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors font-medium shrink-0 flex items-center gap-1"
+        >
+          <span>Curriculum Vitae</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Minimal Typographic Inventory (Unboxed, airy, premium) -->
+      <div class="divide-y divide-black/[0.06] dark:divide-white/[0.06] border-y border-black/[0.06] dark:border-white/[0.06]">
+        {skillCategories.map((group) => (
+          <div class="py-3.5 sm:py-4 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
+            <div class="w-full md:w-56 shrink-0">
+              <span class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
+                {group.category}
+              </span>
+            </div>
+            <div class="flex-1 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 font-sans">
+              {group.items.map((item, idx) => (
+                <span class="inline-flex items-center">
+                  <span class="hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors">
+                    {item}
+                  </span>
+                  {idx < group.items.length - 1 && (
+                    <span class="ml-2.5 text-zinc-300 dark:text-zinc-700 text-xs select-none">•</span>
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 3: Research Experience -->
+    <section id="research" class="space-y-6 pt-16 sm:pt-20 border-t-2 border-black/[0.1] dark:border-white/[0.12]">
+      <!-- Section Header with Distinct Monograph Taxonomy -->
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="inline-flex items-center justify-center px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 shadow-[0_1px_3px_rgba(31,22,15,0.25),inset_0_1px_0_rgba(255,255,255,0.15)]">03</span>
+            <span class="text-[11px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 font-semibold">Research Experience</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Research Experience
+          </h2>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
+            Current and past research across aerial robotics, manipulation, and state estimation.
+          </p>
+        </div>
+        <a
+          href="/experience#research"
+          class="text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors font-medium shrink-0 flex items-center gap-1"
+        >
+          <span>Full research timeline</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Active Research Items -->
+      <div class="space-y-4">
+        {activeResearch.map((exp) => (
+          <div class="apple-card p-4 sm:p-5 rounded-xl space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+              <div>
+                <h3 class="text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+                  {exp.organization}
+                </h3>
+                <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+                  Advisor: {exp.advisor}
+                </p>
+              </div>
+
+              <div class="flex items-center gap-2 self-start">
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_1px_2px_rgba(35,22,12,0.04)] shrink-0">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>{exp.role}</span>
+                </span>
+                <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">
+                  {exp.period}
+                </span>
+              </div>
+            </div>
+
             <div>
-              <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-                Writing
-              </h2>
-              <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-                Systems discipline and state modeling from Harvard CS50 Web
+              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
+                {exp.topic}
+              </div>
+              <p class="text-xs text-zinc-600 dark:text-zinc-300 mt-1 leading-relaxed font-sans">
+                {exp.summary}
               </p>
             </div>
-            <a href="/notebook" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors font-mono">
-              All Notes &rarr;
-            </a>
-          </div>
 
-          <div>
-            <NotebookCard entry={recentNote} />
-          </div>
-        </section>
-      )
-    }
+            {exp.highlights && exp.highlights.length > 0 && (
+              <details class="group/home-exp pt-1">
+                <summary class="tactile-btn list-none [&::-webkit-details-marker]:hidden inline-flex items-center gap-2 px-2.5 py-1 rounded-lg text-xs font-mono font-medium cursor-pointer select-none">
+                  <span class="group-open/home-exp:hidden">Technical breakdown</span>
+                  <span class="hidden group-open/home-exp:inline">Hide breakdown</span>
+                  <svg
+                    class="w-3.5 h-3.5 text-zinc-400 group-hover/home-exp:text-zinc-700 dark:group-hover/home-exp:text-zinc-200 transition-transform duration-200 group-open/home-exp:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </summary>
 
-    <!-- Section 4: Visual Encounters Preview (Laboratory Observation Plates) -->
-    <section id="archive" class="space-y-5">
-      <div class="flex items-baseline justify-between border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Field & Lab
+                <div class="pt-3 space-y-2 border-t border-black/[0.05] dark:border-white/[0.05] mt-2.5">
+                  <ul class="space-y-1.5 text-xs text-zinc-700 dark:text-zinc-300 font-sans leading-relaxed">
+                    {exp.highlights.map((h) => (
+                      <li class="flex items-start gap-2">
+                        <span class="text-zinc-400 dark:text-zinc-500 font-mono text-xs shrink-0 select-none">•</span>
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {exp.paperLink && (
+                    <div class="pt-2 border-t border-black/[0.05] dark:border-white/[0.05]">
+                      <a
+                        href={exp.paperLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-zinc-50 font-medium underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-600 transition-colors"
+                      >
+                        <span>{exp.paperLinkLabel || 'Paper, Code & Data ↗'}</span>
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </details>
+            )}
+
+            <div class="pt-1 flex flex-wrap gap-1.5">
+              {exp.skills.map((skill) => (
+                <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 4: Open Source -->
+    <section id="open-source" class="space-y-5 pt-16 sm:pt-20 border-t-2 border-black/[0.1] dark:border-white/[0.12]">
+      <!-- Section Header with Distinct Monograph Taxonomy -->
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="inline-flex items-center justify-center px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 shadow-[0_1px_3px_rgba(31,22,15,0.25),inset_0_1px_0_rgba(255,255,255,0.15)]">04</span>
+            <span class="text-[11px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 font-semibold">Open Source</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Open Source Contributions
           </h2>
-          <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-            Photographs from drone arenas, robot hardware, and campus
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
+            Contributions to the Robot Operating System 2 (ROS 2) control framework.
           </p>
         </div>
-        <a href="/archive" class="text-xs font-medium text-zinc-500 hover:text-black dark:hover:text-white transition-colors font-mono">
-          Browse All ({allArchive.length}) &rarr;
+        <a
+          href="/experience#open-source"
+          class="text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors font-medium shrink-0 flex items-center gap-1"
+        >
+          <span>View open source contributions</span>
+          <span>&rarr;</span>
         </a>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        {previewArchive.map((item) => (
-          <ArchiveCard item={item} />
+      <div class="apple-card p-4 sm:p-5 rounded-xl space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+          <div>
+            <div class="flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400 mb-0.5">
+              <span>ros-controls</span>
+              <span>•</span>
+              <span class="text-emerald-600 dark:text-emerald-400 font-semibold">{openSourceHighlight.role}</span>
+            </div>
+            <h3 class="text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+              {openSourceHighlight.framework}: {openSourceHighlight.title}
+            </h3>
+          </div>
+          <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">
+            {openSourceHighlight.period}
+          </span>
+        </div>
+
+        <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
+          {openSourceHighlight.summary}
+        </p>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+          <div class="flex flex-wrap gap-1.5">
+            {openSourceHighlight.skills.map((s) => (
+              <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
+                {s}
+              </span>
+            ))}
+          </div>
+
+          <div class="flex items-center gap-3 text-xs font-mono">
+            <a
+              href={openSourceHighlight.prUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-50 underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-700 transition-colors"
+            >
+              5 Upstream PRs ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Selected Projects -->
+    <section id="projects" class="space-y-6 pt-16 sm:pt-20 border-t-2 border-black/[0.1] dark:border-white/[0.12]">
+      <!-- Section Header with Distinct Monograph Taxonomy -->
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="inline-flex items-center justify-center px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 shadow-[0_1px_3px_rgba(31,22,15,0.25),inset_0_1px_0_rgba(255,255,255,0.15)]">05</span>
+            <span class="text-[11px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 font-semibold">Selected Projects</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Selected Projects
+          </h2>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
+            Engineering builds across computer vision, deep learning, and digital hardware.
+          </p>
+        </div>
+        <a
+          href="/projects"
+          class="text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors font-medium shrink-0 flex items-center gap-1"
+        >
+          <span>All projects & coursework</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Projects List with Collapsible Details -->
+      <div class="space-y-4">
+        {selectedProjects.map((proj) => (
+          <div class="apple-card p-4 sm:p-5 rounded-xl space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-black/[0.05] dark:border-white/[0.05] pb-2.5">
+              <div class="flex items-baseline gap-3">
+                <span class="font-mono text-lg font-semibold text-zinc-800 dark:text-zinc-100 select-none">
+                  {proj.id}
+                </span>
+                <div>
+                  <div class="flex items-center gap-2 text-[10px] font-mono text-zinc-500 dark:text-zinc-400 mb-0.5">
+                    <span class="tech-chip uppercase tracking-wider font-semibold px-2 py-0.5 rounded text-[10px] font-mono">
+                      {proj.category}
+                    </span>
+                    <span>•</span>
+                    <span>{proj.location}</span>
+                  </div>
+                  <h3 class="text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+                    {proj.title}
+                  </h3>
+                </div>
+              </div>
+              <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">
+                {proj.period}
+              </span>
+            </div>
+
+            <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
+              {proj.shortSummary}
+            </p>
+
+            <!-- Collapsible Dropdown Drawer for Details -->
+            <details class="group/home-proj pt-1">
+              <summary class="tactile-btn list-none [&::-webkit-details-marker]:hidden inline-flex items-center gap-2 px-2.5 py-1 rounded-lg text-xs font-mono font-medium cursor-pointer select-none">
+                <span class="group-open/home-proj:hidden">Details & architecture</span>
+                <span class="hidden group-open/home-proj:inline">Hide details</span>
+                <svg
+                  class="w-3.5 h-3.5 text-zinc-400 group-hover/home-proj:text-zinc-700 dark:group-hover/home-proj:text-zinc-200 transition-transform duration-200 group-open/home-proj:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+
+              <div class="pt-3 space-y-3 border-t border-black/[0.05] dark:border-white/[0.05] mt-2.5">
+                <ul class="space-y-1.5 text-xs text-zinc-700 dark:text-zinc-300 font-sans leading-relaxed">
+                  {proj.highlights.map((h) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-zinc-400 dark:text-zinc-500 font-mono text-xs shrink-0 select-none">•</span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {proj.outcome && (
+                  <p class="text-xs text-zinc-600 dark:text-zinc-400 font-sans pt-1 italic">
+                    <span class="font-semibold not-italic">Outcome:</span> {proj.outcome}
+                  </p>
+                )}
+              </div>
+            </details>
+
+            <div class="flex flex-wrap items-center gap-1.5 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+              {proj.tech.map((t) => (
+                <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <!-- Card 03: Full Project Repository & Coursework Directory -->
+        <a
+          href="/projects"
+          class="apple-card group block p-4 sm:p-5 rounded-xl border border-dashed border-black/15 dark:border-white/15 bg-surface-light/70 dark:bg-surface-dark/70 hover:bg-surface-light dark:hover:bg-surface-dark hover:border-black/30 dark:hover:border-white/30 transition-all space-y-3"
+        >
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-black/[0.05] dark:border-white/[0.05] pb-2.5">
+            <div class="flex items-baseline gap-3">
+              <span class="font-mono text-lg font-semibold text-zinc-400 dark:text-zinc-500 select-none">
+                03
+              </span>
+              <div>
+                <div class="flex items-center gap-2 text-[10px] font-mono text-zinc-500 dark:text-zinc-400 mb-0.5">
+                  <span class="tech-chip uppercase tracking-wider font-semibold px-2 py-0.5 rounded text-[10px] font-mono">
+                    Repository Directory
+                  </span>
+                  <span>•</span>
+                  <span>47 Completed Courses &amp; 4 More Projects</span>
+                </div>
+                <h3 class="text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50 group-hover:text-zinc-800 dark:group-hover:text-zinc-200 transition-colors">
+                  Full Engineering Builds &amp; Academic Coursework Archive
+                </h3>
+              </div>
+            </div>
+            <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">
+              IISER Bhopal (2023 – Present)
+            </span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans">
+            Explore 4 additional engineering systems including mobile robot MPC tracking in ROS 2, satellite radar vision for maritime oil spill detection, and full-stack web platforms, alongside comprehensive syllabi for 47 completed courses across Robotics, Control Systems, and Mathematics.
+          </p>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
+                Mobile Robot MPC
+              </span>
+              <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
+                Satellite SAR Vision
+              </span>
+              <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
+                CS50 Web Suite
+              </span>
+              <span class="tech-chip text-[10px] font-mono px-2 py-0.5 rounded">
+                47 Course Syllabi
+              </span>
+            </div>
+
+            <span class="inline-flex items-center gap-1 text-xs font-mono font-medium text-zinc-900 dark:text-zinc-100 group-hover:underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-600 transition-all">
+              <span>View full projects repository</span>
+              <span class="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+            </span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 6: Notebook -->
+    <section id="notebook" class="space-y-5 pt-16 sm:pt-20 border-t-2 border-black/[0.1] dark:border-white/[0.12]">
+      <!-- Section Header with Distinct Monograph Taxonomy -->
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="inline-flex items-center justify-center px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 shadow-[0_1px_3px_rgba(31,22,15,0.25),inset_0_1px_0_rgba(255,255,255,0.15)]">06</span>
+            <span class="text-[11px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 font-semibold">Notebook & Blogs</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Notebook & Blogs
+          </h2>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
+            Personal notes, workshop reflections, and engineering logs from IISER Bhopal.
+          </p>
+        </div>
+        <a
+          href="/notebook"
+          class="text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors font-medium shrink-0 flex items-center gap-1"
+        >
+          <span>All notes ({allNotes.length})</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Compact Notebook Entries -->
+      <div class="space-y-3">
+        {compactNotes.map((note) => {
+          const { title, summary, publishedDate, readTime, image, imageAlt } = note.data;
+          const formattedDate = new Intl.DateTimeFormat('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          }).format(publishedDate);
+
+          return (
+            <a
+              href={`/notebook/${note.slug}`}
+              class="group apple-card flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-3.5 sm:p-4 rounded-xl transition-all"
+            >
+              <div class="flex items-start gap-3.5">
+                {image && (
+                  <div class="tactile-plate w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden shrink-0 bg-black/[0.03] dark:bg-white/[0.04]">
+                    <img
+                      src={image}
+                      alt={imageAlt || title}
+                      class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 transition-all duration-300"
+                    />
+                  </div>
+                )}
+                <div class="space-y-1">
+                  <div class="flex items-center gap-2 text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
+                    <time datetime={publishedDate.toISOString()}>{formattedDate}</time>
+                    <span>•</span>
+                    <span>{readTime}</span>
+                  </div>
+                  <h3 class="text-sm sm:text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50 group-hover:text-zinc-800 dark:group-hover:text-zinc-200 transition-colors leading-snug">
+                    {title}
+                  </h3>
+                  <p class="text-xs text-zinc-600 dark:text-zinc-400 line-clamp-1 font-sans">
+                    {summary}
+                  </p>
+                </div>
+              </div>
+
+              <span class="text-xs font-mono text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-zinc-50 transition-colors shrink-0 self-end sm:self-center">
+                Read &rarr;
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- Section 7: Photo Gallery -->
+    <section id="archive" class="space-y-5 pt-16 sm:pt-20 border-t-2 border-black/[0.1] dark:border-white/[0.12]">
+      <!-- Section Header with Distinct Monograph Taxonomy -->
+      <div class="border-b border-black/[0.06] dark:border-white/[0.06] pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="inline-flex items-center justify-center px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 shadow-[0_1px_3px_rgba(31,22,15,0.25),inset_0_1px_0_rgba(255,255,255,0.15)]">07</span>
+            <span class="text-[11px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 font-semibold">Gallery</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+            Photo Gallery
+          </h2>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 font-sans">
+            Photographs from drone arenas, robot hardware, workshops, and campus moments.
+          </p>
+        </div>
+        <a
+          href="/archive"
+          class="text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors font-medium shrink-0 flex items-center gap-1"
+        >
+          <span>Browse full gallery ({allArchive.length})</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Small, compact cards in a 4-column responsive grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        {compactArchive.map((item) => (
+          <a
+            href="/archive"
+            class="group apple-card block space-y-1.5 p-2 rounded-xl transition-all"
+          >
+            <div class="tactile-plate w-full aspect-[4/3] rounded-lg overflow-hidden bg-black/[0.03] dark:bg-white/[0.04]">
+              <img
+                src={item.data.imageUrl}
+                alt={item.data.title}
+                loading="lazy"
+                class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
+              />
+            </div>
+            <div class="px-0.5 space-y-0.5">
+              <h3 class="text-xs font-semibold text-zinc-950 dark:text-zinc-50 truncate">
+                {item.data.title}
+              </h3>
+              <p class="text-[10px] font-mono text-zinc-500 dark:text-zinc-400 truncate">
+                {item.data.location}
+              </p>
+            </div>
+          </a>
         ))}
       </div>
     </section>

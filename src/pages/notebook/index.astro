@@ -7,33 +7,130 @@ const allEntries = await getCollection('notebook', ({ data }) => !data.draft);
 const sortedEntries = allEntries.sort(
   (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
 );
+
+const workshopCount = sortedEntries.filter((e) => e.data.type === 'workshop').length;
+const labCount = sortedEntries.filter((e) => e.data.type === 'lab-story').length;
+const systemsCount = sortedEntries.filter((e) => ['deep-dive', 'essay'].includes(e.data.type)).length;
+const experienceCount = sortedEntries.filter((e) => ['experience', 'thought'].includes(e.data.type)).length;
+
+const blogSchema = {
+  '@type': 'Blog',
+  name: "Shlok Mehndiratta's Notebook & Blogs",
+  description: 'Personal engineering journal, workshop breakdowns, hardware stories, and campus reflections.',
+  blogPost: sortedEntries.map((e) => ({
+    '@type': 'BlogPosting',
+    headline: e.data.title,
+    description: e.data.summary,
+    datePublished: e.data.publishedDate.toISOString(),
+    url: `https://shlokmehndiratta.me/notebook/${e.slug}`,
+  })),
+};
 ---
 
 <BaseLayout
   title="Notebook | Shlok Mehndiratta"
-  description="Technical essays, lab heuristics, and paper reading reflections by Shlok Mehndiratta."
+  description="Personal engineering journal, workshop breakdowns, hardware stories, and campus reflections by Shlok Mehndiratta."
+  schema={blogSchema}
 >
-  <div class="space-y-12 sm:space-y-16">
-    <!-- Header -->
-    <header class="space-y-3 pb-6 border-b border-black/[0.08] dark:border-white/[0.08]">
-      <div class="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
-        <span>WRITING & REFLECTIONS</span>
-        <span class="tala-divider">||</span>
-        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">{sortedEntries.length} ENTRIES</span>
-      </div>
-      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-        Notebook
+  <div class="space-y-10 sm:space-y-12">
+    <!-- Clean Personalized Page Header -->
+    <header class="pb-4 border-b border-black/[0.08] dark:border-white/[0.08] space-y-2">
+      <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        Notebook & Blogs
       </h1>
-      <p class="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-        Technical essays, lab heuristics, and paper reading reflections.
+      <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed font-sans">
+        A collection of personal notes, lab experiences, workshop reflections, and thoughts from my time at IISER Bhopal.
       </p>
     </header>
 
-    <!-- Notebook Ledger Grid -->
-    <section class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+    <!-- Minimal Category Filter Tabs -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/[0.06] dark:border-white/[0.06] pb-3">
+      <div class="flex flex-wrap items-center gap-1.5" id="notebook-filters">
+        <button
+          type="button"
+          data-filter="all"
+          class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-mono font-medium"
+        >
+          All Notes ({sortedEntries.length})
+        </button>
+        {workshopCount > 0 && (
+          <button
+            type="button"
+            data-filter="workshops"
+            class="filter-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium"
+          >
+            Workshops & Community ({workshopCount})
+          </button>
+        )}
+        {labCount > 0 && (
+          <button
+            type="button"
+            data-filter="lab-stories"
+            class="filter-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium"
+          >
+            Hardware & Lab Stories ({labCount})
+          </button>
+        )}
+        {systemsCount > 0 && (
+          <button
+            type="button"
+            data-filter="systems"
+            class="filter-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium"
+          >
+            Engineering & Systems ({systemsCount})
+          </button>
+        )}
+        {experienceCount > 0 && (
+          <button
+            type="button"
+            data-filter="experiences"
+            class="filter-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium"
+          >
+            Campus & Field Life ({experienceCount})
+          </button>
+        )}
+      </div>
+
+      <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+        {sortedEntries.length} Pieces
+      </span>
+    </div>
+
+    <!-- 2-Column Responsive Card Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5" id="notebook-grid">
       {sortedEntries.map((entry) => (
         <NotebookCard entry={entry} />
       ))}
-    </section>
+    </div>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    const filterContainer = document.getElementById('notebook-filters');
+    if (!filterContainer) return;
+
+    filterContainer.addEventListener('click', function (e) {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+
+      const targetFilter = btn.getAttribute('data-filter');
+      const allBtns = filterContainer.querySelectorAll('.filter-btn');
+
+      allBtns.forEach(function (b) {
+        b.classList.remove('active');
+      });
+      btn.classList.add('active');
+
+      const items = document.querySelectorAll('[data-notebook-item]');
+      items.forEach(function (item) {
+        const cat = item.getAttribute('data-category');
+        if (targetFilter === 'all' || cat === targetFilter) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  })();
+</script>
